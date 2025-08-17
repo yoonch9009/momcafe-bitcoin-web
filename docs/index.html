@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>맘카페 언급량 vs 비트코인 가격 (주간)</title>
+    <style>
+      body {
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
+          Arial, sans-serif;
+        margin: 24px;
+      }
+      header {
+        margin-bottom: 16px;
+      }
+      .wrap {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      .meta {
+        color: #666;
+        font-size: 0.9rem;
+        margin-top: 8px;
+      }
+      #chartWrap {
+        position: relative;
+        height: 520px;
+      }
+      footer {
+        margin-top: 28px;
+        color: #777;
+        font-size: 0.9rem;
+      }
+      code {
+        background: #f6f8fa;
+        padding: 2px 4px;
+        border-radius: 4px;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <h1>맘카페 &ldquo;비트코인&rdquo; 언급량 vs BTC 가격 (주간)</h1>
+        <div class="meta">
+          데이터는 GitHub Actions로 주기적으로 갱신됩니다. (주간: 월요일 시작,
+          가격: 주간 평균)
+        </div>
+      </header>
+
+      <div id="chartWrap">
+        <canvas id="chart"></canvas>
+      </div>
+
+      <div id="updated" class="meta"></div>
+
+      <footer>
+        <p>
+          출처: 네이버/다음 카페 공개 검색 결과(약관 준수 하에 수집),
+          CryptoCompare (BTC/USD).
+        </p>
+        <p>오류/문의: 리포지토리의 이슈로 남겨주세요.</p>
+        <p>
+          이미지 버전:
+          <a href="./chart.png" target="_blank" rel="noopener">chart.png</a>
+        </p>
+      </footer>
+    </div>
+
+    <script>
+      async function main() {
+        const res = await fetch("./data.json", { cache: "no-store" });
+        const data = await res.json();
+
+        const labels = data.weeks.map((d) => new Date(d));
+        const counts = data.postCounts;
+        const prices = data.btc;
+
+        const ctx = document.getElementById("chart").getContext("2d");
+        new Chart(ctx, {
+          type: "bar",
+          data: {
+            labels,
+            datasets: [
+              {
+                type: "bar",
+                label: "게시글 수",
+                data: counts,
+                yAxisID: "y",
+              },
+              {
+                type: "line",
+                label: "BTC 가격(USD)",
+                data: prices,
+                yAxisID: "y1",
+                tension: 0.25,
+                pointRadius: 0,
+                borderWidth: 2,
+              },
+            ],
+          },
+          options: {
+            interaction: { mode: "index", intersect: false },
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              x: {
+                type: "time",
+                time: { unit: "month", tooltipFormat: "yyyy-MM-dd" },
+                ticks: { maxRotation: 0, autoSkip: true, maxTicksLimit: 12 },
+              },
+              y: {
+                title: { display: true, text: "게시글 수" },
+                beginAtZero: true,
+                grid: { drawOnChartArea: true },
+              },
+              y1: {
+                position: "right",
+                title: { display: true, text: "BTC (USD)" },
+                grid: { drawOnChartArea: false },
+              },
+            },
+            plugins: {
+              legend: { position: "top" },
+              tooltip: { callbacks: {} },
+            },
+          },
+        });
+
+        document.getElementById(
+          "updated"
+        ).textContent = `마지막 갱신: ${new Date(
+          data.updatedAt
+        ).toLocaleString()}`;
+      }
+      main();
+    </script>
+  </body>
+</html>
