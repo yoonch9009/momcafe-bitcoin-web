@@ -2,97 +2,78 @@
 # -*- coding: utf-8 -*-
 
 import os
+import time
+import json
+import random
 import requests
 import datetime as dt
-import matplotlib
-matplotlib.use("Agg")  # 서버/CI 환경에서 그림 저장용
-import matplotlib.pyplot as plt
-import matplotlib.dates as mdates
-from collections import defaultdict
-import time
-import random
-import json
-import numpy as np
 import pandas as pd
 from bs4 import BeautifulSoup
+from collections import defaultdict
+from zoneinfo import ZoneInfo
 import cryptocompare
 
-# --------------------------------------------------------------------
-# 설정
-# --------------------------------------------------------------------
+KST = ZoneInfo("Asia/Seoul")
 HEADERS = {
     "User-Agent": (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
         "(KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36"
     )
 }
-OUT_DIR = "docs"  # GitHub Pages가 서빙할 디렉토리
+OUT_DIR = "docs"
 SEARCH_KEYWORD = "비트코인"
 
-# --------------------------------------------------------------------
-# 유틸
-# --------------------------------------------------------------------
-def parse_date_flexibly(value):
-    """여러 포맷/타입을 안전하게 날짜로 변환."""
+# ------------------------- 유틸/파서 -------------------------
+def parse_date_kst(value):
+    """여러 포맷을 KST aware datetime으로 변환."""
     if value is None:
         return None
 
-    # 타임스탬프(초/밀리초) 숫자형
+    # 숫자형(초/밀리초) 유닉스 타임스탬프
     if isinstance(value, (int, float)):
         ts = int(value)
-        # 밀리초로 보이는 큰 수면 초로 변환
-        if ts > 10**12:
-            ts = ts // 1000
+        if ts > 10**12:  # 밀리초 → 초
+            ts //= 1000
         try:
-            return dt.datetime.fromtimestamp(ts)
+            return dt.datetime.fromtimestamp(ts, tz=KST)
         except Exception:
             return None
 
-    # 문자열 파싱
     s = str(value).strip().rstrip(".")
-    # HH:MM → 오늘 날짜로 보정
+    # "HH:MM" (오늘 시각으로 간주)
     if len(s) == 5 and s[2] == ":":
-        today = dt.date.today()
+        today = dt.datetime.now(tz=KST).date()
         try:
-            return dt.datetime.strptime(f"{today.year}.{today.month}.{today.day} {s}", "%Y.%m.%d %H:%M")
+            return dt.datetime.strptime(f"{today.year}.{today.month}.{today.day} {s}", "%Y.%m.%d %H:%M").replace(tzinfo=KST)
         except Exception:
             pass
 
-    # 다양한 패턴 시도
     patterns = [
         "%y.%m.%d", "%Y.%m.%d", "%y.%m.%d.", "%Y.%m.%d.",
         "%Y-%m-%d", "%y-%m-%d",
     ]
     for p in patterns:
         try:
-            return dt.datetime.strptime(s, p)
+            d = dt.datetime.strptime(s, p)
+            return d.replace(tzinfo=KST)
         except Exception:
             continue
     return None
 
-
-# --------------------------------------------------------------------
-# 데이터 수집
-# --------------------------------------------------------------------
+# ------------------------- 수집부 -------------------------
 def get_post_dates_from_naver_api(url):
-    """네이버 카페 모바일 검색 API에서 게시글 날짜 추출."""
-    print(f"[Naver] GET {url}")
     dates = []
     next_params = None
-    data = None
     try:
         res = requests.get(url, headers=HEADERS, timeout=20)
         res.raise_for_status()
         data = res.json()
         result = (data or {}).get("message", {}).get("result", {})
         articles = result.get("articleList", []) or []
-        print(f" - articles: {len(articles)}")
-
         for a in articles:
             if a.get("type") != "ARTICLE":
                 continue
             item = a.get("item", {}) or {}
-            # 후보 키들 중 하나라도 존재하면 사용
             raw = (
                 item.get("currentSecTime")
                 or item.get("writeDate")
@@ -100,38 +81,25 @@ def get_post_dates_from_naver_api(url):
                 or item.get("wrtDt")
                 or item.get("date")
             )
-            dt_obj = parse_date_flexibly(raw)
+            dt_obj = parse_date_kst(raw)
             if dt_obj:
                 dates.append(dt_obj)
-
         next_params = result.get("nextRequestParameter")
-
     except Exception as e:
         print(f"[Naver] Error: {e}")
-
     return dates, next_params
 
-
 def get_post_dates_from_daum_cafe(url, grpid, pagenum):
-    """다음 카페 검색 페이지 파싱."""
-    print(f"[Daum] GET {url}")
     dates = []
     next_page_params = None
     try:
         res = requests.get(url, headers=HEADERS, timeout=20)
         res.raise_for_status()
         soup = BeautifulSoup(res.text, "html.parser")
-
-        date_elements = soup.select("td.date")
-        print(f" - date elements: {len(date_elements)}")
-
-        for el in date_elements:
-            date_text = el.get_text(strip=True)
-            dt_obj = parse_date_flexibly(date_text)
+        for el in soup.select("td.date"):
+            dt_obj = parse_date_kst(el.get_text(strip=True))
             if dt_obj:
                 dates.append(dt_obj)
-
-        # 페이징: 다음 페이지 유무
         paging = soup.select_one("div.paging")
         if paging:
             links = paging.select("a.num_box")
@@ -143,212 +111,196 @@ def get_post_dates_from_daum_cafe(url, grpid, pagenum):
                     pass
             if last_page_num and pagenum < last_page_num:
                 next_page_params = {"grpid": grpid, "pagenum": pagenum + 1}
-
     except Exception as e:
         print(f"[Daum] Error: {e}")
-
     return dates, next_page_params
 
-
-def get_bitcoin_prices_cryptocompare(start_date, end_date, api_key):
-    """CryptoCompare에서 BTC 일봉 가격 후 주간 평균으로 변환."""
-    print("[BTC] Fetch from CryptoCompare (chunked)")
+def get_btc_daily_close_kst(start_dt, end_dt, api_key):
+    """CryptoCompare 일봉(UTC)을 받아 KST 종가 시계열(DataFrame)을 반환."""
     if api_key:
-        # 라이브러리 내부 API 키 설정 (라이브러리 버전에 따라 다를 수 있음)
         try:
             cryptocompare.cryptocompare._set_api_key_parameter(api_key)
         except Exception:
             pass
 
-    all_data = []
-    try:
-        cursor = start_date
-        while cursor < end_date:
-            current_end = min(end_date, cursor + dt.timedelta(days=2000))
-            limit = (current_end - cursor).days
-            to_ts = int(current_end.timestamp())
+    all_rows = []
+    cursor = start_dt
+    # 하루 단위로 충분히 넉넉(2000일) 호출
+    while cursor < end_dt:
+        chunk_end = min(end_dt, cursor + dt.timedelta(days=2000))
+        limit = (chunk_end - cursor).days
+        to_ts = int(chunk_end.timestamp())  # UTC 기준
+        data = cryptocompare.get_historical_price_day("BTC", "USD", limit=limit, toTs=to_ts)
+        if isinstance(data, dict) and data.get("Response") == "Error":
+            raise RuntimeError(data.get("Message"))
+        all_rows.extend(data or [])
+        cursor = chunk_end
+        time.sleep(0.4)
 
-            data = cryptocompare.get_historical_price_day(
-                "BTC", "USD", limit=limit, toTs=to_ts
-            )
-            if isinstance(data, dict) and data.get("Response") == "Error":
-                raise RuntimeError(data.get("Message"))
+    if not all_rows:
+        return pd.DataFrame(columns=["close"])
 
-            all_data.extend(data or [])
-            cursor = current_end
-            time.sleep(0.5)  # 과한 호출 방지
+    # UTC→KST 로 변환해 index 구성
+    utc_times = pd.to_datetime([r["time"] for r in all_rows], unit="s", utc=True)
+    kst_times = utc_times.tz_convert(KST)
+    closes = [float(r["close"]) for r in all_rows]
+    df = pd.DataFrame({"close": closes}, index=kst_times).sort_index()
+    return df
 
-        # dict -> DataFrame
-        price_map = {}
-        for item in all_data:
-            t = item.get("time")
-            c = item.get("close")
-            if t is None or c is None:
-                continue
-            price_map[dt.datetime.fromtimestamp(int(t))] = float(c)
+# ------------------------- 집계/동기화 -------------------------
+def posts_to_weekly_counts_kst(post_datetimes):
+    """주차(월요일 시작, 좌폐구간)로 카운트."""
+    if not post_datetimes:
+        return pd.Series(dtype="int64")
+    idx = pd.to_datetime(post_datetimes)
+    # 이미 tz-aware 라면 그대로, 아니라면 KST로 지역화
+    if idx.tz is None:
+        idx = idx.tz_localize(KST)
+    s = pd.Series(1, index=idx)
+    weekly = s.resample("W-MON", label="left", closed="left").sum().astype("int64")
+    return weekly
 
-        if not price_map:
-            return {}
+def btc_to_weekly(df_daily_close_kst):
+    """BTC 일봉 → 주간 지표(평균, 종가, 다음주 종가/수익률)"""
+    if df_daily_close_kst.empty:
+        return (pd.Series(dtype="float64"),)*4
 
-        df = pd.DataFrame.from_dict(price_map, orient="index", columns=["price"])
-        df.index = pd.to_datetime(df.index)
-        # 월요일 시작 주차 평균
-        df_w = df.resample("W-MON").mean().sort_index()
-        return df_w["price"].to_dict()
+    # 주간 평균가/종가
+    weekly_mean = df_daily_close_kst["close"].resample("W-MON", label="left", closed="left").mean()
+    weekly_close = df_daily_close_kst["close"].resample("W-MON", label="left", closed="left").last()
 
-    except Exception as e:
-        print(f"[BTC] Error: {e}")
-        return {}
+    # 다음주 종가/수익률(예측 관점용)
+    next_week_close = weekly_close.shift(-1)
+    next_week_return = (next_week_close / weekly_close - 1.0)
 
+    return weekly_mean, weekly_close, next_week_close, next_week_return
 
-# --------------------------------------------------------------------
-# 가공/저장
-# --------------------------------------------------------------------
-def group_by_week(dates):
-    """날짜 목록을 주차(월요일 시작)로 그룹화."""
-    weekly = defaultdict(int)
-    for d in dates:
-        week_start = d - dt.timedelta(days=d.weekday())
-        week_start = dt.datetime(week_start.year, week_start.month, week_start.day)
-        weekly[week_start] += 1
-    return dict(weekly)
+def align_weeks(posts_weekly, *btc_weeklies):
+    """주차 인덱스를 합집합으로 맞추되,
+       - 게시글은 결측 0
+       - BTC는 결측 NaN (보간/미래참조 방지)
+    """
+    all_index = posts_weekly.index
+    for s in btc_weeklies:
+        all_index = all_index.union(s.index)
+    all_index = all_index.sort_values()
 
+    posts_aligned = posts_weekly.reindex(all_index).fillna(0).astype("int64")
+    btc_aligned = [s.reindex(all_index) for s in btc_weeklies]
+    return (all_index, posts_aligned, *btc_aligned)
 
-def ensure_outdir(path):
-    if not os.path.isdir(path):
-        os.makedirs(path, exist_ok=True)
-
-
-def save_outputs(weekly_counts, bitcoin_prices, out_dir):
-    """data.json과 chart.png 저장."""
-    ensure_outdir(out_dir)
-
-    if not bitcoin_prices:
-        raise RuntimeError("비트코인 가격 데이터가 없습니다.")
-
-    # 주차 축 생성(가격 기준으로 통일)
-    start = min(pd.to_datetime(list(bitcoin_prices.keys())))
-    end = max(pd.to_datetime(list(bitcoin_prices.keys())))
-    all_weeks = pd.date_range(start=start, end=end, freq="W-MON")
-
-    # 가격(보간)과 게시글 수(결측 0)
-    price_df = pd.DataFrame.from_dict(bitcoin_prices, orient="index", columns=["price"])
-    price_df.index = pd.to_datetime(price_df.index)
-    price_df = price_df.reindex(all_weeks).interpolate(method="linear")
-    prices = price_df["price"].tolist()
-    counts = [weekly_counts.get(pd.Timestamp(w).to_pydatetime(), 0) for w in all_weeks]
-
-    # JSON 저장
+# ------------------------- 저장 -------------------------
+def save_json(out_path, index, posts, w_mean, w_close, next_close, next_ret):
     payload = {
-        "updatedAt": dt.datetime.utcnow().isoformat() + "Z",
-        "weeks": [w.strftime("%Y-%m-%d") for w in all_weeks],
-        "postCounts": counts,
-        "btc": prices,
+        "schemaVersion": 2,
+        "tz": "Asia/Seoul",
+        "weekStart": "MON",
+        "updatedAt": dt.datetime.now(tz=KST).isoformat(),
+        "weeks": [pd.Timestamp(i).strftime("%Y-%m-%d") for i in index],  # KST 기준 주 시작(월)
+        "postCounts": posts.tolist(),
+        # 같은 주 비교(설명/비주가용) - look-ahead 가능성 有
+        "btcWeeklyMean": (w_mean.tolist() if w_mean is not None else []),
+        "btcWeeklyClose": (w_close.tolist() if w_close is not None else []),
+        # 예측 관점(look-ahead 無): 주 t → 주 t+1
+        "btcNextWeekClose": (next_close.tolist() if next_close is not None else []),
+        "btcNextWeekReturn": (next_ret.tolist() if next_ret is not None else []),
         "meta": {
             "keyword": SEARCH_KEYWORD,
-            "note": "주간 단위(월요일 시작), 가격은 주간 평균.",
+            "note": "BTC는 UTC→KST 변환 후 주간 집계. 가격 결측은 보간하지 않음.",
         },
+        "kpis": {}
     }
-    with open(os.path.join(out_dir, "data.json"), "w", encoding="utf-8") as f:
+
+    # 간단 KPI (교집합 기준)
+    import numpy as np
+    import math
+
+    # 최근 완결 주(가격/게시글 모두 존재)
+    mask_ok = (~pd.isna(payload["btcWeeklyClose"])) & (~pd.isna(payload["postCounts"]))
+    if any(mask_ok):
+        last_idx = max([i for i, ok in enumerate(mask_ok) if ok])
+        payload["kpis"]["lastWeek"] = {
+            "week": payload["weeks"][last_idx],
+            "posts": int(payload["postCounts"][last_idx]),
+            "btcClose": float(payload["btcWeeklyClose"][last_idx])
+                if not math.isnan(payload["btcWeeklyClose"][last_idx]) else None,
+            "nextWeekReturn": float(payload["btcNextWeekReturn"][last_idx])
+                if not math.isnan(payload["btcNextWeekReturn"][last_idx]) else None,
+        }
+
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
 
-    # 차트 이미지 저장
-    fig, ax1 = plt.subplots(figsize=(12, 6))
-    ax1.bar(all_weeks, counts, width=5)  # 색 지정 X (헤드리스 권장 기본)
-    ax1.set_xlabel("Week Start (Mon)")
-    ax1.set_ylabel("Number of Posts")
-
-    ax2 = ax1.twinx()
-    ax2.plot(all_weeks, prices)
-    ax2.set_ylabel("BTC Price (USD)")
-
-    ax1.xaxis.set_major_locator(mdates.MonthLocator())
-    ax1.xaxis.set_major_formatter(mdates.DateFormatter("%Y-%m-%d"))
-    ax1.tick_params(axis="x", rotation=90, labelsize=8)
-
-    fig.tight_layout()
-    fig.legend(loc="upper left", bbox_to_anchor=(0, 1), bbox_transform=fig.transFigure)
-    fig.savefig(os.path.join(out_dir, "chart.png"), dpi=160)
-    plt.close(fig)
-
-
-# --------------------------------------------------------------------
-# 메인
-# --------------------------------------------------------------------
+# ------------------------- 메인 -------------------------
 def main():
-    naver_base_url = "https://apis.naver.com/cafe-web/cafe-mobile/CafeMobileWebArticleSearchListV4"
-    naver_cafe_ids = [
+    naver_base = "https://apis.naver.com/cafe-web/cafe-mobile/CafeMobileWebArticleSearchListV4"
+    naver_ids = [
         14793916, 14042965, 12448054, 10094499, 22897837, 22897837, 13276223,
         11306253, 18391491, 15194989, 12165814, 18376548, 24361059, 12182370,
         27069107, 26217677, 24000254, 23604018, 26025763,
     ]
+    daum_base = "https://cafe.daum.net/_c21_/cafesearch"
+    daum_ids = ["ut", "SqBK", "YfAr"]
 
-    daum_base_url = "https://cafe.daum.net/_c21_/cafesearch"
-    daum_cafe_ids = ["ut", "SqBK", "YfAr"]
-
+    # 1) 카페 수집
     all_dates = []
-
-    # --- Naver
-    for cafe_id in naver_cafe_ids:
-        query = {
-            "cafeId": cafe_id,
-            "query": SEARCH_KEYWORD,
-            "searchBy": 2,      # 제목:1, 내용:2
-            "sortBy": "date",
-            "page": 1,
-            "perPage": 200,     # 1000 → 타임아웃 위험 줄이기
-            "adUnit": "MW_CAFE_BOARD",
-            "lastItemIndex": 0,
-            "lastAdIndex": 0,
-            "ad": "true",
+    for cafe_id in naver_ids:
+        q = {
+            "cafeId": cafe_id, "query": SEARCH_KEYWORD, "searchBy": 2,
+            "sortBy": "date", "page": 1, "perPage": 200,
+            "adUnit": "MW_CAFE_BOARD", "lastItemIndex": 0, "lastAdIndex": 0, "ad": "true"
         }
         next_params = None
         while True:
-            url = naver_base_url + "?" + "&".join(f"{k}={v}" for k, v in query.items())
+            url = naver_base + "?" + "&".join(f"{k}={v}" for k, v in q.items())
             if next_params:
                 url += "&" + "&".join(f"{k}={v}" for k, v in next_params.items())
-
             time.sleep(random.uniform(1.2, 3.8))
             dates, next_params = get_post_dates_from_naver_api(url)
             all_dates.extend(dates)
-
             if not next_params or not next_params.get("page"):
                 break
-            query["page"] = next_params["page"]
-            query["lastAdIndex"] = next_params.get("lastAdIndex", -1)
-            query["lastItemIndex"] = next_params.get("lastItemIndex", -1)
+            q["page"] = next_params["page"]
+            q["lastAdIndex"] = next_params.get("lastAdIndex", -1)
+            q["lastItemIndex"] = next_params.get("lastItemIndex", -1)
 
-    # --- Daum
-    for grpid in daum_cafe_ids:
+    for grpid in daum_ids:
         pagenum = 1
         while True:
             url = (
-                f"{daum_base_url}?grpid={grpid}&fldid=&pagenum={pagenum}"
-                f"&listnum=50&item=subject&head=&query=%EB%B9%84%ED%8A%B8%EC%BD%94%EC%9D%B8"
-                f"&attachfile_yn=&media_info=&viewtype=tit&searchPeriod=all&sorttype=0&nickname="
+                f"{daum_base}?grpid={grpid}&fldid=&pagenum={pagenum}"
+                "&listnum=50&item=subject&head=&query=%EB%B9%84%ED%8A%B8%EC%BD%94%EC%9D%B8"
+                "&attachfile_yn=&media_info=&viewtype=tit&searchPeriod=all&sorttype=0&nickname="
             )
             time.sleep(random.uniform(1.2, 3.8))
             dates, next_params = get_post_dates_from_daum_cafe(url, grpid, pagenum)
             all_dates.extend(dates)
             if not next_params:
-                print(f"'{grpid}' 완료")
                 break
             pagenum += 1
 
     if not all_dates:
-        print("게시글 데이터가 없습니다. 종료합니다.")
+        print("게시글 데이터 없음. 종료.")
         return
 
-    min_date = min(all_dates)
-    end_date = dt.datetime.now()
+    start_dt = min(all_dates).astimezone(KST) - dt.timedelta(days=2)
+    end_dt = dt.datetime.now(tz=KST) + dt.timedelta(days=1)
+
+    posts_weekly = posts_to_weekly_counts_kst(all_dates)
 
     api_key = os.environ.get("CRYPTOCOMPARE_API_KEY", "") or "apkkey"
-    btc_prices = get_bitcoin_prices_cryptocompare(min_date, end_date, api_key)
+    btc_daily = get_btc_daily_close_kst(start_dt, end_dt, api_key)
+    w_mean, w_close, next_close, next_ret = btc_to_weekly(btc_daily)
 
-    print(f"총 게시글 날짜 개수: {len(all_dates)}")
-    weekly_counts = group_by_week(all_dates)
-    save_outputs(weekly_counts, btc_prices, OUT_DIR)
-    print(f"완료: {OUT_DIR}/data.json, {OUT_DIR}/chart.png 생성")
+    index, posts_aln, w_mean_aln, w_close_aln, next_close_aln, next_ret_aln = align_weeks(
+        posts_weekly, w_mean, w_close, next_close, next_ret
+    )
+
+    os.makedirs(OUT_DIR, exist_ok=True)
+    save_json(os.path.join(OUT_DIR, "data.json"), index, posts_aln,
+              w_mean_aln, w_close_aln, next_close_aln, next_ret_aln)
+
+    print(f"완료: {OUT_DIR}/data.json 생성 (주간 동기화, look-ahead 안전 지표 포함)")
 
 if __name__ == "__main__":
     main()
