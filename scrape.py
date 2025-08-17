@@ -12,6 +12,7 @@ from bs4 import BeautifulSoup
 from collections import defaultdict
 from zoneinfo import ZoneInfo
 import cryptocompare
+import math
 
 KST = ZoneInfo("Asia/Seoul")
 HEADERS = {
@@ -190,30 +191,45 @@ def align_weeks(posts_weekly, *btc_weeklies):
     return (all_index, posts_aligned, *btc_aligned)
 
 # ------------------------- 저장 -------------------------
+def _to_jsonable_list(seq):
+    out = []
+    for v in list(seq):
+        if v is None:
+            out.append(None)
+            continue
+        # pandas의 NaN, numpy의 nan, float('nan') 모두 잡기
+        try:
+            # pd.isna가 있으면 가장 안전하지만, 의존 없이도 아래가 동작합니다.
+            if isinstance(v, float) and math.isnan(v):
+                out.append(None)
+            else:
+                out.append(float(v))
+        except Exception:
+            # 숫자가 아니면 일단 None 처리
+            out.append(None)
+    return out
+
 def save_json(out_path, index, posts, w_mean, w_close, next_close, next_ret):
     payload = {
         "schemaVersion": 2,
         "tz": "Asia/Seoul",
         "weekStart": "MON",
         "updatedAt": dt.datetime.now(tz=KST).isoformat(),
-        "weeks": [pd.Timestamp(i).strftime("%Y-%m-%d") for i in index],  # KST 기준 주 시작(월)
-        "postCounts": posts.tolist(),
-        # 같은 주 비교(설명/비주가용) - look-ahead 가능성 有
-        "btcWeeklyMean": (w_mean.tolist() if w_mean is not None else []),
-        "btcWeeklyClose": (w_close.tolist() if w_close is not None else []),
-        # 예측 관점(look-ahead 無): 주 t → 주 t+1
-        "btcNextWeekClose": (next_close.tolist() if next_close is not None else []),
-        "btcNextWeekReturn": (next_ret.tolist() if next_ret is not None else []),
+        "weeks": [pd.Timestamp(i).strftime("%Y-%m-%d") for i in index],
+        "postCounts": _to_jsonable_list(posts.tolist()),
+        "btcWeeklyMean": _to_jsonable_list(w_mean.tolist()),
+        "btcWeeklyClose": _to_jsonable_list(w_close.tolist()),
+        "btcNextWeekClose": _to_jsonable_list(next_close.tolist()),
+        "btcNextWeekReturn": _to_jsonable_list(next_ret.tolist()),
         "meta": {
             "keyword": SEARCH_KEYWORD,
-            "note": "BTC는 UTC→KST 변환 후 주간 집계. 가격 결측은 보간하지 않음.",
+            "note": "BTC는 UTC→KST 변환 후 주간 집계. 가격 결측은 null로 직렬화.",
         },
         "kpis": {}
     }
 
     # 간단 KPI (교집합 기준)
     import numpy as np
-    import math
 
     # 최근 완결 주(가격/게시글 모두 존재)
     mask_ok = (~pd.isna(payload["btcWeeklyClose"])) & (~pd.isna(payload["postCounts"]))

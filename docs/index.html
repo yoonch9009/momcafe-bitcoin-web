@@ -275,7 +275,17 @@
 
       async function main() {
         const res = await fetch("./data.json", { cache: "no-store" });
-        const data = await res.json();
+        let data = null;
+        try {
+          const res = await fetch("./data.json", { cache: "no-store" });
+          if (!res.ok) throw new Error("HTTP " + res.status);
+          data = await res.json(); // NaN가 있으면 여기서 예외 발생
+        } catch (err) {
+          console.error("데이터 로드 실패:", err);
+          document.getElementById("mainChart").innerHTML =
+            '<div style="padding:16px">데이터를 불러오지 못했습니다. GitHub Actions 로그를 확인해주세요.</div>';
+          return;
+        }
 
         const weeks = data.weeks.map((d) => new Date(d + "T00:00:00+09:00")); // 주 시작(월, KST)
         const posts = data.postCounts.map((v) =>
