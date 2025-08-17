@@ -67,15 +67,21 @@
         align-items: center;
       }
       select,
-      button {
+      button,
+      input[type="checkbox"] {
         background: transparent;
         color: var(--fg);
         border: 1px solid var(--grid);
         padding: 6px 10px;
         border-radius: 8px;
       }
+      input[type="checkbox"] {
+        width: auto;
+        padding: 0 6px;
+      }
       select:focus,
-      button:focus {
+      button:focus,
+      input[type="checkbox"]:focus {
         outline: 2px solid var(--accent);
         outline-offset: 2px;
       }
@@ -124,11 +130,11 @@
       #mainChart {
         width: 100%;
         height: 520px;
-      } /* 원래 크기 */
+      }
       #scatterChart {
         width: 100%;
         height: 520px;
-      } /* 원래 크기 */
+      }
 
       footer {
         border-top: 1px solid var(--grid);
@@ -196,6 +202,11 @@
               <option value="light" selected>일반</option>
               <option value="dark">다크</option>
             </select>
+          </div>
+          <!-- ✅ BTC 로그 스케일 -->
+          <div class="control">
+            <label for="logScale">BTC 로그 스케일</label>
+            <input type="checkbox" id="logScale" />
           </div>
         </div>
       </div>
@@ -325,6 +336,7 @@
       const alignSel = () => document.getElementById("align").value; // 참고: 현재 미사용
       const horizonSel = () =>
         parseInt(document.getElementById("horizon").value, 10);
+      const logScaleOn = () => document.getElementById("logScale").checked;
 
       function getPriceSeries(metric) {
         let y = null,
@@ -351,6 +363,18 @@
           muted = cssVar("--muted"),
           grid = cssVar("--grid");
         const isReturn = metricSel() === "nextReturn";
+
+        // 로그 스케일 체크박스 상태 관리 (수익률일 때는 비활성화)
+        const logChk = document.getElementById("logScale");
+        logChk.disabled = isReturn;
+        if (isReturn) logChk.checked = false;
+
+        const priceAxisType = !isReturn && logScaleOn() ? "log" : "value";
+        const yAxis2Name = isReturn
+          ? "수익률(%)"
+          : logScaleOn()
+          ? "가격(USD, 로그)"
+          : "가격(USD)";
 
         // ===== 메인 차트 =====
         mainChart.setOption({
@@ -382,8 +406,8 @@
               splitLine: { show: true, lineStyle: { color: grid } },
             },
             {
-              type: "value",
-              name: isReturn ? "수익률(%)" : "가격(USD)",
+              type: priceAxisType,
+              name: yAxis2Name,
               alignTicks: true,
               axisLabel: { color: muted },
               axisLine: { lineStyle: { color: grid } },
@@ -421,7 +445,7 @@
           ],
         });
 
-        // ===== 산점도 (요구 사항대로 축 라벨 배치) =====
+        // ===== 산점도 =====
         const h = horizonSel();
         document.getElementById("hLabel").textContent = h;
         document.getElementById("hLabel2").textContent = h;
@@ -452,11 +476,10 @@
                 p.value[0]
               )}건<br/>t+${h}주 수익률 ${p.value[1].toFixed(2)}%`,
           },
-          // 축/라벨 잘림 방지 + 이름을 중간에 배치
           grid: {
-            left: 50,
+            left: 90,
             right: 24,
-            bottom: 50,
+            bottom: 72,
             top: 20,
             containLabel: true,
           },
@@ -475,7 +498,7 @@
             name: `t+${h} 주 수익률(%)`,
             nameLocation: "middle",
             nameGap: 46,
-            nameRotate: 90, // 세로(좌측)로 보이도록
+            nameRotate: 90,
             nameTextStyle: { color: fg, fontWeight: 600 },
             axisLabel: { color: muted },
             axisLine: { lineStyle: { color: grid } },
@@ -554,10 +577,13 @@
         document
           .getElementById("metric")
           .addEventListener("change", drawCharts);
-        document.getElementById("align").addEventListener("change", drawCharts); // 참고: 현재 series 정렬은 지표에 내장
+        document.getElementById("align").addEventListener("change", drawCharts);
         document
           .getElementById("horizon")
-          .addEventListener("change", drawCharts); // t+x 지평
+          .addEventListener("change", drawCharts);
+        document
+          .getElementById("logScale")
+          .addEventListener("change", drawCharts); // ✅ 로그 스케일 토글
         document.getElementById("resetZoom").addEventListener("click", () => {
           mainChart.dispatchAction({ type: "dataZoom", start: 0, end: 100 });
         });
