@@ -14,9 +14,6 @@
         --accent: #3b82f6;
         --chip: #eef2ff;
         --chip-fg: #3730a3;
-        --ok: #16a34a;
-        --warn: #ea580c;
-        --bad: #dc2626;
         --grid: #e5e7eb;
       }
       [data-theme="dark"] {
@@ -25,8 +22,6 @@
         --muted: #a3a3a3;
         --card: #0f172a;
         --accent: #60a5fa;
-        --chip: #111827;
-        --chip-fg: #c7d2fe;
         --grid: #1f2937;
       }
       * {
@@ -105,7 +100,7 @@
         padding: 12px;
         margin: 12px 0;
         overflow: visible;
-      } /* ✅ 잘림 방지 */
+      }
       .kpis {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -128,12 +123,12 @@
 
       #mainChart {
         width: 100%;
-        height: 560px;
-      }
+        height: 520px;
+      } /* 원래 크기 */
       #scatterChart {
         width: 100%;
-        height: 460px;
-      }
+        height: 520px;
+      } /* 원래 크기 */
 
       footer {
         border-top: 1px solid var(--grid);
@@ -176,6 +171,7 @@
               <option value="shift1">1주 시프트(예측)</option>
             </select>
           </div>
+          <!-- 예측 지평 -->
           <div class="control">
             <label for="horizon">예측 지평</label>
             <select id="horizon">
@@ -193,7 +189,7 @@
             <button id="resetZoom">줌 초기화</button>
             <a href="./data.json" download>data.json 다운로드</a>
           </div>
-          <!-- ✅ 테마 선택 -->
+          <!-- 테마 선택 -->
           <div class="control">
             <label for="theme">테마</label>
             <select id="theme">
@@ -206,7 +202,7 @@
     </header>
 
     <main class="wrap">
-      <!-- ✅ KPI 블록을 차트 ‘위’로 이동 -->
+      <!-- KPI 블록 (차트 위) -->
       <section class="card" id="kpiCard">
         <div class="kpis">
           <div class="kpi">
@@ -326,7 +322,7 @@
       // ---------- 전역 데이터/차트 핸들 ----------
       let mainChart, scatter, weeks, posts, wMean, wClose, nClose, nRet;
       const metricSel = () => document.getElementById("metric").value;
-      const alignSel = () => document.getElementById("align").value;
+      const alignSel = () => document.getElementById("align").value; // 참고: 현재 미사용
       const horizonSel = () =>
         parseInt(document.getElementById("horizon").value, 10);
 
@@ -356,7 +352,7 @@
           grid = cssVar("--grid");
         const isReturn = metricSel() === "nextReturn";
 
-        // 메인 차트
+        // ===== 메인 차트 =====
         mainChart.setOption({
           backgroundColor: "transparent",
           textStyle: { color: fg },
@@ -425,7 +421,7 @@
           ],
         });
 
-        // 산점도: 게시글 ↔ t+h 수익률
+        // ===== 산점도 (요구 사항대로 축 라벨 배치) =====
         const h = horizonSel();
         document.getElementById("hLabel").textContent = h;
         document.getElementById("hLabel2").textContent = h;
@@ -456,17 +452,20 @@
                 p.value[0]
               )}건<br/>t+${h}주 수익률 ${p.value[1].toFixed(2)}%`,
           },
-          // ✅ 라벨/축이 카드 밖으로 나가도 잘리지 않게
+          // 축/라벨 잘림 방지 + 이름을 중간에 배치
           grid: {
-            left: 64,
-            right: 28,
-            bottom: 60,
-            top: 24,
+            left: 90,
+            right: 24,
+            bottom: 72,
+            top: 20,
             containLabel: true,
           },
           xAxis: {
             type: "value",
-            name: "주간 게시글 수",
+            name: "주 t 게시글 수",
+            nameLocation: "middle",
+            nameGap: 36,
+            nameTextStyle: { color: fg, fontWeight: 600 },
             axisLabel: { color: muted },
             axisLine: { lineStyle: { color: grid } },
             splitLine: { show: true, lineStyle: { color: grid } },
@@ -474,6 +473,10 @@
           yAxis: {
             type: "value",
             name: `t+${h} 주 수익률(%)`,
+            nameLocation: "middle",
+            nameGap: 46,
+            nameRotate: 90, // 세로(좌측)로 보이도록
+            nameTextStyle: { color: fg, fontWeight: 600 },
             axisLabel: { color: muted },
             axisLine: { lineStyle: { color: grid } },
             splitLine: { show: true, lineStyle: { color: grid } },
@@ -551,10 +554,10 @@
         document
           .getElementById("metric")
           .addEventListener("change", drawCharts);
-        document.getElementById("align").addEventListener("change", drawCharts); // (참고: 현재 series 정렬은 지표에 내장)
+        document.getElementById("align").addEventListener("change", drawCharts); // 참고: 현재 series 정렬은 지표에 내장
         document
           .getElementById("horizon")
-          .addEventListener("change", drawCharts); // ✅ t+x 지평
+          .addEventListener("change", drawCharts); // t+x 지평
         document.getElementById("resetZoom").addEventListener("click", () => {
           mainChart.dispatchAction({ type: "dataZoom", start: 0, end: 100 });
         });
