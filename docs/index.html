@@ -44,7 +44,7 @@
         border-bottom: 1px solid var(--grid);
       }
       .wrap {
-        max-width: 1120px;
+        max-width: 1200px;
         margin: 0 auto;
         padding: 0 16px;
       }
@@ -97,13 +97,15 @@
         padding: 4px 10px;
         font-size: 0.85rem;
       }
+
       .card {
         background: var(--card);
         border: 1px solid var(--grid);
         border-radius: 12px;
         padding: 12px;
         margin: 12px 0;
-      }
+        overflow: visible;
+      } /* ✅ 잘림 방지 */
       .kpis {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -123,11 +125,16 @@
         font-weight: 700;
         font-size: 1.25rem;
       }
-      #mainChart,
-      #scatterChart {
+
+      #mainChart {
         width: 100%;
         height: 560px;
-      } /* ✅ 차트 풀폭 & 고정 높이 */
+      }
+      #scatterChart {
+        width: 100%;
+        height: 460px;
+      }
+
       footer {
         border-top: 1px solid var(--grid);
         padding: 14px 20px;
@@ -167,6 +174,19 @@
             <select id="align">
               <option value="same" selected>동일 주간</option>
               <option value="shift1">1주 시프트(예측)</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="horizon">예측 지평</label>
+            <select id="horizon">
+              <option value="1" selected>+1주</option>
+              <option value="2">+2주</option>
+              <option value="3">+3주</option>
+              <option value="4">+4주</option>
+              <option value="5">+5주</option>
+              <option value="6">+6주</option>
+              <option value="7">+7주</option>
+              <option value="8">+8주</option>
             </select>
           </div>
           <div class="control">
@@ -212,11 +232,13 @@
       </section>
 
       <section class="card">
-        <h3 style="margin: 4px 0 10px">게시글 ↔ 다음 주 수익률(예측) 산점도</h3>
+        <h3 style="margin: 4px 0 10px">
+          게시글 ↔ t+<span id="hLabel">1</span>주 수익률 산점도
+        </h3>
         <div id="scatterChart"></div>
         <div class="meta">
-          피어슨 상관계수 r: <span id="corr">-</span> (주 t 게시글 수 ↔ 주 t+1
-          수익률)
+          피어슨 상관계수 r: <span id="corr">-</span> (주 t 게시글 수 ↔ 주
+          t+<span id="hLabel2">1</span> 수익률)
         </div>
       </section>
     </main>
@@ -229,6 +251,7 @@
     </footer>
 
     <script>
+      // ---------- 유틸 ----------
       const cssVar = (name) =>
         getComputedStyle(document.documentElement)
           .getPropertyValue(name)
@@ -239,22 +262,6 @@
           : Number(x).toLocaleString(undefined, {
               maximumFractionDigits: digits,
             });
-
-      // ✅ 테마 토글: 로컬 스토리지 유지
-      (function initTheme() {
-        const saved = localStorage.getItem("theme");
-        const sel = document.getElementById("theme");
-        const init = saved === "dark" || saved === "light" ? saved : "light";
-        document.documentElement.setAttribute("data-theme", init);
-        sel.value = init;
-        sel.addEventListener("change", () => {
-          const v = sel.value;
-          document.documentElement.setAttribute("data-theme", v);
-          localStorage.setItem("theme", v);
-          // 테마 바뀌면 차트도 재초기화
-          reinitCharts();
-        });
-      })();
 
       function pearson(x, y) {
         const pairs = [];
@@ -285,45 +292,82 @@
         return Math.max(-1, Math.min(1, sxy / Math.sqrt(sx2 * sy2)));
       }
 
+      // t→t+h 수익률 계산 (배율; %는 아님)
+      function computeLagReturn(closeArr, h) {
+        const out = new Array(closeArr.length).fill(null);
+        for (let t = 0; t < closeArr.length; t++) {
+          const c0 = closeArr[t];
+          const tp = t + h;
+          if (c0 != null && !Number.isNaN(c0) && tp < closeArr.length) {
+            const c1 = closeArr[tp];
+            if (c1 != null && !Number.isNaN(c1)) {
+              out[t] = c1 / c0 - 1;
+            }
+          }
+        }
+        return out;
+      }
+
+      // ---------- 테마 ----------
+      (function initTheme() {
+        const saved = localStorage.getItem("theme");
+        const sel = document.getElementById("theme");
+        const init = saved === "dark" || saved === "light" ? saved : "light";
+        document.documentElement.setAttribute("data-theme", init);
+        sel.value = init;
+        sel.addEventListener("change", () => {
+          const v = sel.value;
+          document.documentElement.setAttribute("data-theme", v);
+          localStorage.setItem("theme", v);
+          reinitCharts();
+        });
+      })();
+
+      // ---------- 전역 데이터/차트 핸들 ----------
       let mainChart, scatter, weeks, posts, wMean, wClose, nClose, nRet;
       const metricSel = () => document.getElementById("metric").value;
       const alignSel = () => document.getElementById("align").value;
+      const horizonSel = () =>
+        parseInt(document.getElementById("horizon").value, 10);
 
-      function getPriceSeries(metric, align) {
+      function getPriceSeries(metric) {
         let y = null,
           name = "";
         if (metric === "mean") {
           y = wMean;
           name = "BTC 주간 평균가";
-        }
-        if (metric === "close") {
+        } else if (metric === "close") {
           y = wClose;
           name = "BTC 주간 종가";
-        }
-        if (metric === "nextClose") {
+        } else if (metric === "nextClose") {
           y = nClose;
           name = "BTC 다음 주 종가(예측)";
-        }
-        if (metric === "nextReturn") {
+        } else if (metric === "nextReturn") {
           y = nRet.map((v) => (v == null ? null : v * 100));
           name = "BTC 다음 주 수익률(%)";
         }
-        // align은 데이터 구조상 추가 시프트 필요 없음(이미 t→t+1 배열이 제공됨)
         return { y, name };
       }
 
       function drawCharts() {
-        const { y, name } = getPriceSeries(metricSel(), alignSel());
+        const { y, name } = getPriceSeries(metricSel());
         const fg = cssVar("--fg"),
           muted = cssVar("--muted"),
           grid = cssVar("--grid");
         const isReturn = metricSel() === "nextReturn";
 
+        // 메인 차트
         mainChart.setOption({
           backgroundColor: "transparent",
           textStyle: { color: fg },
           tooltip: { trigger: "axis", axisPointer: { type: "cross" } },
-          grid: { left: 50, right: 60, bottom: 70, top: 30 },
+          grid: {
+            left: 50,
+            right: 60,
+            bottom: 70,
+            top: 30,
+            containLabel: true,
+          },
           legend: { data: ["게시글 수", name], textStyle: { color: fg } },
           xAxis: {
             type: "time",
@@ -381,12 +425,18 @@
           ],
         });
 
+        // 산점도: 게시글 ↔ t+h 수익률
+        const h = horizonSel();
+        document.getElementById("hLabel").textContent = h;
+        document.getElementById("hLabel2").textContent = h;
+
+        const retH = computeLagReturn(wClose, h); // t→t+h 수익률(배율)
         const pts = [];
         for (let i = 0; i < weeks.length; i++) {
           const x = posts[i],
-            r = nRet[i];
+            r = retH[i];
           if (x != null && r != null && !Number.isNaN(x) && !Number.isNaN(r)) {
-            pts.push([x, r * 100]);
+            pts.push([x, r * 100]); // % 단위
           }
         }
         const rVal = pearson(
@@ -404,9 +454,16 @@
             formatter: (p) =>
               `게시글 ${Math.round(
                 p.value[0]
-              )}건<br/>다음주 수익률 ${p.value[1].toFixed(2)}%`,
+              )}건<br/>t+${h}주 수익률 ${p.value[1].toFixed(2)}%`,
           },
-          grid: { left: 50, right: 20, bottom: 50, top: 20 },
+          // ✅ 라벨/축이 카드 밖으로 나가도 잘리지 않게
+          grid: {
+            left: 64,
+            right: 28,
+            bottom: 60,
+            top: 24,
+            containLabel: true,
+          },
           xAxis: {
             type: "value",
             name: "주간 게시글 수",
@@ -416,13 +473,13 @@
           },
           yAxis: {
             type: "value",
-            name: "다음 주 수익률(%)",
+            name: `t+${h} 주 수익률(%)`,
             axisLabel: { color: muted },
             axisLine: { lineStyle: { color: grid } },
             splitLine: { show: true, lineStyle: { color: grid } },
           },
           series: [
-            { name: "P→R(+1w)", type: "scatter", symbolSize: 6, data: pts },
+            { name: `P→R(+${h}w)`, type: "scatter", symbolSize: 6, data: pts },
           ],
         });
       }
@@ -435,6 +492,7 @@
         drawCharts();
       }
 
+      // ---------- 부트스트랩 ----------
       async function main() {
         // 데이터 로드
         let data;
@@ -487,12 +545,16 @@
           }`;
         }
 
+        // 차트 초기화 및 이벤트
         reinitCharts();
 
         document
           .getElementById("metric")
           .addEventListener("change", drawCharts);
-        document.getElementById("align").addEventListener("change", drawCharts);
+        document.getElementById("align").addEventListener("change", drawCharts); // (참고: 현재 series 정렬은 지표에 내장)
+        document
+          .getElementById("horizon")
+          .addEventListener("change", drawCharts); // ✅ t+x 지평
         document.getElementById("resetZoom").addEventListener("click", () => {
           mainChart.dispatchAction({ type: "dataZoom", start: 0, end: 100 });
         });
