@@ -194,58 +194,75 @@ def align_weeks(posts_weekly, *btc_weeklies):
 def _to_jsonable_list(seq):
     out = []
     for v in list(seq):
+        # None, NaN, +/-Inf -> None으로
         if v is None:
             out.append(None)
             continue
-        # pandas의 NaN, numpy의 nan, float('nan') 모두 잡기
         try:
-            # pd.isna가 있으면 가장 안전하지만, 의존 없이도 아래가 동작합니다.
-            if isinstance(v, float) and math.isnan(v):
+            fv = float(v)
+            if math.isnan(fv) or math.isinf(fv):
                 out.append(None)
             else:
-                out.append(float(v))
+                out.append(fv)
         except Exception:
-            # 숫자가 아니면 일단 None 처리
             out.append(None)
     return out
 
+def _num_or_none(x):
+    """숫자면 float로, 아니면 None( NaN/Inf 포함 )."""
+    if x is None:
+        return None
+    try:
+        xv = float(x)
+        if math.isnan(xv) or math.isinf(xv):
+            return None
+        return xv
+    except Exception:
+        return None
+
 def save_json(out_path, index, posts, w_mean, w_close, next_close, next_ret):
+    weeks = [pd.Timestamp(i).strftime("%Y-%m-%d") for i in index]
+    post_list = _to_jsonable_list(posts.tolist())
+    mean_list = _to_jsonable_list(w_mean.tolist())
+    close_list = _to_jsonable_list(w_close.tolist())
+    nclose_list = _to_jsonable_list(next_close.tolist())
+    nret_list   = _to_jsonable_list(next_ret.tolist())
+
     payload = {
         "schemaVersion": 2,
         "tz": "Asia/Seoul",
         "weekStart": "MON",
         "updatedAt": dt.datetime.now(tz=KST).isoformat(),
-        "weeks": [pd.Timestamp(i).strftime("%Y-%m-%d") for i in index],
-        "postCounts": _to_jsonable_list(posts.tolist()),
-        "btcWeeklyMean": _to_jsonable_list(w_mean.tolist()),
-        "btcWeeklyClose": _to_jsonable_list(w_close.tolist()),
-        "btcNextWeekClose": _to_jsonable_list(next_close.tolist()),
-        "btcNextWeekReturn": _to_jsonable_list(next_ret.tolist()),
+        "weeks": weeks,
+        "postCounts": post_list,
+        "btcWeeklyMean": mean_list,
+        "btcWeeklyClose": close_list,
+        "btcNextWeekClose": nclose_list,
+        "btcNextWeekReturn": nret_list,
         "meta": {
-            "keyword": SEARCH_KEYWORD,
+            "keyword": "비트코인",
             "note": "BTC는 UTC→KST 변환 후 주간 집계. 가격 결측은 null로 직렬화.",
         },
         "kpis": {}
     }
 
-    # 간단 KPI (교집합 기준)
-    import numpy as np
-
-    # 최근 완결 주(가격/게시글 모두 존재)
-    mask_ok = (~pd.isna(payload["btcWeeklyClose"])) & (~pd.isna(payload["postCounts"]))
-    if any(mask_ok):
-        last_idx = max([i for i, ok in enumerate(mask_ok) if ok])
+    # KPI: 널-세이프 계산
+    # 최근 '완결 주'(게시글 수, 주간 종가가 모두 유효한 인덱스) 찾기
+    valid_idx = [i for i in range(len(weeks))
+                 if _num_or_none(close_list[i]) is not None and _num_or_none(post_list[i]) is not None]
+    if valid_idx:
+        last_idx = valid_idx[-1]
         payload["kpis"]["lastWeek"] = {
-            "week": payload["weeks"][last_idx],
-            "posts": int(payload["postCounts"][last_idx]),
-            "btcClose": float(payload["btcWeeklyClose"][last_idx])
-                if not math.isnan(payload["btcWeeklyClose"][last_idx]) else None,
-            "nextWeekReturn": float(payload["btcNextWeekReturn"][last_idx])
-                if not math.isnan(payload["btcNextWeekReturn"][last_idx]) else None,
+            "week": weeks[last_idx],
+            "posts": int(post_list[last_idx]) if _num_or_none(post_list[last_idx]) is not None else None,
+            "btcClose": _num_or_none(close_list[last_idx]),
+            # 다음 주 수익률은 없을 수 있으므로 그대로 안전 처리
+            "nextWeekReturn": _num_or_none(nret_list[last_idx]),
         }
 
+    # NaN/Inf가 남아있으면 파일 쓰기 단계에서 막기
     with open(out_path, "w", encoding="utf-8") as f:
-        json.dump(payload, f, ensure_ascii=False, indent=2)
+        json.dump(payload, f, ensure_ascii=False, indent=2, allow_nan=False)
 
 # ------------------------- 메인 -------------------------
 def main():
