@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" data-theme="auto">
+<html lang="ko" data-theme="light">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -19,17 +19,15 @@
         --bad: #dc2626;
         --grid: #e5e7eb;
       }
-      @media (prefers-color-scheme: dark) {
-        :root {
-          --bg: #0b1020;
-          --fg: #e5e7eb;
-          --muted: #a3a3a3;
-          --card: #0f172a;
-          --accent: #60a5fa;
-          --chip: #111827;
-          --chip-fg: #c7d2fe;
-          --grid: #1f2937;
-        }
+      [data-theme="dark"] {
+        --bg: #0b1020;
+        --fg: #e5e7eb;
+        --muted: #a3a3a3;
+        --card: #0f172a;
+        --accent: #60a5fa;
+        --chip: #111827;
+        --chip-fg: #c7d2fe;
+        --grid: #1f2937;
       }
       * {
         box-sizing: border-box;
@@ -99,27 +97,12 @@
         padding: 4px 10px;
         font-size: 0.85rem;
       }
-      .grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 14px;
-        margin: 10px 0 24px;
-      }
-      @media (min-width: 960px) {
-        .grid {
-          grid-template-columns: 2fr 1fr;
-        }
-      }
       .card {
         background: var(--card);
         border: 1px solid var(--grid);
         border-radius: 12px;
         padding: 12px;
-      }
-      #mainChart,
-      #scatterChart {
-        width: 100%;
-        height: 520px;
+        margin: 12px 0;
       }
       .kpis {
         display: grid;
@@ -140,6 +123,11 @@
         font-weight: 700;
         font-size: 1.25rem;
       }
+      #mainChart,
+      #scatterChart {
+        width: 100%;
+        height: 560px;
+      } /* ✅ 차트 풀폭 & 고정 높이 */
       footer {
         border-top: 1px solid var(--grid);
         padding: 14px 20px;
@@ -160,7 +148,7 @@
       <div class="wrap">
         <h1>맘카페 “비트코인” 언급량 vs BTC (주간, KST)</h1>
         <div class="meta">
-          주간 윈도우: 월요일 시작(KST). 동일 주간 비교(설명용)과 1주
+          주간 윈도우: 월요일 시작(KST). 동일 주간(설명용)과 1주
           시프트(예측용)를 전환할 수 있어요.
         </div>
         <div class="chips" id="chips"></div>
@@ -178,41 +166,49 @@
             <label for="align">정렬</label>
             <select id="align">
               <option value="same" selected>동일 주간</option>
-              <option value="shift1">1주 시프트(예측 관점)</option>
+              <option value="shift1">1주 시프트(예측)</option>
             </select>
           </div>
           <div class="control">
             <button id="resetZoom">줌 초기화</button>
             <a href="./data.json" download>data.json 다운로드</a>
           </div>
+          <!-- ✅ 테마 선택 -->
+          <div class="control">
+            <label for="theme">테마</label>
+            <select id="theme">
+              <option value="light" selected>일반</option>
+              <option value="dark">다크</option>
+            </select>
+          </div>
         </div>
       </div>
     </header>
 
     <main class="wrap">
-      <section class="grid">
-        <div class="card">
-          <div id="mainChart"></div>
-        </div>
-        <div class="card">
-          <div class="kpis">
-            <div class="kpi">
-              <div class="label">마지막 갱신</div>
-              <div class="value" id="updatedAt">-</div>
-            </div>
-            <div class="kpi">
-              <div class="label">최근 주 게시글 수</div>
-              <div class="value" id="kpiPosts">-</div>
-            </div>
-            <div class="kpi">
-              <div class="label">최근 주 BTC 종가</div>
-              <div class="value" id="kpiClose">-</div>
-            </div>
+      <!-- ✅ KPI 블록을 차트 ‘위’로 이동 -->
+      <section class="card" id="kpiCard">
+        <div class="kpis">
+          <div class="kpi">
+            <div class="label">마지막 갱신</div>
+            <div class="value" id="updatedAt">-</div>
           </div>
-          <div class="meta" style="margin-top: 10px">
-            <div id="kpiNote"></div>
+          <div class="kpi">
+            <div class="label">최근 주 게시글 수</div>
+            <div class="value" id="kpiPosts">-</div>
+          </div>
+          <div class="kpi">
+            <div class="label">최근 주 BTC 종가</div>
+            <div class="value" id="kpiClose">-</div>
           </div>
         </div>
+        <div class="meta" style="margin-top: 10px">
+          <div id="kpiNote"></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div id="mainChart"></div>
       </section>
 
       <section class="card">
@@ -228,20 +224,37 @@
     <footer>
       <div class="wrap">
         출처: 네이버/다음 카페 공개 검색(약관 준수), CryptoCompare (BTC/USD). |
-        시간 기준: Asia/Seoul, 주간: 월요일 시작. |
-        <a href="./chart.png" target="_blank" rel="noopener"
-          >백업 이미지(chart.png)</a
-        >
+        시간 기준: Asia/Seoul, 주간: 월요일 시작.
       </div>
     </footer>
 
     <script>
+      const cssVar = (name) =>
+        getComputedStyle(document.documentElement)
+          .getPropertyValue(name)
+          .trim();
       const fmtNum = (x, digits = 0) =>
         x === null || Number.isNaN(x)
           ? "-"
           : Number(x).toLocaleString(undefined, {
               maximumFractionDigits: digits,
             });
+
+      // ✅ 테마 토글: 로컬 스토리지 유지
+      (function initTheme() {
+        const saved = localStorage.getItem("theme");
+        const sel = document.getElementById("theme");
+        const init = saved === "dark" || saved === "light" ? saved : "light";
+        document.documentElement.setAttribute("data-theme", init);
+        sel.value = init;
+        sel.addEventListener("change", () => {
+          const v = sel.value;
+          document.documentElement.setAttribute("data-theme", v);
+          localStorage.setItem("theme", v);
+          // 테마 바뀌면 차트도 재초기화
+          reinitCharts();
+        });
+      })();
 
       function pearson(x, y) {
         const pairs = [];
@@ -269,17 +282,166 @@
           sx2 += dx * dx;
           sy2 += dy * dy;
         }
-        const r = sxy / Math.sqrt(sx2 * sy2);
-        return Math.max(-1, Math.min(1, r));
+        return Math.max(-1, Math.min(1, sxy / Math.sqrt(sx2 * sy2)));
+      }
+
+      let mainChart, scatter, weeks, posts, wMean, wClose, nClose, nRet;
+      const metricSel = () => document.getElementById("metric").value;
+      const alignSel = () => document.getElementById("align").value;
+
+      function getPriceSeries(metric, align) {
+        let y = null,
+          name = "";
+        if (metric === "mean") {
+          y = wMean;
+          name = "BTC 주간 평균가";
+        }
+        if (metric === "close") {
+          y = wClose;
+          name = "BTC 주간 종가";
+        }
+        if (metric === "nextClose") {
+          y = nClose;
+          name = "BTC 다음 주 종가(예측)";
+        }
+        if (metric === "nextReturn") {
+          y = nRet.map((v) => (v == null ? null : v * 100));
+          name = "BTC 다음 주 수익률(%)";
+        }
+        // align은 데이터 구조상 추가 시프트 필요 없음(이미 t→t+1 배열이 제공됨)
+        return { y, name };
+      }
+
+      function drawCharts() {
+        const { y, name } = getPriceSeries(metricSel(), alignSel());
+        const fg = cssVar("--fg"),
+          muted = cssVar("--muted"),
+          grid = cssVar("--grid");
+        const isReturn = metricSel() === "nextReturn";
+
+        mainChart.setOption({
+          backgroundColor: "transparent",
+          textStyle: { color: fg },
+          tooltip: { trigger: "axis", axisPointer: { type: "cross" } },
+          grid: { left: 50, right: 60, bottom: 70, top: 30 },
+          legend: { data: ["게시글 수", name], textStyle: { color: fg } },
+          xAxis: {
+            type: "time",
+            axisLabel: { color: muted, hideOverlap: true },
+            axisLine: { lineStyle: { color: grid } },
+            axisTick: { lineStyle: { color: grid } },
+            splitLine: { show: true, lineStyle: { color: grid } },
+          },
+          yAxis: [
+            {
+              type: "value",
+              name: "게시글 수",
+              alignTicks: true,
+              axisLabel: { color: muted },
+              axisLine: { lineStyle: { color: grid } },
+              splitLine: { show: true, lineStyle: { color: grid } },
+            },
+            {
+              type: "value",
+              name: isReturn ? "수익률(%)" : "가격(USD)",
+              alignTicks: true,
+              axisLabel: { color: muted },
+              axisLine: { lineStyle: { color: grid } },
+              splitLine: { show: false },
+            },
+          ],
+          dataZoom: [
+            {
+              type: "inside",
+              zoomOnMouseWheel: "shift",
+              moveOnMouseMove: "shift",
+            },
+            { type: "slider", bottom: 20, height: 18 },
+          ],
+          series: [
+            {
+              name: "게시글 수",
+              type: "bar",
+              yAxisIndex: 0,
+              large: true,
+              itemStyle: { opacity: 0.85 },
+              emphasis: { focus: "series" },
+              data: weeks.map((t, i) => [t, posts[i]]),
+            },
+            {
+              name,
+              type: "line",
+              yAxisIndex: 1,
+              showSymbol: false,
+              smooth: true,
+              lineStyle: { width: 2 },
+              areaStyle: { opacity: 0.08 },
+              data: weeks.map((t, i) => [t, y[i]]),
+            },
+          ],
+        });
+
+        const pts = [];
+        for (let i = 0; i < weeks.length; i++) {
+          const x = posts[i],
+            r = nRet[i];
+          if (x != null && r != null && !Number.isNaN(x) && !Number.isNaN(r)) {
+            pts.push([x, r * 100]);
+          }
+        }
+        const rVal = pearson(
+          pts.map((p) => p[0]),
+          pts.map((p) => p[1])
+        );
+        document.getElementById("corr").textContent =
+          rVal == null ? "-" : rVal.toFixed(3);
+
+        scatter.setOption({
+          backgroundColor: "transparent",
+          textStyle: { color: fg },
+          tooltip: {
+            trigger: "item",
+            formatter: (p) =>
+              `게시글 ${Math.round(
+                p.value[0]
+              )}건<br/>다음주 수익률 ${p.value[1].toFixed(2)}%`,
+          },
+          grid: { left: 50, right: 20, bottom: 50, top: 20 },
+          xAxis: {
+            type: "value",
+            name: "주간 게시글 수",
+            axisLabel: { color: muted },
+            axisLine: { lineStyle: { color: grid } },
+            splitLine: { show: true, lineStyle: { color: grid } },
+          },
+          yAxis: {
+            type: "value",
+            name: "다음 주 수익률(%)",
+            axisLabel: { color: muted },
+            axisLine: { lineStyle: { color: grid } },
+            splitLine: { show: true, lineStyle: { color: grid } },
+          },
+          series: [
+            { name: "P→R(+1w)", type: "scatter", symbolSize: 6, data: pts },
+          ],
+        });
+      }
+
+      function reinitCharts() {
+        if (mainChart) mainChart.dispose();
+        if (scatter) scatter.dispose();
+        mainChart = echarts.init(document.getElementById("mainChart"));
+        scatter = echarts.init(document.getElementById("scatterChart"));
+        drawCharts();
       }
 
       async function main() {
-        const res = await fetch("./data.json", { cache: "no-store" });
-        let data = null;
+        // 데이터 로드
+        let data;
         try {
           const res = await fetch("./data.json", { cache: "no-store" });
           if (!res.ok) throw new Error("HTTP " + res.status);
-          data = await res.json(); // NaN가 있으면 여기서 예외 발생
+          data = await res.json();
         } catch (err) {
           console.error("데이터 로드 실패:", err);
           document.getElementById("mainChart").innerHTML =
@@ -287,27 +449,28 @@
           return;
         }
 
-        const weeks = data.weeks.map((d) => new Date(d + "T00:00:00+09:00")); // 주 시작(월, KST)
-        const posts = data.postCounts.map((v) =>
+        weeks = data.weeks.map((d) => new Date(d + "T00:00:00+09:00"));
+        posts = data.postCounts.map((v) => (v == null ? null : Number(v)));
+        wMean = data.btcWeeklyMean.map((v) => (v == null ? null : Number(v)));
+        wClose = data.btcWeeklyClose.map((v) => (v == null ? null : Number(v)));
+        nClose = data.btcNextWeekClose.map((v) =>
           v == null ? null : Number(v)
         );
-        const wMean = data.btcWeeklyMean.map((v) =>
-          v == null ? null : Number(v)
-        );
-        const wClose = data.btcWeeklyClose.map((v) =>
-          v == null ? null : Number(v)
-        );
-        const nClose = data.btcNextWeekClose.map((v) =>
-          v == null ? null : Number(v)
-        );
-        const nRet = data.btcNextWeekReturn.map((v) =>
+        nRet = data.btcNextWeekReturn.map((v) =>
           v == null ? null : Number(v)
         );
 
-        // KPI / 태그
+        // KPI 채우기
         document.getElementById("updatedAt").textContent = new Date(
           data.updatedAt
         ).toLocaleString();
+        const chips = document.getElementById("chips");
+        chips.innerHTML = `
+        <span class="chip">KST</span>
+        <span class="chip">주간: 월요일 시작</span>
+        <span class="chip">가격 결측: null</span>
+        <span class="chip">예측용: 1주 시프트</span>
+      `;
         if (data.kpis?.lastWeek) {
           const k = data.kpis.lastWeek;
           document.getElementById("kpiPosts").textContent = fmtNum(k.posts);
@@ -323,161 +486,16 @@
               : (k.nextWeekReturn * 100).toFixed(2) + "%"
           }`;
         }
-        const chips = document.getElementById("chips");
-        chips.innerHTML = `
-        <span class="chip">KST</span>
-        <span class="chip">주간: 월요일 시작</span>
-        <span class="chip">가격 결측: 보간 없음</span>
-        <span class="chip">예측용: 1주 시프트</span>
-      `;
 
-        const mainChart = echarts.init(document.getElementById("mainChart"));
-        const scatter = echarts.init(document.getElementById("scatterChart"));
+        reinitCharts();
 
-        const metricSel = document.getElementById("metric");
-        const alignSel = document.getElementById("align");
-        const resetBtn = document.getElementById("resetZoom");
-
-        function getPriceSeries(metric, align) {
-          let y = null,
-            name = "";
-          if (metric === "mean") {
-            y = wMean;
-            name = "BTC 주간 평균가";
-          }
-          if (metric === "close") {
-            y = wClose;
-            name = "BTC 주간 종가";
-          }
-          if (metric === "nextClose") {
-            y = nClose;
-            name = "BTC 다음 주 종가(예측)";
-          }
-          if (metric === "nextReturn") {
-            y = nRet.map((v) => (v == null ? null : v * 100));
-            name = "BTC 다음 주 수익률(%)";
-          }
-          // 정렬: 1주 시프트(예측 관점) → x축은 주 t, y는 주 t+1 값
-          // data.json에 이미 t→t+1이 매핑된 배열(nClose, nRet)이 있어 추가 이동 필요 없음.
-          return { y, name };
-        }
-
-        function drawCharts() {
-          const { y, name } = getPriceSeries(metricSel.value, alignSel.value);
-
-          // 메인(막대+라인)
-          const isReturn = metricSel.value === "nextReturn";
-          const yAxis1Name = "게시글 수";
-          const yAxis2Name = isReturn ? "수익률(%)" : "가격(USD)";
-          mainChart.setOption({
-            backgroundColor: "transparent",
-            tooltip: { trigger: "axis", axisPointer: { type: "cross" } },
-            grid: { left: 50, right: 60, bottom: 70, top: 30 },
-            legend: { data: ["게시글 수", name] },
-            xAxis: {
-              type: "time",
-              axisLabel: { hideOverlap: true },
-            },
-            yAxis: [
-              {
-                type: "value",
-                name: yAxis1Name,
-                alignTicks: true,
-                splitLine: { show: true },
-              },
-              {
-                type: "value",
-                name: yAxis2Name,
-                alignTicks: true,
-                splitLine: { show: false },
-              },
-            ],
-            dataZoom: [
-              {
-                type: "inside",
-                zoomOnMouseWheel: "shift",
-                moveOnMouseMove: "shift",
-              },
-              { type: "slider", bottom: 20, height: 18 },
-            ],
-            series: [
-              {
-                name: "게시글 수",
-                type: "bar",
-                yAxisIndex: 0,
-                large: true,
-                itemStyle: { opacity: 0.8 },
-                emphasis: { focus: "series" },
-                data: weeks.map((t, i) => [t, posts[i]]),
-              },
-              {
-                name,
-                type: "line",
-                yAxisIndex: 1,
-                showSymbol: false,
-                smooth: true,
-                lineStyle: { width: 2 },
-                areaStyle: { opacity: 0.08 },
-                data: weeks.map((t, i) => [t, y[i]]),
-              },
-            ],
-          });
-
-          // 산점도: 게시글 ↔ 다음 주 수익률
-          const pts = [];
-          for (let i = 0; i < weeks.length; i++) {
-            const x = posts[i],
-              r = nRet[i];
-            if (
-              x != null &&
-              r != null &&
-              !Number.isNaN(x) &&
-              !Number.isNaN(r)
-            ) {
-              pts.push([x, r * 100]);
-            }
-          }
-          const rVal = pearson(
-            pts.map((p) => p[0]),
-            pts.map((p) => p[1])
-          );
-          document.getElementById("corr").textContent =
-            rVal == null ? "-" : rVal.toFixed(3);
-
-          scatter.setOption({
-            backgroundColor: "transparent",
-            tooltip: {
-              trigger: "item",
-              formatter: (p) =>
-                `게시글 ${Math.round(
-                  p.value[0]
-                )}건<br/>다음주 수익률 ${p.value[1].toFixed(2)}%`,
-            },
-            grid: { left: 50, right: 20, bottom: 50, top: 20 },
-            xAxis: {
-              type: "value",
-              name: "주간 게시글 수",
-              splitLine: { show: true },
-            },
-            yAxis: {
-              type: "value",
-              name: "다음 주 수익률(%)",
-              splitLine: { show: true },
-            },
-            series: [
-              { name: "P→R(+1w)", type: "scatter", symbolSize: 6, data: pts },
-            ],
-          });
-        }
-
-        drawCharts();
-
-        metricSel.addEventListener("change", drawCharts);
-        alignSel.addEventListener("change", drawCharts);
-        resetBtn.addEventListener("click", () => {
+        document
+          .getElementById("metric")
+          .addEventListener("change", drawCharts);
+        document.getElementById("align").addEventListener("change", drawCharts);
+        document.getElementById("resetZoom").addEventListener("click", () => {
           mainChart.dispatchAction({ type: "dataZoom", start: 0, end: 100 });
         });
-
         window.addEventListener("resize", () => {
           mainChart.resize();
           scatter.resize();
