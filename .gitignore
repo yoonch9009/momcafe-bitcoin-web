@@ -1,0 +1,10 @@
+.next/
+out/
+node_modules/
+.playwright-cli/
+output/
+.coverage/
+__pycache__/
+*.py[cod]
+.env*
+!.env.example

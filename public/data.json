@@ -1,0 +1,4959 @@
+{
+  "schemaVersion": 3,
+  "timezone": "Asia/Seoul",
+  "weekStart": "MON",
+  "updatedAt": "2026-08-25T22:53:44.300699+09:00",
+  "series": [
+    {
+      "week": "2016-03-07",
+      "postCount": 2,
+      "btcMean": 413.89142857142855,
+      "btcClose": 412.41,
+      "nextWeekClose": 411.53,
+      "nextWeekReturn": -0.002133798889454752,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2016-03-14",
+      "postCount": 0,
+      "btcMean": 413.1271428571428,
+      "btcClose": 411.53,
+      "nextWeekClose": 424.57,
+      "nextWeekReturn": 0.03168663280927286,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2016-03-21",
+      "postCount": 0,
+      "btcMean": 416.54714285714283,
+      "btcClose": 424.57,
+      "nextWeekClose": 419.06,
+      "nextWeekReturn": -0.012977836399180376,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2016-03-28",
+      "postCount": 0,
+      "btcMean": 416.93142857142857,
+      "btcClose": 419.06,
+      "nextWeekClose": 420.25,
+      "nextWeekReturn": 0.0028396888273756193,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2016-04-04",
+      "postCount": 0,
+      "btcMean": 419.82714285714286,
+      "btcClose": 420.25,
+      "nextWeekClose": 426.26,
+      "nextWeekReturn": 0.01430101130279593,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2016-04-11",
+      "postCount": 0,
+      "btcMean": 425.52,
+      "btcClose": 426.26,
+      "nextWeekClose": 457.56,
+      "nextWeekReturn": 0.07342936236100028,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2016-04-18",
+      "postCount": 0,
+      "btcMean": 443.7185714285714,
+      "btcClose": 457.56,
+      "nextWeekClose": 452.24,
+      "nextWeekReturn": -0.011626890462453021,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2016-04-25",
+      "postCount": 0,
+      "btcMean": 454.1385714285715,
+      "btcClose": 452.24,
+      "nextWeekClose": 457.87,
+      "nextWeekReturn": 0.012449142048469808,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2016-05-02",
+      "postCount": 0,
+      "btcMean": 452.03142857142853,
+      "btcClose": 457.87,
+      "nextWeekClose": 458.11,
+      "nextWeekReturn": 0.0005241662480617304,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2016-05-09",
+      "postCount": 0,
+      "btcMean": 455.24142857142857,
+      "btcClose": 458.11,
+      "nextWeekClose": 439.62,
+      "nextWeekReturn": -0.04036148523280436,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2016-05-16",
+      "postCount": 0,
+      "btcMean": 447.19571428571425,
+      "btcClose": 439.62,
+      "nextWeekClose": 516.05,
+      "nextWeekReturn": 0.17385469268914044,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2016-05-23",
+      "postCount": 0,
+      "btcMean": 472.45714285714286,
+      "btcClose": 516.05,
+      "nextWeekClose": 574.91,
+      "nextWeekReturn": 0.11405871524077127,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2016-05-30",
+      "postCount": 0,
+      "btcMean": 549.9385714285714,
+      "btcClose": 574.91,
+      "nextWeekClose": 666.55,
+      "nextWeekReturn": 0.15939886243064127,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2016-06-06",
+      "postCount": 0,
+      "btcMean": 592.9142857142857,
+      "btcClose": 666.55,
+      "nextWeekClose": 761.04,
+      "nextWeekReturn": 0.1417598079663942,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2016-06-13",
+      "postCount": 0,
+      "btcMean": 727.9857142857143,
+      "btcClose": 761.04,
+      "nextWeekClose": 625.41,
+      "nextWeekReturn": -0.17821665089877015,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2016-06-20",
+      "postCount": 0,
+      "btcMean": 651.2242857142857,
+      "btcClose": 625.41,
+      "nextWeekClose": 661.64,
+      "nextWeekReturn": 0.05792999792136366,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2016-06-27",
+      "postCount": 0,
+      "btcMean": 661.4828571428571,
+      "btcClose": 661.64,
+      "nextWeekClose": 647.11,
+      "nextWeekReturn": -0.021960582794268713,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2016-07-04",
+      "postCount": 0,
+      "btcMean": 658.3571428571429,
+      "btcClose": 647.11,
+      "nextWeekClose": 676.33,
+      "nextWeekReturn": 0.045154610498987946,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2016-07-11",
+      "postCount": 0,
+      "btcMean": 662.4128571428572,
+      "btcClose": 676.33,
+      "nextWeekClose": 659.29,
+      "nextWeekReturn": -0.02519480135436858,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2016-07-18",
+      "postCount": 0,
+      "btcMean": 662.2942857142856,
+      "btcClose": 659.29,
+      "nextWeekClose": 621.87,
+      "nextWeekReturn": -0.05675802757511861,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2016-07-25",
+      "postCount": 0,
+      "btcMean": 649.87,
+      "btcClose": 621.87,
+      "nextWeekClose": 590.85,
+      "nextWeekReturn": -0.04988180809493947,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2016-08-01",
+      "postCount": 0,
+      "btcMean": 573.5785714285714,
+      "btcClose": 590.85,
+      "nextWeekClose": 569.06,
+      "nextWeekReturn": -0.036879072522637,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2016-08-08",
+      "postCount": 0,
+      "btcMean": 584.8657142857143,
+      "btcClose": 569.06,
+      "nextWeekClose": 580.66,
+      "nextWeekReturn": 0.02038449372649631,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2016-08-15",
+      "postCount": 0,
+      "btcMean": 575.8142857142857,
+      "btcClose": 580.66,
+      "nextWeekClose": 574.98,
+      "nextWeekReturn": -0.009781972238487202,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2016-08-22",
+      "postCount": 0,
+      "btcMean": 579.05,
+      "btcClose": 574.98,
+      "nextWeekClose": 609.55,
+      "nextWeekReturn": 0.06012383039410052,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2016-08-29",
+      "postCount": 0,
+      "btcMean": 583.0142857142857,
+      "btcClose": 609.55,
+      "nextWeekClose": 605.61,
+      "nextWeekReturn": -0.006463784759248581,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2016-09-05",
+      "postCount": 0,
+      "btcMean": 615.4671428571429,
+      "btcClose": 605.61,
+      "nextWeekClose": 610.7,
+      "nextWeekReturn": 0.008404748930830097,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2016-09-12",
+      "postCount": 1,
+      "btcMean": 608.5428571428572,
+      "btcClose": 610.7,
+      "nextWeekClose": 601.49,
+      "nextWeekReturn": -0.015081054527591342,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2016-09-19",
+      "postCount": 0,
+      "btcMean": 602.6971428571429,
+      "btcClose": 601.49,
+      "nextWeekClose": 610.69,
+      "nextWeekReturn": 0.015295349881128573,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2016-09-26",
+      "postCount": 1,
+      "btcMean": 607.66,
+      "btcClose": 610.69,
+      "nextWeekClose": 615.77,
+      "nextWeekReturn": 0.008318459447510085,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2016-10-03",
+      "postCount": 1,
+      "btcMean": 613.2571428571429,
+      "btcClose": 615.77,
+      "nextWeekClose": 640.12,
+      "nextWeekReturn": 0.03954398557903116,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2016-10-10",
+      "postCount": 0,
+      "btcMean": 634.9142857142857,
+      "btcClose": 640.12,
+      "nextWeekClose": 653.03,
+      "nextWeekReturn": 0.02016809348247195,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2016-10-17",
+      "postCount": 0,
+      "btcMean": 638.4385714285714,
+      "btcClose": 653.03,
+      "nextWeekClose": 697.27,
+      "nextWeekReturn": 0.0677457390931504,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2016-10-24",
+      "postCount": 0,
+      "btcMean": 679.5600000000001,
+      "btcClose": 697.27,
+      "nextWeekClose": 709.91,
+      "nextWeekReturn": 0.01812784143875401,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2016-10-31",
+      "postCount": 0,
+      "btcMean": 708.2728571428571,
+      "btcClose": 709.91,
+      "nextWeekClose": 701.97,
+      "nextWeekReturn": -0.011184516347142459,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2016-11-07",
+      "postCount": 0,
+      "btcMean": 710.5,
+      "btcClose": 701.97,
+      "nextWeekClose": 728.51,
+      "nextWeekReturn": 0.03780788352778597,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2016-11-14",
+      "postCount": 1,
+      "btcMean": 730.9757142857143,
+      "btcClose": 728.51,
+      "nextWeekClose": 729.42,
+      "nextWeekReturn": 0.0012491249262192028,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2016-11-21",
+      "postCount": 0,
+      "btcMean": 737.9799999999999,
+      "btcClose": 729.42,
+      "nextWeekClose": 766.39,
+      "nextWeekReturn": 0.05068410517945776,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2016-11-28",
+      "postCount": 1,
+      "btcMean": 751.7928571428572,
+      "btcClose": 766.39,
+      "nextWeekClose": 767.91,
+      "nextWeekReturn": 0.001983324417072163,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2016-12-05",
+      "postCount": 0,
+      "btcMean": 765.5699999999999,
+      "btcClose": 767.91,
+      "nextWeekClose": 789.01,
+      "nextWeekReturn": 0.027477178315167272,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2016-12-12",
+      "postCount": 0,
+      "btcMean": 781.0214285714285,
+      "btcClose": 789.01,
+      "nextWeekClose": 891.07,
+      "nextWeekReturn": 0.12935197272531407,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2016-12-19",
+      "postCount": 0,
+      "btcMean": 853.9371428571429,
+      "btcClose": 891.07,
+      "nextWeekClose": 995.44,
+      "nextWeekReturn": 0.1171288450963448,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2016-12-26",
+      "postCount": 0,
+      "btcMean": 955.0385714285715,
+      "btcClose": 995.44,
+      "nextWeekClose": 900.86,
+      "nextWeekReturn": -0.09501326046773295,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-01-02",
+      "postCount": 0,
+      "btcMean": 978.7142857142857,
+      "btcClose": 900.86,
+      "nextWeekClose": 821.17,
+      "nextWeekReturn": -0.0884599160801901,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-01-09",
+      "postCount": 0,
+      "btcMean": 837.9028571428571,
+      "btcClose": 821.17,
+      "nextWeekClose": 918.84,
+      "nextWeekReturn": 0.11894004895454047,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-01-16",
+      "postCount": 0,
+      "btcMean": 889.4042857142857,
+      "btcClose": 918.84,
+      "nextWeekClose": 914.55,
+      "nextWeekReturn": -0.004668930390492432,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-01-23",
+      "postCount": 0,
+      "btcMean": 910.8928571428571,
+      "btcClose": 914.55,
+      "nextWeekClose": 1016.11,
+      "nextWeekReturn": 0.11104914985512004,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-01-30",
+      "postCount": 0,
+      "btcMean": 990.5142857142856,
+      "btcClose": 1016.11,
+      "nextWeekClose": 996.52,
+      "nextWeekReturn": -0.019279408725433322,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-02-06",
+      "postCount": 1,
+      "btcMean": 1015.8757142857143,
+      "btcClose": 996.52,
+      "nextWeekClose": 1048.89,
+      "nextWeekReturn": 0.05255288403644687,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-02-13",
+      "postCount": 2,
+      "btcMean": 1027.7714285714287,
+      "btcClose": 1048.89,
+      "nextWeekClose": 1171.58,
+      "nextWeekReturn": 0.11697127439483634,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-02-20",
+      "postCount": 0,
+      "btcMean": 1140.8685714285714,
+      "btcClose": 1171.58,
+      "nextWeekClose": 1271.22,
+      "nextWeekReturn": 0.08504754263473258,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-02-27",
+      "postCount": 1,
+      "btcMean": 1239.2957142857142,
+      "btcClose": 1271.22,
+      "nextWeekClose": 1225.11,
+      "nextWeekReturn": -0.03627224241280036,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-03-06",
+      "postCount": 0,
+      "btcMean": 1194.9599999999998,
+      "btcClose": 1225.11,
+      "nextWeekClose": 1022.6,
+      "nextWeekReturn": -0.16529944249904083,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-03-13",
+      "postCount": 0,
+      "btcMean": 1139.047142857143,
+      "btcClose": 1022.6,
+      "nextWeekClose": 969.44,
+      "nextWeekReturn": -0.05198513592802656,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-03-20",
+      "postCount": 0,
+      "btcMean": 1017.7128571428572,
+      "btcClose": 969.44,
+      "nextWeekClose": 1097.4,
+      "nextWeekReturn": 0.1319937283380097,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-03-27",
+      "postCount": 0,
+      "btcMean": 1061.7142857142858,
+      "btcClose": 1097.4,
+      "nextWeekClose": 1204.34,
+      "nextWeekReturn": 0.09744851467104043,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-04-03",
+      "postCount": 0,
+      "btcMean": 1169.0728571428572,
+      "btcClose": 1204.34,
+      "nextWeekClose": 1176.8,
+      "nextWeekReturn": -0.022867296610591614,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-04-10",
+      "postCount": 2,
+      "btcMean": 1192.4714285714285,
+      "btcClose": 1176.8,
+      "nextWeekClose": 1249.14,
+      "nextWeekReturn": 0.06147178789938823,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-04-17",
+      "postCount": 0,
+      "btcMean": 1227.58,
+      "btcClose": 1249.14,
+      "nextWeekClose": 1351.91,
+      "nextWeekReturn": 0.08227260355124333,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-04-24",
+      "postCount": 0,
+      "btcMean": 1307.1200000000001,
+      "btcClose": 1351.91,
+      "nextWeekClose": 1554.45,
+      "nextWeekReturn": 0.14981766537713304,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-05-01",
+      "postCount": 1,
+      "btcMean": 1495.9371428571428,
+      "btcClose": 1554.45,
+      "nextWeekClose": 1772.55,
+      "nextWeekReturn": 0.14030686094760192,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-05-08",
+      "postCount": 0,
+      "btcMean": 1736.607142857143,
+      "btcClose": 1772.55,
+      "nextWeekClose": 2044.19,
+      "nextWeekReturn": 0.1532481453273533,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-05-15",
+      "postCount": 0,
+      "btcMean": 1880.9885714285715,
+      "btcClose": 2044.19,
+      "nextWeekClose": 2189.02,
+      "nextWeekReturn": 0.07084957856167962,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-05-22",
+      "postCount": 0,
+      "btcMean": 2233.69,
+      "btcClose": 2189.02,
+      "nextWeekClose": 2524.06,
+      "nextWeekReturn": 0.15305479164192204,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-05-29",
+      "postCount": 1,
+      "btcMean": 2392.691428571429,
+      "btcClose": 2524.06,
+      "nextWeekClose": 2973.45,
+      "nextWeekReturn": 0.17804251879907773,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-06-05",
+      "postCount": 0,
+      "btcMean": 2821.554285714286,
+      "btcClose": 2973.45,
+      "nextWeekClose": 2539.56,
+      "nextWeekReturn": -0.14592140442919832,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-06-12",
+      "postCount": 0,
+      "btcMean": 2568.9614285714283,
+      "btcClose": 2539.56,
+      "nextWeekClose": 2541.62,
+      "nextWeekReturn": 0.0008111641386696622,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-06-19",
+      "postCount": 0,
+      "btcMean": 2659.1,
+      "btcClose": 2541.62,
+      "nextWeekClose": 2536.46,
+      "nextWeekReturn": -0.0020302012102516587,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-06-26",
+      "postCount": 1,
+      "btcMean": 2515.37,
+      "btcClose": 2536.46,
+      "nextWeekClose": 2511.43,
+      "nextWeekReturn": -0.009868083864914223,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-07-03",
+      "postCount": 0,
+      "btcMean": 2574.5800000000004,
+      "btcClose": 2511.43,
+      "nextWeekClose": 1914.09,
+      "nextWeekReturn": -0.23784855640013858,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-07-10",
+      "postCount": 0,
+      "btcMean": 2222.4542857142856,
+      "btcClose": 1914.09,
+      "nextWeekClose": 2756.61,
+      "nextWeekReturn": 0.4401673902481076,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-07-17",
+      "postCount": 1,
+      "btcMean": 2567.2057142857143,
+      "btcClose": 2756.61,
+      "nextWeekClose": 2766.49,
+      "nextWeekReturn": 0.003584112369903414,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-07-24",
+      "postCount": 0,
+      "btcMean": 2700.547142857143,
+      "btcClose": 2766.49,
+      "nextWeekClose": 3232.03,
+      "nextWeekReturn": 0.16827821535592058,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-07-31",
+      "postCount": 0,
+      "btcMean": 2933.442857142857,
+      "btcClose": 3232.03,
+      "nextWeekClose": 4062.6,
+      "nextWeekReturn": 0.2569809067366329,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-08-07",
+      "postCount": 1,
+      "btcMean": 3599.191428571429,
+      "btcClose": 4062.6,
+      "nextWeekClose": 4066.6,
+      "nextWeekReturn": 0.0009845911485255598,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-08-14",
+      "postCount": 1,
+      "btcMean": 4211.191428571428,
+      "btcClose": 4066.6,
+      "nextWeekClose": 4345.75,
+      "nextWeekReturn": 0.06864456794373686,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-08-21",
+      "postCount": 0,
+      "btcMean": 4230.957142857143,
+      "btcClose": 4345.75,
+      "nextWeekClose": 4612.92,
+      "nextWeekReturn": 0.06147845596272217,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-08-28",
+      "postCount": 1,
+      "btcMean": 4630.617142857142,
+      "btcClose": 4612.92,
+      "nextWeekClose": 4245.89,
+      "nextWeekReturn": -0.0795656547262904,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-09-04",
+      "postCount": 2,
+      "btcMean": 4405.472857142858,
+      "btcClose": 4245.89,
+      "nextWeekClose": 3689.61,
+      "nextWeekReturn": -0.13101611205189023,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-09-11",
+      "postCount": 0,
+      "btcMean": 3798.925714285714,
+      "btcClose": 3689.61,
+      "nextWeekClose": 3667.52,
+      "nextWeekReturn": -0.005987082645591335,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-09-18",
+      "postCount": 1,
+      "btcMean": 3794.862857142857,
+      "btcClose": 3667.52,
+      "nextWeekClose": 4403.09,
+      "nextWeekReturn": 0.20056332344472572,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-09-25",
+      "postCount": 1,
+      "btcMean": 4167.125714285714,
+      "btcClose": 4403.09,
+      "nextWeekClose": 4611.7,
+      "nextWeekReturn": 0.04737809129497683,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-10-02",
+      "postCount": 0,
+      "btcMean": 4382.15,
+      "btcClose": 4611.7,
+      "nextWeekClose": 5688.14,
+      "nextWeekReturn": 0.23341500964937012,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-10-09",
+      "postCount": 1,
+      "btcMean": 5278.254285714285,
+      "btcClose": 5688.14,
+      "nextWeekClose": 5982.86,
+      "nextWeekReturn": 0.05181307070501062,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-10-16",
+      "postCount": 1,
+      "btcMean": 5802.144285714285,
+      "btcClose": 5982.86,
+      "nextWeekClose": 6147.52,
+      "nextWeekReturn": 0.027521954383020963,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-10-23",
+      "postCount": 2,
+      "btcMean": 5810.998571428571,
+      "btcClose": 6147.52,
+      "nextWeekClose": 7389.55,
+      "nextWeekReturn": 0.20203756962157082,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-10-30",
+      "postCount": 1,
+      "btcMean": 6891.9400000000005,
+      "btcClose": 7389.55,
+      "nextWeekClose": 5878.13,
+      "nextWeekReturn": -0.204534782226252,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-11-06",
+      "postCount": 5,
+      "btcMean": 6774.245714285715,
+      "btcClose": 5878.13,
+      "nextWeekClose": 8042.64,
+      "nextWeekReturn": 0.3682310530730011,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-11-13",
+      "postCount": 2,
+      "btcMean": 7397.13,
+      "btcClose": 8042.64,
+      "nextWeekClose": 9318.42,
+      "nextWeekReturn": 0.1586270179940914,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-11-20",
+      "postCount": 1,
+      "btcMean": 8409.504285714285,
+      "btcClose": 9318.42,
+      "nextWeekClose": 11246.21,
+      "nextWeekReturn": 0.20687949244614412,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-11-27",
+      "postCount": 7,
+      "btcMean": 10349.18142857143,
+      "btcClose": 11246.21,
+      "nextWeekClose": 15059.6,
+      "nextWeekReturn": 0.3390822330367298,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-12-04",
+      "postCount": 28,
+      "btcMean": 14263.078571428572,
+      "btcClose": 15059.6,
+      "nextWeekClose": 19065.71,
+      "nextWeekReturn": 0.26601702568461305,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-12-11",
+      "postCount": 9,
+      "btcMean": 17512.45,
+      "btcClose": 19065.71,
+      "nextWeekClose": 13789.95,
+      "nextWeekReturn": -0.276714583406545,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-12-18",
+      "postCount": 27,
+      "btcMean": 15777.355714285715,
+      "btcClose": 13789.95,
+      "nextWeekClose": 13850.4,
+      "nextWeekReturn": 0.004383627206770102,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2017-12-25",
+      "postCount": 24,
+      "btcMean": 14311.41142857143,
+      "btcClose": 13850.4,
+      "nextWeekClose": 16228.16,
+      "nextWeekReturn": 0.1716744642754,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-01-01",
+      "postCount": 13,
+      "btcMean": 15555.85,
+      "btcClose": 16228.16,
+      "nextWeekClose": 13638.63,
+      "nextWeekReturn": -0.15957015459546864,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-01-08",
+      "postCount": 62,
+      "btcMean": 14199.308571428572,
+      "btcClose": 13638.63,
+      "nextWeekClose": 11549.93,
+      "nextWeekReturn": -0.15314588048799616,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-01-15",
+      "postCount": 42,
+      "btcMean": 11872.617142857143,
+      "btcClose": 11549.93,
+      "nextWeekClose": 11767.74,
+      "nextWeekReturn": 0.018858122949662937,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-01-22",
+      "postCount": 21,
+      "btcMean": 11229.898571428572,
+      "btcClose": 11767.74,
+      "nextWeekClose": 8218.05,
+      "nextWeekReturn": -0.3016458555338579,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-01-29",
+      "postCount": 13,
+      "btcMean": 9574.704285714284,
+      "btcClose": 8218.05,
+      "nextWeekClose": 8084.61,
+      "nextWeekReturn": -0.016237428587073555,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-02-05",
+      "postCount": 11,
+      "btcMean": 7977.495714285715,
+      "btcClose": 8084.61,
+      "nextWeekClose": 10417.23,
+      "nextWeekReturn": 0.2885259771343329,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-02-12",
+      "postCount": 2,
+      "btcMean": 9811.217142857144,
+      "btcClose": 10417.23,
+      "nextWeekClose": 9610.11,
+      "nextWeekReturn": -0.0774793299178379,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-02-19",
+      "postCount": 2,
+      "btcMean": 10322.811428571427,
+      "btcClose": 9610.11,
+      "nextWeekClose": 11504.42,
+      "nextWeekReturn": 0.1971163701560128,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-02-26",
+      "postCount": 2,
+      "btcMean": 10885.424285714285,
+      "btcClose": 11504.42,
+      "nextWeekClose": 9544.84,
+      "nextWeekReturn": -0.17033279383054512,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-03-05",
+      "postCount": 13,
+      "btcMean": 9859.475714285714,
+      "btcClose": 9544.84,
+      "nextWeekClose": 8215.4,
+      "nextWeekReturn": -0.13928363387966702,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-03-12",
+      "postCount": 1,
+      "btcMean": 8452.922857142858,
+      "btcClose": 8215.4,
+      "nextWeekClose": 8472.84,
+      "nextWeekReturn": 0.031336270905859775,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-03-19",
+      "postCount": 1,
+      "btcMean": 8733.697142857143,
+      "btcClose": 8472.84,
+      "nextWeekClose": 6835.84,
+      "nextWeekReturn": -0.19320558396004173,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-03-26",
+      "postCount": 1,
+      "btcMean": 7380.064285714286,
+      "btcClose": 6835.84,
+      "nextWeekClose": 7049.92,
+      "nextWeekReturn": 0.031317292388353124,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-04-02",
+      "postCount": 1,
+      "btcMean": 6959.547142857143,
+      "btcClose": 7049.92,
+      "nextWeekClose": 8376.73,
+      "nextWeekReturn": 0.1882021356270709,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-04-09",
+      "postCount": 4,
+      "btcMean": 7551.972857142857,
+      "btcClose": 8376.73,
+      "nextWeekClose": 8823.36,
+      "nextWeekReturn": 0.053317941487907694,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-04-16",
+      "postCount": 3,
+      "btcMean": 8447.048571428571,
+      "btcClose": 8823.36,
+      "nextWeekClose": 9407.04,
+      "nextWeekReturn": 0.06615167011206613,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-04-23",
+      "postCount": 5,
+      "btcMean": 9210.962857142858,
+      "btcClose": 9407.04,
+      "nextWeekClose": 9644.92,
+      "nextWeekReturn": 0.025287444297037,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-04-30",
+      "postCount": 1,
+      "btcMean": 9499.055714285714,
+      "btcClose": 9644.92,
+      "nextWeekClose": 8709.46,
+      "nextWeekReturn": -0.09698991800865131,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-05-07",
+      "postCount": 1,
+      "btcMean": 8934.921428571428,
+      "btcClose": 8709.46,
+      "nextWeekClose": 8533.0,
+      "nextWeekReturn": -0.02026072799002454,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-05-14",
+      "postCount": 3,
+      "btcMean": 8371.289999999999,
+      "btcClose": 8533.0,
+      "nextWeekClose": 7362.23,
+      "nextWeekReturn": -0.1372049689440994,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-05-21",
+      "postCount": 0,
+      "btcMean": 7670.794285714285,
+      "btcClose": 7362.23,
+      "nextWeekClose": 7719.75,
+      "nextWeekReturn": 0.04856137338822619,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-05-28",
+      "postCount": 38,
+      "btcMean": 7483.194285714286,
+      "btcClose": 7719.75,
+      "nextWeekClose": 6773.72,
+      "nextWeekReturn": -0.1225467145956799,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-06-04",
+      "postCount": 7,
+      "btcMean": 7487.061428571428,
+      "btcClose": 6773.72,
+      "nextWeekClose": 6457.78,
+      "nextWeekReturn": -0.046642022404232875,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-06-11",
+      "postCount": 4,
+      "btcMean": 6536.512857142857,
+      "btcClose": 6457.78,
+      "nextWeekClose": 6157.78,
+      "nextWeekReturn": -0.04645559309855707,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-06-18",
+      "postCount": 3,
+      "btcMean": 6473.400000000001,
+      "btcClose": 6157.78,
+      "nextWeekClose": 6339.04,
+      "nextWeekReturn": 0.029435933079778875,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-06-25",
+      "postCount": 0,
+      "btcMean": 6184.2585714285715,
+      "btcClose": 6339.04,
+      "nextWeekClose": 6707.38,
+      "nextWeekReturn": 0.058106590272344105,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-07-02",
+      "postCount": 1,
+      "btcMean": 6616.798571428572,
+      "btcClose": 6707.38,
+      "nextWeekClose": 6364.26,
+      "nextWeekReturn": -0.051155592794802085,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-07-09",
+      "postCount": 1,
+      "btcMean": 6355.212857142857,
+      "btcClose": 6364.26,
+      "nextWeekClose": 7398.64,
+      "nextWeekReturn": 0.16252950068036198,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-07-16",
+      "postCount": 6,
+      "btcMean": 7295.158571428571,
+      "btcClose": 7398.64,
+      "nextWeekClose": 8216.78,
+      "nextWeekReturn": 0.11057978223024767,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-07-23",
+      "postCount": 0,
+      "btcMean": 8121.691428571429,
+      "btcClose": 8216.78,
+      "nextWeekClose": 7042.39,
+      "nextWeekReturn": -0.14292581765606482,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-07-30",
+      "postCount": 1,
+      "btcMean": 7506.068571428572,
+      "btcClose": 7042.39,
+      "nextWeekClose": 6322.92,
+      "nextWeekReturn": -0.10216276008570957,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-08-06",
+      "postCount": 3,
+      "btcMean": 6459.4457142857145,
+      "btcClose": 6322.92,
+      "nextWeekClose": 6502.18,
+      "nextWeekReturn": 0.028350825251624245,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-08-13",
+      "postCount": 0,
+      "btcMean": 6365.697142857143,
+      "btcClose": 6502.18,
+      "nextWeekClose": 6720.6,
+      "nextWeekReturn": 0.0335918107465496,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-08-20",
+      "postCount": 2,
+      "btcMean": 6549.315714285714,
+      "btcClose": 6720.6,
+      "nextWeekClose": 7301.26,
+      "nextWeekReturn": 0.08640002380739809,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-08-27",
+      "postCount": 1,
+      "btcMean": 7084.221428571429,
+      "btcClose": 7301.26,
+      "nextWeekClose": 6249.07,
+      "nextWeekReturn": -0.14411074252937173,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-09-03",
+      "postCount": 4,
+      "btcMean": 6674.481428571428,
+      "btcClose": 6249.07,
+      "nextWeekClose": 6502.44,
+      "nextWeekReturn": 0.04054523313068992,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-09-10",
+      "postCount": 1,
+      "btcMean": 6422.801428571429,
+      "btcClose": 6502.44,
+      "nextWeekClose": 6702.7,
+      "nextWeekReturn": 0.030797669797798966,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-09-17",
+      "postCount": 0,
+      "btcMean": 6527.711428571428,
+      "btcClose": 6702.7,
+      "nextWeekClose": 6623.71,
+      "nextWeekReturn": -0.011784803139033517,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-09-24",
+      "postCount": 0,
+      "btcMean": 6576.12,
+      "btcClose": 6623.71,
+      "nextWeekClose": 6601.15,
+      "nextWeekReturn": -0.003405946214432798,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-10-01",
+      "postCount": 1,
+      "btcMean": 6573.78,
+      "btcClose": 6601.15,
+      "nextWeekClose": 6277.73,
+      "nextWeekReturn": -0.04899449338372863,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-10-08",
+      "postCount": 0,
+      "btcMean": 6409.75,
+      "btcClose": 6277.73,
+      "nextWeekClose": 6509.87,
+      "nextWeekReturn": 0.0369783345253778,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-10-15",
+      "postCount": 1,
+      "btcMean": 6532.622857142857,
+      "btcClose": 6509.87,
+      "nextWeekClose": 6470.74,
+      "nextWeekReturn": -0.0060108727209606805,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-10-22",
+      "postCount": 0,
+      "btcMean": 6470.084285714285,
+      "btcClose": 6470.74,
+      "nextWeekClose": 6467.05,
+      "nextWeekReturn": -0.0005702593520987564,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-10-29",
+      "postCount": 0,
+      "btcMean": 6369.28,
+      "btcClose": 6467.05,
+      "nextWeekClose": 6408.18,
+      "nextWeekReturn": -0.00910306863252952,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-11-05",
+      "postCount": 1,
+      "btcMean": 6438.82,
+      "btcClose": 6408.18,
+      "nextWeekClose": 5615.26,
+      "nextWeekReturn": -0.1237356004356931,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-11-12",
+      "postCount": 0,
+      "btcMean": 5839.098571428572,
+      "btcClose": 5615.26,
+      "nextWeekClose": 4004.15,
+      "nextWeekReturn": -0.2869163671851348,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-11-19",
+      "postCount": 0,
+      "btcMean": 4338.118571428572,
+      "btcClose": 4004.15,
+      "nextWeekClose": 4143.86,
+      "nextWeekReturn": 0.034891300275963655,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-11-26",
+      "postCount": 1,
+      "btcMean": 4072.6871428571426,
+      "btcClose": 4143.86,
+      "nextWeekClose": 3592.84,
+      "nextWeekReturn": -0.13297263903703305,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-12-03",
+      "postCount": 2,
+      "btcMean": 3645.2914285714287,
+      "btcClose": 3592.84,
+      "nextWeekClose": 3255.37,
+      "nextWeekReturn": -0.09392847997684295,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-12-10",
+      "postCount": 2,
+      "btcMean": 3340.32,
+      "btcClose": 3255.37,
+      "nextWeekClose": 4007.63,
+      "nextWeekReturn": 0.2310827955040442,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-12-17",
+      "postCount": 2,
+      "btcMean": 3869.988571428571,
+      "btcClose": 4007.63,
+      "nextWeekClose": 3896.21,
+      "nextWeekReturn": -0.027801967746523548,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-12-24",
+      "postCount": 0,
+      "btcMean": 3864.6685714285713,
+      "btcClose": 3896.21,
+      "nextWeekClose": 4102.85,
+      "nextWeekReturn": 0.05303615564869468,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2018-12-31",
+      "postCount": 4,
+      "btcMean": 3893.815714285714,
+      "btcClose": 4102.85,
+      "nextWeekClose": 3551.24,
+      "nextWeekReturn": -0.13444556832445753,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-01-07",
+      "postCount": 2,
+      "btcMean": 3813.2085714285713,
+      "btcClose": 3551.24,
+      "nextWeekClose": 3567.73,
+      "nextWeekReturn": 0.0046434484855994995,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-01-14",
+      "postCount": 2,
+      "btcMean": 3657.1414285714286,
+      "btcClose": 3567.73,
+      "nextWeekClose": 3565.08,
+      "nextWeekReturn": -0.0007427692117957241,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-01-21",
+      "postCount": 1,
+      "btcMean": 3584.1428571428573,
+      "btcClose": 3565.08,
+      "nextWeekClose": 3449.62,
+      "nextWeekReturn": -0.032386370011332155,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-01-28",
+      "postCount": 0,
+      "btcMean": 3456.1342857142854,
+      "btcClose": 3449.62,
+      "nextWeekClose": 3685.14,
+      "nextWeekReturn": 0.0682741867220158,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-02-04",
+      "postCount": 1,
+      "btcMean": 3520.9357142857143,
+      "btcClose": 3685.14,
+      "nextWeekClose": 3670.92,
+      "nextWeekReturn": -0.0038587407805401597,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-02-11",
+      "postCount": 1,
+      "btcMean": 3614.9985714285713,
+      "btcClose": 3670.92,
+      "nextWeekClose": 3771.62,
+      "nextWeekReturn": 0.027431815457705344,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-02-18",
+      "postCount": 0,
+      "btcMean": 3950.305714285714,
+      "btcClose": 3771.62,
+      "nextWeekClose": 3812.31,
+      "nextWeekReturn": 0.010788467555056025,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-02-25",
+      "postCount": 0,
+      "btcMean": 3829.172857142857,
+      "btcClose": 3812.31,
+      "nextWeekClose": 3929.84,
+      "nextWeekReturn": 0.03082907738352869,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-03-04",
+      "postCount": 0,
+      "btcMean": 3872.664285714286,
+      "btcClose": 3929.84,
+      "nextWeekClose": 3998.0,
+      "nextWeekReturn": 0.017344217576288123,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-03-11",
+      "postCount": 1,
+      "btcMean": 3925.0614285714287,
+      "btcClose": 3998.0,
+      "nextWeekClose": 3994.11,
+      "nextWeekReturn": -0.0009729864932466192,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-03-18",
+      "postCount": 2,
+      "btcMean": 4009.8328571428574,
+      "btcClose": 3994.11,
+      "nextWeekClose": 4112.69,
+      "nextWeekReturn": 0.029688716635245305,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-03-25",
+      "postCount": 0,
+      "btcMean": 4041.628571428572,
+      "btcClose": 4112.69,
+      "nextWeekClose": 5201.16,
+      "nextWeekReturn": 0.2646613287167281,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-04-01",
+      "postCount": 2,
+      "btcMean": 4893.405714285714,
+      "btcClose": 5201.16,
+      "nextWeekClose": 5165.59,
+      "nextWeekReturn": -0.006838859023756139,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-04-08",
+      "postCount": 0,
+      "btcMean": 5170.042857142857,
+      "btcClose": 5165.59,
+      "nextWeekClose": 5305.74,
+      "nextWeekReturn": 0.027131460297855625,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-04-15",
+      "postCount": 0,
+      "btcMean": 5243.362857142857,
+      "btcClose": 5305.74,
+      "nextWeekClose": 5272.45,
+      "nextWeekReturn": -0.006274336850279116,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-04-22",
+      "postCount": 0,
+      "btcMean": 5326.72,
+      "btcClose": 5272.45,
+      "nextWeekClose": 5794.14,
+      "nextWeekReturn": 0.0989464101129458,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-04-29",
+      "postCount": 1,
+      "btcMean": 5552.351428571428,
+      "btcClose": 5794.14,
+      "nextWeekClose": 6977.63,
+      "nextWeekReturn": 0.20425636936629066,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-05-06",
+      "postCount": 1,
+      "btcMean": 6323.67,
+      "btcClose": 6977.63,
+      "nextWeekClose": 8193.14,
+      "nextWeekReturn": 0.17420098228194947,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-05-13",
+      "postCount": 2,
+      "btcMean": 7810.801428571429,
+      "btcClose": 8193.14,
+      "nextWeekClose": 8726.23,
+      "nextWeekReturn": 0.06506540837822872,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-05-20",
+      "postCount": 0,
+      "btcMean": 8033.052857142857,
+      "btcClose": 8726.23,
+      "nextWeekClose": 8737.91,
+      "nextWeekReturn": 0.001338493255392148,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-05-27",
+      "postCount": 4,
+      "btcMean": 8612.754285714285,
+      "btcClose": 8737.91,
+      "nextWeekClose": 7643.44,
+      "nextWeekReturn": -0.12525535282464573,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-06-03",
+      "postCount": 2,
+      "btcMean": 7852.922857142857,
+      "btcClose": 7643.44,
+      "nextWeekClose": 8979.18,
+      "nextWeekReturn": 0.17475639240970042,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-06-10",
+      "postCount": 0,
+      "btcMean": 8410.675714285713,
+      "btcClose": 8979.18,
+      "nextWeekClose": 10855.99,
+      "nextWeekReturn": 0.2090179726879291,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-06-17",
+      "postCount": 0,
+      "btcMean": 9857.072857142859,
+      "btcClose": 10855.99,
+      "nextWeekClose": 10769.05,
+      "nextWeekReturn": -0.008008481953281188,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-06-24",
+      "postCount": 3,
+      "btcMean": 11693.094285714285,
+      "btcClose": 10769.05,
+      "nextWeekClose": 11474.28,
+      "nextWeekReturn": 0.06548674209888539,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-07-01",
+      "postCount": 0,
+      "btcMean": 11184.371428571429,
+      "btcClose": 11474.28,
+      "nextWeekClose": 10204.41,
+      "nextWeekReturn": -0.1106709963500978,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-07-08",
+      "postCount": 1,
+      "btcMean": 11667.31,
+      "btcClose": 10204.41,
+      "nextWeekClose": 10586.71,
+      "nextWeekReturn": 0.03746419440222404,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-07-15",
+      "postCount": 0,
+      "btcMean": 10355.324285714287,
+      "btcClose": 10586.71,
+      "nextWeekClose": 9531.77,
+      "nextWeekReturn": -0.09964757700928795,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-07-22",
+      "postCount": 0,
+      "btcMean": 9813.16142857143,
+      "btcClose": 9531.77,
+      "nextWeekClose": 10978.91,
+      "nextWeekReturn": 0.15182279891352812,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-07-29",
+      "postCount": 0,
+      "btcMean": 10275.685714285715,
+      "btcClose": 10978.91,
+      "nextWeekClose": 11549.06,
+      "nextWeekReturn": 0.05193138480960302,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-08-05",
+      "postCount": 0,
+      "btcMean": 11705.714285714286,
+      "btcClose": 11549.06,
+      "nextWeekClose": 10326.25,
+      "nextWeekReturn": -0.10587961271306923,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-08-12",
+      "postCount": 0,
+      "btcMean": 10501.034285714286,
+      "btcClose": 10326.25,
+      "nextWeekClose": 10141.75,
+      "nextWeekReturn": -0.01786708630916356,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-08-19",
+      "postCount": 0,
+      "btcMean": 10375.858571428571,
+      "btcClose": 10141.75,
+      "nextWeekClose": 9768.36,
+      "nextWeekReturn": -0.03681711736140203,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-08-26",
+      "postCount": 1,
+      "btcMean": 9819.452857142856,
+      "btcClose": 9768.36,
+      "nextWeekClose": 10420.88,
+      "nextWeekReturn": 0.06679933990966735,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-09-02",
+      "postCount": 0,
+      "btcMean": 10482.387142857142,
+      "btcClose": 10420.88,
+      "nextWeekClose": 10313.02,
+      "nextWeekReturn": -0.01035037348093426,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-09-09",
+      "postCount": 0,
+      "btcMean": 10295.597142857141,
+      "btcClose": 10313.02,
+      "nextWeekClose": 10036.98,
+      "nextWeekReturn": -0.026766165487897897,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-09-16",
+      "postCount": 0,
+      "btcMean": 10159.50857142857,
+      "btcClose": 10036.98,
+      "nextWeekClose": 8065.26,
+      "nextWeekReturn": -0.1964455443768942,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-09-23",
+      "postCount": 2,
+      "btcMean": 8464.195714285715,
+      "btcClose": 8065.26,
+      "nextWeekClose": 7868.31,
+      "nextWeekReturn": -0.024419547540934783,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-09-30",
+      "postCount": 0,
+      "btcMean": 8212.56,
+      "btcClose": 7868.31,
+      "nextWeekClose": 8296.34,
+      "nextWeekReturn": 0.054399229313537356,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-10-07",
+      "postCount": 0,
+      "btcMean": 8355.394285714285,
+      "btcClose": 8296.34,
+      "nextWeekClose": 8247.25,
+      "nextWeekReturn": -0.00591706704402184,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-10-14",
+      "postCount": 0,
+      "btcMean": 8118.2528571428575,
+      "btcClose": 8247.25,
+      "nextWeekClose": 9550.6,
+      "nextWeekReturn": 0.1580344963472673,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-10-21",
+      "postCount": 1,
+      "btcMean": 8380.31,
+      "btcClose": 9550.6,
+      "nextWeekClose": 9221.61,
+      "nextWeekReturn": -0.03444705044709229,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-10-28",
+      "postCount": 2,
+      "btcMean": 9253.808571428572,
+      "btcClose": 9221.61,
+      "nextWeekClose": 9045.85,
+      "nextWeekReturn": -0.019059578533466515,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-11-04",
+      "postCount": 0,
+      "btcMean": 9134.47,
+      "btcClose": 9045.85,
+      "nextWeekClose": 8515.28,
+      "nextWeekReturn": -0.0586534156546924,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-11-11",
+      "postCount": 3,
+      "btcMean": 8634.06857142857,
+      "btcClose": 8515.28,
+      "nextWeekClose": 6930.09,
+      "nextWeekReturn": -0.18615829426630726,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-11-18",
+      "postCount": 4,
+      "btcMean": 7658.778571428571,
+      "btcClose": 6930.09,
+      "nextWeekClose": 7420.53,
+      "nextWeekReturn": 0.07076964368428107,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-11-25",
+      "postCount": 1,
+      "btcMean": 7434.835714285714,
+      "btcClose": 7420.53,
+      "nextWeekClose": 7539.7,
+      "nextWeekReturn": 0.016059499793141363,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-12-02",
+      "postCount": 10,
+      "btcMean": 7408.892857142857,
+      "btcClose": 7539.7,
+      "nextWeekClose": 7132.39,
+      "nextWeekReturn": -0.05402204331737326,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-12-09",
+      "postCount": 6,
+      "btcMean": 7210.037142857143,
+      "btcClose": 7132.39,
+      "nextWeekClose": 7517.58,
+      "nextWeekReturn": 0.05400574001141267,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-12-16",
+      "postCount": 0,
+      "btcMean": 7123.917142857143,
+      "btcClose": 7517.58,
+      "nextWeekClose": 7399.49,
+      "nextWeekReturn": -0.01570851257984618,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-12-23",
+      "postCount": 0,
+      "btcMean": 7281.0,
+      "btcClose": 7399.49,
+      "nextWeekClose": 7359.96,
+      "nextWeekReturn": -0.005342260074680749,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2019-12-30",
+      "postCount": 0,
+      "btcMean": 7233.0199999999995,
+      "btcClose": 7359.96,
+      "nextWeekClose": 8181.49,
+      "nextWeekReturn": 0.11162153055179647,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-01-06",
+      "postCount": 1,
+      "btcMean": 8025.99,
+      "btcClose": 8181.49,
+      "nextWeekClose": 8702.59,
+      "nextWeekReturn": 0.06369255477914182,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-01-13",
+      "postCount": 1,
+      "btcMean": 8709.578571428572,
+      "btcClose": 8702.59,
+      "nextWeekClose": 8602.37,
+      "nextWeekReturn": -0.011516111870144341,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-01-20",
+      "postCount": 1,
+      "btcMean": 8542.92,
+      "btcClose": 8602.37,
+      "nextWeekClose": 9334.25,
+      "nextWeekReturn": 0.08507887942508852,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-01-27",
+      "postCount": 0,
+      "btcMean": 9305.628571428571,
+      "btcClose": 9334.25,
+      "nextWeekClose": 10157.78,
+      "nextWeekReturn": 0.0882266920213195,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-02-03",
+      "postCount": 1,
+      "btcMean": 9670.369999999999,
+      "btcClose": 10157.78,
+      "nextWeekClose": 9925.51,
+      "nextWeekReturn": -0.022866216830843,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-02-10",
+      "postCount": 1,
+      "btcMean": 10128.574285714287,
+      "btcClose": 9925.51,
+      "nextWeekClose": 9977.39,
+      "nextWeekReturn": 0.0052269354421081715,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-02-17",
+      "postCount": 0,
+      "btcMean": 9777.574285714287,
+      "btcClose": 9977.39,
+      "nextWeekClose": 8549.38,
+      "nextWeekReturn": -0.1431246047312975,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-02-24",
+      "postCount": 1,
+      "btcMean": 8915.644285714287,
+      "btcClose": 8549.38,
+      "nextWeekClose": 8057.67,
+      "nextWeekReturn": -0.057514112134447126,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-03-02",
+      "postCount": 1,
+      "btcMean": 8807.971428571429,
+      "btcClose": 8057.67,
+      "nextWeekClose": 5357.02,
+      "nextWeekReturn": -0.33516512838078494,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-03-09",
+      "postCount": 0,
+      "btcMean": 6410.367142857142,
+      "btcClose": 5357.02,
+      "nextWeekClose": 5828.15,
+      "nextWeekReturn": 0.08794628356810308,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-03-16",
+      "postCount": 4,
+      "btcMean": 5744.374285714286,
+      "btcClose": 5828.15,
+      "nextWeekClose": 5882.2,
+      "nextWeekReturn": 0.009273954857030198,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-03-23",
+      "postCount": 4,
+      "btcMean": 6462.908571428571,
+      "btcClose": 5882.2,
+      "nextWeekClose": 6781.64,
+      "nextWeekReturn": 0.1529087756281664,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-03-30",
+      "postCount": 3,
+      "btcMean": 6670.891428571428,
+      "btcClose": 6781.64,
+      "nextWeekClose": 6913.76,
+      "nextWeekReturn": 0.019482013200346815,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-04-06",
+      "postCount": 4,
+      "btcMean": 7126.937142857142,
+      "btcClose": 6913.76,
+      "nextWeekClose": 7132.88,
+      "nextWeekReturn": 0.031693318830853245,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-04-13",
+      "postCount": 1,
+      "btcMean": 6988.178571428572,
+      "btcClose": 7132.88,
+      "nextWeekClose": 7701.35,
+      "nextWeekReturn": 0.07969712093852688,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-04-20",
+      "postCount": 2,
+      "btcMean": 7297.132857142858,
+      "btcClose": 7701.35,
+      "nextWeekClose": 8907.19,
+      "nextWeekReturn": 0.15657514591597588,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-04-27",
+      "postCount": 1,
+      "btcMean": 8526.81,
+      "btcClose": 8907.19,
+      "nextWeekClose": 8735.05,
+      "nextWeekReturn": -0.01932596026356248,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-05-04",
+      "postCount": 0,
+      "btcMean": 9306.984285714285,
+      "btcClose": 8735.05,
+      "nextWeekClose": 9670.56,
+      "nextWeekReturn": 0.10709841386139751,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-05-11",
+      "postCount": 1,
+      "btcMean": 9267.145714285714,
+      "btcClose": 9670.56,
+      "nextWeekClose": 8718.49,
+      "nextWeekReturn": -0.09845034827352295,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-05-18",
+      "postCount": 0,
+      "btcMean": 9306.701428571429,
+      "btcClose": 8718.49,
+      "nextWeekClose": 9450.47,
+      "nextWeekReturn": 0.08395719901037912,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-05-25",
+      "postCount": 2,
+      "btcMean": 9300.74,
+      "btcClose": 9450.47,
+      "nextWeekClose": 9750.7,
+      "nextWeekReturn": 0.03176879033529567,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-06-01",
+      "postCount": 3,
+      "btcMean": 9748.538571428571,
+      "btcClose": 9750.7,
+      "nextWeekClose": 9333.7,
+      "nextWeekReturn": -0.04276616037822922,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-06-08",
+      "postCount": 0,
+      "btcMean": 9570.69,
+      "btcClose": 9333.7,
+      "nextWeekClose": 9292.81,
+      "nextWeekReturn": -0.004380899321812515,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-06-15",
+      "postCount": 0,
+      "btcMean": 9392.852857142858,
+      "btcClose": 9292.81,
+      "nextWeekClose": 9120.39,
+      "nextWeekReturn": -0.01855412948290136,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-06-22",
+      "postCount": 4,
+      "btcMean": 9305.109999999999,
+      "btcClose": 9120.39,
+      "nextWeekClose": 9081.44,
+      "nextWeekReturn": -0.004270650706822754,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-06-29",
+      "postCount": 1,
+      "btcMean": 9135.047142857144,
+      "btcClose": 9081.44,
+      "nextWeekClose": 9300.95,
+      "nextWeekReturn": 0.024171276801916886,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-07-06",
+      "postCount": 2,
+      "btcMean": 9301.31,
+      "btcClose": 9300.95,
+      "nextWeekClose": 9216.02,
+      "nextWeekReturn": -0.009131325294728043,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-07-13",
+      "postCount": 0,
+      "btcMean": 9195.777142857143,
+      "btcClose": 9216.02,
+      "nextWeekClose": 9942.01,
+      "nextWeekReturn": 0.07877478564499629,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-07-20",
+      "postCount": 3,
+      "btcMean": 9558.621428571429,
+      "btcClose": 9942.01,
+      "nextWeekClose": 11063.5,
+      "nextWeekReturn": 0.11280314544040881,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-07-27",
+      "postCount": 3,
+      "btcMean": 11204.362857142858,
+      "btcClose": 11063.5,
+      "nextWeekClose": 11686.34,
+      "nextWeekReturn": 0.05629683192479784,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-08-03",
+      "postCount": 0,
+      "btcMean": 11573.308571428572,
+      "btcClose": 11686.34,
+      "nextWeekClose": 11917.97,
+      "nextWeekReturn": 0.01982057684441818,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-08-10",
+      "postCount": 0,
+      "btcMean": 11742.955714285714,
+      "btcClose": 11917.97,
+      "nextWeekClose": 11651.52,
+      "nextWeekReturn": -0.022356995360787058,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-08-17",
+      "postCount": 0,
+      "btcMean": 11818.710000000001,
+      "btcClose": 11651.52,
+      "nextWeekClose": 11716.54,
+      "nextWeekReturn": 0.005580387794897224,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-08-24",
+      "postCount": 0,
+      "btcMean": 11516.728571428572,
+      "btcClose": 11716.54,
+      "nextWeekClose": 10260.37,
+      "nextWeekReturn": -0.1242832781691523,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-08-31",
+      "postCount": 0,
+      "btcMean": 10864.67,
+      "btcClose": 10260.37,
+      "nextWeekClose": 10332.36,
+      "nextWeekReturn": 0.0070163161757323955,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-09-07",
+      "postCount": 1,
+      "btcMean": 10323.00142857143,
+      "btcClose": 10332.36,
+      "nextWeekClose": 10921.85,
+      "nextWeekReturn": 0.05705279335989055,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-09-14",
+      "postCount": 1,
+      "btcMean": 10901.514285714287,
+      "btcClose": 10921.85,
+      "nextWeekClose": 10781.47,
+      "nextWeekReturn": -0.01285313385552822,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-09-21",
+      "postCount": 1,
+      "btcMean": 10591.965714285714,
+      "btcClose": 10781.47,
+      "nextWeekClose": 10675.52,
+      "nextWeekReturn": -0.009827045848107785,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-09-28",
+      "postCount": 0,
+      "btcMean": 10678.1,
+      "btcClose": 10675.52,
+      "nextWeekClose": 11375.51,
+      "nextWeekReturn": 0.06556963969904972,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-10-05",
+      "postCount": 0,
+      "btcMean": 10962.42,
+      "btcClose": 11375.51,
+      "nextWeekClose": 11513.33,
+      "nextWeekReturn": 0.01211550075557044,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-10-12",
+      "postCount": 1,
+      "btcMean": 11444.555714285714,
+      "btcClose": 11513.33,
+      "nextWeekClose": 13041.21,
+      "nextWeekReturn": 0.13270530767380073,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-10-19",
+      "postCount": 3,
+      "btcMean": 12655.222857142857,
+      "btcClose": 13041.21,
+      "nextWeekClose": 13761.72,
+      "nextWeekReturn": 0.0552487077502779,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-10-26",
+      "postCount": 2,
+      "btcMean": 13513.525714285714,
+      "btcClose": 13761.72,
+      "nextWeekClose": 15488.25,
+      "nextWeekReturn": 0.12545888159328933,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-11-02",
+      "postCount": 0,
+      "btcMean": 14752.814285714285,
+      "btcClose": 15488.25,
+      "nextWeekClose": 15964.7,
+      "nextWeekReturn": 0.03076202928026084,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-11-09",
+      "postCount": 0,
+      "btcMean": 15862.267142857143,
+      "btcClose": 15964.7,
+      "nextWeekClose": 18430.59,
+      "nextWeekReturn": 0.15445889994801032,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-11-16",
+      "postCount": 4,
+      "btcMean": 17974.477142857144,
+      "btcClose": 18430.59,
+      "nextWeekClose": 18199.23,
+      "nextWeekReturn": -0.012553043608479197,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-11-23",
+      "postCount": 4,
+      "btcMean": 18076.95,
+      "btcClose": 18199.23,
+      "nextWeekClose": 19378.94,
+      "nextWeekReturn": 0.06482197323732919,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-11-30",
+      "postCount": 0,
+      "btcMean": 19193.472857142857,
+      "btcClose": 19378.94,
+      "nextWeekClose": 19169.05,
+      "nextWeekReturn": -0.010830829756426241,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-12-07",
+      "postCount": 2,
+      "btcMean": 18617.744285714285,
+      "btcClose": 19169.05,
+      "nextWeekClose": 23467.06,
+      "nextWeekReturn": 0.22421611921300233,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-12-14",
+      "postCount": 2,
+      "btcMean": 21905.471428571425,
+      "btcClose": 23467.06,
+      "nextWeekClose": 26249.27,
+      "nextWeekReturn": 0.11855809803187944,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-12-21",
+      "postCount": 2,
+      "btcMean": 24416.72857142857,
+      "btcClose": 26249.27,
+      "nextWeekClose": 33063.48,
+      "nextWeekReturn": 0.2595961716268682,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2020-12-28",
+      "postCount": 8,
+      "btcMean": 29559.757142857143,
+      "btcClose": 33063.48,
+      "nextWeekClose": 38202.08,
+      "nextWeekReturn": 0.15541618728579087,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-01-04",
+      "postCount": 20,
+      "btcMean": 37353.298571428575,
+      "btcClose": 38202.08,
+      "nextWeekClose": 35839.51,
+      "nextWeekReturn": -0.06184401477615875,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-01-11",
+      "postCount": 9,
+      "btcMean": 36392.25714285714,
+      "btcClose": 35839.51,
+      "nextWeekClose": 32283.66,
+      "nextWeekReturn": -0.0992159211998156,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-01-18",
+      "postCount": 3,
+      "btcMean": 33756.64,
+      "btcClose": 32283.66,
+      "nextWeekClose": 33143.22,
+      "nextWeekReturn": 0.026625233941876436,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-01-25",
+      "postCount": 4,
+      "btcMean": 32910.26142857143,
+      "btcClose": 33143.22,
+      "nextWeekClose": 38868.82,
+      "nextWeekReturn": 0.17275328106321597,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-02-01",
+      "postCount": 1,
+      "btcMean": 37166.74285714286,
+      "btcClose": 38868.82,
+      "nextWeekClose": 48652.87,
+      "nextWeekReturn": 0.25171975892244736,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-02-08",
+      "postCount": 8,
+      "btcMean": 47016.97714285715,
+      "btcClose": 48652.87,
+      "nextWeekClose": 57469.95,
+      "nextWeekReturn": 0.18122425254666363,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-02-15",
+      "postCount": 23,
+      "btcMean": 52881.70285714285,
+      "btcClose": 57469.95,
+      "nextWeekClose": 45261.03,
+      "nextWeekReturn": -0.2124400665043209,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-02-22",
+      "postCount": 3,
+      "btcMean": 48231.118571428575,
+      "btcClose": 45261.03,
+      "nextWeekClose": 50964.18,
+      "nextWeekReturn": 0.1260057493167963,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-03-01",
+      "postCount": 7,
+      "btcMean": 49360.70285714285,
+      "btcClose": 50964.18,
+      "nextWeekClose": 58998.89,
+      "nextWeekReturn": 0.15765406212755706,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-03-08",
+      "postCount": 13,
+      "btcMean": 56924.47714285714,
+      "btcClose": 58998.89,
+      "nextWeekClose": 57374.95,
+      "nextWeekReturn": -0.027524924621463276,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-03-15",
+      "postCount": 15,
+      "btcMean": 57525.54857142857,
+      "btcClose": 57374.95,
+      "nextWeekClose": 55781.01,
+      "nextWeekReturn": -0.027781113534739332,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-03-22",
+      "postCount": 2,
+      "btcMean": 54112.869999999995,
+      "btcClose": 55781.01,
+      "nextWeekClose": 58219.43,
+      "nextWeekReturn": 0.0437141600698876,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-03-29",
+      "postCount": 10,
+      "btcMean": 58316.351428571434,
+      "btcClose": 58219.43,
+      "nextWeekClose": 59980.45,
+      "nextWeekReturn": 0.030247977350516875,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-04-05",
+      "postCount": 19,
+      "btcMean": 58434.06428571429,
+      "btcClose": 59980.45,
+      "nextWeekClose": 56246.82,
+      "nextWeekReturn": -0.06224744896045287,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-04-12",
+      "postCount": 19,
+      "btcMean": 61045.83428571429,
+      "btcClose": 56246.82,
+      "nextWeekClose": 49120.97,
+      "nextWeekReturn": -0.12668893992584818,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-04-19",
+      "postCount": 25,
+      "btcMean": 52587.43142857143,
+      "btcClose": 49120.97,
+      "nextWeekClose": 56623.51,
+      "nextWeekReturn": 0.15273599035198204,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-04-26",
+      "postCount": 11,
+      "btcMean": 55688.561428571425,
+      "btcClose": 56623.51,
+      "nextWeekClose": 58294.18,
+      "nextWeekReturn": 0.0295048823359767,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-05-03",
+      "postCount": 17,
+      "btcMean": 56999.94285714285,
+      "btcClose": 58294.18,
+      "nextWeekClose": 46490.71,
+      "nextWeekReturn": -0.20248110531788943,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-05-10",
+      "postCount": 16,
+      "btcMean": 50710.881428571425,
+      "btcClose": 46490.71,
+      "nextWeekClose": 34716.84,
+      "nextWeekReturn": -0.2532521013337934,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-05-17",
+      "postCount": 19,
+      "btcMean": 39052.30857142857,
+      "btcClose": 34716.84,
+      "nextWeekClose": 35662.59,
+      "nextWeekReturn": 0.027241822700453167,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-05-24",
+      "postCount": 9,
+      "btcMean": 37287.73285714286,
+      "btcClose": 35662.59,
+      "nextWeekClose": 35798.57,
+      "nextWeekReturn": 0.003812959182157183,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-05-31",
+      "postCount": 3,
+      "btcMean": 36997.06428571429,
+      "btcClose": 35798.57,
+      "nextWeekClose": 39017.37,
+      "nextWeekReturn": 0.08991420607024248,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-06-07",
+      "postCount": 3,
+      "btcMean": 36137.67571428572,
+      "btcClose": 39017.37,
+      "nextWeekClose": 35602.26,
+      "nextWeekReturn": -0.08752793947926274,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-06-14",
+      "postCount": 3,
+      "btcMean": 37723.44714285714,
+      "btcClose": 35602.26,
+      "nextWeekClose": 34713.81,
+      "nextWeekReturn": -0.02495487646008998,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-06-21",
+      "postCount": 5,
+      "btcMean": 33019.1,
+      "btcClose": 34713.81,
+      "nextWeekClose": 35287.97,
+      "nextWeekReturn": 0.016539815134092306,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-06-28",
+      "postCount": 4,
+      "btcMean": 34680.48142857143,
+      "btcClose": 35287.97,
+      "nextWeekClose": 34249.3,
+      "nextWeekReturn": -0.02943411026477294,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-07-05",
+      "postCount": 4,
+      "btcMean": 33751.98285714286,
+      "btcClose": 34249.3,
+      "nextWeekClose": 31806.3,
+      "nextWeekReturn": -0.07132992499116775,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-07-12",
+      "postCount": 3,
+      "btcMean": 32181.234285714287,
+      "btcClose": 31806.3,
+      "nextWeekClose": 35369.93,
+      "nextWeekReturn": 0.1120416395493975,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-07-19",
+      "postCount": 4,
+      "btcMean": 32624.63714285714,
+      "btcClose": 35369.93,
+      "nextWeekClose": 39870.76,
+      "nextWeekReturn": 0.12725018115670572,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-07-26",
+      "postCount": 2,
+      "btcMean": 40057.72142857143,
+      "btcClose": 39870.76,
+      "nextWeekClose": 43827.75,
+      "nextWeekReturn": 0.09924541192593272,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-08-02",
+      "postCount": 3,
+      "btcMean": 41324.637142857144,
+      "btcClose": 43827.75,
+      "nextWeekClose": 47015.94,
+      "nextWeekReturn": 0.07274363844824339,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-08-09",
+      "postCount": 7,
+      "btcMean": 46260.96428571428,
+      "btcClose": 47015.94,
+      "nextWeekClose": 49289.71,
+      "nextWeekReturn": 0.04836168329294277,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-08-16",
+      "postCount": 3,
+      "btcMean": 47083.12714285714,
+      "btcClose": 49289.71,
+      "nextWeekClose": 48794.26,
+      "nextWeekReturn": -0.010051793771965745,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-08-23",
+      "postCount": 3,
+      "btcMean": 48597.5525,
+      "btcClose": 48794.26,
+      "nextWeekClose": 51784.16,
+      "nextWeekReturn": 0.06127565004572255,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-08-30",
+      "postCount": 4,
+      "btcMean": 49144.61571428571,
+      "btcClose": 51784.16,
+      "nextWeekClose": 46049.72,
+      "nextWeekReturn": -0.1107373374406383,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-09-06",
+      "postCount": 8,
+      "btcMean": 46869.26714285714,
+      "btcClose": 46049.72,
+      "nextWeekClose": 47251.76,
+      "nextWeekReturn": 0.026103090311949906,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-09-13",
+      "postCount": 6,
+      "btcMean": 47266.09857142857,
+      "btcClose": 47251.76,
+      "nextWeekClose": 43201.79,
+      "nextWeekReturn": -0.08571045819245682,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-09-20",
+      "postCount": 7,
+      "btcMean": 42982.45428571429,
+      "btcClose": 43201.79,
+      "nextWeekClose": 48234.05,
+      "nextWeekReturn": 0.116482673518852,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-09-27",
+      "postCount": 12,
+      "btcMean": 44668.64142857143,
+      "btcClose": 48234.05,
+      "nextWeekClose": 54700.24,
+      "nextWeekReturn": 0.13405861626796822,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-10-04",
+      "postCount": 7,
+      "btcMean": 53363.11571428571,
+      "btcClose": 54700.24,
+      "nextWeekClose": 61520.54,
+      "nextWeekReturn": 0.1246850105228059,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-10-11",
+      "postCount": 5,
+      "btcMean": 58903.025714285715,
+      "btcClose": 61520.54,
+      "nextWeekClose": 60863.56,
+      "nextWeekReturn": -0.01067903500196854,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-10-18",
+      "postCount": 12,
+      "btcMean": 62499.62142857142,
+      "btcClose": 60863.56,
+      "nextWeekClose": 61349.75,
+      "nextWeekReturn": 0.00798819523537575,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-10-25",
+      "postCount": 3,
+      "btcMean": 61143.34428571429,
+      "btcClose": 61349.75,
+      "nextWeekClose": 63302.78,
+      "nextWeekReturn": 0.03183435955321734,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-11-01",
+      "postCount": 4,
+      "btcMean": 62064.51857142857,
+      "btcClose": 63302.78,
+      "nextWeekClose": 65509.06,
+      "nextWeekReturn": 0.034852813731087284,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-11-08",
+      "postCount": 5,
+      "btcMean": 65472.880000000005,
+      "btcClose": 65509.06,
+      "nextWeekClose": 58700.83,
+      "nextWeekReturn": -0.10392806735434756,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-11-15",
+      "postCount": 5,
+      "btcMean": 59660.85,
+      "btcClose": 58700.83,
+      "nextWeekClose": 57331.41,
+      "nextWeekReturn": -0.02332880131337156,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-11-22",
+      "postCount": 2,
+      "btcMean": 56562.34285714286,
+      "btcClose": 57331.41,
+      "nextWeekClose": 49465.5,
+      "nextWeekReturn": -0.1372007072562842,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-11-29",
+      "postCount": 6,
+      "btcMean": 54419.68142857143,
+      "btcClose": 49465.5,
+      "nextWeekClose": 50109.99,
+      "nextWeekReturn": 0.013029080874548793,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-12-06",
+      "postCount": 6,
+      "btcMean": 49427.46571428572,
+      "btcClose": 50109.99,
+      "nextWeekClose": 46697.13,
+      "nextWeekReturn": -0.06810737739121486,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-12-13",
+      "postCount": 2,
+      "btcMean": 47337.51142857143,
+      "btcClose": 46697.13,
+      "nextWeekClose": 50790.88,
+      "nextWeekReturn": 0.08766598718165342,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-12-20",
+      "postCount": 1,
+      "btcMean": 49619.86571428571,
+      "btcClose": 50790.88,
+      "nextWeekClose": 47306.41,
+      "nextWeekReturn": -0.06860424548659116,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2021-12-27",
+      "postCount": 0,
+      "btcMean": 47584.79285714286,
+      "btcClose": 47306.41,
+      "nextWeekClose": 41869.6,
+      "nextWeekReturn": -0.11492755421516887,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-01-03",
+      "postCount": 3,
+      "btcMean": 43414.63428571429,
+      "btcClose": 41869.6,
+      "nextWeekClose": 43100.36,
+      "nextWeekReturn": 0.029395074230468055,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-01-10",
+      "postCount": 3,
+      "btcMean": 42907.118571428575,
+      "btcClose": 43100.36,
+      "nextWeekClose": 36288.15,
+      "nextWeekReturn": -0.1580545962957154,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-01-17",
+      "postCount": 6,
+      "btcMean": 39257.47571428572,
+      "btcClose": 36288.15,
+      "nextWeekClose": 37908.44,
+      "nextWeekReturn": 0.044650664197541046,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-01-24",
+      "postCount": 6,
+      "btcMean": 37362.28571428572,
+      "btcClose": 37908.44,
+      "nextWeekClose": 42412.41,
+      "nextWeekReturn": 0.11881180022179749,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-01-31",
+      "postCount": 4,
+      "btcMean": 39554.84857142857,
+      "btcClose": 42412.41,
+      "nextWeekClose": 42069.84,
+      "nextWeekReturn": -0.008077117051353722,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-02-07",
+      "postCount": 1,
+      "btcMean": 43229.08571428571,
+      "btcClose": 42069.84,
+      "nextWeekClose": 38397.25,
+      "nextWeekReturn": -0.08729745584960624,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-02-14",
+      "postCount": 0,
+      "btcMean": 41438.438571428575,
+      "btcClose": 38397.25,
+      "nextWeekClose": 37714.96,
+      "nextWeekReturn": -0.0177692412868109,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-02-21",
+      "postCount": 1,
+      "btcMean": 38145.595714285715,
+      "btcClose": 37714.96,
+      "nextWeekClose": 38428.92,
+      "nextWeekReturn": 0.018930419122809683,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-02-28",
+      "postCount": 4,
+      "btcMean": 41574.00142857143,
+      "btcClose": 38428.92,
+      "nextWeekClose": 37796.31,
+      "nextWeekReturn": -0.01646182094110371,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-03-07",
+      "postCount": 3,
+      "btcMean": 39075.469999999994,
+      "btcClose": 37796.31,
+      "nextWeekClose": 41243.16,
+      "nextWeekReturn": 0.09119541034561318,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-03-14",
+      "postCount": 0,
+      "btcMean": 40910.102857142854,
+      "btcClose": 41243.16,
+      "nextWeekClose": 46842.14,
+      "nextWeekReturn": 0.13575535919168158,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-03-21",
+      "postCount": 1,
+      "btcMean": 43721.52714285714,
+      "btcClose": 46842.14,
+      "nextWeekClose": 46414.26,
+      "nextWeekReturn": -0.009134510080026192,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-03-28",
+      "postCount": 0,
+      "btcMean": 46527.05142857142,
+      "btcClose": 46414.26,
+      "nextWeekClose": 42153.77,
+      "nextWeekReturn": -0.09179269474510643,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-04-04",
+      "postCount": 2,
+      "btcMean": 43707.241428571426,
+      "btcClose": 42153.77,
+      "nextWeekClose": 39688.16,
+      "nextWeekReturn": -0.05849085384296571,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-04-11",
+      "postCount": 2,
+      "btcMean": 40195.67571428571,
+      "btcClose": 39688.16,
+      "nextWeekClose": 39466.26,
+      "nextWeekReturn": -0.005591088123007015,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-04-18",
+      "postCount": 0,
+      "btcMean": 40401.43714285714,
+      "btcClose": 39466.26,
+      "nextWeekClose": 38480.53,
+      "nextWeekReturn": -0.024976524251347887,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-04-25",
+      "postCount": 2,
+      "btcMean": 38897.368571428575,
+      "btcClose": 38480.53,
+      "nextWeekClose": 34033.77,
+      "nextWeekReturn": -0.11555869942539776,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-05-02",
+      "postCount": 2,
+      "btcMean": 36854.04714285714,
+      "btcClose": 34033.77,
+      "nextWeekClose": 31296.11,
+      "nextWeekReturn": -0.08043951639797753,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-05-09",
+      "postCount": 4,
+      "btcMean": 29944.885714285716,
+      "btcClose": 31296.11,
+      "nextWeekClose": 30264.29,
+      "nextWeekReturn": -0.03296959270656963,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-05-16",
+      "postCount": 3,
+      "btcMean": 29720.762857142858,
+      "btcClose": 30264.29,
+      "nextWeekClose": 29452.23,
+      "nextWeekReturn": -0.026832283195806106,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-05-23",
+      "postCount": 2,
+      "btcMean": 29209.399999999998,
+      "btcClose": 29452.23,
+      "nextWeekClose": 29897.9,
+      "nextWeekReturn": 0.015131961145217199,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-05-30",
+      "postCount": 0,
+      "btcMean": 30450.20857142857,
+      "btcClose": 29897.9,
+      "nextWeekClose": 26587.35,
+      "nextWeekReturn": -0.1107285127049058,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-06-06",
+      "postCount": 1,
+      "btcMean": 29540.28,
+      "btcClose": 26587.35,
+      "nextWeekClose": 20553.48,
+      "nextWeekReturn": -0.22694514496555696,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-06-13",
+      "postCount": 9,
+      "btcMean": 21067.075714285715,
+      "btcClose": 20553.48,
+      "nextWeekClose": 21031.85,
+      "nextWeekReturn": 0.02327440413983428,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-06-20",
+      "postCount": 2,
+      "btcMean": 20861.455714285716,
+      "btcClose": 21031.85,
+      "nextWeekClose": 19294.21,
+      "nextWeekReturn": -0.08261945573023766,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-06-27",
+      "postCount": 1,
+      "btcMean": 19820.28142857143,
+      "btcClose": 19294.21,
+      "nextWeekClose": 20846.53,
+      "nextWeekReturn": 0.08045522465029653,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-07-04",
+      "postCount": 0,
+      "btcMean": 20935.670000000002,
+      "btcClose": 20846.53,
+      "nextWeekClose": 20792.81,
+      "nextWeekReturn": -0.00257692767093598,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-07-11",
+      "postCount": 5,
+      "btcMean": 20411.605714285713,
+      "btcClose": 20792.81,
+      "nextWeekClose": 22585.4,
+      "nextWeekReturn": 0.08621201271016288,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-07-18",
+      "postCount": 4,
+      "btcMean": 22849.63857142857,
+      "btcClose": 22585.4,
+      "nextWeekClose": 23308.14,
+      "nextWeekReturn": 0.03200031879001464,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-07-25",
+      "postCount": 0,
+      "btcMean": 22871.83285714286,
+      "btcClose": 23308.14,
+      "nextWeekClose": 23179.86,
+      "nextWeekReturn": -0.005503656662436351,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-08-01",
+      "postCount": 1,
+      "btcMean": 23023.825714285715,
+      "btcClose": 23179.86,
+      "nextWeekClose": 24313.71,
+      "nextWeekReturn": 0.04891530837546032,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-08-08",
+      "postCount": 0,
+      "btcMean": 24007.592857142856,
+      "btcClose": 24313.71,
+      "nextWeekClose": 21514.79,
+      "nextWeekReturn": -0.11511694430837571,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-08-15",
+      "postCount": 0,
+      "btcMean": 22570.02142857143,
+      "btcClose": 21514.79,
+      "nextWeekClose": 19554.08,
+      "nextWeekReturn": -0.09113312284247255,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-08-22",
+      "postCount": 0,
+      "btcMean": 20813.61285714286,
+      "btcClose": 19554.08,
+      "nextWeekClose": 20003.46,
+      "nextWeekReturn": 0.022981393141482398,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-08-29",
+      "postCount": 0,
+      "btcMean": 20011.682857142856,
+      "btcClose": 20003.46,
+      "nextWeekClose": 21836.45,
+      "nextWeekReturn": 0.09163364737900359,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-09-05",
+      "postCount": 0,
+      "btcMean": 20293.691428571427,
+      "btcClose": 21836.45,
+      "nextWeekClose": 19417.72,
+      "nextWeekReturn": -0.1107657151231084,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-09-12",
+      "postCount": 0,
+      "btcMean": 20264.03,
+      "btcClose": 19417.72,
+      "nextWeekClose": 18809.94,
+      "nextWeekReturn": -0.03130027624252496,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-09-19",
+      "postCount": 0,
+      "btcMean": 19045.81428571429,
+      "btcClose": 18809.94,
+      "nextWeekClose": 19058.15,
+      "nextWeekReturn": 0.013195682708185386,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-09-26",
+      "postCount": 3,
+      "btcMean": 19302.318571428572,
+      "btcClose": 19058.15,
+      "nextWeekClose": 19442.41,
+      "nextWeekReturn": 0.020162502656343895,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-10-03",
+      "postCount": 0,
+      "btcMean": 19785.33285714286,
+      "btcClose": 19442.41,
+      "nextWeekClose": 19264.26,
+      "nextWeekReturn": -0.009162958707279678,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-10-10",
+      "postCount": 2,
+      "btcMean": 19177.057142857142,
+      "btcClose": 19264.26,
+      "nextWeekClose": 19572.6,
+      "nextWeekReturn": 0.01600580556948472,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-10-17",
+      "postCount": 1,
+      "btcMean": 19284.96857142857,
+      "btcClose": 19572.6,
+      "nextWeekClose": 20630.65,
+      "nextWeekReturn": 0.0540577133339466,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-10-24",
+      "postCount": 1,
+      "btcMean": 20363.00142857143,
+      "btcClose": 20630.65,
+      "nextWeekClose": 20910.59,
+      "nextWeekReturn": 0.013569131365225973,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-10-31",
+      "postCount": 1,
+      "btcMean": 20670.558571428573,
+      "btcClose": 20910.59,
+      "nextWeekClose": 16307.47,
+      "nextWeekReturn": -0.22013343478113245,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-11-07",
+      "postCount": 1,
+      "btcMean": 17515.315714285716,
+      "btcClose": 16307.47,
+      "nextWeekClose": 16253.6,
+      "nextWeekReturn": -0.0033033940887212676,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-11-14",
+      "postCount": 1,
+      "btcMean": 16630.672857142858,
+      "btcClose": 16253.6,
+      "nextWeekClose": 16420.87,
+      "nextWeekReturn": 0.010291258551951454,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-11-21",
+      "postCount": 0,
+      "btcMean": 16359.801428571429,
+      "btcClose": 16420.87,
+      "nextWeekClose": 17111.76,
+      "nextWeekReturn": 0.042073897424436124,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-11-28",
+      "postCount": 1,
+      "btcMean": 16839.192857142858,
+      "btcClose": 17111.76,
+      "nextWeekClose": 17094.83,
+      "nextWeekReturn": -0.0009893780651433204,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-12-05",
+      "postCount": 1,
+      "btcMean": 17066.87142857143,
+      "btcClose": 17094.83,
+      "nextWeekClose": 16742.74,
+      "nextWeekReturn": -0.020596285543641013,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-12-12",
+      "postCount": 2,
+      "btcMean": 17189.469999999998,
+      "btcClose": 16742.74,
+      "nextWeekClose": 16829.1,
+      "nextWeekReturn": 0.005158056566607172,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-12-19",
+      "postCount": 0,
+      "btcMean": 16775.46857142857,
+      "btcClose": 16829.1,
+      "nextWeekClose": 16613.87,
+      "nextWeekReturn": -0.012789156877076047,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2022-12-26",
+      "postCount": 1,
+      "btcMean": 16647.567142857144,
+      "btcClose": 16613.87,
+      "nextWeekClose": 17115.81,
+      "nextWeekReturn": 0.030212105909098952,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-01-02",
+      "postCount": 0,
+      "btcMean": 16859.661428571428,
+      "btcClose": 17115.81,
+      "nextWeekClose": 20878.94,
+      "nextWeekReturn": 0.21986280520758283,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-01-09",
+      "postCount": 2,
+      "btcMean": 19024.854285714282,
+      "btcClose": 20878.94,
+      "nextWeekClose": 22714.99,
+      "nextWeekReturn": 0.08793789339880287,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-01-16",
+      "postCount": 0,
+      "btcMean": 21752.414285714283,
+      "btcClose": 22714.99,
+      "nextWeekClose": 23747.26,
+      "nextWeekReturn": 0.04544443999314973,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-01-23",
+      "postCount": 1,
+      "btcMean": 23069.532857142858,
+      "btcClose": 23747.26,
+      "nextWeekClose": 22940.79,
+      "nextWeekReturn": -0.033960549553927355,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-01-30",
+      "postCount": 1,
+      "btcMean": 23267.78,
+      "btcClose": 22940.79,
+      "nextWeekClose": 21790.14,
+      "nextWeekReturn": -0.050157383420536106,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-02-06",
+      "postCount": 0,
+      "btcMean": 22295.727142857144,
+      "btcClose": 21790.14,
+      "nextWeekClose": 24287.53,
+      "nextWeekReturn": 0.1146110121366819,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-02-13",
+      "postCount": 1,
+      "btcMean": 23623.691428571427,
+      "btcClose": 24287.53,
+      "nextWeekClose": 23557.29,
+      "nextWeekReturn": -0.030066457972465654,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-02-20",
+      "postCount": 1,
+      "btcMean": 23904.622857142855,
+      "btcClose": 23557.29,
+      "nextWeekClose": 22434.09,
+      "nextWeekReturn": -0.047679508126783676,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-02-27",
+      "postCount": 1,
+      "btcMean": 22984.051428571427,
+      "btcClose": 22434.09,
+      "nextWeekClose": 22183.71,
+      "nextWeekReturn": -0.01116069339117387,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-03-06",
+      "postCount": 0,
+      "btcMean": 21384.495714285713,
+      "btcClose": 22183.71,
+      "nextWeekClose": 28040.29,
+      "nextWeekReturn": 0.2640036314935601,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-03-13",
+      "postCount": 1,
+      "btcMean": 25834.537142857145,
+      "btcClose": 28040.29,
+      "nextWeekClose": 27995.16,
+      "nextWeekReturn": -0.0016094698022025566,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-03-20",
+      "postCount": 0,
+      "btcMean": 27805.434285714287,
+      "btcClose": 27995.16,
+      "nextWeekClose": 28187.85,
+      "nextWeekReturn": 0.006882975485762444,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-03-27",
+      "postCount": 1,
+      "btcMean": 27991.351428571426,
+      "btcClose": 28187.85,
+      "nextWeekClose": 28340.68,
+      "nextWeekReturn": 0.005421839551438046,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-04-03",
+      "postCount": 1,
+      "btcMean": 28061.747142857144,
+      "btcClose": 28340.68,
+      "nextWeekClose": 30322.37,
+      "nextWeekReturn": 0.06992386915204563,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-04-10",
+      "postCount": 3,
+      "btcMean": 30190.164285714283,
+      "btcClose": 30322.37,
+      "nextWeekClose": 27596.85,
+      "nextWeekReturn": -0.08988479462522225,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-04-17",
+      "postCount": 1,
+      "btcMean": 28512.94857142857,
+      "btcClose": 27596.85,
+      "nextWeekClose": 29236.81,
+      "nextWeekReturn": 0.059425622851883464,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-04-24",
+      "postCount": 1,
+      "btcMean": 28796.26142857143,
+      "btcClose": 29236.81,
+      "nextWeekClose": 28572.81,
+      "nextWeekReturn": -0.022711096046388102,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-05-01",
+      "postCount": 0,
+      "btcMean": 28822.02,
+      "btcClose": 28572.81,
+      "nextWeekClose": 26931.44,
+      "nextWeekReturn": -0.05744517252590842,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-05-08",
+      "postCount": 2,
+      "btcMean": 27230.19857142857,
+      "btcClose": 26931.44,
+      "nextWeekClose": 26755.17,
+      "nextWeekReturn": -0.006545138321604749,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-05-15",
+      "postCount": 2,
+      "btcMean": 27029.212857142855,
+      "btcClose": 26755.17,
+      "nextWeekClose": 28077.57,
+      "nextWeekReturn": 0.04942596141231781,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-05-22",
+      "postCount": 0,
+      "btcMean": 26936.62,
+      "btcClose": 28077.57,
+      "nextWeekClose": 27125.24,
+      "nextWeekReturn": -0.03391782123595444,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-05-29",
+      "postCount": 0,
+      "btcMean": 27278.601428571426,
+      "btcClose": 27125.24,
+      "nextWeekClose": 25937.58,
+      "nextWeekReturn": -0.043784313060455826,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-06-05",
+      "postCount": 1,
+      "btcMean": 26306.43571428571,
+      "btcClose": 25937.58,
+      "nextWeekClose": 26338.0,
+      "nextWeekReturn": 0.015437831902590737,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-06-12",
+      "postCount": 0,
+      "btcMean": 25959.09857142857,
+      "btcClose": 26338.0,
+      "nextWeekClose": 30473.64,
+      "nextWeekReturn": 0.1570217936061964,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-06-19",
+      "postCount": 0,
+      "btcMean": 29540.29,
+      "btcClose": 30473.64,
+      "nextWeekClose": 30617.66,
+      "nextWeekReturn": 0.004726051761456906,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-06-26",
+      "postCount": 0,
+      "btcMean": 30453.492857142857,
+      "btcClose": 30617.66,
+      "nextWeekClose": 30171.49,
+      "nextWeekReturn": -0.014572308922366939,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-07-03",
+      "postCount": 0,
+      "btcMean": 30451.602857142858,
+      "btcClose": 30171.49,
+      "nextWeekClose": 30248.17,
+      "nextWeekReturn": 0.0025414720983285566,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-07-10",
+      "postCount": 0,
+      "btcMean": 30540.91,
+      "btcClose": 30248.17,
+      "nextWeekClose": 30085.68,
+      "nextWeekReturn": -0.00537189522539705,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-07-17",
+      "postCount": 2,
+      "btcMean": 29932.632857142857,
+      "btcClose": 30085.68,
+      "nextWeekClose": 29283.34,
+      "nextWeekReturn": -0.026668501426592273,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-07-24",
+      "postCount": 1,
+      "btcMean": 29276.528571428575,
+      "btcClose": 29283.34,
+      "nextWeekClose": 29046.16,
+      "nextWeekReturn": -0.008099485919297433,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-07-31",
+      "postCount": 0,
+      "btcMean": 29206.808571428573,
+      "btcClose": 29046.16,
+      "nextWeekClose": 29281.55,
+      "nextWeekReturn": 0.008103997223729342,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-08-07",
+      "postCount": 0,
+      "btcMean": 29435.632857142857,
+      "btcClose": 29281.55,
+      "nextWeekClose": 26191.01,
+      "nextWeekReturn": -0.10554564222180862,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-08-14",
+      "postCount": 1,
+      "btcMean": 27464.202857142856,
+      "btcClose": 26191.01,
+      "nextWeekClose": 26091.32,
+      "nextWeekReturn": -0.0038062678758855606,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-08-21",
+      "postCount": 0,
+      "btcMean": 26131.109999999997,
+      "btcClose": 26091.32,
+      "nextWeekClose": 25971.37,
+      "nextWeekReturn": -0.004597314355885396,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-08-28",
+      "postCount": 0,
+      "btcMean": 26387.40428571429,
+      "btcClose": 25971.37,
+      "nextWeekClose": 25833.67,
+      "nextWeekReturn": -0.00530199215520788,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-09-04",
+      "postCount": 2,
+      "btcMean": 25893.84571428571,
+      "btcClose": 25833.67,
+      "nextWeekClose": 26533.12,
+      "nextWeekReturn": 0.027075131020873222,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-09-11",
+      "postCount": 0,
+      "btcMean": 26209.471428571425,
+      "btcClose": 26533.12,
+      "nextWeekClose": 26261.44,
+      "nextWeekReturn": -0.010239278305755217,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-09-18",
+      "postCount": 1,
+      "btcMean": 26730.102857142858,
+      "btcClose": 26261.44,
+      "nextWeekClose": 27994.51,
+      "nextWeekReturn": 0.06599295392788829,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-09-25",
+      "postCount": 1,
+      "btcMean": 26823.72857142857,
+      "btcClose": 27994.51,
+      "nextWeekClose": 27933.57,
+      "nextWeekReturn": -0.0021768553905747723,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-10-02",
+      "postCount": 0,
+      "btcMean": 27713.448571428573,
+      "btcClose": 27933.57,
+      "nextWeekClose": 27177.41,
+      "nextWeekReturn": -0.027069937712938197,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-10-09",
+      "postCount": 0,
+      "btcMean": 27073.777142857143,
+      "btcClose": 27177.41,
+      "nextWeekClose": 30001.44,
+      "nextWeekReturn": 0.10391093190999423,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-10-16",
+      "postCount": 0,
+      "btcMean": 29085.652857142857,
+      "btcClose": 30001.44,
+      "nextWeekClose": 34535.38,
+      "nextWeekReturn": 0.15112407937752326,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-10-23",
+      "postCount": 4,
+      "btcMean": 34028.741428571426,
+      "btcClose": 34535.38,
+      "nextWeekClose": 35039.47,
+      "nextWeekReturn": 0.01459633569979557,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-10-30",
+      "postCount": 0,
+      "btcMean": 34913.862857142856,
+      "btcClose": 35039.47,
+      "nextWeekClose": 37079.76,
+      "nextWeekReturn": 0.05822833507470282,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-11-06",
+      "postCount": 2,
+      "btcMean": 36337.485714285714,
+      "btcClose": 37079.76,
+      "nextWeekClose": 37388.64,
+      "nextWeekReturn": 0.008330151004213526,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-11-13",
+      "postCount": 2,
+      "btcMean": 36669.497142857144,
+      "btcClose": 37388.64,
+      "nextWeekClose": 37460.21,
+      "nextWeekReturn": 0.0019142177944959649,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-11-20",
+      "postCount": 1,
+      "btcMean": 37279.705714285716,
+      "btcClose": 37460.21,
+      "nextWeekClose": 39980.93,
+      "nextWeekReturn": 0.06729059981244112,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-11-27",
+      "postCount": 0,
+      "btcMean": 38403.50285714286,
+      "btcClose": 39980.93,
+      "nextWeekClose": 43791.67,
+      "nextWeekReturn": 0.09531394092133416,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-12-04",
+      "postCount": 3,
+      "btcMean": 43547.19285714285,
+      "btcClose": 43791.67,
+      "nextWeekClose": 41349.42,
+      "nextWeekReturn": -0.05576973885672776,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-12-11",
+      "postCount": 1,
+      "btcMean": 42022.64428571429,
+      "btcClose": 41349.42,
+      "nextWeekClose": 43023.12,
+      "nextWeekReturn": 0.040476988552681226,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-12-18",
+      "postCount": 2,
+      "btcMean": 43318.16857142857,
+      "btcClose": 43023.12,
+      "nextWeekClose": 42280.14,
+      "nextWeekReturn": -0.017269319379905612,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2023-12-25",
+      "postCount": 2,
+      "btcMean": 42667.02142857143,
+      "btcClose": 42280.14,
+      "nextWeekClose": 43950.84,
+      "nextWeekReturn": 0.03951500633630811,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-01-01",
+      "postCount": 1,
+      "btcMean": 44047.78142857143,
+      "btcClose": 43950.84,
+      "nextWeekClose": 41704.39,
+      "nextWeekReturn": -0.051112788743059245,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-01-08",
+      "postCount": 3,
+      "btcMean": 44778.82428571429,
+      "btcClose": 41704.39,
+      "nextWeekClose": 41570.17,
+      "nextWeekReturn": -0.003218366219959079,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-01-15",
+      "postCount": 1,
+      "btcMean": 42074.40142857143,
+      "btcClose": 41570.17,
+      "nextWeekClose": 42028.92,
+      "nextWeekReturn": 0.01103555746825191,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-01-22",
+      "postCount": 0,
+      "btcMean": 40769.98857142857,
+      "btcClose": 42028.92,
+      "nextWeekClose": 42570.21,
+      "nextWeekReturn": 0.012878989038975996,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-01-29",
+      "postCount": 3,
+      "btcMean": 42946.520000000004,
+      "btcClose": 42570.21,
+      "nextWeekClose": 48311.16,
+      "nextWeekReturn": 0.13485839040963166,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-02-05",
+      "postCount": 0,
+      "btcMean": 45519.032857142854,
+      "btcClose": 48311.16,
+      "nextWeekClose": 52139.33,
+      "nextWeekReturn": 0.07923986921448378,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-02-12",
+      "postCount": 7,
+      "btcMean": 51346.60428571428,
+      "btcClose": 52139.33,
+      "nextWeekClose": 51727.63,
+      "nextWeekReturn": -0.007896150564267068,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-02-19",
+      "postCount": 1,
+      "btcMean": 51602.16428571429,
+      "btcClose": 51727.63,
+      "nextWeekClose": 63149.43,
+      "nextWeekReturn": 0.22080655927982784,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-02-26",
+      "postCount": 15,
+      "btcMean": 60413.70428571429,
+      "btcClose": 63149.43,
+      "nextWeekClose": 69023.53,
+      "nextWeekReturn": 0.093019050211538,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-03-04",
+      "postCount": 16,
+      "btcMean": 67275.10142857143,
+      "btcClose": 69023.53,
+      "nextWeekClose": 68364.45,
+      "nextWeekReturn": -0.009548627837492552,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-03-11",
+      "postCount": 18,
+      "btcMean": 70164.68571428572,
+      "btcClose": 68364.45,
+      "nextWeekClose": 67208.33,
+      "nextWeekReturn": -0.01691112851781873,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-03-18",
+      "postCount": 3,
+      "btcMean": 65416.24571428571,
+      "btcClose": 67208.33,
+      "nextWeekClose": 71312.91,
+      "nextWeekReturn": 0.061072489079850634,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-03-25",
+      "postCount": 2,
+      "btcMean": 70136.16142857143,
+      "btcClose": 71312.91,
+      "nextWeekClose": 69357.32,
+      "nextWeekReturn": -0.027422664423594534,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-04-01",
+      "postCount": 2,
+      "btcMean": 67970.67428571428,
+      "btcClose": 69357.32,
+      "nextWeekClose": 65765.64,
+      "nextWeekReturn": -0.05178516124902188,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-04-08",
+      "postCount": 3,
+      "btcMean": 68337.0157142857,
+      "btcClose": 65765.64,
+      "nextWeekClose": 64955.82,
+      "nextWeekReturn": -0.0123137249177534,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-04-15",
+      "postCount": 2,
+      "btcMean": 63692.885714285716,
+      "btcClose": 64955.82,
+      "nextWeekClose": 63111.34,
+      "nextWeekReturn": -0.028395915870202293,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-04-22",
+      "postCount": 1,
+      "btcMean": 64616.87857142858,
+      "btcClose": 63111.34,
+      "nextWeekClose": 64037.5,
+      "nextWeekReturn": 0.014675017199761609,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-04-29",
+      "postCount": 2,
+      "btcMean": 61814.60857142857,
+      "btcClose": 64037.5,
+      "nextWeekClose": 61459.22,
+      "nextWeekReturn": -0.04026203396447392,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-05-06",
+      "postCount": 2,
+      "btcMean": 61831.717142857146,
+      "btcClose": 61459.22,
+      "nextWeekClose": 66268.25,
+      "nextWeekReturn": 0.07824749484292193,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-05-13",
+      "postCount": 2,
+      "btcMean": 65174.80285714286,
+      "btcClose": 66268.25,
+      "nextWeekClose": 68488.29,
+      "nextWeekReturn": 0.03350080921104737,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-05-20",
+      "postCount": 2,
+      "btcMean": 69280.98285714285,
+      "btcClose": 68488.29,
+      "nextWeekClose": 67738.74,
+      "nextWeekReturn": -0.010944206666570144,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-05-27",
+      "postCount": 0,
+      "btcMean": 68083.32285714286,
+      "btcClose": 67738.74,
+      "nextWeekClose": 69639.42,
+      "nextWeekReturn": 0.028058980725062188,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-06-03",
+      "postCount": 0,
+      "btcMean": 69930.23571428572,
+      "btcClose": 69639.42,
+      "nextWeekClose": 66631.59,
+      "nextWeekReturn": -0.04319148551208496,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-06-10",
+      "postCount": 1,
+      "btcMean": 67234.43571428572,
+      "btcClose": 66631.59,
+      "nextWeekClose": 63181.02,
+      "nextWeekReturn": -0.051785797097142705,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-06-17",
+      "postCount": 0,
+      "btcMean": 64712.71428571428,
+      "btcClose": 63181.02,
+      "nextWeekClose": 62685.88,
+      "nextWeekReturn": -0.007836847205062503,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-06-24",
+      "postCount": 2,
+      "btcMean": 61205.36,
+      "btcClose": 62685.88,
+      "nextWeekClose": 55866.6,
+      "nextWeekReturn": -0.10878494487115753,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-07-01",
+      "postCount": 2,
+      "btcMean": 58978.93571428571,
+      "btcClose": 55866.6,
+      "nextWeekClose": 60818.77,
+      "nextWeekReturn": 0.08864276687681016,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-07-08",
+      "postCount": 0,
+      "btcMean": 58256.42857142857,
+      "btcClose": 60818.77,
+      "nextWeekClose": 68176.98,
+      "nextWeekReturn": 0.12098584039105043,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-07-15",
+      "postCount": 1,
+      "btcMean": 65711.50857142857,
+      "btcClose": 68176.98,
+      "nextWeekClose": 68252.75,
+      "nextWeekReturn": 0.0011113721963045275,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-07-22",
+      "postCount": 1,
+      "btcMean": 66965.64857142858,
+      "btcClose": 68252.75,
+      "nextWeekClose": 58135.89,
+      "nextWeekReturn": -0.14822640845973245,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-07-29",
+      "postCount": 0,
+      "btcMean": 63302.618571428575,
+      "btcClose": 58135.89,
+      "nextWeekClose": 58725.0,
+      "nextWeekReturn": 0.010133327278553761,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-08-05",
+      "postCount": 1,
+      "btcMean": 58209.02428571428,
+      "btcClose": 58725.0,
+      "nextWeekClose": 58439.22,
+      "nextWeekReturn": -0.00486641123882503,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-08-12",
+      "postCount": 1,
+      "btcMean": 59007.48857142857,
+      "btcClose": 58439.22,
+      "nextWeekClose": 64264.62,
+      "nextWeekReturn": 0.09968305531798682,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-08-19",
+      "postCount": 1,
+      "btcMean": 61797.60571428571,
+      "btcClose": 64264.62,
+      "nextWeekClose": 57313.44,
+      "nextWeekReturn": -0.10816495919527724,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-08-26",
+      "postCount": 1,
+      "btcMean": 59448.14428571429,
+      "btcClose": 57313.44,
+      "nextWeekClose": 54879.33,
+      "nextWeekReturn": -0.042470143128732096,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-09-02",
+      "postCount": 2,
+      "btcMean": 56253.434285714284,
+      "btcClose": 54879.33,
+      "nextWeekClose": 59139.21,
+      "nextWeekReturn": 0.07762266776944982,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-09-09",
+      "postCount": 0,
+      "btcMean": 58556.315714285716,
+      "btcClose": 59139.21,
+      "nextWeekClose": 63587.45,
+      "nextWeekReturn": 0.07521642578587029,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-09-16",
+      "postCount": 0,
+      "btcMean": 61918.96857142857,
+      "btcClose": 63587.45,
+      "nextWeekClose": 65611.98,
+      "nextWeekReturn": 0.03183851530451376,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-09-23",
+      "postCount": 1,
+      "btcMean": 64745.43714285714,
+      "btcClose": 65611.98,
+      "nextWeekClose": 62821.76,
+      "nextWeekReturn": -0.04252607526857133,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-09-30",
+      "postCount": 0,
+      "btcMean": 61781.147142857146,
+      "btcClose": 62821.76,
+      "nextWeekClose": 62854.48,
+      "nextWeekReturn": 0.0005208386393504849,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-10-07",
+      "postCount": 1,
+      "btcMean": 61967.648571428566,
+      "btcClose": 62854.48,
+      "nextWeekClose": 69020.94,
+      "nextWeekReturn": 0.09810692889353301,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-10-14",
+      "postCount": 1,
+      "btcMean": 67710.44714285714,
+      "btcClose": 69020.94,
+      "nextWeekClose": 67945.14,
+      "nextWeekReturn": -0.015586574161406741,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-10-21",
+      "postCount": 5,
+      "btcMean": 67294.66,
+      "btcClose": 67945.14,
+      "nextWeekClose": 68747.04,
+      "nextWeekReturn": 0.011802168631928511,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-10-28",
+      "postCount": 9,
+      "btcMean": 70394.78,
+      "btcClose": 68747.04,
+      "nextWeekClose": 80429.43,
+      "nextWeekReturn": 0.16993298911487686,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-11-04",
+      "postCount": 10,
+      "btcMean": 74637.73857142856,
+      "btcClose": 80429.43,
+      "nextWeekClose": 89877.16,
+      "nextWeekReturn": 0.11746608175639195,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-11-11",
+      "postCount": 12,
+      "btcMean": 89456.93857142856,
+      "btcClose": 89877.16,
+      "nextWeekClose": 98018.2,
+      "nextWeekReturn": 0.09057963113209166,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-11-18",
+      "postCount": 11,
+      "btcMean": 95791.94428571429,
+      "btcClose": 98018.2,
+      "nextWeekClose": 97276.47,
+      "nextWeekReturn": -0.007567268119594073,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-11-25",
+      "postCount": 3,
+      "btcMean": 95401.72714285714,
+      "btcClose": 97276.47,
+      "nextWeekClose": 101189.81,
+      "nextWeekReturn": 0.04022905025233747,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-12-02",
+      "postCount": 15,
+      "btcMean": 98372.56714285714,
+      "btcClose": 101189.81,
+      "nextWeekClose": 104424.54,
+      "nextWeekReturn": 0.031966953984793545,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-12-09",
+      "postCount": 2,
+      "btcMean": 100356.93428571429,
+      "btcClose": 104424.54,
+      "nextWeekClose": 95098.66,
+      "nextWeekReturn": -0.0893073601281843,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-12-16",
+      "postCount": 2,
+      "btcMean": 99978.46285714286,
+      "btcClose": 95098.66,
+      "nextWeekClose": 93564.85,
+      "nextWeekReturn": -0.01612861842637947,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-12-23",
+      "postCount": 2,
+      "btcMean": 95898.55857142857,
+      "btcClose": 93564.85,
+      "nextWeekClose": 98346.97,
+      "nextWeekReturn": 0.05111021927572157,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2024-12-30",
+      "postCount": 3,
+      "btcMean": 96004.01714285715,
+      "btcClose": 98346.97,
+      "nextWeekClose": 94505.67,
+      "nextWeekReturn": -0.03905865122230001,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-01-06",
+      "postCount": 0,
+      "btcMean": 95801.39428571428,
+      "btcClose": 94505.67,
+      "nextWeekClose": 101212.56,
+      "nextWeekReturn": 0.07096812286500898,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-01-13",
+      "postCount": 2,
+      "btcMean": 100184.28714285714,
+      "btcClose": 101212.56,
+      "nextWeekClose": 102576.93,
+      "nextWeekReturn": 0.013480243953912341,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-01-20",
+      "postCount": 3,
+      "btcMean": 104010.31000000001,
+      "btcClose": 102576.93,
+      "nextWeekClose": 97665.06,
+      "nextWeekReturn": -0.04788474367482043,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-01-27",
+      "postCount": 1,
+      "btcMean": 101790.01142857142,
+      "btcClose": 97665.06,
+      "nextWeekClose": 96485.6,
+      "nextWeekReturn": -0.01207658091849828,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-02-03",
+      "postCount": 2,
+      "btcMean": 97419.72285714287,
+      "btcClose": 96485.6,
+      "nextWeekClose": 96132.69,
+      "nextWeekReturn": -0.0036576442495046546,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-02-10",
+      "postCount": 3,
+      "btcMean": 96997.80571428571,
+      "btcClose": 96132.69,
+      "nextWeekClose": 96274.12,
+      "nextWeekReturn": 0.0014711956983621821,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-02-17",
+      "postCount": 2,
+      "btcMean": 96487.49714285714,
+      "btcClose": 96274.12,
+      "nextWeekClose": 94275.76,
+      "nextWeekReturn": -0.02075698017286476,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-02-24",
+      "postCount": 4,
+      "btcMean": 87654.40857142858,
+      "btcClose": 94275.76,
+      "nextWeekClose": 80719.05,
+      "nextWeekReturn": -0.14379846951114472,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-03-03",
+      "postCount": 2,
+      "btcMean": 86809.67714285714,
+      "btcClose": 80719.05,
+      "nextWeekClose": 82572.37,
+      "nextWeekReturn": 0.02296013146834608,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-03-10",
+      "postCount": 1,
+      "btcMean": 82450.20285714285,
+      "btcClose": 82572.37,
+      "nextWeekClose": 86091.67,
+      "nextWeekReturn": 0.042620794340770374,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-03-17",
+      "postCount": 0,
+      "btcMean": 84541.17285714285,
+      "btcClose": 86091.67,
+      "nextWeekClose": 82379.51,
+      "nextWeekReturn": -0.04311868964790677,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-03-24",
+      "postCount": 2,
+      "btcMean": 85499.31285714285,
+      "btcClose": 82379.51,
+      "nextWeekClose": 78365.57,
+      "nextWeekReturn": -0.04872498027725569,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-03-31",
+      "postCount": 1,
+      "btcMean": 82727.57285714286,
+      "btcClose": 78365.57,
+      "nextWeekClose": 83730.92,
+      "nextWeekReturn": 0.06846565398554483,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-04-07",
+      "postCount": 1,
+      "btcMean": 81418.45571428571,
+      "btcClose": 83730.92,
+      "nextWeekClose": 85167.14,
+      "nextWeekReturn": 0.01715280328939417,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-04-14",
+      "postCount": 1,
+      "btcMean": 84553.62571428572,
+      "btcClose": 85167.14,
+      "nextWeekClose": 93777.44,
+      "nextWeekReturn": 0.10109885103573979,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-04-21",
+      "postCount": 2,
+      "btcMean": 93128.98857142858,
+      "btcClose": 93777.44,
+      "nextWeekClose": 94394.09,
+      "nextWeekReturn": 0.006575675343664766,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-04-28",
+      "postCount": 0,
+      "btcMean": 95319.56714285714,
+      "btcClose": 94394.09,
+      "nextWeekClose": 104124.02,
+      "nextWeekReturn": 0.10307774565123728,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-05-05",
+      "postCount": 2,
+      "btcMean": 100547.92714285714,
+      "btcClose": 104124.02,
+      "nextWeekClose": 106488.62,
+      "nextWeekReturn": 0.022709457433548907,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-05-12",
+      "postCount": 1,
+      "btcMean": 103916.85285714285,
+      "btcClose": 106488.62,
+      "nextWeekClose": 109041.44,
+      "nextWeekReturn": 0.023972702435246296,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-05-19",
+      "postCount": 1,
+      "btcMean": 108295.69285714286,
+      "btcClose": 109041.44,
+      "nextWeekClose": 105702.19,
+      "nextWeekReturn": -0.030623678484069883,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-05-26",
+      "postCount": 3,
+      "btcMean": 106605.88428571427,
+      "btcClose": 105702.19,
+      "nextWeekClose": 105779.28,
+      "nextWeekReturn": 0.0007293131769550154,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-06-02",
+      "postCount": 0,
+      "btcMean": 104782.87285714285,
+      "btcClose": 105779.28,
+      "nextWeekClose": 105625.23,
+      "nextWeekReturn": -0.0014563343596213363,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-06-09",
+      "postCount": 2,
+      "btcMean": 107461.22571428571,
+      "btcClose": 105625.23,
+      "nextWeekClose": 101015.42,
+      "nextWeekReturn": -0.04364307656418831,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-06-16",
+      "postCount": 1,
+      "btcMean": 103939.43857142856,
+      "btcClose": 101015.42,
+      "nextWeekClose": 108391.87,
+      "nextWeekReturn": 0.07302300975435227,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-06-23",
+      "postCount": 0,
+      "btcMean": 106973.21428571429,
+      "btcClose": 108391.87,
+      "nextWeekClose": 109233.93,
+      "nextWeekReturn": 0.007768663830599154,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-06-30",
+      "postCount": 1,
+      "btcMean": 108132.24857142857,
+      "btcClose": 109233.93,
+      "nextWeekClose": 119127.66,
+      "nextWeekReturn": 0.09057378050940779,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-07-07",
+      "postCount": 0,
+      "btcMean": 114102.42714285714,
+      "btcClose": 119127.66,
+      "nextWeekClose": 117328.61,
+      "nextWeekReturn": -0.015101866350770266,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-07-14",
+      "postCount": 4,
+      "btcMean": 118413.97428571428,
+      "btcClose": 117328.61,
+      "nextWeekClose": 119468.71,
+      "nextWeekReturn": 0.018240222908973314,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-07-21",
+      "postCount": 1,
+      "btcMean": 118536.49285714285,
+      "btcClose": 119468.71,
+      "nextWeekClose": 114238.83,
+      "nextWeekReturn": -0.043776148583173025,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-07-28",
+      "postCount": 0,
+      "btcMean": 115667.04571428572,
+      "btcClose": 114238.83,
+      "nextWeekClose": 119311.7,
+      "nextWeekReturn": 0.044405829436453326,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-08-04",
+      "postCount": 4,
+      "btcMean": 116322.87142857142,
+      "btcClose": 119311.7,
+      "nextWeekClose": 117488.0,
+      "nextWeekReturn": -0.015285173205980662,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-08-11",
+      "postCount": 1,
+      "btcMean": 119000.93999999999,
+      "btcClose": 117488.0,
+      "nextWeekClose": 113486.67,
+      "nextWeekReturn": -0.034057350537927245,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-08-18",
+      "postCount": 2,
+      "btcMean": 114533.46428571429,
+      "btcClose": 113486.67,
+      "nextWeekClose": 108273.72,
+      "nextWeekReturn": -0.04593446966062176,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-08-25",
+      "postCount": 0,
+      "btcMean": 110187.95285714285,
+      "btcClose": 108273.72,
+      "nextWeekClose": 111143.24,
+      "nextWeekReturn": 0.026502460615558388,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-09-01",
+      "postCount": 3,
+      "btcMean": 110719.49285714285,
+      "btcClose": 111143.24,
+      "nextWeekClose": 115351.87,
+      "nextWeekReturn": 0.03786672045911188,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-09-08",
+      "postCount": 2,
+      "btcMean": 114372.04142857144,
+      "btcClose": 115351.87,
+      "nextWeekClose": 115299.83,
+      "nextWeekReturn": -0.00045114136424484474,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-09-15",
+      "postCount": 0,
+      "btcMean": 116087.41,
+      "btcClose": 115299.83,
+      "nextWeekClose": 112226.65,
+      "nextWeekReturn": -0.026653812065464466,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-09-22",
+      "postCount": 0,
+      "btcMean": 111270.18857142857,
+      "btcClose": 112226.65,
+      "nextWeekClose": 123535.21,
+      "nextWeekReturn": 0.1007653707920535,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-09-29",
+      "postCount": 5,
+      "btcMean": 119441.73714285715,
+      "btcClose": 123535.21,
+      "nextWeekClose": 115084.73,
+      "nextWeekReturn": -0.06840543679814048,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-10-06",
+      "postCount": 11,
+      "btcMean": 118581.91571428571,
+      "btcClose": 115084.73,
+      "nextWeekClose": 108701.79,
+      "nextWeekReturn": -0.05546296194117151,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-10-13",
+      "postCount": 13,
+      "btcMean": 109974.94714285714,
+      "btcClose": 108701.79,
+      "nextWeekClose": 114559.89,
+      "nextWeekReturn": 0.053891476856084974,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-10-20",
+      "postCount": 6,
+      "btcMean": 110566.79000000001,
+      "btcClose": 114559.89,
+      "nextWeekClose": 110564.52,
+      "nextWeekReturn": -0.03487581910213078,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-10-27",
+      "postCount": 3,
+      "btcMean": 110812.36571428573,
+      "btcClose": 110564.52,
+      "nextWeekClose": 104721.32,
+      "nextWeekReturn": -0.05284878006072835,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-11-03",
+      "postCount": 3,
+      "btcMean": 103371.08285714286,
+      "btcClose": 104721.32,
+      "nextWeekClose": 94244.44,
+      "nextWeekReturn": -0.1000453393826587,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-11-10",
+      "postCount": 3,
+      "btcMean": 99236.82714285715,
+      "btcClose": 94244.44,
+      "nextWeekClose": 86823.45,
+      "nextWeekReturn": -0.07874193957754971,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-11-17",
+      "postCount": 5,
+      "btcMean": 88533.16285714286,
+      "btcClose": 86823.45,
+      "nextWeekClose": 90381.34,
+      "nextWeekReturn": 0.04097844533936401,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-11-24",
+      "postCount": 2,
+      "btcMean": 89940.76,
+      "btcClose": 90381.34,
+      "nextWeekClose": 90413.99,
+      "nextWeekReturn": 0.00036124713353458127,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-12-01",
+      "postCount": 7,
+      "btcMean": 90316.76000000001,
+      "btcClose": 90413.99,
+      "nextWeekClose": 88169.62,
+      "nextWeekReturn": -0.02482326020563863,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-12-08",
+      "postCount": 1,
+      "btcMean": 90951.09285714287,
+      "btcClose": 88169.62,
+      "nextWeekClose": 88647.8,
+      "nextWeekReturn": 0.005423410013562613,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-12-15",
+      "postCount": 1,
+      "btcMean": 87295.86571428573,
+      "btcClose": 88647.8,
+      "nextWeekClose": 87886.81,
+      "nextWeekReturn": -0.008584420594758169,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-12-22",
+      "postCount": 3,
+      "btcMean": 87690.91285714286,
+      "btcClose": 87886.81,
+      "nextWeekClose": 91499.58,
+      "nextWeekReturn": 0.041107078525207674,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2025-12-29",
+      "postCount": 2,
+      "btcMean": 89123.32999999999,
+      "btcClose": 91499.58,
+      "nextWeekClose": 90885.04,
+      "nextWeekReturn": -0.006716314981992322,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2026-01-05",
+      "postCount": 0,
+      "btcMean": 91673.35428571429,
+      "btcClose": 90885.04,
+      "nextWeekClose": 93642.09,
+      "nextWeekReturn": 0.03033557557987554,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2026-01-12",
+      "postCount": 1,
+      "btcMean": 94769.08571428571,
+      "btcClose": 93642.09,
+      "nextWeekClose": 86581.03,
+      "nextWeekReturn": -0.07540476723661338,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2026-01-19",
+      "postCount": 5,
+      "btcMean": 89279.93999999999,
+      "btcClose": 86581.03,
+      "nextWeekClose": 76910.99,
+      "nextWeekReturn": -0.11168774499448664,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2026-01-26",
+      "postCount": 6,
+      "btcMean": 84404.62857142858,
+      "btcClose": 76910.99,
+      "nextWeekClose": 70297.07,
+      "nextWeekReturn": -0.08599447231143431,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2026-02-02",
+      "postCount": 18,
+      "btcMean": 71470.74571428572,
+      "btcClose": 70297.07,
+      "nextWeekClose": 68800.76,
+      "nextWeekReturn": -0.021285524418016455,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2026-02-09",
+      "postCount": 5,
+      "btcMean": 68512.07571428572,
+      "btcClose": 68800.76,
+      "nextWeekClose": 67626.88,
+      "nextWeekReturn": -0.01706202082651398,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2026-02-16",
+      "postCount": 3,
+      "btcMean": 67621.9842857143,
+      "btcClose": 67626.88,
+      "nextWeekClose": 65774.35,
+      "nextWeekReturn": -0.02739339741830471,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2026-02-23",
+      "postCount": 6,
+      "btcMean": 66119.95,
+      "btcClose": 65774.35,
+      "nextWeekClose": 65974.07,
+      "nextWeekReturn": 0.00303644201729103,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2026-03-02",
+      "postCount": 6,
+      "btcMean": 68869.25142857143,
+      "btcClose": 65974.07,
+      "nextWeekClose": 72828.77,
+      "nextWeekReturn": 0.10389991098017748,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2026-03-09",
+      "postCount": 2,
+      "btcMean": 70589.54714285715,
+      "btcClose": 72828.77,
+      "nextWeekClose": 67853.59,
+      "nextWeekReturn": -0.06831338769005724,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2026-03-16",
+      "postCount": 0,
+      "btcMean": 71036.61714285714,
+      "btcClose": 67853.59,
+      "nextWeekClose": 65967.75,
+      "nextWeekReturn": -0.02779278148731701,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2026-03-23",
+      "postCount": 1,
+      "btcMean": 68594.47714285714,
+      "btcClose": 65967.75,
+      "nextWeekClose": 69004.15,
+      "nextWeekReturn": 0.04602855183025034,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2026-03-30",
+      "postCount": 0,
+      "btcMean": 67604.27714285714,
+      "btcClose": 69004.15,
+      "nextWeekClose": 70750.05,
+      "nextWeekReturn": 0.02530137680125044,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2026-04-06",
+      "postCount": 2,
+      "btcMean": 71496.92714285714,
+      "btcClose": 70750.05,
+      "nextWeekClose": 73824.27,
+      "nextWeekReturn": 0.043451842083503944,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2026-04-13",
+      "postCount": 4,
+      "btcMean": 75039.77714285713,
+      "btcClose": 73824.27,
+      "nextWeekClose": 78673.71,
+      "nextWeekReturn": 0.06568896651467071,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2026-04-20",
+      "postCount": 2,
+      "btcMean": 77498.59857142856,
+      "btcClose": 78673.71,
+      "nextWeekClose": 78556.51,
+      "nextWeekReturn": -0.0014896971300834005,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2026-04-27",
+      "postCount": 0,
+      "btcMean": 77320.44285714286,
+      "btcClose": 78556.51,
+      "nextWeekClose": 82193.54,
+      "nextWeekReturn": 0.04629826350483235,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2026-05-04",
+      "postCount": 6,
+      "btcMean": 80748.72857142857,
+      "btcClose": 82193.54,
+      "nextWeekClose": 77416.47,
+      "nextWeekReturn": -0.05811977437642901,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2026-05-11",
+      "postCount": 1,
+      "btcMean": 79597.07714285715,
+      "btcClose": 77416.47,
+      "nextWeekClose": 77000.57,
+      "nextWeekReturn": -0.005372241849828541,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2026-05-18",
+      "postCount": 1,
+      "btcMean": 76845.92000000001,
+      "btcClose": 77000.57,
+      "nextWeekClose": 73601.92,
+      "nextWeekReturn": -0.044137984952579035,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2026-05-25",
+      "postCount": 2,
+      "btcMean": 74539.56,
+      "btcClose": 73601.92,
+      "nextWeekClose": 63315.11,
+      "nextWeekReturn": -0.13976279423145477,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2026-06-01",
+      "postCount": 5,
+      "btcMean": 64443.037142857145,
+      "btcClose": 63315.11,
+      "nextWeekClose": 65717.11,
+      "nextWeekReturn": 0.037937231728729426,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2026-06-08",
+      "postCount": 0,
+      "btcMean": 63356.09428571429,
+      "btcClose": 65717.11,
+      "nextWeekClose": 63245.48,
+      "nextWeekReturn": -0.037610144450965666,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2026-06-15",
+      "postCount": 1,
+      "btcMean": 64315.59428571429,
+      "btcClose": 63245.48,
+      "nextWeekClose": 59491.82,
+      "nextWeekReturn": -0.05935064450455596,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2026-06-22",
+      "postCount": 1,
+      "btcMean": 60968.67857142857,
+      "btcClose": 59491.82,
+      "nextWeekClose": 63587.35,
+      "nextWeekReturn": 0.06884190128995882,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2026-06-29",
+      "postCount": 2,
+      "btcMean": 61342.77999999999,
+      "btcClose": 63587.35,
+      "nextWeekClose": 63746.53,
+      "nextWeekReturn": 0.0025033280990638396,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2026-07-06",
+      "postCount": 1,
+      "btcMean": 63488.59714285714,
+      "btcClose": 63746.53,
+      "nextWeekClose": 64686.53,
+      "nextWeekReturn": 0.014745900678829083,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2026-07-13",
+      "postCount": 0,
+      "btcMean": 64164.03999999999,
+      "btcClose": 64686.53,
+      "nextWeekClose": 65344.89,
+      "nextWeekReturn": 0.01017769851002992,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2026-07-20",
+      "postCount": 2,
+      "btcMean": 65232.97285714286,
+      "btcClose": 65344.89,
+      "nextWeekClose": 63499.49,
+      "nextWeekReturn": -0.028240922893894238,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2026-07-27",
+      "postCount": 1,
+      "btcMean": 63541.526,
+      "btcClose": 63499.49,
+      "nextWeekClose": 64848.69,
+      "nextWeekReturn": 0.02124741474301617,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2026-08-03",
+      "postCount": 0,
+      "btcMean": 64433.76714285714,
+      "btcClose": 64848.69,
+      "nextWeekClose": 62836.66,
+      "nextWeekReturn": -0.031026532687090547,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2026-08-10",
+      "postCount": 0,
+      "btcMean": 63301.614285714284,
+      "btcClose": 62836.66,
+      "nextWeekClose": 77729.36,
+      "nextWeekReturn": 0.2370065499980425,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2026-08-17",
+      "postCount": 1,
+      "btcMean": 72083.81857142856,
+      "btcClose": 77729.36,
+      "nextWeekClose": 78278.55,
+      "nextWeekReturn": 0.007065412605995913,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2026-08-24",
+      "postCount": 0,
+      "btcMean": 78630.07,
+      "btcClose": 78278.55,
+      "nextWeekClose": null,
+      "nextWeekReturn": null,
+      "periodStatus": "in_progress"
+    }
+  ],
+  "kpis": {
+    "latestWeek": {
+      "week": "2026-08-24",
+      "periodStatus": "in_progress",
+      "posts": 0,
+      "btcClose": 78278.55,
+      "nextWeekReturn": null
+    }
+  },
+  "collection": {
+    "mode": "incremental",
+    "price": {
+      "status": "ok",
+      "source": "Coinbase Exchange BTC-USD",
+      "observedThrough": "2026-08-25",
+      "requestedDays": 29
+    },
+    "posts": {
+      "status": "ok",
+      "sourceCount": 21,
+      "refreshFrom": "2026-08-17",
+      "failures": []
+    }
+  },
+  "meta": {
+    "keyword": "비트코인",
+    "note": "KST 월요일 기준 주간 집계. 진행 중인 주의 BTC 값은 최신 관측 종가입니다."
+  }
+}

@@ -1,7 +1,2 @@
-requests
-beautifulsoup4
-lxml
-pandas
-numpy
-matplotlib
-cryptocompare
+beautifulsoup4==4.15.0
+requests==2.34.2
