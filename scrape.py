@@ -5,7 +5,7 @@ import datetime as dt
 from pathlib import Path
 
 from collector.cafes import collect_recent_posts
-from collector.price import collect_recent_prices
+from collector.price import collect_price_history, collect_recent_prices
 from collector.snapshot import build_snapshot, load_snapshot, write_snapshot
 from collector.time_utils import KST, monday_of
 
@@ -16,9 +16,22 @@ def main() -> None:
     now = dt.datetime.now(tz=KST)
     baseline = load_snapshot(DATA_PATH)
 
-    # Mandatory: a failed or stale price response must never replace the last
-    # known-good snapshot.
-    prices = collect_recent_prices(now)
+    # OHLCV is backfilled exactly when the baseline lacks it. Existing historical
+    # close/mean values remain immutable; subsequent runs request only 28 days.
+    method = (
+        baseline["raw"].get("collection", {})
+        .get("price", {})
+        .get("ohlcvMethod")
+    )
+    missing_ohlcv = (
+        any(point.get("btcVolume") is None for point in baseline["series"])
+        or method != "coinbase_daily_kst_week_v4"
+    )
+    if missing_ohlcv:
+        first_week = dt.date.fromisoformat(baseline["series"][0]["week"])
+        prices = collect_price_history(now, first_week)
+    else:
+        prices = collect_recent_prices(now)
 
     # Query only the current and previous KST week. If any source is unavailable,
     # preserve the prior aggregate and expose the degraded state in the snapshot.
@@ -31,7 +44,7 @@ def main() -> None:
     print(
         "snapshot updated: "
         f"BTC through {prices.observed_through}; "
-        f"posts={cafes.status}; mode=incremental"
+        f"posts={cafes.status}; price={prices.mode}"
     )
     if cafes.failures:
         print("warning: post counts preserved due to: " + ", ".join(cafes.failures))

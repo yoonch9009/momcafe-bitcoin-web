@@ -2,10 +2,13 @@
 
 import {
   Bar,
+  BarChart,
   CartesianGrid,
   ComposedChart,
   Legend,
   Line,
+  LineChart,
+  ReferenceLine,
   ResponsiveContainer,
   Scatter,
   ScatterChart,
@@ -14,9 +17,20 @@ import {
   YAxis,
 } from "recharts";
 
-import type { ScatterPoint } from "@/lib/statistics";
+import type {
+  EventStudyResult,
+  RollingCorrelation,
+  ScatterPoint,
+} from "@/lib/statistics";
 
-export type Metric = "close" | "mean" | "nextReturn";
+export type Metric =
+  | "close"
+  | "mean"
+  | "volume"
+  | "volatility"
+  | "range"
+  | "attention"
+  | "nextReturn";
 
 export type TimelinePoint = {
   week: string;
@@ -34,6 +48,16 @@ function shortWeek(value: string) {
   return value.slice(2).replaceAll("-", ".");
 }
 
+const metricNames: Record<Metric, string> = {
+  close: "BTC 주간 종가",
+  mean: "BTC 주간 평균",
+  volume: "BTC 거래량",
+  volatility: "실현변동성",
+  range: "고저 변동폭",
+  attention: "관심도 서프라이즈",
+  nextReturn: "다음 주 수익률",
+};
+
 export function TimelineChart({
   data,
   metric,
@@ -43,13 +67,7 @@ export function TimelineChart({
   metric: Metric;
   logarithmic: boolean;
 }) {
-  const isReturn = metric === "nextReturn";
-  const priceName =
-    metric === "close"
-      ? "BTC 주간 종가"
-      : metric === "mean"
-        ? "BTC 주간 평균"
-        : "다음 주 수익률";
+  const isPercent = ["volatility", "range", "nextReturn"].includes(metric);
   return (
     <ResponsiveContainer height="100%" width="100%">
       <ComposedChart
@@ -79,17 +97,17 @@ export function TimelineChart({
         />
         <YAxis
           axisLine={false}
-          domain={logarithmic && !isReturn ? ["auto", "auto"] : undefined}
+          domain={logarithmic ? ["auto", "auto"] : undefined}
           orientation="right"
-          scale={logarithmic && !isReturn ? "log" : "auto"}
+          scale={logarithmic ? "log" : "auto"}
           tick={{ fill: "var(--muted)", fontSize: 10 }}
           tickFormatter={(value: number) =>
-            isReturn ? `${decimal.format(value)}%` : compact.format(value)
+            isPercent ? `${decimal.format(value)}%` : compact.format(value)
           }
           tickLine={false}
           type="number"
-          width={52}
-          yAxisId="price"
+          width={55}
+          yAxisId="metric"
         />
         <Tooltip
           contentStyle={{
@@ -100,6 +118,12 @@ export function TimelineChart({
             fontSize: 12,
           }}
           cursor={{ fill: "var(--grid)" }}
+          formatter={(value, name) => [
+            name === metricNames[metric] && isPercent
+              ? `${decimal.format(Number(value))}%`
+              : compact.format(Number(value)),
+            name,
+          ]}
           labelFormatter={(label) => `${String(label)} 주`}
         />
         <Legend
@@ -109,7 +133,7 @@ export function TimelineChart({
         <Bar
           dataKey="posts"
           fill="var(--cyan)"
-          fillOpacity={0.5}
+          fillOpacity={0.42}
           name="맘카페 언급"
           radius={[3, 3, 0, 0]}
           yAxisId="posts"
@@ -118,11 +142,11 @@ export function TimelineChart({
           connectNulls={false}
           dataKey="value"
           dot={false}
-          name={priceName}
+          name={metricNames[metric]}
           stroke="var(--orange)"
           strokeWidth={2.25}
           type="monotone"
-          yAxisId="price"
+          yAxisId="metric"
         />
       </ComposedChart>
     </ResponsiveContainer>
@@ -163,6 +187,7 @@ export function CorrelationChart({ data }: { data: ScatterPoint[] }) {
           }}
           cursor={{ stroke: "var(--line-strong)", strokeDasharray: "3 4" }}
         />
+        <ReferenceLine stroke="var(--line-strong)" y={0} />
         <Scatter
           data={data}
           fill="var(--cyan)"
@@ -170,6 +195,125 @@ export function CorrelationChart({ data }: { data: ScatterPoint[] }) {
           name="관측 주"
         />
       </ScatterChart>
+    </ResponsiveContainer>
+  );
+}
+
+export function RollingCorrelationChart({
+  data,
+}: {
+  data: RollingCorrelation[];
+}) {
+  return (
+    <ResponsiveContainer height="100%" width="100%">
+      <LineChart
+        data={data}
+        margin={{ top: 12, right: 12, bottom: 4, left: 0 }}
+      >
+        <CartesianGrid
+          stroke="var(--grid)"
+          strokeDasharray="3 5"
+          vertical={false}
+        />
+        <XAxis
+          axisLine={false}
+          dataKey="week"
+          minTickGap={44}
+          tick={{ fill: "var(--muted)", fontSize: 10 }}
+          tickFormatter={shortWeek}
+          tickLine={false}
+        />
+        <YAxis
+          axisLine={false}
+          domain={[-1, 1]}
+          tick={{ fill: "var(--muted)", fontSize: 10 }}
+          tickLine={false}
+          width={36}
+        />
+        <Tooltip
+          contentStyle={{
+            background: "var(--surface-strong)",
+            border: "1px solid var(--line-strong)",
+            borderRadius: 12,
+            color: "var(--ink)",
+            fontSize: 12,
+          }}
+          formatter={(value, name) => [decimal.format(Number(value)), name]}
+        />
+        <Legend wrapperStyle={{ color: "var(--muted)", fontSize: 11 }} />
+        <ReferenceLine stroke="var(--line-strong)" y={0} />
+        <Line
+          connectNulls={false}
+          dataKey="pearson"
+          dot={false}
+          name="Pearson"
+          stroke="var(--orange)"
+          strokeWidth={2}
+        />
+        <Line
+          connectNulls={false}
+          dataKey="spearman"
+          dot={false}
+          name="Spearman"
+          stroke="var(--cyan)"
+          strokeWidth={2}
+        />
+      </LineChart>
+    </ResponsiveContainer>
+  );
+}
+
+export function EventStudyChart({ data }: { data: EventStudyResult[] }) {
+  const chartData = data.map((item) => ({
+    ...item,
+    label: `+${item.horizon}주`,
+  }));
+  return (
+    <ResponsiveContainer height="100%" width="100%">
+      <BarChart
+        data={chartData}
+        margin={{ top: 12, right: 12, bottom: 4, left: 0 }}
+      >
+        <CartesianGrid
+          stroke="var(--grid)"
+          strokeDasharray="3 5"
+          vertical={false}
+        />
+        <XAxis
+          axisLine={false}
+          dataKey="label"
+          tick={{ fill: "var(--muted)", fontSize: 10 }}
+          tickLine={false}
+        />
+        <YAxis
+          axisLine={false}
+          tick={{ fill: "var(--muted)", fontSize: 10 }}
+          tickFormatter={(value: number) => `${decimal.format(value)}%`}
+          tickLine={false}
+          width={48}
+        />
+        <Tooltip
+          contentStyle={{
+            background: "var(--surface-strong)",
+            border: "1px solid var(--line-strong)",
+            borderRadius: 12,
+            color: "var(--ink)",
+            fontSize: 12,
+          }}
+          formatter={(value) => [
+            `${decimal.format(Number(value))}%`,
+            "중앙 수익률",
+          ]}
+        />
+        <ReferenceLine stroke="var(--line-strong)" y={0} />
+        <Bar
+          dataKey="medianReturnPct"
+          fill="var(--orange)"
+          fillOpacity={0.76}
+          name="중앙 수익률"
+          radius={[5, 5, 0, 0]}
+        />
+      </BarChart>
     </ResponsiveContainer>
   );
 }

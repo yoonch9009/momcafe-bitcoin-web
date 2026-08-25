@@ -6,5 +6,6 @@ output/
 .coverage/
 __pycache__/
 *.py[cod]
+*.tsbuildinfo
 .env*
 !.env.example
