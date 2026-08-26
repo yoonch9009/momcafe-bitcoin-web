@@ -13,6 +13,7 @@ import {
   Hash,
   Moon,
   RefreshCw,
+  ShieldAlert,
   Sun,
   TrendingUp,
 } from "lucide-react";
@@ -26,6 +27,7 @@ import {
 import {
   enrichSeries,
   eventStudy,
+  highZoneSpikeAnalysis,
   laggedReturns,
   leadLagMatrix,
   pearson,
@@ -220,6 +222,10 @@ export function DashboardShell() {
   }, [analytics, range]);
   const walkForward = useMemo(
     () => walkForwardValidation(analytics),
+    [analytics],
+  );
+  const highZoneSpike = useMemo(
+    () => highZoneSpikeAnalysis(analytics),
     [analytics],
   );
 
@@ -471,6 +477,173 @@ export function DashboardShell() {
               <span>{snapshot.collection.price.source}</span>
             </div>
           </article>
+        </section>
+
+        <section
+          className={`surface high-zone-section ${highZoneSpike.latest?.isActive ? "is-active" : ""}`}
+          aria-labelledby="high-zone-title"
+        >
+          <div className="section-head high-zone-head">
+            <div>
+              <p className="eyebrow">HIGH-ZONE ATTENTION ALERT</p>
+              <h2 id="high-zone-title">고점권 초대형 언급 경보</h2>
+              <p className="section-note">
+                직전 26주 고점의 90% 이상에서, 최근 52주 중앙값보다 10건 이상
+                많고 동시에 5배 이상일 때 발생합니다. 완결 주만 사용해 미래 정보
+                없이 판정합니다.
+              </p>
+            </div>
+            <div
+              className={`high-zone-status ${highZoneSpike.latest?.isActive ? "active" : "inactive"}`}
+            >
+              <ShieldAlert aria-hidden="true" size={18} />
+              <span>
+                {highZoneSpike.latest?.isActive
+                  ? "추격 매수 금지"
+                  : "현재 경보 없음"}
+              </span>
+            </div>
+          </div>
+
+          {highZoneSpike.latest ? (
+            <div className="high-zone-current">
+              <div className="high-zone-current-title">
+                <span>최근 완결 주</span>
+                <strong>{highZoneSpike.latest.week}</strong>
+              </div>
+              <div className="high-zone-readings">
+                <div>
+                  <span>언급량</span>
+                  <strong>
+                    {integer.format(highZoneSpike.latest.postCount)}건
+                  </strong>
+                </div>
+                <div>
+                  <span>52주 중앙값</span>
+                  <strong>
+                    {fixed(highZoneSpike.latest.baselineMedian, 1, "건")}
+                  </strong>
+                </div>
+                <div>
+                  <span>중앙값 대비</span>
+                  <strong>
+                    {fixed(highZoneSpike.latest.mentionMultiple, 1, "배")}
+                  </strong>
+                </div>
+                <div>
+                  <span>26주 고점 대비</span>
+                  <strong>
+                    {signed(highZoneSpike.latest.priceToPriorHighPct, 1)}
+                  </strong>
+                </div>
+                <div>
+                  <span>현재 필요 언급량</span>
+                  <strong>{highZoneSpike.latest.requiredCount}건 이상</strong>
+                </div>
+              </div>
+            </div>
+          ) : null}
+
+          <div
+            className="high-zone-summary"
+            aria-label="대표 고점 기준 역사적 결과"
+          >
+            <article>
+              <span>과거 독립 사건</span>
+              <strong>
+                {highZoneSpike.representativePeakSummary.events}
+                <small>회</small>
+              </strong>
+              <p>2주 이내 연속 신호는 하나의 에피소드로 묶음</p>
+            </article>
+            <article>
+              <span>4주 내 -10% 하락 경험</span>
+              <strong>
+                {fixed(
+                  highZoneSpike.representativePeakSummary.drawdown10Rate4wPct,
+                  1,
+                  "%",
+                )}
+              </strong>
+              <p>
+                최대 낙폭 중앙값{" "}
+                {signed(
+                  highZoneSpike.representativePeakSummary.medianDrawdown4wPct,
+                  1,
+                )}
+              </p>
+            </article>
+            <article>
+              <span>12주 종가 하락 비율</span>
+              <strong>
+                {fixed(
+                  highZoneSpike.representativePeakSummary.negativeReturn12wPct,
+                  1,
+                  "%",
+                )}
+              </strong>
+              <p>
+                12주 수익률 중앙값{" "}
+                {signed(
+                  highZoneSpike.representativePeakSummary.medianReturn12wPct,
+                  1,
+                )}
+              </p>
+            </article>
+            <article>
+              <span>최초 경보 후 12주 최대 상승</span>
+              <strong>
+                {signed(
+                  highZoneSpike.firstTriggerSummary.medianUpside12wPct,
+                  1,
+                )}
+              </strong>
+              <p>고점의 끝은 알 수 없으므로 즉시 숏 신호로 사용하지 않음</p>
+            </article>
+          </div>
+
+          <div className="high-zone-interpretation">
+            <strong>운용 해석</strong>
+            <p>
+              이 경보는 하락 방향을 맞히는 매매 신호가 아니라, 신규 매수·불타기·
+              피라미딩을 멈추고 기존 비중과 손실 허용 범위를 재점검하는 위험관리
+              신호입니다. “대표 고점” 성과는 에피소드가 끝난 뒤 확인되는 설명용
+              통계이며 실시간 진입점이 아닙니다.
+            </p>
+          </div>
+
+          <div className="table-scroll high-zone-table">
+            <table className="data-table">
+              <thead>
+                <tr>
+                  <th>대표 고점 주</th>
+                  <th>언급</th>
+                  <th>중앙값</th>
+                  <th>배수</th>
+                  <th>26주 고점 대비</th>
+                  <th>4주 수익률</th>
+                  <th>4주 최대낙폭</th>
+                  <th>12주 수익률</th>
+                  <th>12주 최대낙폭</th>
+                </tr>
+              </thead>
+              <tbody>
+                {highZoneSpike.episodes.map(({ representativePeak }) => (
+                  <tr key={representativePeak.week}>
+                    <td>{representativePeak.week}</td>
+                    <td>{representativePeak.postCount}건</td>
+                    <td>{fixed(representativePeak.baselineMedian, 1)}</td>
+                    <td>{fixed(representativePeak.mentionMultiple, 1, "×")}</td>
+                    <td>{signed(representativePeak.priceToPriorHighPct, 1)}</td>
+                    <td>{signed(representativePeak.return4wPct, 1)}</td>
+                    <td>{signed(representativePeak.maxDrawdown4wPct, 1)}</td>
+                    <td>{signed(representativePeak.return12wPct, 1)}</td>
+                    <td>{signed(representativePeak.maxDrawdown12wPct, 1)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </section>
 
         <section className="surface chart-section">

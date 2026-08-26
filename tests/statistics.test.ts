@@ -1,9 +1,12 @@
+import { readFileSync } from "node:fs";
+
 import { describe, expect, it } from "vitest";
 
-import type { WeeklyPoint } from "../lib/dashboard-data";
+import { parseSnapshot, type WeeklyPoint } from "../lib/dashboard-data";
 import {
   enrichSeries,
   eventStudy,
+  highZoneSpikeAnalysis,
   laggedReturns,
   leadLagMatrix,
   pearson,
@@ -177,5 +180,44 @@ describe("dashboard statistics", () => {
     }));
     expect(rollingCorrelations(enriched, 52)).not.toHaveLength(0);
     expect(walkForwardValidation(enriched, 52).observations).toBeGreaterThan(0);
+  });
+
+  it("requires both a meaningful count increase and a fivefold increase near a high", () => {
+    const points = Array.from({ length: 42 }, (_, index) =>
+      row(
+        new Date(Date.UTC(2025, 0, 6 + index * 7)).toISOString().slice(0, 10),
+        index < 40 ? 1 : index === 40 ? 5 : 12,
+        100 + index,
+      ),
+    );
+
+    const analysis = highZoneSpikeAnalysis(enrichSeries(points));
+    expect(analysis.episodes).toHaveLength(1);
+    expect(analysis.episodes[0].firstTrigger.week).toBe(points[41].week);
+    expect(analysis.episodes[0].firstTrigger.postCount).toBe(12);
+  });
+
+  it("preserves the seven corrected historical peak episodes in the published data", () => {
+    const snapshot = parseSnapshot(
+      JSON.parse(readFileSync("public/data.json", "utf8")) as unknown,
+    );
+    const analysis = highZoneSpikeAnalysis(enrichSeries(snapshot.series));
+
+    expect(
+      analysis.episodes.map((episode) => episode.representativePeak.week),
+    ).toEqual([
+      "2017-12-04",
+      "2021-01-04",
+      "2021-02-15",
+      "2021-04-12",
+      "2024-03-11",
+      "2024-11-18",
+      "2025-10-06",
+    ]);
+    expect(analysis.representativePeakSummary.negativeReturn4wPct).toBeCloseTo(
+      71.4,
+      1,
+    );
+    expect(analysis.firstTriggerSummary.medianUpside12wPct).toBeGreaterThan(10);
   });
 });
