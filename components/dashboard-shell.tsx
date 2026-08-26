@@ -18,7 +18,11 @@ import {
   TrendingUp,
 } from "lucide-react";
 
-import type { Metric, TimelinePoint } from "@/components/dashboard-charts";
+import type {
+  AlertPathPoint,
+  Metric,
+  TimelinePoint,
+} from "@/components/dashboard-charts";
 import {
   assetPath,
   parseSnapshot,
@@ -26,17 +30,8 @@ import {
 } from "@/lib/dashboard-data";
 import {
   enrichSeries,
-  eventStudy,
   highZoneSpikeAnalysis,
-  laggedReturns,
-  leadLagMatrix,
-  pearson,
-  regimeAnalysis,
   relativeChange,
-  rollingCorrelations,
-  spearman,
-  walkForwardValidation,
-  type LeadLagOutcome,
 } from "@/lib/statistics";
 
 const TimelineChart = dynamic(
@@ -46,44 +41,28 @@ const TimelineChart = dynamic(
     ),
   { ssr: false, loading: () => <ChartSkeleton /> },
 );
-const CorrelationChart = dynamic(
+const AlertPathChart = dynamic(
   () =>
     import("@/components/dashboard-charts").then(
-      (module) => module.CorrelationChart,
-    ),
-  { ssr: false, loading: () => <ChartSkeleton /> },
-);
-const RollingCorrelationChart = dynamic(
-  () =>
-    import("@/components/dashboard-charts").then(
-      (module) => module.RollingCorrelationChart,
-    ),
-  { ssr: false, loading: () => <ChartSkeleton /> },
-);
-const EventStudyChart = dynamic(
-  () =>
-    import("@/components/dashboard-charts").then(
-      (module) => module.EventStudyChart,
+      (module) => module.AlertPathChart,
     ),
   { ssr: false, loading: () => <ChartSkeleton /> },
 );
 
 const rangeOptions = [
-  { value: "1y", label: "최근 1년", shortLabel: "1Y", weeks: 52 },
-  { value: "3y", label: "최근 3년", shortLabel: "3Y", weeks: 156 },
-  { value: "5y", label: "최근 5년", shortLabel: "5Y", weeks: 260 },
-  { value: "7y", label: "최근 7년", shortLabel: "7Y", weeks: 364 },
-  { value: "10y", label: "최근 10년", shortLabel: "10Y", weeks: 520 },
+  { value: "1y", label: "최근 1년", weeks: 52 },
+  { value: "3y", label: "최근 3년", weeks: 156 },
+  { value: "5y", label: "최근 5년", weeks: 260 },
+  { value: "7y", label: "최근 7년", weeks: 364 },
+  { value: "10y", label: "최근 10년", weeks: 520 },
   {
     value: "all",
     label: "전체 기간",
-    shortLabel: "전체",
     weeks: Number.POSITIVE_INFINITY,
   },
 ] as const;
 
 type Range = (typeof rangeOptions)[number]["value"];
-type HeatMethod = "pearson" | "spearman";
 
 const usd = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -95,14 +74,6 @@ const compact = new Intl.NumberFormat("ko-KR", {
   notation: "compact",
   maximumFractionDigits: 1,
 });
-
-const outcomeNames: Record<LeadLagOutcome, string> = {
-  return: "수익률",
-  absoluteReturn: "절대수익률",
-  volumeChange: "거래량 변화",
-  volatility: "실현변동성",
-  range: "고저 변동폭",
-};
 
 function ChartSkeleton() {
   return (
@@ -124,10 +95,6 @@ function rangeLength(range: Range) {
   return rangeOptions.find((option) => option.value === range)!.weeks;
 }
 
-function rangeShortLabel(range: Range) {
-  return rangeOptions.find((option) => option.value === range)!.shortLabel;
-}
-
 function fixed(value: number | null, digits = 2, suffix = "") {
   return value === null ? "—" : `${value.toFixed(digits)}${suffix}`;
 }
@@ -142,22 +109,12 @@ function signedCount(value: number | null) {
   return value === null ? "—" : `${value >= 0 ? "+" : ""}${value}건`;
 }
 
-function heatBackground(value: number | null) {
-  if (value === null) return "var(--canvas-soft)";
-  const opacity = 0.12 + Math.min(1, Math.abs(value)) * 0.7;
-  return value >= 0
-    ? `color-mix(in srgb, var(--green) ${opacity * 100}%, var(--canvas-soft))`
-    : `color-mix(in srgb, var(--red) ${opacity * 100}%, var(--canvas-soft))`;
-}
-
 export function DashboardShell() {
   const [snapshot, setSnapshot] = useState<DashboardSnapshot | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [metric, setMetric] = useState<Metric>("close");
   const [range, setRange] = useState<Range>("3y");
-  const [horizon, setHorizon] = useState(1);
   const [logarithmic, setLogarithmic] = useState(false);
-  const [heatMethod, setHeatMethod] = useState<HeatMethod>("spearman");
   const [theme, setTheme] = useState<"dark" | "light">("dark");
 
   useEffect(() => {
@@ -182,6 +139,10 @@ export function DashboardShell() {
   const analytics = useMemo(
     () => (snapshot ? enrichSeries(snapshot.series) : []),
     [snapshot],
+  );
+  const highZoneSpike = useMemo(
+    () => highZoneSpikeAnalysis(analytics),
+    [analytics],
   );
   const visibleSeries = useMemo(() => {
     const length = rangeLength(range);
@@ -211,40 +172,15 @@ export function DashboardShell() {
       })),
     [metric, visibleSeries],
   );
-  const scatter = useMemo(
-    () => laggedReturns(visibleSeries, horizon),
-    [horizon, visibleSeries],
-  );
-  const correlationPairs = useMemo(
+  const alertPath = useMemo<AlertPathPoint[]>(
     () =>
-      scatter.map(
-        (point) => [point.attentionPercentile, point.returnPct] as const,
-      ),
-    [scatter],
-  );
-  const correlation = useMemo(
-    () => pearson(correlationPairs),
-    [correlationPairs],
-  );
-  const rankCorrelation = useMemo(
-    () => spearman(correlationPairs),
-    [correlationPairs],
-  );
-  const heatmap = useMemo(() => leadLagMatrix(visibleSeries), [visibleSeries]);
-  const events = useMemo(() => eventStudy(visibleSeries), [visibleSeries]);
-  const regimes = useMemo(() => regimeAnalysis(visibleSeries), [visibleSeries]);
-  const rolling = useMemo(() => {
-    const output = rollingCorrelations(analytics);
-    const length = rangeLength(range);
-    return Number.isFinite(length) ? output.slice(-length) : output;
-  }, [analytics, range]);
-  const walkForward = useMemo(
-    () => walkForwardValidation(analytics),
-    [analytics],
-  );
-  const highZoneSpike = useMemo(
-    () => highZoneSpikeAnalysis(analytics),
-    [analytics],
+      highZoneSpike.horizonComparison.map((item) => ({
+        horizon: item.horizon,
+        firstTriggerMedianReturnPct: item.firstTrigger.medianReturnPct,
+        representativePeakMedianReturnPct:
+          item.representativePeak.medianReturnPct,
+      })),
+    [highZoneSpike],
   );
 
   if (error) {
@@ -306,11 +242,12 @@ export function DashboardShell() {
   const postStatus = snapshot.collection.posts.status;
   const isLive = latest.periodStatus === "in_progress";
   const logEligible = ["close", "mean", "volume"].includes(metric);
-  const granger = snapshot.analysis.granger;
-  const significantGranger =
-    granger.status === "ok"
-      ? granger.tests.filter((test) => test.qValue < 0.05).length
-      : 0;
+  const ordinaryHighZone = highZoneSpike.benchmark12w.find(
+    (item) => item.key === "ordinary_high_zone",
+  )!;
+  const relaxedSensitivity = highZoneSpike.sensitivity.find(
+    (item) => item.absoluteIncrease === 5 && item.ratioIncrease === 5,
+  )!;
 
   function toggleTheme() {
     const next = theme === "dark" ? "light" : "dark";
@@ -359,8 +296,8 @@ export function DashboardShell() {
               <em>비트코인의 반응.</em>
             </h1>
             <p className="hero-copy">
-              저빈도 언급량의 경험적 백분위, 거래량·변동성, ±8주 선행성, 비모수
-              급증 이벤트와 표본외 검증을 같은 주간 축에서 확인합니다.
+              저빈도 언급량을 52주 중앙값과 배수로 표준화하고, BTC 고점권에서
+              발생한 초대형 사건의 이후 수익·낙폭과 운용 위험을 검증합니다.
             </p>
           </div>
           <aside className="status-panel" aria-label="데이터 상태">
@@ -667,11 +604,11 @@ export function DashboardShell() {
         <section className="surface chart-section">
           <div className="section-head">
             <div>
-              <p className="eyebrow">MULTI-SIGNAL TIMELINE</p>
-              <h2>언급량과 시장 반응</h2>
+              <p className="eyebrow">ALERT CONTEXT TIMELINE</p>
+              <h2>경보 사건과 시장 반응</h2>
               <p className="section-note">
-                막대는 주간 언급량, 선은 선택 지표입니다. 현재 주의 언급량,
-                가격·거래량은 마감값이 아닌 누적 관측치입니다.
+                막대는 주간 언급량, 선은 선택 지표, 주황색 세로선은 조회 기간에
+                포함된 대표 고점입니다. 현재 주 값은 마감 전 누적치입니다.
               </p>
             </div>
             <div className="control-row">
@@ -695,7 +632,7 @@ export function DashboardShell() {
                 <option value="nextReturn">다음 주 수익률</option>
               </select>
               <select
-                aria-label="조회 기간"
+                aria-label="타임라인 조회 기간"
                 className="select-control"
                 onChange={(event) => setRange(event.target.value as Range)}
                 value={range}
@@ -718,6 +655,9 @@ export function DashboardShell() {
           </div>
           <div className="chart-wrap">
             <TimelineChart
+              alertWeeks={highZoneSpike.episodes.map(
+                (episode) => episode.representativePeak.week,
+              )}
               data={timeline}
               logarithmic={logarithmic}
               metric={metric}
@@ -725,318 +665,280 @@ export function DashboardShell() {
           </div>
         </section>
 
-        <section className="analysis-grid">
+        <section className="analysis-grid alert-analysis-grid">
           <article className="surface analysis-card">
-            <div className="section-head">
-              <div>
-                <p className="eyebrow">FORWARD RETURN</p>
-                <h2>상대 관심도와 이후 수익률</h2>
-                <p className="section-note">
-                  x축은 언급 주 t의 이전 52주 대비 경험적 백분위, y축은 t에서 t+
-                  {horizon}주까지의 수익률입니다. 현재 주와 초기 기준기간은
-                  제외합니다.
-                </p>
-              </div>
-              <select
-                aria-label="예측 지평"
-                className="select-control"
-                onChange={(event) => setHorizon(Number(event.target.value))}
-                value={horizon}
-              >
-                {[1, 2, 3, 4, 6, 8].map((value) => (
-                  <option key={value} value={value}>
-                    +{value}주
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="chart-wrap">
-              <CorrelationChart data={scatter} />
-            </div>
-          </article>
-          <aside className="surface analysis-card">
-            <p className="eyebrow">CORRELATION CHECK</p>
-            <h2 className="mt-2 text-xl font-semibold">백분위·순위 상관</h2>
-            <div className="dual-stat">
-              <div>
-                <span>Pearson (백분위)</span>
-                <strong>{fixed(correlation, 3)}</strong>
-              </div>
-              <div>
-                <span>Spearman</span>
-                <strong>{fixed(rankCorrelation, 3)}</strong>
-              </div>
-            </div>
-            <p className="sample-note">
-              n = {scatter.length} · {rangeShortLabel(range)}
-            </p>
-            <ul className="method-list">
-              <li>
-                <b>01</b>
-                <span>
-                  경험적 백분위는 0건과 동률을 보존하면서 극단값 영향을
-                  제한합니다.
-                </span>
-              </li>
-              <li>
-                <b>02</b>
-                <span>
-                  기간·지평 선택에 따라 계수가 달라지는지 함께 봅니다.
-                </span>
-              </li>
-              <li>
-                <b>03</b>
-                <span>상관은 인과나 매매 수익성을 증명하지 않습니다.</span>
-              </li>
-            </ul>
-          </aside>
-        </section>
-
-        <section className="surface chart-section">
-          <div className="section-head">
-            <div>
-              <p className="eyebrow">±8 WEEK LEAD / LAG</p>
-              <h2>무엇이 먼저 움직였나</h2>
-              <p className="section-note">
-                양수(+N)는 관심도 백분위가 시장 지표보다 N주 먼저, 음수(-N)는
-                시장 지표가 먼저입니다. 각 칸은 선택한 상관계수입니다.
-              </p>
-            </div>
-            <select
-              aria-label="히트맵 상관 방식"
-              className="select-control"
-              onChange={(event) =>
-                setHeatMethod(event.target.value as HeatMethod)
-              }
-              value={heatMethod}
-            >
-              <option value="spearman">Spearman</option>
-              <option value="pearson">Pearson</option>
-            </select>
-          </div>
-          <div className="heatmap-scroll">
-            <div
-              className="heatmap"
-              role="table"
-              aria-label="선행 후행 상관 히트맵"
-            >
-              <div className="heat-label heat-head">지표 / 시차</div>
-              {Array.from({ length: 17 }, (_, index) => index - 8).map(
-                (lag) => (
-                  <div className="heat-head" key={lag}>
-                    {lag > 0 ? `+${lag}` : lag}
-                  </div>
-                ),
-              )}
-              {(Object.keys(outcomeNames) as LeadLagOutcome[]).map(
-                (outcome) => (
-                  <div className="heat-row" key={outcome}>
-                    <div className="heat-label">{outcomeNames[outcome]}</div>
-                    {heatmap
-                      .filter((cell) => cell.outcome === outcome)
-                      .map((cell) => {
-                        const value = cell[heatMethod];
-                        return (
-                          <div
-                            className="heat-cell"
-                            key={cell.lag}
-                            style={{ background: heatBackground(value) }}
-                            title={`${outcomeNames[outcome]} · ${cell.lag > 0 ? "+" : ""}${cell.lag}주 · ${heatMethod}=${fixed(value, 3)} · n=${cell.observations}`}
-                          >
-                            {fixed(value, 2)}
-                          </div>
-                        );
-                      })}
-                  </div>
-                ),
-              )}
-            </div>
-          </div>
-          <div className="heat-legend">
-            <span>가격 선행 ←</span>
-            <i />
-            <span>→ 관심도 선행</span>
-          </div>
-        </section>
-
-        <section className="analysis-grid event-grid">
-          <article className="surface analysis-card">
-            <p className="eyebrow">SPIKE EVENT STUDY</p>
-            <h2 className="mt-2 text-xl font-semibold">관심 급증 이후 경로</h2>
+            <p className="eyebrow">ALERT TIMING COMPARISON</p>
+            <h2 className="mt-2 text-xl font-semibold">
+              최초 경보와 대표 고점 이후 종가
+            </h2>
             <p className="section-note">
-              이전 52주 상위 5%이면서 중앙값보다 3건 이상 많은 주를 사건으로
-              잡아 이후 중앙 수익률과 최대 유리·불리 움직임을 계산합니다.
+              7개 독립 사건의 중앙 수익률입니다. 최초 경보는 실시간 사용 가능,
+              대표 고점은 에피소드 종료 후에만 알 수 있는 설명용 기준입니다.
             </p>
             <div className="chart-wrap">
-              <EventStudyChart data={events} />
+              <AlertPathChart data={alertPath} />
             </div>
-          </article>
-          <article className="surface analysis-card table-card">
-            <p className="eyebrow">ROBUST OUTCOMES</p>
-            <h2 className="mt-2 text-xl font-semibold">사건별 결과</h2>
-            <div className="table-scroll">
-              <table className="data-table">
-                <thead>
-                  <tr>
-                    <th>지평</th>
-                    <th>n</th>
-                    <th>중앙수익</th>
-                    <th>상승률</th>
-                    <th>MFE</th>
-                    <th>MAE</th>
-                    <th>95% CI</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {events.map((item) => (
-                    <tr key={item.horizon}>
-                      <td>+{item.horizon}주</td>
-                      <td>{item.events}</td>
-                      <td>{signed(item.medianReturnPct)}</td>
-                      <td>{fixed(item.hitRatePct, 1, "%")}</td>
-                      <td>{signed(item.medianMfePct)}</td>
-                      <td>{signed(item.medianMaePct)}</td>
-                      <td>
-                        {item.confidenceInterval
-                          ? `${signed(item.confidenceInterval[0], 1)} ~ ${signed(item.confidenceInterval[1], 1)}`
-                          : "n<8"}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <p className="tiny-note">
-              각 지평에서 겹치는 사건 구간은 제거합니다. 95% 구간은 n≥8일 때만
-              이동 블록 부트스트랩 중앙값 구간으로 표시합니다.
-            </p>
-          </article>
-        </section>
-
-        <section className="analysis-grid">
-          <article className="surface analysis-card">
-            <p className="eyebrow">TIME-VARYING RELATIONSHIP</p>
-            <h2 className="mt-2 text-xl font-semibold">52주 롤링 상관</h2>
-            <p className="section-note">
-              관심도 백분위(t)와 다음 1주 수익률(t+1)의 관계가 시간에 따라
-              얼마나 불안정한지 보여줍니다.
-            </p>
-            <div className="chart-wrap">
-              <RollingCorrelationChart data={rolling} />
-            </div>
-          </article>
-          <article className="surface analysis-card table-card">
-            <p className="eyebrow">MARKET REGIMES</p>
-            <h2 className="mt-2 text-xl font-semibold">시장 체제별 차이</h2>
-            <p className="section-note">
-              관심도는 52주 경험적 백분위를 사용합니다. 추세는 26주 이동평균,
-              변동성은 이전 52주 중앙값으로만 판정합니다.
-            </p>
-            <div className="table-scroll">
-              <table className="data-table">
-                <thead>
-                  <tr>
-                    <th>체제</th>
-                    <th>n</th>
-                    <th>Pearson</th>
-                    <th>Spearman</th>
-                    <th>다음주 중앙수익</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {regimes.map((item) => (
-                    <tr key={item.regime}>
-                      <td>{item.regime}</td>
-                      <td>{item.observations}</td>
-                      <td>{fixed(item.pearson, 3)}</td>
-                      <td>{fixed(item.spearman, 3)}</td>
-                      <td>{signed(item.medianNextReturnPct)}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </article>
-        </section>
-
-        <section className="analysis-grid diagnostics-grid">
-          <article className="surface analysis-card table-card">
-            <div className="section-head">
-              <div>
-                <p className="eyebrow">GRANGER PRECEDENCE</p>
-                <h2>양방향 시계열 검정</h2>
-                <p className="section-note">
-                  비정상 수준값 대신 Δlog(1+언급량)과 BTC 로그수익률을 사용하며,
-                  양방향 1–4주 전체에 Benjamini–Hochberg FDR을 적용합니다.
-                </p>
-              </div>
-              <span
-                className={`result-pill ${significantGranger ? "signal" : ""}`}
-              >
-                q&lt;0.05 · {significantGranger}건
-              </span>
-            </div>
-            <div className="table-scroll">
-              <table className="data-table">
-                <thead>
-                  <tr>
-                    <th>방향</th>
-                    <th>시차</th>
-                    <th>F</th>
-                    <th>p</th>
-                    <th>FDR q</th>
-                    <th>판정</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {granger.tests.map((test) => (
-                    <tr key={`${test.direction}-${test.lag}`}>
-                      <td>
-                        {test.direction === "attention_to_return"
-                          ? "관심 → 수익률"
-                          : "수익률 → 관심"}
-                      </td>
-                      <td>{test.lag}주</td>
-                      <td>{test.fStatistic.toFixed(3)}</td>
-                      <td>{test.pValue.toFixed(3)}</td>
-                      <td>{test.qValue.toFixed(3)}</td>
-                      <td>{test.qValue < 0.05 ? "유의" : "비유의"}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <p className="tiny-note">
-              ADF p: 관심 변화{" "}
-              {fixed(granger.adfPValues?.attentionChange ?? null, 4)} · 수익률{" "}
-              {fixed(granger.adfPValues?.btcReturn ?? null, 4)} · n=
-              {granger.observations}. log1p 변환은 0건을 처리하지만 카운트의
-              과산포를 직접 모형화하지 않으므로 탐색적 보조지표이며, 경제적
-              인과의 증명이 아닙니다.
-            </p>
           </article>
           <aside className="surface analysis-card validation-card">
-            <p className="eyebrow">WALK-FORWARD CHECK</p>
-            <h2 className="mt-2 text-xl font-semibold">표본외 예측 검증</h2>
+            <p className="eyebrow">WHAT THE NUMBERS SAY</p>
+            <h2 className="mt-2 text-xl font-semibold">경보의 정확한 의미</h2>
             <div className="validation-stat">
-              <span>OOS R²</span>
-              <strong>{fixed(walkForward.oosR2, 3)}</strong>
-            </div>
-            <div className="validation-stat">
-              <span>방향 적중률</span>
+              <span>최초 경보 후 4주 종가 하락</span>
               <strong>
-                {fixed(walkForward.directionalAccuracyPct, 1, "%")}
+                {fixed(
+                  highZoneSpike.firstTriggerSummary.negativeReturn4wPct,
+                  1,
+                  "%",
+                )}
               </strong>
             </div>
             <div className="validation-stat">
-              <span>검증 표본</span>
-              <strong>{integer.format(walkForward.observations)}</strong>
+              <span>대표 고점 후 4주 종가 하락</span>
+              <strong>
+                {fixed(
+                  highZoneSpike.representativePeakSummary.negativeReturn4wPct,
+                  1,
+                  "%",
+                )}
+              </strong>
+            </div>
+            <div className="validation-stat">
+              <span>최초 경보 후 12주 최대 상승 중앙값</span>
+              <strong>
+                {signed(
+                  highZoneSpike.firstTriggerSummary.medianUpside12wPct,
+                  1,
+                )}
+              </strong>
             </div>
             <p className="tiny-note">
-              최초 104개 관측 이후 매주 이전 데이터로만 단순 선형모형을 다시
-              적합합니다. OOS R²가 0 이하면 과거 평균보다 낫지 않습니다.
+              최초 경보 직후 4주는 하락보다 상승 종가가 많았습니다. 따라서 숏
+              진입점이 아니라 추격매수·불타기 중단 시점으로 해석합니다.
             </p>
           </aside>
+        </section>
+
+        <section className="analysis-grid event-grid alert-tables-grid">
+          <article className="surface analysis-card table-card">
+            <p className="eyebrow">HOLDING-PERIOD RISK</p>
+            <h2 className="mt-2 text-xl font-semibold">기간별 위험 경로</h2>
+            <p className="section-note">
+              같은 7개 사건을 1·2·4·8·12주 지평으로 비교합니다. MAE는 해당 기간
+              중 저점 기준 최대 낙폭의 중앙값입니다.
+            </p>
+            <div className="table-scroll">
+              <table className="data-table alert-detail-table">
+                <thead>
+                  <tr>
+                    <th>지평</th>
+                    <th>최초 경보 수익</th>
+                    <th>대표 고점 수익</th>
+                    <th>최초 경보 MAE</th>
+                    <th>대표 고점 MAE</th>
+                    <th>최초 경보 MFE</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {highZoneSpike.horizonComparison.map((item) => (
+                    <tr key={item.horizon}>
+                      <td>+{item.horizon}주</td>
+                      <td>{signed(item.firstTrigger.medianReturnPct, 1)}</td>
+                      <td>
+                        {signed(item.representativePeak.medianReturnPct, 1)}
+                      </td>
+                      <td>{signed(item.firstTrigger.medianDrawdownPct, 1)}</td>
+                      <td>
+                        {signed(item.representativePeak.medianDrawdownPct, 1)}
+                      </td>
+                      <td>{signed(item.firstTrigger.medianUpsidePct, 1)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </article>
+          <article className="surface analysis-card table-card">
+            <p className="eyebrow">HIGH-ZONE BENCHMARK</p>
+            <h2 className="mt-2 text-xl font-semibold">
+              평범한 고점권과 무엇이 다른가
+            </h2>
+            <p className="section-note">
+              모두 직전 26주 고점의 90% 이상인 주입니다. 경보 주변 ±2주는 일반
+              고점권 표본에서 제외했습니다.
+            </p>
+            <div className="table-scroll">
+              <table className="data-table alert-detail-table">
+                <thead>
+                  <tr>
+                    <th>구분</th>
+                    <th>n</th>
+                    <th>12주 하락</th>
+                    <th>중앙수익</th>
+                    <th>-10% 경험</th>
+                    <th>MAE</th>
+                    <th>MFE</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {highZoneSpike.benchmark12w.map((item) => (
+                    <tr
+                      className={
+                        item.key === "first_trigger" ? "selected-row" : ""
+                      }
+                      key={item.key}
+                    >
+                      <td>{item.label}</td>
+                      <td>{item.observations}</td>
+                      <td>{fixed(item.negativeReturnPct, 1, "%")}</td>
+                      <td>{signed(item.medianReturnPct, 1)}</td>
+                      <td>{fixed(item.drawdown10RatePct, 1, "%")}</td>
+                      <td>{signed(item.medianDrawdownPct, 1)}</td>
+                      <td>{signed(item.medianUpsidePct, 1)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="tiny-note">
+              일반 고점권 n은 중첩된 주간 관측치이므로 독립 사건 7개와 동일한
+              유의성 표본으로 해석하지 않고 방향·크기 비교에만 사용합니다.
+            </p>
+          </article>
+        </section>
+
+        <section className="surface chart-section sensitivity-section">
+          <div className="section-head">
+            <div>
+              <p className="eyebrow">THRESHOLD SENSITIVITY</p>
+              <h2>기준을 바꿔도 결론이 유지되는가</h2>
+              <p className="section-note">
+                고점권 90% 조건은 고정하고 절대 증가와 중앙값 배수를
+                조합했습니다. 주황색 행이 현재 채택한 +10건·5배 기준입니다.
+              </p>
+            </div>
+            <span className="result-pill signal">선택 기준 · +10건 / 5배</span>
+          </div>
+          <div className="table-scroll">
+            <table className="data-table sensitivity-table">
+              <thead>
+                <tr>
+                  <th>절대 증가</th>
+                  <th>비율</th>
+                  <th>사건 수</th>
+                  <th>12주 하락</th>
+                  <th>12주 중앙수익</th>
+                  <th>-10% 하락 경험</th>
+                  <th>MAE 중앙값</th>
+                </tr>
+              </thead>
+              <tbody>
+                {highZoneSpike.sensitivity.map((item) => (
+                  <tr
+                    className={item.selected ? "selected-row" : ""}
+                    key={`${item.absoluteIncrease}-${item.ratioIncrease}`}
+                  >
+                    <td>+{item.absoluteIncrease}건</td>
+                    <td>{item.ratioIncrease}배</td>
+                    <td>{item.events}</td>
+                    <td>{fixed(item.negativeReturn12wPct, 1, "%")}</td>
+                    <td>{signed(item.medianReturn12wPct, 1)}</td>
+                    <td>{fixed(item.drawdown10Rate12wPct, 1, "%")}</td>
+                    <td>{signed(item.medianDrawdown12wPct, 1)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="tiny-note">
+            +5건·5배 기준은 {relaxedSensitivity.events}개 사건으로 넓어지며 12주
+            중앙수익이 {signed(relaxedSensitivity.medianReturn12wPct, 1)}로
+            바뀝니다. 반면 +10건 이상에서는 배수 조건을 바꿔도 현재 데이터의{" "}
+            {highZoneSpike.episodes.length}개 사건과 결과가 유지됩니다. 기준
+            선택 뒤 새 사건에서 검증해야 합니다.
+          </p>
+        </section>
+
+        <section className="analysis-grid alert-conclusion-grid">
+          <article className="surface analysis-card conclusion-card">
+            <p className="eyebrow">SUPPORTED CONCLUSION</p>
+            <h2 className="mt-2 text-xl font-semibold">확인된 부분</h2>
+            <ul className="evidence-list">
+              <li>
+                <strong>위험 비대칭</strong>
+                <span>
+                  최초 경보의 12주 중앙수익은{" "}
+                  {signed(
+                    highZoneSpike.firstTriggerSummary.medianReturn12wPct,
+                    1,
+                  )}
+                  , -10% 이상 하락 경험은{" "}
+                  {fixed(
+                    highZoneSpike.firstTriggerSummary.drawdown10Rate12wPct,
+                    1,
+                    "%",
+                  )}
+                  였습니다.
+                </span>
+              </li>
+              <li>
+                <strong>평범한 고점권과 차이</strong>
+                <span>
+                  일반 고점권 12주 중앙수익{" "}
+                  {signed(ordinaryHighZone.medianReturnPct, 1)} 대비 최초 경보는{" "}
+                  {signed(
+                    highZoneSpike.firstTriggerSummary.medianReturn12wPct,
+                    1,
+                  )}
+                  로 방향이 반대였습니다.
+                </span>
+              </li>
+              <li>
+                <strong>운용 신호</strong>
+                <span>
+                  신규 매수·불타기·피라미딩을 중단하고 비중과 손실 한도를
+                  재검토할 근거가 있습니다.
+                </span>
+              </li>
+            </ul>
+          </article>
+          <article className="surface analysis-card conclusion-card caution-card">
+            <p className="eyebrow">NOT PROVEN</p>
+            <h2 className="mt-2 text-xl font-semibold">확인되지 않은 부분</h2>
+            <ul className="evidence-list">
+              <li>
+                <strong>정확한 고점 시점</strong>
+                <span>
+                  최초 경보 후에도 12주 최대 상승 중앙값이{" "}
+                  {signed(
+                    highZoneSpike.firstTriggerSummary.medianUpside12wPct,
+                    1,
+                  )}
+                  라 고점의 끝은 알 수 없습니다.
+                </span>
+              </li>
+              <li>
+                <strong>즉시 숏 수익성</strong>
+                <span>
+                  최초 경보 후 4주 종가 하락은{" "}
+                  {fixed(
+                    highZoneSpike.firstTriggerSummary.negativeReturn4wPct,
+                    1,
+                    "%",
+                  )}
+                  뿐이므로 하락 베팅 신호로는 지지되지 않습니다.
+                </span>
+              </li>
+              <li>
+                <strong>통계적 확증</strong>
+                <span>
+                  독립 사건은 {highZoneSpike.episodes.length}개뿐이며 한 사건이
+                  비율을 약{" "}
+                  {fixed(100 / highZoneSpike.episodes.length, 1, "%p")}{" "}
+                  움직입니다. 선택한 기준은 향후 사건으로 전진 검증해야 합니다.
+                </span>
+              </li>
+            </ul>
+          </article>
         </section>
 
         <section className="surface availability">
@@ -1048,8 +950,8 @@ export function DashboardShell() {
             <article>
               <strong>현재 제공</strong>
               <p>
-                원시 언급량, 52주 경험적 백분위, 절대 건수 변화, OHLCV, 비중첩
-                이벤트, 선행·후행, 체제, Granger, 워크포워드
+                고점권 초대형 언급 경보, 최초 경보·대표 고점 분리, 1–12주
+                수익·MFE·MAE, 일반 고점권 비교, 기준 민감도
               </p>
             </article>
             <article>
@@ -1062,8 +964,9 @@ export function DashboardShell() {
             <article>
               <strong>해석 원칙</strong>
               <p>
-                언급량은 0이 많고 과산포된 이산값입니다. 헤드라인은 확정 주만
-                사용하며 상관·선행성은 매매성과나 인과를 보장하지 않음
+                확정 주만 사용하며 실시간 판단은 최초 경보만 가능합니다. 대표
+                고점은 사후 설명용이고 사건 연구는 인과나 매매 수익성을 보장하지
+                않습니다.
               </p>
             </article>
           </div>

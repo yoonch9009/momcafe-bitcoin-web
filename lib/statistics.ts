@@ -386,6 +386,41 @@ export type HighZoneSpikeOutcome = {
   return12wPct: number | null;
   maxUpside12wPct: number | null;
   maxDrawdown12wPct: number | null;
+  horizons: HighZoneHorizonOutcome[];
+};
+
+export type HighZoneHorizonOutcome = {
+  horizon: number;
+  returnPct: number | null;
+  maxUpsidePct: number | null;
+  maxDrawdownPct: number | null;
+};
+
+export type HighZoneHorizonSummary = {
+  horizon: number;
+  observations: number;
+  negativeReturnPct: number | null;
+  medianReturnPct: number | null;
+  drawdown10RatePct: number | null;
+  medianDrawdownPct: number | null;
+  medianUpsidePct: number | null;
+};
+
+export type HighZoneComparisonRow = HighZoneHorizonSummary & {
+  key: "ordinary_high_zone" | "first_trigger" | "representative_peak";
+  label: string;
+  independentEvents: boolean;
+};
+
+export type HighZoneSensitivityResult = {
+  absoluteIncrease: number;
+  ratioIncrease: number;
+  events: number;
+  negativeReturn12wPct: number | null;
+  medianReturn12wPct: number | null;
+  drawdown10Rate12wPct: number | null;
+  medianDrawdown12wPct: number | null;
+  selected: boolean;
 };
 
 export type HighZoneSpikeSummary = {
@@ -420,6 +455,13 @@ export type HighZoneSpikeAnalysis = {
   }>;
   firstTriggerSummary: HighZoneSpikeSummary;
   representativePeakSummary: HighZoneSpikeSummary;
+  horizonComparison: Array<{
+    horizon: number;
+    firstTrigger: HighZoneHorizonSummary;
+    representativePeak: HighZoneHorizonSummary;
+  }>;
+  benchmark12w: HighZoneComparisonRow[];
+  sensitivity: HighZoneSensitivityResult[];
 };
 
 type HighZoneCandidate = {
@@ -461,7 +503,7 @@ function spikeOutcome(
   candidate: HighZoneCandidate,
 ): HighZoneSpikeOutcome {
   const point = series[candidate.index];
-  const horizon = (weeks: number) => {
+  const horizon = (weeks: number): HighZoneHorizonOutcome => {
     const end = series[candidate.index + weeks];
     const future = series.slice(
       candidate.index + 1,
@@ -474,7 +516,12 @@ function spikeOutcome(
       end.btcExchangeClose === null ||
       future.length !== weeks
     )
-      return { returnPct: null, maxUpsidePct: null, maxDrawdownPct: null };
+      return {
+        horizon: weeks,
+        returnPct: null,
+        maxUpsidePct: null,
+        maxDrawdownPct: null,
+      };
     const highs = future
       .map((item) => item.btcHigh)
       .filter((value): value is number => value !== null);
@@ -482,6 +529,7 @@ function spikeOutcome(
       .map((item) => item.btcLow)
       .filter((value): value is number => value !== null);
     return {
+      horizon: weeks,
       returnPct: (end.btcExchangeClose / point.btcExchangeClose - 1) * 100,
       maxUpsidePct:
         highs.length === weeks
@@ -493,8 +541,11 @@ function spikeOutcome(
           : null,
     };
   };
-  const fourWeeks = horizon(4);
-  const twelveWeeks = horizon(12);
+  const horizons = [1, 2, 4, 8, 12].map(horizon);
+  const at = (weeks: number) =>
+    horizons.find((item) => item.horizon === weeks)!;
+  const fourWeeks = at(4);
+  const twelveWeeks = at(12);
   return {
     week: point.week,
     postCount: point.postCount,
@@ -507,57 +558,80 @@ function spikeOutcome(
     return12wPct: twelveWeeks.returnPct,
     maxUpside12wPct: twelveWeeks.maxUpsidePct,
     maxDrawdown12wPct: twelveWeeks.maxDrawdownPct,
+    horizons,
+  };
+}
+
+function highZoneHorizonSummary(
+  outcomes: HighZoneSpikeOutcome[],
+  horizon: number,
+): HighZoneHorizonSummary {
+  const values = outcomes
+    .map((outcome) => outcome.horizons.find((item) => item.horizon === horizon))
+    .filter((value): value is HighZoneHorizonOutcome => Boolean(value));
+  const availableReturns = values
+    .map((item) => item.returnPct)
+    .filter((value): value is number => value !== null);
+  const availableUpside = values
+    .map((item) => item.maxUpsidePct)
+    .filter((value): value is number => value !== null);
+  const availableDrawdown = values
+    .map((item) => item.maxDrawdownPct)
+    .filter((value): value is number => value !== null);
+  const rate = (items: number[], matches: (value: number) => boolean) =>
+    items.length ? (items.filter(matches).length / items.length) * 100 : null;
+  return {
+    horizon,
+    observations: availableReturns.length,
+    negativeReturnPct: rate(availableReturns, (value) => value < 0),
+    medianReturnPct: median(availableReturns),
+    drawdown10RatePct: rate(availableDrawdown, (value) => value <= -10),
+    medianDrawdownPct: median(availableDrawdown),
+    medianUpsidePct: median(availableUpside),
   };
 }
 
 function highZoneSummary(
   outcomes: HighZoneSpikeOutcome[],
 ): HighZoneSpikeSummary {
-  const rate = (
-    values: Array<number | null>,
-    matches: (value: number) => boolean,
-  ) => {
-    const available = values.filter((value): value is number => value !== null);
-    return available.length
-      ? (available.filter(matches).length / available.length) * 100
-      : null;
-  };
-  const available = (values: Array<number | null>) =>
-    values.filter((value): value is number => value !== null);
+  const fourWeeks = highZoneHorizonSummary(outcomes, 4);
+  const twelveWeeks = highZoneHorizonSummary(outcomes, 12);
   return {
     events: outcomes.length,
-    negativeReturn4wPct: rate(
-      outcomes.map((item) => item.return4wPct),
-      (value) => value < 0,
-    ),
-    medianReturn4wPct: median(
-      available(outcomes.map((item) => item.return4wPct)),
-    ),
-    drawdown10Rate4wPct: rate(
-      outcomes.map((item) => item.maxDrawdown4wPct),
-      (value) => value <= -10,
-    ),
-    medianDrawdown4wPct: median(
-      available(outcomes.map((item) => item.maxDrawdown4wPct)),
-    ),
-    negativeReturn12wPct: rate(
-      outcomes.map((item) => item.return12wPct),
-      (value) => value < 0,
-    ),
-    medianReturn12wPct: median(
-      available(outcomes.map((item) => item.return12wPct)),
-    ),
-    drawdown10Rate12wPct: rate(
-      outcomes.map((item) => item.maxDrawdown12wPct),
-      (value) => value <= -10,
-    ),
-    medianDrawdown12wPct: median(
-      available(outcomes.map((item) => item.maxDrawdown12wPct)),
-    ),
-    medianUpside12wPct: median(
-      available(outcomes.map((item) => item.maxUpside12wPct)),
-    ),
+    negativeReturn4wPct: fourWeeks.negativeReturnPct,
+    medianReturn4wPct: fourWeeks.medianReturnPct,
+    drawdown10Rate4wPct: fourWeeks.drawdown10RatePct,
+    medianDrawdown4wPct: fourWeeks.medianDrawdownPct,
+    negativeReturn12wPct: twelveWeeks.negativeReturnPct,
+    medianReturn12wPct: twelveWeeks.medianReturnPct,
+    drawdown10Rate12wPct: twelveWeeks.drawdown10RatePct,
+    medianDrawdown12wPct: twelveWeeks.medianDrawdownPct,
+    medianUpside12wPct: twelveWeeks.medianUpsidePct,
   };
+}
+
+function groupHighZoneCandidates(
+  series: AnalyticPoint[],
+  candidates: HighZoneCandidate[],
+) {
+  const groups: HighZoneCandidate[][] = [];
+  for (const candidate of candidates) {
+    const current = groups.at(-1);
+    if (!current || candidate.index - current.at(-1)!.index > 2)
+      groups.push([candidate]);
+    else current.push(candidate);
+  }
+  return groups.map((group) => {
+    const peak = group.reduce((selected, candidate) =>
+      series[candidate.index].postCount > series[selected.index].postCount
+        ? candidate
+        : selected,
+    );
+    return {
+      firstTrigger: spikeOutcome(series, group[0]),
+      representativePeak: spikeOutcome(series, peak),
+    };
+  });
 }
 
 /**
@@ -571,33 +645,20 @@ export function highZoneSpikeAnalysis(
   const measurable = series
     .map((_, index) => highZoneCandidate(series, index))
     .filter((value): value is HighZoneCandidate => value !== null);
-  const qualifies = (candidate: HighZoneCandidate) => {
+  const qualifies = (
+    candidate: HighZoneCandidate,
+    absoluteIncrease = 10,
+    ratioIncrease = 5,
+  ) => {
     const point = series[candidate.index];
     return (
       candidate.priceToPriorHighPct >= -10 &&
-      point.postCount - candidate.baselineMedian >= 10 &&
-      candidate.mentionMultiple >= 5
+      point.postCount - candidate.baselineMedian >= absoluteIncrease &&
+      candidate.mentionMultiple >= ratioIncrease
     );
   };
-  const candidates = measurable.filter(qualifies);
-  const groups: HighZoneCandidate[][] = [];
-  for (const candidate of candidates) {
-    const current = groups.at(-1);
-    if (!current || candidate.index - current.at(-1)!.index > 2)
-      groups.push([candidate]);
-    else current.push(candidate);
-  }
-  const episodes = groups.map((group) => {
-    const peak = group.reduce((selected, candidate) =>
-      series[candidate.index].postCount > series[selected.index].postCount
-        ? candidate
-        : selected,
-    );
-    return {
-      firstTrigger: spikeOutcome(series, group[0]),
-      representativePeak: spikeOutcome(series, peak),
-    };
-  });
+  const candidates = measurable.filter((candidate) => qualifies(candidate));
+  const episodes = groupHighZoneCandidates(series, candidates);
   const latestCandidate = measurable.at(-1) ?? null;
   const latest = latestCandidate
     ? {
@@ -625,11 +686,72 @@ export function highZoneSpikeAnalysis(
   const representativePeaks = episodes.map(
     (episode) => episode.representativePeak,
   );
+  const horizonComparison = [1, 2, 4, 8, 12].map((horizon) => ({
+    horizon,
+    firstTrigger: highZoneHorizonSummary(firstTriggers, horizon),
+    representativePeak: highZoneHorizonSummary(representativePeaks, horizon),
+  }));
+  const ordinaryHighZone = measurable
+    .filter(
+      (candidate) =>
+        candidate.priceToPriorHighPct >= -10 &&
+        candidates.every(
+          (event) => Math.abs(event.index - candidate.index) > 2,
+        ),
+    )
+    .map((candidate) => spikeOutcome(series, candidate));
+  const benchmark12w: HighZoneComparisonRow[] = [
+    {
+      ...highZoneHorizonSummary(ordinaryHighZone, 12),
+      key: "ordinary_high_zone",
+      label: "고점권 일반주",
+      independentEvents: false,
+    },
+    {
+      ...highZoneHorizonSummary(firstTriggers, 12),
+      key: "first_trigger",
+      label: "최초 경보",
+      independentEvents: true,
+    },
+    {
+      ...highZoneHorizonSummary(representativePeaks, 12),
+      key: "representative_peak",
+      label: "대표 고점",
+      independentEvents: true,
+    },
+  ];
+  const sensitivity = [5, 10, 15].flatMap((absoluteIncrease) =>
+    [3, 5, 8].map((ratioIncrease) => {
+      const sensitivityEpisodes = groupHighZoneCandidates(
+        series,
+        measurable.filter((candidate) =>
+          qualifies(candidate, absoluteIncrease, ratioIncrease),
+        ),
+      );
+      const outcomes = sensitivityEpisodes.map(
+        (episode) => episode.representativePeak,
+      );
+      const summary = highZoneHorizonSummary(outcomes, 12);
+      return {
+        absoluteIncrease,
+        ratioIncrease,
+        events: outcomes.length,
+        negativeReturn12wPct: summary.negativeReturnPct,
+        medianReturn12wPct: summary.medianReturnPct,
+        drawdown10Rate12wPct: summary.drawdown10RatePct,
+        medianDrawdown12wPct: summary.medianDrawdownPct,
+        selected: absoluteIncrease === 10 && ratioIncrease === 5,
+      };
+    }),
+  );
   return {
     latest,
     episodes,
     firstTriggerSummary: highZoneSummary(firstTriggers),
     representativePeakSummary: highZoneSummary(representativePeaks),
+    horizonComparison,
+    benchmark12w,
+    sensitivity,
   };
 }
 

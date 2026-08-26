@@ -219,5 +219,13 @@ describe("dashboard statistics", () => {
       1,
     );
     expect(analysis.firstTriggerSummary.medianUpside12wPct).toBeGreaterThan(10);
+    expect(analysis.horizonComparison.map((item) => item.horizon)).toEqual([
+      1, 2, 4, 8, 12,
+    ]);
+    expect(
+      analysis.benchmark12w.find((item) => item.key === "first_trigger")
+        ?.observations,
+    ).toBe(7);
+    expect(analysis.sensitivity.find((item) => item.selected)?.events).toBe(7);
   });
 });

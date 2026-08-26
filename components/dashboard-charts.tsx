@@ -62,10 +62,12 @@ export function TimelineChart({
   data,
   metric,
   logarithmic,
+  alertWeeks = [],
 }: {
   data: TimelinePoint[];
   metric: Metric;
   logarithmic: boolean;
+  alertWeeks?: string[];
 }) {
   const isPercent = ["volatility", "range", "attention", "nextReturn"].includes(
     metric,
@@ -138,6 +140,15 @@ export function TimelineChart({
           iconType="circle"
           wrapperStyle={{ color: "var(--muted)", fontSize: 11, paddingTop: 12 }}
         />
+        {alertWeeks.map((week) => (
+          <ReferenceLine
+            key={week}
+            stroke="var(--orange)"
+            strokeDasharray="3 4"
+            strokeOpacity={0.75}
+            x={week}
+          />
+        ))}
         <Bar
           dataKey="posts"
           fill="var(--cyan)"
@@ -157,6 +168,75 @@ export function TimelineChart({
           yAxisId="metric"
         />
       </ComposedChart>
+    </ResponsiveContainer>
+  );
+}
+
+export type AlertPathPoint = {
+  horizon: number;
+  firstTriggerMedianReturnPct: number | null;
+  representativePeakMedianReturnPct: number | null;
+};
+
+export function AlertPathChart({ data }: { data: AlertPathPoint[] }) {
+  const chartData = data.map((item) => ({
+    ...item,
+    label: `+${item.horizon}주`,
+  }));
+  return (
+    <ResponsiveContainer height="100%" width="100%">
+      <BarChart
+        data={chartData}
+        margin={{ top: 12, right: 12, bottom: 4, left: 0 }}
+      >
+        <CartesianGrid
+          stroke="var(--grid)"
+          strokeDasharray="3 5"
+          vertical={false}
+        />
+        <XAxis
+          axisLine={false}
+          dataKey="label"
+          tick={{ fill: "var(--muted)", fontSize: 10 }}
+          tickLine={false}
+        />
+        <YAxis
+          axisLine={false}
+          tick={{ fill: "var(--muted)", fontSize: 10 }}
+          tickFormatter={(value: number) => `${decimal.format(value)}%`}
+          tickLine={false}
+          width={48}
+        />
+        <Tooltip
+          contentStyle={{
+            background: "var(--surface-strong)",
+            border: "1px solid var(--line-strong)",
+            borderRadius: 12,
+            color: "var(--ink)",
+            fontSize: 12,
+          }}
+          formatter={(value, name) => [
+            `${decimal.format(Number(value))}%`,
+            name,
+          ]}
+        />
+        <Legend wrapperStyle={{ color: "var(--muted)", fontSize: 11 }} />
+        <ReferenceLine stroke="var(--line-strong)" y={0} />
+        <Bar
+          dataKey="firstTriggerMedianReturnPct"
+          fill="var(--cyan)"
+          fillOpacity={0.72}
+          name="최초 경보"
+          radius={[4, 4, 0, 0]}
+        />
+        <Bar
+          dataKey="representativePeakMedianReturnPct"
+          fill="var(--orange)"
+          fillOpacity={0.8}
+          name="대표 고점"
+          radius={[4, 4, 0, 0]}
+        />
+      </BarChart>
     </ResponsiveContainer>
   );
 }
