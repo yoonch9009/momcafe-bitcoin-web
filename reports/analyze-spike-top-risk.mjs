@@ -102,6 +102,28 @@ const deduplicate = (indexes, cooldown) => {
   return selected;
 };
 
+const selectEpisodePeaks = (indexes, maximumGapWeeks = 2) => {
+  const groups = [];
+  for (const index of indexes) {
+    const latestGroup = groups.at(-1);
+    if (
+      !latestGroup ||
+      index - latestGroup.at(-1) > maximumGapWeeks
+    ) {
+      groups.push([index]);
+    } else {
+      latestGroup.push(index);
+    }
+  }
+  return groups.map((group) =>
+    group.reduce((peakIndex, index) =>
+      series[index].postCount > series[peakIndex].postCount
+        ? index
+        : peakIndex,
+    ),
+  );
+};
+
 const rawSpikeIndexes = series
   .map((point, index) => (point.isAttentionSpike ? index : null))
   .filter((index) => index !== null);
@@ -123,16 +145,26 @@ const contextFor = (index, nearHighThresholdPct = 10) => {
   };
 };
 
-const highZoneIndexes = episodeIndexes.filter(
-  (index) => contextFor(index, 10)?.nearHigh,
-);
 const panicIndexes = episodeIndexes.filter((index) => contextFor(index, 10)?.panic);
 const mentionExcess = (index) =>
   series[index].attentionBaselineMedian === null
     ? null
     : series[index].postCount - series[index].attentionBaselineMedian;
-const extremeHighZoneIndexes = highZoneIndexes.filter(
-  (index) => (mentionExcess(index) ?? -Infinity) >= 10,
+const highZoneCandidateWeekIndexes = rawSpikeIndexes.filter(
+  (index) => contextFor(index, 10)?.nearHigh,
+);
+const highZoneIndexes = selectEpisodePeaks(highZoneCandidateWeekIndexes, 2);
+const extremeHighZoneCandidateWeekIndexes = series
+  .map((_, index) =>
+    (mentionExcess(index) ?? -Infinity) >= 10 &&
+    contextFor(index, 10)?.nearHigh
+      ? index
+      : null,
+  )
+  .filter((index) => index !== null);
+const extremeHighZoneIndexes = selectEpisodePeaks(
+  extremeHighZoneCandidateWeekIndexes,
+  2,
 );
 
 const summarize = (indexes, horizon, cohort) => {
@@ -293,20 +325,35 @@ const pairedSummary = (horizon) => {
 
 const sensitivity = [];
 for (const thresholdPct of [5, 10, 15]) {
-  for (const cooldown of [4, 8, 12]) {
-    const indexes = deduplicate(rawSpikeIndexes, cooldown).filter(
-      (index) => contextFor(index, thresholdPct)?.nearHigh,
+  for (const maximumGapWeeks of [1, 2, 3]) {
+    const indexes = selectEpisodePeaks(
+      rawSpikeIndexes.filter(
+        (index) => contextFor(index, thresholdPct)?.nearHigh,
+      ),
+      maximumGapWeeks,
     );
     sensitivity.push({
       thresholdPct,
-      cooldownWeeks: cooldown,
+      maximumGapWeeks,
       ...summarize(indexes, 12, "고점권 스파이크"),
     });
   }
 }
 
+const sensitivityEpisodePeaks = selectEpisodePeaks(
+  series
+    .map((_, index) =>
+      (mentionExcess(index) ?? -Infinity) >= 5 &&
+      contextFor(index, 10)?.nearHigh
+        ? index
+        : null,
+    )
+    .filter((index) => index !== null),
+  2,
+);
+
 const extremeSensitivity = [5, 9, 10, 15, 20].map((excessThreshold) => {
-  const indexes = highZoneIndexes.filter(
+  const indexes = sensitivityEpisodePeaks.filter(
     (index) => (mentionExcess(index) ?? -Infinity) >= excessThreshold,
   );
   return {
@@ -315,7 +362,15 @@ const extremeSensitivity = [5, 9, 10, 15, 20].map((excessThreshold) => {
   };
 });
 
-const eventRows = episodeIndexes.map((index) => {
+const eventIndexes = [
+  ...new Set([
+    ...episodeIndexes,
+    ...highZoneIndexes,
+    ...extremeHighZoneIndexes,
+  ]),
+].sort((left, right) => left - right);
+
+const eventRows = eventIndexes.map((index) => {
   const point = series[index];
   const context = contextFor(index, 10);
   const outcome4 = forwardOutcome(index, 4);
@@ -344,8 +399,31 @@ const eventRows = episodeIndexes.map((index) => {
     maxUpside12wPct: round(outcome12?.maxUpsidePct),
     maxDrawdown12wPct: round(outcome12?.maxDrawdownPct),
     topRisk12w: outcome12?.topRisk ?? null,
+    isHighZoneEpisodePeak: highZoneIndexes.includes(index),
+    isExtremeHighZoneEpisodePeak: extremeHighZoneIndexes.includes(index),
   };
 });
+
+const referencePeakWeeks = [
+  "2017-12-04",
+  "2021-01-04",
+  "2021-02-15",
+  "2021-04-12",
+  "2024-03-11",
+  "2024-11-18",
+  "2025-10-06",
+];
+const selectedExtremePeakWeeks = extremeHighZoneIndexes.map(
+  (index) => series[index].week,
+);
+const missingReferencePeakWeeks = referencePeakWeeks.filter(
+  (week) => !selectedExtremePeakWeeks.includes(week),
+);
+if (missingReferencePeakWeeks.length) {
+  throw new Error(
+    `Corrected extreme-spike selection lost reference peaks: ${missingReferencePeakWeeks.join(", ")}`,
+  );
+}
 
 const result = {
   generatedAt: new Date().toISOString(),
@@ -354,10 +432,12 @@ const result = {
     spike:
       "직전 52주 95백분위 이상이면서 직전 52주 중앙값보다 최소 3건 많은 주",
     episode: "첫 스파이크 후 8주 이내 추가 스파이크는 같은 에피소드로 처리",
+    topRiskEpisode:
+      "조건 충족 주가 2주 이하 간격으로 이어지면 한 사건으로 묶고 언급량 최고점을 대표일로 선택",
     nearHigh:
       "스파이크 주 종가가 직전 26주 최고 종가의 10% 이내인 경우",
     extremeSpike:
-      "기본 스파이크 조건에 더해 언급량이 직전 52주 중앙값보다 최소 10건 많은 경우",
+      "95백분위 조건과 별개로 언급량이 직전 52주 중앙값보다 최소 10건 많은 경우",
     topRisk:
       "향후 12주 최대 상승여력이 10% 이하이면서 최대 낙폭이 -10% 이하인 경우",
     matchedControl:
@@ -367,7 +447,9 @@ const result = {
     rawSpikes: rawSpikeIndexes.length,
     episodes: episodeIndexes.length,
     highZoneEpisodes: highZoneIndexes.length,
+    highZoneCandidateWeeks: highZoneCandidateWeekIndexes.length,
     extremeHighZoneEpisodes: extremeHighZoneIndexes.length,
+    extremeHighZoneCandidateWeeks: extremeHighZoneCandidateWeekIndexes.length,
     panicEpisodes: panicIndexes.length,
   },
   allSpikes: [4, 8, 12, 26].map((horizon) =>
@@ -386,6 +468,11 @@ const result = {
   sensitivity,
   extremeSensitivity,
   events: eventRows,
+  validation: {
+    referencePeakWeeks,
+    selectedExtremePeakWeeks,
+    missingReferencePeakWeeks,
+  },
 };
 
 fs.writeFileSync(outputPath, `${JSON.stringify(result, null, 2)}\n`, "utf8");
