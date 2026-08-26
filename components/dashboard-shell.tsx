@@ -398,77 +398,6 @@ export function DashboardShell() {
           </aside>
         </section>
 
-        <section className="surface chart-section primary-timeline">
-          <div className="section-head">
-            <div>
-              <p className="eyebrow">가격과 언급량 한눈에 보기</p>
-              <h2>비트코인 종가와 맘카페 언급량</h2>
-              <p className="section-note">
-                막대는 한 주 동안 수집된 맘카페 언급 건수, 선은 선택한 비트코인
-                지표입니다. 주황색 세로선은 각 경보 구간에서 언급량이 가장
-                많았던 주이며, 사건이 끝난 뒤 확인되는 참고 표시입니다.
-              </p>
-            </div>
-            <div className="control-row">
-              <select
-                aria-label="언급량과 함께 볼 비트코인 지표"
-                className="select-control"
-                onChange={(event) => {
-                  const next = event.target.value as Metric;
-                  setMetric(next);
-                  if (!["close", "mean", "volume"].includes(next))
-                    setLogarithmic(false);
-                }}
-                value={metric}
-              >
-                <option value="close">주간 마지막 종가</option>
-                <option value="mean">주간 평균 가격</option>
-                <option value="volume">주간 거래량</option>
-                <option value="volatility">주간 가격 변동성</option>
-                <option value="range">주간 고가-저가 폭</option>
-                <option value="attention">언급량 상대 순위</option>
-                <option value="nextReturn">다음 주 가격 변화율</option>
-              </select>
-              <select
-                aria-label="차트 조회 기간"
-                className="select-control"
-                onChange={(event) => setRange(event.target.value as Range)}
-                value={range}
-              >
-                {rangeOptions.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-              <button
-                className={`toggle-button ${logarithmic ? "active" : ""}`}
-                disabled={!logEligible}
-                onClick={() => setLogarithmic((value) => !value)}
-                title="큰 값과 작은 값의 차이를 압축해서 봅니다"
-                type="button"
-              >
-                <BarChart3 size={14} /> 큰 값 압축
-              </button>
-            </div>
-          </div>
-          <div className="chart-wrap">
-            <TimelineChart
-              alertWeeks={highZoneSpike.episodes.map(
-                (episode) => episode.representativePeak.week,
-              )}
-              data={timeline}
-              logarithmic={logarithmic}
-              metric={metric}
-            />
-          </div>
-          <p className="tiny-note">
-            기본 조회 기간은 최근 5년입니다. 가장 오른쪽의 진행 중인 주는 아직
-            마감되지 않은 누적값이므로 과거의 마감된 주와 직접 비교할 때
-            주의하세요.
-          </p>
-        </section>
-
         <section className="kpi-grid kpi-grid-wide" aria-label="핵심 지표">
           <article className="surface kpi-card">
             <div className="kpi-head">
@@ -575,6 +504,77 @@ export function DashboardShell() {
               <span>{snapshot.collection.price.source}</span>
             </div>
           </article>
+        </section>
+
+        <section className="surface chart-section primary-timeline">
+          <div className="section-head">
+            <div>
+              <p className="eyebrow">가격과 언급량 한눈에 보기</p>
+              <h2>비트코인 종가와 맘카페 언급량</h2>
+              <p className="section-note">
+                막대는 한 주 동안 수집된 맘카페 언급 건수, 선은 선택한 비트코인
+                지표입니다. 주황색 세로선은 각 경보 구간에서 언급량이 가장
+                많았던 주이며, 사건이 끝난 뒤 확인되는 참고 표시입니다.
+              </p>
+            </div>
+            <div className="control-row">
+              <select
+                aria-label="언급량과 함께 볼 비트코인 지표"
+                className="select-control"
+                onChange={(event) => {
+                  const next = event.target.value as Metric;
+                  setMetric(next);
+                  if (!["close", "mean", "volume"].includes(next))
+                    setLogarithmic(false);
+                }}
+                value={metric}
+              >
+                <option value="close">주간 마지막 종가</option>
+                <option value="mean">주간 평균 가격</option>
+                <option value="volume">주간 거래량</option>
+                <option value="volatility">주간 가격 변동성</option>
+                <option value="range">주간 고가-저가 폭</option>
+                <option value="attention">언급량 상대 순위</option>
+                <option value="nextReturn">다음 주 가격 변화율</option>
+              </select>
+              <select
+                aria-label="차트 조회 기간"
+                className="select-control"
+                onChange={(event) => setRange(event.target.value as Range)}
+                value={range}
+              >
+                {rangeOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+              <button
+                className={`toggle-button ${logarithmic ? "active" : ""}`}
+                disabled={!logEligible}
+                onClick={() => setLogarithmic((value) => !value)}
+                title="큰 값과 작은 값의 차이를 압축해서 봅니다"
+                type="button"
+              >
+                <BarChart3 size={14} /> 큰 값 압축
+              </button>
+            </div>
+          </div>
+          <div className="chart-wrap">
+            <TimelineChart
+              alertWeeks={highZoneSpike.episodes.map(
+                (episode) => episode.representativePeak.week,
+              )}
+              data={timeline}
+              logarithmic={logarithmic}
+              metric={metric}
+            />
+          </div>
+          <p className="tiny-note">
+            기본 조회 기간은 최근 5년입니다. 가장 오른쪽의 진행 중인 주는 아직
+            마감되지 않은 누적값이므로 과거의 마감된 주와 직접 비교할 때
+            주의하세요.
+          </p>
         </section>
 
         <section
