@@ -1,0 +1,3701 @@
+{
+  "generatedAt": "2026-08-26T05:58:15.857Z",
+  "snapshot": {
+    "updatedAt": "2026-08-26T13:38:32.739464+09:00",
+    "observedThrough": "2026-08-26",
+    "firstWeek": "2016-03-07",
+    "latestWeek": "2026-08-24",
+    "latestWeekStatus": "in_progress",
+    "latestCompleteWeek": "2026-08-17"
+  },
+  "quality": {
+    "rows": 547,
+    "completeWeeks": 546,
+    "inProgressWeeks": 1,
+    "duplicateWeeks": 0,
+    "orderedAscending": true,
+    "exactWeeklyCadence": true,
+    "negativePostCounts": 0,
+    "completeWeeksMissingClose": 0,
+    "completeWeeksMissingOhlcv": 0,
+    "sourceCount": 21,
+    "postPipelineStatus": "ok",
+    "postPipelineFailures": 0,
+    "pricePipelineStatus": "ok",
+    "observedThrough": "2026-08-26",
+    "updatedAt": "2026-08-26T13:38:32.739464+09:00"
+  },
+  "countProfiles": {
+    "completedHistory": {
+      "weeks": 546,
+      "totalPosts": 2303,
+      "mean": 4.217949,
+      "variance": 65.610008,
+      "varianceToMean": 15.554956,
+      "median": 2,
+      "zeroWeeks": 129,
+      "zeroRatePct": 23.626374,
+      "zeroOrOneWeeks": 239,
+      "zeroOrOneRatePct": 43.772894,
+      "distinctCounts": 36,
+      "min": 0,
+      "p10": 0,
+      "p25": 1,
+      "p50": 2,
+      "p75": 4,
+      "p90": 10,
+      "p95": 16.75,
+      "p99": 40.65,
+      "max": 91
+    },
+    "latest3y": {
+      "weeks": 155,
+      "totalPosts": 622,
+      "mean": 4.012903,
+      "variance": 27.522414,
+      "varianceToMean": 6.858479,
+      "median": 2,
+      "zeroWeeks": 15,
+      "zeroRatePct": 9.677419,
+      "zeroOrOneWeeks": 47,
+      "zeroOrOneRatePct": 30.322581,
+      "distinctCounts": 22,
+      "min": 0,
+      "p10": 1,
+      "p25": 1,
+      "p50": 2,
+      "p75": 4,
+      "p90": 8,
+      "p95": 14.3,
+      "p99": 23.92,
+      "max": 38
+    },
+    "latest52Completed": {
+      "weeks": 52,
+      "totalPosts": 230,
+      "mean": 4.423077,
+      "variance": 13.744083,
+      "varianceToMean": 3.107358,
+      "median": 3,
+      "zeroWeeks": 3,
+      "zeroRatePct": 5.769231,
+      "zeroOrOneWeeks": 8,
+      "zeroOrOneRatePct": 15.384615,
+      "distinctCounts": 14,
+      "min": 0,
+      "p10": 1,
+      "p25": 2,
+      "p50": 3,
+      "p75": 6,
+      "p90": 8.9,
+      "p95": 11.35,
+      "p99": 16.45,
+      "max": 19
+    }
+  },
+  "distribution": [
+    {
+      "bin": "0건",
+      "weeks": 129,
+      "sharePct": 23.63,
+      "rank": 0
+    },
+    {
+      "bin": "1건",
+      "weeks": 110,
+      "sharePct": 20.15,
+      "rank": 1
+    },
+    {
+      "bin": "2건",
+      "weeks": 83,
+      "sharePct": 15.2,
+      "rank": 2
+    },
+    {
+      "bin": "3–4건",
+      "weeks": 99,
+      "sharePct": 18.13,
+      "rank": 3
+    },
+    {
+      "bin": "5–9건",
+      "weeks": 69,
+      "sharePct": 12.64,
+      "rank": 4
+    },
+    {
+      "bin": "10–19건",
+      "weeks": 32,
+      "sharePct": 5.86,
+      "rank": 5
+    },
+    {
+      "bin": "20–39건",
+      "weeks": 18,
+      "sharePct": 3.3,
+      "rank": 6
+    },
+    {
+      "bin": "40건 이상",
+      "weeks": 6,
+      "sharePct": 1.1,
+      "rank": 7
+    }
+  ],
+  "latestCompleted": {
+    "week": "2026-08-17",
+    "postCount": 3,
+    "attentionPercentile": 46.153846,
+    "attentionBaselineMedian": 3,
+    "mentionChange4w": 1,
+    "fourWeeksAgoCount": 2,
+    "btcClose": 77729.36,
+    "nextWeekReturnPct": 1.618822,
+    "realizedVolatilityPct": 11.592174,
+    "rangePct": 26.83589
+  },
+  "correlations": [
+    {
+      "scope": "최근 3년",
+      "horizonWeeks": 1,
+      "observations": 155,
+      "pearson": -0.07801,
+      "spearman": -0.078942,
+      "medianReturnPct": 0.14712
+    },
+    {
+      "scope": "최근 3년",
+      "horizonWeeks": 2,
+      "observations": 154,
+      "pearson": -0.033151,
+      "spearman": -0.065131,
+      "medianReturnPct": 1.648165
+    },
+    {
+      "scope": "최근 3년",
+      "horizonWeeks": 4,
+      "observations": 152,
+      "pearson": -0.096365,
+      "spearman": -0.131079,
+      "medianReturnPct": 1.30188
+    },
+    {
+      "scope": "최근 3년",
+      "horizonWeeks": 8,
+      "observations": 148,
+      "pearson": -0.137879,
+      "spearman": -0.149024,
+      "medianReturnPct": 2.711526
+    },
+    {
+      "scope": "전체 기간",
+      "horizonWeeks": 1,
+      "observations": 520,
+      "pearson": 0.062565,
+      "spearman": 0.065443,
+      "medianReturnPct": 0.55019
+    },
+    {
+      "scope": "전체 기간",
+      "horizonWeeks": 2,
+      "observations": 519,
+      "pearson": 0.109667,
+      "spearman": 0.09069,
+      "medianReturnPct": 1.713615
+    },
+    {
+      "scope": "전체 기간",
+      "horizonWeeks": 4,
+      "observations": 517,
+      "pearson": 0.104748,
+      "spearman": 0.080374,
+      "medianReturnPct": 2.095038
+    },
+    {
+      "scope": "전체 기간",
+      "horizonWeeks": 8,
+      "observations": 513,
+      "pearson": 0.117847,
+      "spearman": 0.102938,
+      "medianReturnPct": 5.706607
+    }
+  ],
+  "attentionBuckets": [
+    {
+      "scope": "최근 3년",
+      "bucket": "0–20",
+      "rank": 0,
+      "observations": 19,
+      "meanReturnPct": 1.889396,
+      "medianReturnPct": 1.71528,
+      "hitRatePct": 52.631579
+    },
+    {
+      "scope": "최근 3년",
+      "bucket": "20–40",
+      "rank": 1,
+      "observations": 30,
+      "meanReturnPct": 1.704798,
+      "medianReturnPct": 0.659604,
+      "hitRatePct": 63.333333
+    },
+    {
+      "scope": "최근 3년",
+      "bucket": "40–60",
+      "rank": 2,
+      "observations": 38,
+      "meanReturnPct": 0.855505,
+      "medianReturnPct": -0.127314,
+      "hitRatePct": 50
+    },
+    {
+      "scope": "최근 3년",
+      "bucket": "60–80",
+      "rank": 3,
+      "observations": 33,
+      "meanReturnPct": -0.73406,
+      "medianReturnPct": -0.14897,
+      "hitRatePct": 45.454545
+    },
+    {
+      "scope": "최근 3년",
+      "bucket": "80–100",
+      "rank": 4,
+      "observations": 35,
+      "meanReturnPct": 1.338074,
+      "medianReturnPct": 0.303644,
+      "hitRatePct": 54.285714
+    },
+    {
+      "scope": "전체 기간",
+      "bucket": "0–20",
+      "rank": 0,
+      "observations": 104,
+      "meanReturnPct": -0.072791,
+      "medianReturnPct": -0.494965,
+      "hitRatePct": 45.192308
+    },
+    {
+      "scope": "전체 기간",
+      "bucket": "20–40",
+      "rank": 1,
+      "observations": 83,
+      "meanReturnPct": 1.692774,
+      "medianReturnPct": 0.542184,
+      "hitRatePct": 54.216867
+    },
+    {
+      "scope": "전체 기간",
+      "bucket": "40–60",
+      "rank": 2,
+      "observations": 116,
+      "meanReturnPct": 1.967459,
+      "medianReturnPct": 1.203232,
+      "hitRatePct": 57.758621
+    },
+    {
+      "scope": "전체 기간",
+      "bucket": "60–80",
+      "rank": 3,
+      "observations": 101,
+      "meanReturnPct": 0.96137,
+      "medianReturnPct": 0.381296,
+      "hitRatePct": 54.455446
+    },
+    {
+      "scope": "전체 기간",
+      "bucket": "80–100",
+      "rank": 4,
+      "observations": 116,
+      "meanReturnPct": 2.296611,
+      "medianReturnPct": 1.373766,
+      "hitRatePct": 59.482759
+    }
+  ],
+  "leadLag": [
+    {
+      "scope": "최근 3년",
+      "outcome": "return",
+      "label": "주간 수익률",
+      "strongestLag": -6,
+      "strongestSpearman": 0.214801,
+      "strongestN": 150,
+      "contemporaneousSpearman": -0.00982,
+      "attentionLeadLag": 5,
+      "attentionLeadSpearman": -0.170953,
+      "marketLeadLag": -6,
+      "marketLeadSpearman": 0.214801
+    },
+    {
+      "scope": "최근 3년",
+      "outcome": "absoluteReturn",
+      "label": "절대 수익률",
+      "strongestLag": -1,
+      "strongestSpearman": 0.166508,
+      "strongestN": 155,
+      "contemporaneousSpearman": 0.11763,
+      "attentionLeadLag": 4,
+      "attentionLeadSpearman": 0.070524,
+      "marketLeadLag": -1,
+      "marketLeadSpearman": 0.166508
+    },
+    {
+      "scope": "최근 3년",
+      "outcome": "volumeChange",
+      "label": "거래량 변화",
+      "strongestLag": 0,
+      "strongestSpearman": 0.239801,
+      "strongestN": 156,
+      "contemporaneousSpearman": 0.239801,
+      "attentionLeadLag": 1,
+      "attentionLeadSpearman": -0.172724,
+      "marketLeadLag": -5,
+      "marketLeadSpearman": 0.110328
+    },
+    {
+      "scope": "최근 3년",
+      "outcome": "volatility",
+      "label": "실현변동성",
+      "strongestLag": 0,
+      "strongestSpearman": 0.379327,
+      "strongestN": 156,
+      "contemporaneousSpearman": 0.379327,
+      "attentionLeadLag": 2,
+      "attentionLeadSpearman": 0.215568,
+      "marketLeadLag": -1,
+      "marketLeadSpearman": 0.152703
+    },
+    {
+      "scope": "최근 3년",
+      "outcome": "range",
+      "label": "고저 변동폭",
+      "strongestLag": 0,
+      "strongestSpearman": 0.371013,
+      "strongestN": 156,
+      "contemporaneousSpearman": 0.371013,
+      "attentionLeadLag": 4,
+      "attentionLeadSpearman": 0.22279,
+      "marketLeadLag": -1,
+      "marketLeadSpearman": 0.199758
+    },
+    {
+      "scope": "전체 기간",
+      "outcome": "return",
+      "label": "주간 수익률",
+      "strongestLag": -7,
+      "strongestSpearman": 0.156989,
+      "strongestN": 521,
+      "contemporaneousSpearman": 0.083868,
+      "attentionLeadLag": 2,
+      "attentionLeadSpearman": 0.102859,
+      "marketLeadLag": -7,
+      "marketLeadSpearman": 0.156989
+    },
+    {
+      "scope": "전체 기간",
+      "outcome": "absoluteReturn",
+      "label": "절대 수익률",
+      "strongestLag": 0,
+      "strongestSpearman": 0.203847,
+      "strongestN": 521,
+      "contemporaneousSpearman": 0.203847,
+      "attentionLeadLag": 4,
+      "attentionLeadSpearman": 0.14703,
+      "marketLeadLag": -1,
+      "marketLeadSpearman": 0.201034
+    },
+    {
+      "scope": "전체 기간",
+      "outcome": "volumeChange",
+      "label": "거래량 변화",
+      "strongestLag": 0,
+      "strongestSpearman": 0.139568,
+      "strongestN": 521,
+      "contemporaneousSpearman": 0.139568,
+      "attentionLeadLag": 1,
+      "attentionLeadSpearman": -0.098392,
+      "marketLeadLag": -7,
+      "marketLeadSpearman": 0.079183
+    },
+    {
+      "scope": "전체 기간",
+      "outcome": "volatility",
+      "label": "실현변동성",
+      "strongestLag": 0,
+      "strongestSpearman": 0.25949,
+      "strongestN": 521,
+      "contemporaneousSpearman": 0.25949,
+      "attentionLeadLag": 5,
+      "attentionLeadSpearman": 0.244817,
+      "marketLeadLag": -1,
+      "marketLeadSpearman": 0.189272
+    },
+    {
+      "scope": "전체 기간",
+      "outcome": "range",
+      "label": "고저 변동폭",
+      "strongestLag": 0,
+      "strongestSpearman": 0.307836,
+      "strongestN": 521,
+      "contemporaneousSpearman": 0.307836,
+      "attentionLeadLag": 4,
+      "attentionLeadSpearman": 0.25767,
+      "marketLeadLag": -1,
+      "marketLeadSpearman": 0.234592
+    }
+  ],
+  "events": [
+    {
+      "scope": "최근 3년",
+      "horizonWeeks": 1,
+      "events": 9,
+      "medianReturnPct": -0.343619,
+      "baselineMedianReturnPct": 0.14712,
+      "medianExcessPct": -0.490739,
+      "meanReturnPct": 0.403606,
+      "hitRatePct": 44.444444,
+      "baselineHitRatePct": 52.903226,
+      "medianMfePct": 3.177649,
+      "medianMaePct": -6.222535,
+      "ciLowPct": -0.810356,
+      "ciHighPct": 1.45055
+    },
+    {
+      "scope": "최근 3년",
+      "horizonWeeks": 2,
+      "events": 7,
+      "medianReturnPct": 0.808829,
+      "baselineMedianReturnPct": 1.648165,
+      "medianExcessPct": -0.839337,
+      "meanReturnPct": 3.222352,
+      "hitRatePct": 57.142857,
+      "baselineHitRatePct": 54.545455,
+      "medianMfePct": 6.958283,
+      "medianMaePct": -7.665551,
+      "ciLowPct": null,
+      "ciHighPct": null
+    },
+    {
+      "scope": "최근 3년",
+      "horizonWeeks": 4,
+      "events": 6,
+      "medianReturnPct": 12.176613,
+      "baselineMedianReturnPct": 1.30188,
+      "medianExcessPct": 10.874733,
+      "meanReturnPct": 9.580571,
+      "hitRatePct": 83.333333,
+      "baselineHitRatePct": 57.236842,
+      "medianMfePct": 13.968693,
+      "medianMaePct": -5.405648,
+      "ciLowPct": null,
+      "ciHighPct": null
+    },
+    {
+      "scope": "최근 3년",
+      "horizonWeeks": 8,
+      "events": 5,
+      "medianReturnPct": 5.143064,
+      "baselineMedianReturnPct": 2.711526,
+      "medianExcessPct": 2.431538,
+      "meanReturnPct": 14.195292,
+      "hitRatePct": 60,
+      "baselineHitRatePct": 54.72973,
+      "medianMfePct": 20.583904,
+      "medianMaePct": -7.665551,
+      "ciLowPct": null,
+      "ciHighPct": null
+    },
+    {
+      "scope": "전체 기간",
+      "horizonWeeks": 1,
+      "events": 33,
+      "medianReturnPct": 1.45055,
+      "baselineMedianReturnPct": 0.55019,
+      "medianExcessPct": 0.90036,
+      "meanReturnPct": 4.698579,
+      "hitRatePct": 57.575758,
+      "baselineHitRatePct": 54.423077,
+      "medianMfePct": 5.993244,
+      "medianMaePct": -6.275652,
+      "ciLowPct": -0.343619,
+      "ciHighPct": 11.850739
+    },
+    {
+      "scope": "전체 기간",
+      "horizonWeeks": 2,
+      "events": 26,
+      "medianReturnPct": 3.357504,
+      "baselineMedianReturnPct": 1.713615,
+      "medianExcessPct": 1.643889,
+      "meanReturnPct": 6.046719,
+      "hitRatePct": 61.538462,
+      "baselineHitRatePct": 56.069364,
+      "medianMfePct": 11.287601,
+      "medianMaePct": -8.44444,
+      "ciLowPct": -0.91902,
+      "ciHighPct": 7.797422
+    },
+    {
+      "scope": "전체 기간",
+      "horizonWeeks": 4,
+      "events": 20,
+      "medianReturnPct": 16.036604,
+      "baselineMedianReturnPct": 2.095038,
+      "medianExcessPct": 13.941566,
+      "meanReturnPct": 12.962818,
+      "hitRatePct": 80,
+      "baselineHitRatePct": 56.673114,
+      "medianMfePct": 26.923596,
+      "medianMaePct": -8.854057,
+      "ciLowPct": 8.479381,
+      "ciHighPct": 22.791231
+    },
+    {
+      "scope": "전체 기간",
+      "horizonWeeks": 8,
+      "events": 15,
+      "medianReturnPct": 23.221877,
+      "baselineMedianReturnPct": 5.706607,
+      "medianExcessPct": 17.51527,
+      "meanReturnPct": 22.155224,
+      "hitRatePct": 66.666667,
+      "baselineHitRatePct": 58.089669,
+      "medianMfePct": 30.304554,
+      "medianMaePct": -14.494681,
+      "ciLowPct": 5.143064,
+      "ciHighPct": 24.585718
+    }
+  ],
+  "rolling": {
+    "summary": {
+      "scope": "전체 기간",
+      "windows": 495,
+      "latestWeek": "2026-08-17",
+      "latestSpearman": -0.077363,
+      "minimumWeek": "2025-12-01",
+      "minimumSpearman": -0.407602,
+      "maximumWeek": "2023-01-09",
+      "maximumSpearman": 0.41983,
+      "positiveRatePct": 51.919192,
+      "weakRatePct": 83.030303,
+      "signChanges": 44
+    },
+    "rows": [
+      {
+        "week": "2017-02-27",
+        "pearson": -0.025368,
+        "spearman": -0.170598,
+        "observations": 26
+      },
+      {
+        "week": "2017-03-06",
+        "pearson": 0.076054,
+        "spearman": -0.045177,
+        "observations": 27
+      },
+      {
+        "week": "2017-03-13",
+        "pearson": 0.106415,
+        "spearman": 0.044335,
+        "observations": 28
+      },
+      {
+        "week": "2017-03-20",
+        "pearson": 0.054759,
+        "spearman": -0.037197,
+        "observations": 29
+      },
+      {
+        "week": "2017-03-27",
+        "pearson": 0.02487,
+        "spearman": -0.081237,
+        "observations": 30
+      },
+      {
+        "week": "2017-04-03",
+        "pearson": 0.042007,
+        "spearman": -0.01332,
+        "observations": 31
+      },
+      {
+        "week": "2017-04-10",
+        "pearson": 0.067077,
+        "spearman": 0.014676,
+        "observations": 32
+      },
+      {
+        "week": "2017-04-17",
+        "pearson": 0.044747,
+        "spearman": -0.038471,
+        "observations": 33
+      },
+      {
+        "week": "2017-04-24",
+        "pearson": 0.000934,
+        "spearman": -0.114561,
+        "observations": 34
+      },
+      {
+        "week": "2017-05-01",
+        "pearson": 0.050606,
+        "spearman": -0.084957,
+        "observations": 35
+      },
+      {
+        "week": "2017-05-08",
+        "pearson": 0.114992,
+        "spearman": -0.002061,
+        "observations": 36
+      },
+      {
+        "week": "2017-05-15",
+        "pearson": 0.124991,
+        "spearman": -0.00261,
+        "observations": 37
+      },
+      {
+        "week": "2017-05-22",
+        "pearson": 0.178232,
+        "spearman": 0.073916,
+        "observations": 38
+      },
+      {
+        "week": "2017-05-29",
+        "pearson": 0.204117,
+        "spearman": 0.089335,
+        "observations": 39
+      },
+      {
+        "week": "2017-06-05",
+        "pearson": 0.112938,
+        "spearman": 0.041303,
+        "observations": 40
+      },
+      {
+        "week": "2017-06-12",
+        "pearson": 0.105191,
+        "spearman": 0.042709,
+        "observations": 41
+      },
+      {
+        "week": "2017-06-19",
+        "pearson": 0.088832,
+        "spearman": 0.025215,
+        "observations": 42
+      },
+      {
+        "week": "2017-06-26",
+        "pearson": 0.082158,
+        "spearman": 0.025534,
+        "observations": 43
+      },
+      {
+        "week": "2017-07-03",
+        "pearson": 0.044983,
+        "spearman": 0.02087,
+        "observations": 44
+      },
+      {
+        "week": "2017-07-10",
+        "pearson": -0.083699,
+        "spearman": -0.045739,
+        "observations": 45
+      },
+      {
+        "week": "2017-07-17",
+        "pearson": -0.092074,
+        "spearman": -0.059479,
+        "observations": 46
+      },
+      {
+        "week": "2017-07-24",
+        "pearson": -0.125288,
+        "spearman": -0.114932,
+        "observations": 47
+      },
+      {
+        "week": "2017-07-31",
+        "pearson": -0.173897,
+        "spearman": -0.168821,
+        "observations": 48
+      },
+      {
+        "week": "2017-08-07",
+        "pearson": -0.176125,
+        "spearman": -0.16471,
+        "observations": 49
+      },
+      {
+        "week": "2017-08-14",
+        "pearson": -0.169421,
+        "spearman": -0.158861,
+        "observations": 50
+      },
+      {
+        "week": "2017-08-21",
+        "pearson": -0.168794,
+        "spearman": -0.161099,
+        "observations": 51
+      },
+      {
+        "week": "2017-08-28",
+        "pearson": -0.169761,
+        "spearman": -0.154795,
+        "observations": 52
+      },
+      {
+        "week": "2017-09-04",
+        "pearson": -0.199644,
+        "spearman": -0.163549,
+        "observations": 52
+      },
+      {
+        "week": "2017-09-11",
+        "pearson": -0.172207,
+        "spearman": -0.114527,
+        "observations": 52
+      },
+      {
+        "week": "2017-09-18",
+        "pearson": -0.170913,
+        "spearman": -0.114954,
+        "observations": 52
+      },
+      {
+        "week": "2017-09-25",
+        "pearson": -0.162578,
+        "spearman": -0.104108,
+        "observations": 52
+      },
+      {
+        "week": "2017-10-02",
+        "pearson": -0.204178,
+        "spearman": -0.157489,
+        "observations": 52
+      },
+      {
+        "week": "2017-10-09",
+        "pearson": -0.207289,
+        "spearman": -0.15604,
+        "observations": 52
+      },
+      {
+        "week": "2017-10-16",
+        "pearson": -0.207731,
+        "spearman": -0.147201,
+        "observations": 52
+      },
+      {
+        "week": "2017-10-23",
+        "pearson": -0.174294,
+        "spearman": -0.100228,
+        "observations": 52
+      },
+      {
+        "week": "2017-10-30",
+        "pearson": -0.203258,
+        "spearman": -0.113552,
+        "observations": 52
+      },
+      {
+        "week": "2017-11-06",
+        "pearson": -0.131798,
+        "spearman": -0.056929,
+        "observations": 52
+      },
+      {
+        "week": "2017-11-13",
+        "pearson": -0.116313,
+        "spearman": -0.052701,
+        "observations": 52
+      },
+      {
+        "week": "2017-11-20",
+        "pearson": -0.090601,
+        "spearman": -0.011574,
+        "observations": 52
+      },
+      {
+        "week": "2017-11-27",
+        "pearson": -0.032023,
+        "spearman": 0.040493,
+        "observations": 52
+      },
+      {
+        "week": "2017-12-04",
+        "pearson": -0.00546,
+        "spearman": 0.085575,
+        "observations": 52
+      },
+      {
+        "week": "2017-12-11",
+        "pearson": -0.044563,
+        "spearman": 0.067806,
+        "observations": 52
+      },
+      {
+        "week": "2017-12-18",
+        "pearson": -0.044705,
+        "spearman": 0.080848,
+        "observations": 52
+      },
+      {
+        "week": "2017-12-25",
+        "pearson": -0.056429,
+        "spearman": 0.094906,
+        "observations": 52
+      },
+      {
+        "week": "2018-01-01",
+        "pearson": -0.105846,
+        "spearman": 0.066833,
+        "observations": 52
+      },
+      {
+        "week": "2018-01-08",
+        "pearson": -0.135879,
+        "spearman": 0.016714,
+        "observations": 52
+      },
+      {
+        "week": "2018-01-15",
+        "pearson": -0.152521,
+        "spearman": 0.006285,
+        "observations": 52
+      },
+      {
+        "week": "2018-01-22",
+        "pearson": -0.160213,
+        "spearman": 0.011031,
+        "observations": 52
+      },
+      {
+        "week": "2018-01-29",
+        "pearson": -0.158392,
+        "spearman": 0.015221,
+        "observations": 52
+      },
+      {
+        "week": "2018-02-05",
+        "pearson": -0.147955,
+        "spearman": 0.005173,
+        "observations": 52
+      },
+      {
+        "week": "2018-02-12",
+        "pearson": -0.1535,
+        "spearman": -0.0059,
+        "observations": 52
+      },
+      {
+        "week": "2018-02-19",
+        "pearson": -0.152754,
+        "spearman": -0.007098,
+        "observations": 52
+      },
+      {
+        "week": "2018-02-26",
+        "pearson": -0.121234,
+        "spearman": 0.02048,
+        "observations": 52
+      },
+      {
+        "week": "2018-03-05",
+        "pearson": -0.167202,
+        "spearman": -0.005644,
+        "observations": 52
+      },
+      {
+        "week": "2018-03-12",
+        "pearson": -0.190642,
+        "spearman": -0.018852,
+        "observations": 52
+      },
+      {
+        "week": "2018-03-19",
+        "pearson": -0.114199,
+        "spearman": 0.036294,
+        "observations": 52
+      },
+      {
+        "week": "2018-03-26",
+        "pearson": -0.106495,
+        "spearman": 0.050485,
+        "observations": 52
+      },
+      {
+        "week": "2018-04-02",
+        "pearson": -0.149666,
+        "spearman": 0.005728,
+        "observations": 52
+      },
+      {
+        "week": "2018-04-09",
+        "pearson": -0.151773,
+        "spearman": -0.00949,
+        "observations": 52
+      },
+      {
+        "week": "2018-04-16",
+        "pearson": -0.150166,
+        "spearman": -0.002522,
+        "observations": 52
+      },
+      {
+        "week": "2018-04-23",
+        "pearson": -0.134912,
+        "spearman": 0.012354,
+        "observations": 52
+      },
+      {
+        "week": "2018-04-30",
+        "pearson": -0.094345,
+        "spearman": 0.038003,
+        "observations": 52
+      },
+      {
+        "week": "2018-05-07",
+        "pearson": -0.100128,
+        "spearman": 0.035046,
+        "observations": 52
+      },
+      {
+        "week": "2018-05-14",
+        "pearson": -0.096488,
+        "spearman": 0.040602,
+        "observations": 52
+      },
+      {
+        "week": "2018-05-21",
+        "pearson": -0.110205,
+        "spearman": 0.008289,
+        "observations": 52
+      },
+      {
+        "week": "2018-05-28",
+        "pearson": -0.127039,
+        "spearman": -0.006922,
+        "observations": 52
+      },
+      {
+        "week": "2018-06-04",
+        "pearson": -0.11186,
+        "spearman": 0.010511,
+        "observations": 52
+      },
+      {
+        "week": "2018-06-11",
+        "pearson": -0.108045,
+        "spearman": 0.017817,
+        "observations": 52
+      },
+      {
+        "week": "2018-06-18",
+        "pearson": -0.104303,
+        "spearman": 0.006366,
+        "observations": 52
+      },
+      {
+        "week": "2018-06-25",
+        "pearson": -0.104582,
+        "spearman": -0.009571,
+        "observations": 52
+      },
+      {
+        "week": "2018-07-02",
+        "pearson": -0.079704,
+        "spearman": 0.015681,
+        "observations": 52
+      },
+      {
+        "week": "2018-07-09",
+        "pearson": -0.03952,
+        "spearman": 0.029825,
+        "observations": 52
+      },
+      {
+        "week": "2018-07-16",
+        "pearson": -0.035596,
+        "spearman": 0.031913,
+        "observations": 52
+      },
+      {
+        "week": "2018-07-23",
+        "pearson": 0.037971,
+        "spearman": 0.08467,
+        "observations": 52
+      },
+      {
+        "week": "2018-07-30",
+        "pearson": 0.10585,
+        "spearman": 0.133923,
+        "observations": 52
+      },
+      {
+        "week": "2018-08-06",
+        "pearson": 0.10598,
+        "spearman": 0.131479,
+        "observations": 52
+      },
+      {
+        "week": "2018-08-13",
+        "pearson": 0.093519,
+        "spearman": 0.099699,
+        "observations": 52
+      },
+      {
+        "week": "2018-08-20",
+        "pearson": 0.083177,
+        "spearman": 0.089148,
+        "observations": 52
+      },
+      {
+        "week": "2018-08-27",
+        "pearson": 0.113212,
+        "spearman": 0.11764,
+        "observations": 52
+      },
+      {
+        "week": "2018-09-03",
+        "pearson": 0.130124,
+        "spearman": 0.131989,
+        "observations": 52
+      },
+      {
+        "week": "2018-09-10",
+        "pearson": 0.125175,
+        "spearman": 0.120924,
+        "observations": 52
+      },
+      {
+        "week": "2018-09-17",
+        "pearson": 0.128416,
+        "spearman": 0.13015,
+        "observations": 52
+      },
+      {
+        "week": "2018-09-24",
+        "pearson": 0.126846,
+        "spearman": 0.123916,
+        "observations": 52
+      },
+      {
+        "week": "2018-10-01",
+        "pearson": 0.173204,
+        "spearman": 0.160227,
+        "observations": 52
+      },
+      {
+        "week": "2018-10-08",
+        "pearson": 0.162876,
+        "spearman": 0.132804,
+        "observations": 52
+      },
+      {
+        "week": "2018-10-15",
+        "pearson": 0.162751,
+        "spearman": 0.13828,
+        "observations": 52
+      },
+      {
+        "week": "2018-10-22",
+        "pearson": 0.135144,
+        "spearman": 0.095606,
+        "observations": 52
+      },
+      {
+        "week": "2018-10-29",
+        "pearson": 0.164232,
+        "spearman": 0.133388,
+        "observations": 52
+      },
+      {
+        "week": "2018-11-05",
+        "pearson": 0.123221,
+        "spearman": 0.091764,
+        "observations": 52
+      },
+      {
+        "week": "2018-11-12",
+        "pearson": 0.15939,
+        "spearman": 0.116675,
+        "observations": 52
+      },
+      {
+        "week": "2018-11-19",
+        "pearson": 0.111357,
+        "spearman": 0.05263,
+        "observations": 52
+      },
+      {
+        "week": "2018-11-26",
+        "pearson": 0.052096,
+        "spearman": 0.004314,
+        "observations": 52
+      },
+      {
+        "week": "2018-12-03",
+        "pearson": -0.018238,
+        "spearman": -0.051901,
+        "observations": 52
+      },
+      {
+        "week": "2018-12-10",
+        "pearson": 0.06146,
+        "spearman": 0.008457,
+        "observations": 52
+      },
+      {
+        "week": "2018-12-17",
+        "pearson": 0.056704,
+        "spearman": -0.000982,
+        "observations": 52
+      },
+      {
+        "week": "2018-12-24",
+        "pearson": -0.000243,
+        "spearman": -0.04677,
+        "observations": 52
+      },
+      {
+        "week": "2018-12-31",
+        "pearson": 0.021381,
+        "spearman": -0.031009,
+        "observations": 52
+      },
+      {
+        "week": "2019-01-07",
+        "pearson": 0.067901,
+        "spearman": 0.02157,
+        "observations": 52
+      },
+      {
+        "week": "2019-01-14",
+        "pearson": 0.059988,
+        "spearman": 0.015847,
+        "observations": 52
+      },
+      {
+        "week": "2019-01-21",
+        "pearson": 0.154997,
+        "spearman": 0.075348,
+        "observations": 52
+      },
+      {
+        "week": "2019-01-28",
+        "pearson": 0.13851,
+        "spearman": 0.060141,
+        "observations": 52
+      },
+      {
+        "week": "2019-02-04",
+        "pearson": 0.060651,
+        "spearman": 0.007304,
+        "observations": 52
+      },
+      {
+        "week": "2019-02-11",
+        "pearson": 0.074607,
+        "spearman": 0.037077,
+        "observations": 52
+      },
+      {
+        "week": "2019-02-18",
+        "pearson": 0.01661,
+        "spearman": -0.008543,
+        "observations": 52
+      },
+      {
+        "week": "2019-02-25",
+        "pearson": 0.042109,
+        "spearman": 0.008928,
+        "observations": 52
+      },
+      {
+        "week": "2019-03-04",
+        "pearson": 0.082285,
+        "spearman": 0.049807,
+        "observations": 52
+      },
+      {
+        "week": "2019-03-11",
+        "pearson": 0.070444,
+        "spearman": 0.034045,
+        "observations": 52
+      },
+      {
+        "week": "2019-03-18",
+        "pearson": 0.069508,
+        "spearman": 0.038017,
+        "observations": 52
+      },
+      {
+        "week": "2019-03-25",
+        "pearson": -0.003536,
+        "spearman": -0.009269,
+        "observations": 52
+      },
+      {
+        "week": "2019-04-01",
+        "pearson": 0.011826,
+        "spearman": -0.023493,
+        "observations": 52
+      },
+      {
+        "week": "2019-04-08",
+        "pearson": -0.010042,
+        "spearman": -0.058904,
+        "observations": 52
+      },
+      {
+        "week": "2019-04-15",
+        "pearson": -0.032336,
+        "spearman": -0.0944,
+        "observations": 52
+      },
+      {
+        "week": "2019-04-22",
+        "pearson": -0.062153,
+        "spearman": -0.126223,
+        "observations": 52
+      },
+      {
+        "week": "2019-04-29",
+        "pearson": -0.0558,
+        "spearman": -0.114944,
+        "observations": 52
+      },
+      {
+        "week": "2019-05-06",
+        "pearson": -0.039501,
+        "spearman": -0.083075,
+        "observations": 52
+      },
+      {
+        "week": "2019-05-13",
+        "pearson": 0.024331,
+        "spearman": -0.00803,
+        "observations": 52
+      },
+      {
+        "week": "2019-05-20",
+        "pearson": 0.029829,
+        "spearman": -0.010506,
+        "observations": 52
+      },
+      {
+        "week": "2019-05-27",
+        "pearson": 0.023369,
+        "spearman": -0.012812,
+        "observations": 52
+      },
+      {
+        "week": "2019-06-03",
+        "pearson": 0.079808,
+        "spearman": 0.050521,
+        "observations": 52
+      },
+      {
+        "week": "2019-06-10",
+        "pearson": 0.137605,
+        "spearman": 0.113896,
+        "observations": 52
+      },
+      {
+        "week": "2019-06-17",
+        "pearson": 0.128706,
+        "spearman": 0.086266,
+        "observations": 52
+      },
+      {
+        "week": "2019-06-24",
+        "pearson": 0.153969,
+        "spearman": 0.136266,
+        "observations": 52
+      },
+      {
+        "week": "2019-07-01",
+        "pearson": 0.165107,
+        "spearman": 0.144843,
+        "observations": 52
+      },
+      {
+        "week": "2019-07-08",
+        "pearson": 0.187008,
+        "spearman": 0.160169,
+        "observations": 52
+      },
+      {
+        "week": "2019-07-15",
+        "pearson": 0.181157,
+        "spearman": 0.14215,
+        "observations": 52
+      },
+      {
+        "week": "2019-07-22",
+        "pearson": 0.127424,
+        "spearman": 0.07609,
+        "observations": 52
+      },
+      {
+        "week": "2019-07-29",
+        "pearson": 0.10902,
+        "spearman": 0.055808,
+        "observations": 52
+      },
+      {
+        "week": "2019-08-05",
+        "pearson": 0.096122,
+        "spearman": 0.033647,
+        "observations": 52
+      },
+      {
+        "week": "2019-08-12",
+        "pearson": 0.106098,
+        "spearman": 0.055292,
+        "observations": 52
+      },
+      {
+        "week": "2019-08-19",
+        "pearson": 0.113062,
+        "spearman": 0.053628,
+        "observations": 52
+      },
+      {
+        "week": "2019-08-26",
+        "pearson": 0.101299,
+        "spearman": 0.053241,
+        "observations": 52
+      },
+      {
+        "week": "2019-09-02",
+        "pearson": 0.101373,
+        "spearman": 0.044745,
+        "observations": 52
+      },
+      {
+        "week": "2019-09-09",
+        "pearson": 0.106237,
+        "spearman": 0.03958,
+        "observations": 52
+      },
+      {
+        "week": "2019-09-16",
+        "pearson": 0.123467,
+        "spearman": 0.045431,
+        "observations": 52
+      },
+      {
+        "week": "2019-09-23",
+        "pearson": 0.100742,
+        "spearman": 0.016524,
+        "observations": 52
+      },
+      {
+        "week": "2019-09-30",
+        "pearson": 0.098271,
+        "spearman": 0.025446,
+        "observations": 52
+      },
+      {
+        "week": "2019-10-07",
+        "pearson": 0.104079,
+        "spearman": 0.032535,
+        "observations": 52
+      },
+      {
+        "week": "2019-10-14",
+        "pearson": 0.082343,
+        "spearman": 0.026556,
+        "observations": 52
+      },
+      {
+        "week": "2019-10-21",
+        "pearson": 0.068974,
+        "spearman": 0.000683,
+        "observations": 52
+      },
+      {
+        "week": "2019-10-28",
+        "pearson": 0.059069,
+        "spearman": -0.02472,
+        "observations": 52
+      },
+      {
+        "week": "2019-11-04",
+        "pearson": 0.028389,
+        "spearman": -0.062931,
+        "observations": 52
+      },
+      {
+        "week": "2019-11-11",
+        "pearson": -0.102636,
+        "spearman": -0.165268,
+        "observations": 52
+      },
+      {
+        "week": "2019-11-18",
+        "pearson": -0.076245,
+        "spearman": -0.116258,
+        "observations": 52
+      },
+      {
+        "week": "2019-11-25",
+        "pearson": -0.096398,
+        "spearman": -0.1324,
+        "observations": 52
+      },
+      {
+        "week": "2019-12-02",
+        "pearson": -0.116293,
+        "spearman": -0.1663,
+        "observations": 52
+      },
+      {
+        "week": "2019-12-09",
+        "pearson": -0.127371,
+        "spearman": -0.152634,
+        "observations": 52
+      },
+      {
+        "week": "2019-12-16",
+        "pearson": -0.116139,
+        "spearman": -0.132576,
+        "observations": 52
+      },
+      {
+        "week": "2019-12-23",
+        "pearson": -0.114564,
+        "spearman": -0.144321,
+        "observations": 52
+      },
+      {
+        "week": "2019-12-30",
+        "pearson": -0.102252,
+        "spearman": -0.116441,
+        "observations": 52
+      },
+      {
+        "week": "2020-01-06",
+        "pearson": -0.089304,
+        "spearman": -0.094026,
+        "observations": 52
+      },
+      {
+        "week": "2020-01-13",
+        "pearson": -0.088762,
+        "spearman": -0.093898,
+        "observations": 52
+      },
+      {
+        "week": "2020-01-20",
+        "pearson": -0.093144,
+        "spearman": -0.099278,
+        "observations": 52
+      },
+      {
+        "week": "2020-01-27",
+        "pearson": -0.092838,
+        "spearman": -0.074469,
+        "observations": 52
+      },
+      {
+        "week": "2020-02-03",
+        "pearson": -0.097045,
+        "spearman": -0.09074,
+        "observations": 52
+      },
+      {
+        "week": "2020-02-10",
+        "pearson": -0.097329,
+        "spearman": -0.098471,
+        "observations": 52
+      },
+      {
+        "week": "2020-02-17",
+        "pearson": -0.069209,
+        "spearman": -0.083186,
+        "observations": 52
+      },
+      {
+        "week": "2020-02-24",
+        "pearson": -0.071539,
+        "spearman": -0.091348,
+        "observations": 52
+      },
+      {
+        "week": "2020-03-02",
+        "pearson": -0.073946,
+        "spearman": -0.094935,
+        "observations": 52
+      },
+      {
+        "week": "2020-03-09",
+        "pearson": -0.086651,
+        "spearman": -0.110487,
+        "observations": 52
+      },
+      {
+        "week": "2020-03-16",
+        "pearson": -0.088443,
+        "spearman": -0.107922,
+        "observations": 52
+      },
+      {
+        "week": "2020-03-23",
+        "pearson": 0.011347,
+        "spearman": -0.014734,
+        "observations": 52
+      },
+      {
+        "week": "2020-03-30",
+        "pearson": 0.016256,
+        "spearman": -0.003929,
+        "observations": 52
+      },
+      {
+        "week": "2020-04-06",
+        "pearson": 0.024556,
+        "spearman": 0.013496,
+        "observations": 52
+      },
+      {
+        "week": "2020-04-13",
+        "pearson": 0.018833,
+        "spearman": -0.00709,
+        "observations": 52
+      },
+      {
+        "week": "2020-04-20",
+        "pearson": 0.053923,
+        "spearman": 0.043265,
+        "observations": 52
+      },
+      {
+        "week": "2020-04-27",
+        "pearson": 0.069289,
+        "spearman": 0.063678,
+        "observations": 52
+      },
+      {
+        "week": "2020-05-04",
+        "pearson": 0.056986,
+        "spearman": 0.05138,
+        "observations": 52
+      },
+      {
+        "week": "2020-05-11",
+        "pearson": 0.049168,
+        "spearman": 0.048304,
+        "observations": 52
+      },
+      {
+        "week": "2020-05-18",
+        "pearson": 0.030817,
+        "spearman": 0.020501,
+        "observations": 52
+      },
+      {
+        "week": "2020-05-25",
+        "pearson": 0.075304,
+        "spearman": 0.063337,
+        "observations": 52
+      },
+      {
+        "week": "2020-06-01",
+        "pearson": 0.049343,
+        "spearman": 0.032671,
+        "observations": 52
+      },
+      {
+        "week": "2020-06-08",
+        "pearson": 0.029664,
+        "spearman": 0.02366,
+        "observations": 52
+      },
+      {
+        "week": "2020-06-15",
+        "pearson": 0.035227,
+        "spearman": 0.031776,
+        "observations": 52
+      },
+      {
+        "week": "2020-06-22",
+        "pearson": 0.013163,
+        "spearman": 0.020158,
+        "observations": 52
+      },
+      {
+        "week": "2020-06-29",
+        "pearson": -0.014238,
+        "spearman": -0.025369,
+        "observations": 52
+      },
+      {
+        "week": "2020-07-06",
+        "pearson": -0.014779,
+        "spearman": -0.011702,
+        "observations": 52
+      },
+      {
+        "week": "2020-07-13",
+        "pearson": -0.047465,
+        "spearman": -0.073508,
+        "observations": 52
+      },
+      {
+        "week": "2020-07-20",
+        "pearson": 0.01732,
+        "spearman": 0.004699,
+        "observations": 52
+      },
+      {
+        "week": "2020-07-27",
+        "pearson": 0.042129,
+        "spearman": 0.034172,
+        "observations": 52
+      },
+      {
+        "week": "2020-08-03",
+        "pearson": 0.031137,
+        "spearman": 0.009738,
+        "observations": 52
+      },
+      {
+        "week": "2020-08-10",
+        "pearson": 0.032453,
+        "spearman": 0.014223,
+        "observations": 52
+      },
+      {
+        "week": "2020-08-17",
+        "pearson": 0.019987,
+        "spearman": -0.016401,
+        "observations": 52
+      },
+      {
+        "week": "2020-08-24",
+        "pearson": 0.058157,
+        "spearman": 0.038315,
+        "observations": 52
+      },
+      {
+        "week": "2020-08-31",
+        "pearson": 0.053409,
+        "spearman": 0.026355,
+        "observations": 52
+      },
+      {
+        "week": "2020-09-07",
+        "pearson": 0.054634,
+        "spearman": 0.014266,
+        "observations": 52
+      },
+      {
+        "week": "2020-09-14",
+        "pearson": -0.002322,
+        "spearman": -0.022166,
+        "observations": 52
+      },
+      {
+        "week": "2020-09-21",
+        "pearson": 0.012728,
+        "spearman": 0.021141,
+        "observations": 52
+      },
+      {
+        "week": "2020-09-28",
+        "pearson": 0.007234,
+        "spearman": 0.003246,
+        "observations": 52
+      },
+      {
+        "week": "2020-10-05",
+        "pearson": 0.001939,
+        "spearman": -0.008798,
+        "observations": 52
+      },
+      {
+        "week": "2020-10-12",
+        "pearson": 0.053095,
+        "spearman": 0.031303,
+        "observations": 52
+      },
+      {
+        "week": "2020-10-19",
+        "pearson": 0.068529,
+        "spearman": 0.056503,
+        "observations": 52
+      },
+      {
+        "week": "2020-10-26",
+        "pearson": 0.077047,
+        "spearman": 0.071537,
+        "observations": 52
+      },
+      {
+        "week": "2020-11-02",
+        "pearson": 0.08066,
+        "spearman": 0.080974,
+        "observations": 52
+      },
+      {
+        "week": "2020-11-09",
+        "pearson": 0.086976,
+        "spearman": 0.064147,
+        "observations": 52
+      },
+      {
+        "week": "2020-11-16",
+        "pearson": 0.059277,
+        "spearman": 0.024471,
+        "observations": 52
+      },
+      {
+        "week": "2020-11-23",
+        "pearson": 0.074182,
+        "spearman": 0.036174,
+        "observations": 52
+      },
+      {
+        "week": "2020-11-30",
+        "pearson": 0.111108,
+        "spearman": 0.089517,
+        "observations": 52
+      },
+      {
+        "week": "2020-12-07",
+        "pearson": 0.157974,
+        "spearman": 0.126628,
+        "observations": 52
+      },
+      {
+        "week": "2020-12-14",
+        "pearson": 0.176838,
+        "spearman": 0.148067,
+        "observations": 52
+      },
+      {
+        "week": "2020-12-21",
+        "pearson": 0.185851,
+        "spearman": 0.161609,
+        "observations": 52
+      },
+      {
+        "week": "2020-12-28",
+        "pearson": 0.242913,
+        "spearman": 0.226479,
+        "observations": 52
+      },
+      {
+        "week": "2021-01-04",
+        "pearson": 0.199642,
+        "spearman": 0.168524,
+        "observations": 52
+      },
+      {
+        "week": "2021-01-11",
+        "pearson": 0.151477,
+        "spearman": 0.116338,
+        "observations": 52
+      },
+      {
+        "week": "2021-01-18",
+        "pearson": 0.152262,
+        "spearman": 0.119192,
+        "observations": 52
+      },
+      {
+        "week": "2021-01-25",
+        "pearson": 0.189653,
+        "spearman": 0.159976,
+        "observations": 52
+      },
+      {
+        "week": "2021-02-01",
+        "pearson": 0.181574,
+        "spearman": 0.171037,
+        "observations": 52
+      },
+      {
+        "week": "2021-02-08",
+        "pearson": 0.207718,
+        "spearman": 0.199987,
+        "observations": 52
+      },
+      {
+        "week": "2021-02-15",
+        "pearson": 0.094609,
+        "spearman": 0.116293,
+        "observations": 52
+      },
+      {
+        "week": "2021-02-22",
+        "pearson": 0.104672,
+        "spearman": 0.133291,
+        "observations": 52
+      },
+      {
+        "week": "2021-03-01",
+        "pearson": 0.119163,
+        "spearman": 0.147729,
+        "observations": 52
+      },
+      {
+        "week": "2021-03-08",
+        "pearson": 0.114181,
+        "spearman": 0.117534,
+        "observations": 52
+      },
+      {
+        "week": "2021-03-15",
+        "pearson": 0.103101,
+        "spearman": 0.080465,
+        "observations": 52
+      },
+      {
+        "week": "2021-03-22",
+        "pearson": 0.080588,
+        "spearman": 0.058512,
+        "observations": 52
+      },
+      {
+        "week": "2021-03-29",
+        "pearson": 0.079159,
+        "spearman": 0.054796,
+        "observations": 52
+      },
+      {
+        "week": "2021-04-05",
+        "pearson": 0.052116,
+        "spearman": 0.003417,
+        "observations": 52
+      },
+      {
+        "week": "2021-04-12",
+        "pearson": 0.013558,
+        "spearman": -0.054772,
+        "observations": 52
+      },
+      {
+        "week": "2021-04-19",
+        "pearson": 0.036162,
+        "spearman": -0.026662,
+        "observations": 52
+      },
+      {
+        "week": "2021-04-26",
+        "pearson": 0.026614,
+        "spearman": -0.036959,
+        "observations": 52
+      },
+      {
+        "week": "2021-05-03",
+        "pearson": 0.010127,
+        "spearman": -0.054176,
+        "observations": 52
+      },
+      {
+        "week": "2021-05-10",
+        "pearson": -0.045314,
+        "spearman": -0.09934,
+        "observations": 52
+      },
+      {
+        "week": "2021-05-17",
+        "pearson": -0.031165,
+        "spearman": -0.092418,
+        "observations": 52
+      },
+      {
+        "week": "2021-05-24",
+        "pearson": -0.031993,
+        "spearman": -0.094597,
+        "observations": 52
+      },
+      {
+        "week": "2021-05-31",
+        "pearson": -0.02837,
+        "spearman": -0.08135,
+        "observations": 52
+      },
+      {
+        "week": "2021-06-07",
+        "pearson": -0.028066,
+        "spearman": -0.080585,
+        "observations": 52
+      },
+      {
+        "week": "2021-06-14",
+        "pearson": -0.043856,
+        "spearman": -0.099641,
+        "observations": 52
+      },
+      {
+        "week": "2021-06-21",
+        "pearson": -0.039983,
+        "spearman": -0.086096,
+        "observations": 52
+      },
+      {
+        "week": "2021-06-28",
+        "pearson": -0.037247,
+        "spearman": -0.088577,
+        "observations": 52
+      },
+      {
+        "week": "2021-07-05",
+        "pearson": -0.033027,
+        "spearman": -0.078322,
+        "observations": 52
+      },
+      {
+        "week": "2021-07-12",
+        "pearson": -0.042131,
+        "spearman": -0.082466,
+        "observations": 52
+      },
+      {
+        "week": "2021-07-19",
+        "pearson": -0.052954,
+        "spearman": -0.102463,
+        "observations": 52
+      },
+      {
+        "week": "2021-07-26",
+        "pearson": -0.064629,
+        "spearman": -0.113017,
+        "observations": 52
+      },
+      {
+        "week": "2021-08-02",
+        "pearson": -0.076098,
+        "spearman": -0.125059,
+        "observations": 52
+      },
+      {
+        "week": "2021-08-09",
+        "pearson": -0.098011,
+        "spearman": -0.140773,
+        "observations": 52
+      },
+      {
+        "week": "2021-08-16",
+        "pearson": -0.10134,
+        "spearman": -0.140044,
+        "observations": 52
+      },
+      {
+        "week": "2021-08-23",
+        "pearson": -0.172541,
+        "spearman": -0.186568,
+        "observations": 52
+      },
+      {
+        "week": "2021-08-30",
+        "pearson": -0.163755,
+        "spearman": -0.170462,
+        "observations": 52
+      },
+      {
+        "week": "2021-09-06",
+        "pearson": -0.165209,
+        "spearman": -0.169949,
+        "observations": 52
+      },
+      {
+        "week": "2021-09-13",
+        "pearson": -0.155602,
+        "spearman": -0.152604,
+        "observations": 52
+      },
+      {
+        "week": "2021-09-20",
+        "pearson": -0.177479,
+        "spearman": -0.171316,
+        "observations": 52
+      },
+      {
+        "week": "2021-09-27",
+        "pearson": -0.170893,
+        "spearman": -0.155512,
+        "observations": 52
+      },
+      {
+        "week": "2021-10-04",
+        "pearson": -0.201472,
+        "spearman": -0.180459,
+        "observations": 52
+      },
+      {
+        "week": "2021-10-11",
+        "pearson": -0.183737,
+        "spearman": -0.159945,
+        "observations": 52
+      },
+      {
+        "week": "2021-10-18",
+        "pearson": -0.185623,
+        "spearman": -0.160842,
+        "observations": 52
+      },
+      {
+        "week": "2021-10-25",
+        "pearson": -0.166732,
+        "spearman": -0.156653,
+        "observations": 52
+      },
+      {
+        "week": "2021-11-01",
+        "pearson": -0.172096,
+        "spearman": -0.157934,
+        "observations": 52
+      },
+      {
+        "week": "2021-11-08",
+        "pearson": -0.097765,
+        "spearman": -0.091633,
+        "observations": 52
+      },
+      {
+        "week": "2021-11-15",
+        "pearson": -0.074592,
+        "spearman": -0.063866,
+        "observations": 52
+      },
+      {
+        "week": "2021-11-22",
+        "pearson": -0.004781,
+        "spearman": -0.02422,
+        "observations": 52
+      },
+      {
+        "week": "2021-11-29",
+        "pearson": -0.010351,
+        "spearman": -0.03003,
+        "observations": 52
+      },
+      {
+        "week": "2021-12-06",
+        "pearson": -0.026945,
+        "spearman": -0.027338,
+        "observations": 52
+      },
+      {
+        "week": "2021-12-13",
+        "pearson": -0.072834,
+        "spearman": -0.072484,
+        "observations": 52
+      },
+      {
+        "week": "2021-12-20",
+        "pearson": -0.025257,
+        "spearman": -0.028959,
+        "observations": 52
+      },
+      {
+        "week": "2021-12-27",
+        "pearson": -0.00381,
+        "spearman": -0.031387,
+        "observations": 52
+      },
+      {
+        "week": "2022-01-03",
+        "pearson": 0.006451,
+        "spearman": -0.011528,
+        "observations": 52
+      },
+      {
+        "week": "2022-01-10",
+        "pearson": 0.07888,
+        "spearman": 0.06302,
+        "observations": 52
+      },
+      {
+        "week": "2022-01-17",
+        "pearson": 0.077493,
+        "spearman": 0.065881,
+        "observations": 52
+      },
+      {
+        "week": "2022-01-24",
+        "pearson": 0.06304,
+        "spearman": 0.058836,
+        "observations": 52
+      },
+      {
+        "week": "2022-01-31",
+        "pearson": 0.079666,
+        "spearman": 0.080142,
+        "observations": 52
+      },
+      {
+        "week": "2022-02-07",
+        "pearson": 0.067848,
+        "spearman": 0.075146,
+        "observations": 52
+      },
+      {
+        "week": "2022-02-14",
+        "pearson": 0.140371,
+        "spearman": 0.14559,
+        "observations": 52
+      },
+      {
+        "week": "2022-02-21",
+        "pearson": 0.105587,
+        "spearman": 0.111989,
+        "observations": 52
+      },
+      {
+        "week": "2022-02-28",
+        "pearson": 0.063254,
+        "spearman": 0.07792,
+        "observations": 52
+      },
+      {
+        "week": "2022-03-07",
+        "pearson": 0.039092,
+        "spearman": 0.071686,
+        "observations": 52
+      },
+      {
+        "week": "2022-03-14",
+        "pearson": 0.006827,
+        "spearman": 0.055119,
+        "observations": 52
+      },
+      {
+        "week": "2022-03-21",
+        "pearson": 0.000116,
+        "spearman": 0.056827,
+        "observations": 52
+      },
+      {
+        "week": "2022-03-28",
+        "pearson": 0.018934,
+        "spearman": 0.081376,
+        "observations": 52
+      },
+      {
+        "week": "2022-04-04",
+        "pearson": 0.056122,
+        "spearman": 0.121464,
+        "observations": 52
+      },
+      {
+        "week": "2022-04-11",
+        "pearson": 0.112855,
+        "spearman": 0.185932,
+        "observations": 52
+      },
+      {
+        "week": "2022-04-18",
+        "pearson": 0.057862,
+        "spearman": 0.155235,
+        "observations": 52
+      },
+      {
+        "week": "2022-04-25",
+        "pearson": 0.075267,
+        "spearman": 0.182004,
+        "observations": 52
+      },
+      {
+        "week": "2022-05-02",
+        "pearson": 0.171335,
+        "spearman": 0.258299,
+        "observations": 52
+      },
+      {
+        "week": "2022-05-09",
+        "pearson": 0.30273,
+        "spearman": 0.3103,
+        "observations": 52
+      },
+      {
+        "week": "2022-05-16",
+        "pearson": 0.290146,
+        "spearman": 0.287306,
+        "observations": 52
+      },
+      {
+        "week": "2022-05-23",
+        "pearson": 0.295441,
+        "spearman": 0.286324,
+        "observations": 52
+      },
+      {
+        "week": "2022-05-30",
+        "pearson": 0.307774,
+        "spearman": 0.308582,
+        "observations": 52
+      },
+      {
+        "week": "2022-06-06",
+        "pearson": 0.343031,
+        "spearman": 0.339624,
+        "observations": 52
+      },
+      {
+        "week": "2022-06-13",
+        "pearson": 0.351306,
+        "spearman": 0.359584,
+        "observations": 52
+      },
+      {
+        "week": "2022-06-20",
+        "pearson": 0.356151,
+        "spearman": 0.365639,
+        "observations": 52
+      },
+      {
+        "week": "2022-06-27",
+        "pearson": 0.338957,
+        "spearman": 0.35429,
+        "observations": 52
+      },
+      {
+        "week": "2022-07-04",
+        "pearson": 0.359443,
+        "spearman": 0.376201,
+        "observations": 52
+      },
+      {
+        "week": "2022-07-11",
+        "pearson": 0.374592,
+        "spearman": 0.390197,
+        "observations": 52
+      },
+      {
+        "week": "2022-07-18",
+        "pearson": 0.361622,
+        "spearman": 0.378114,
+        "observations": 52
+      },
+      {
+        "week": "2022-07-25",
+        "pearson": 0.357723,
+        "spearman": 0.373041,
+        "observations": 52
+      },
+      {
+        "week": "2022-08-01",
+        "pearson": 0.334571,
+        "spearman": 0.345424,
+        "observations": 52
+      },
+      {
+        "week": "2022-08-08",
+        "pearson": 0.340925,
+        "spearman": 0.356568,
+        "observations": 52
+      },
+      {
+        "week": "2022-08-15",
+        "pearson": 0.353753,
+        "spearman": 0.378856,
+        "observations": 52
+      },
+      {
+        "week": "2022-08-22",
+        "pearson": 0.350899,
+        "spearman": 0.376943,
+        "observations": 52
+      },
+      {
+        "week": "2022-08-29",
+        "pearson": 0.338536,
+        "spearman": 0.35708,
+        "observations": 52
+      },
+      {
+        "week": "2022-09-05",
+        "pearson": 0.347393,
+        "spearman": 0.372118,
+        "observations": 52
+      },
+      {
+        "week": "2022-09-12",
+        "pearson": 0.374624,
+        "spearman": 0.405303,
+        "observations": 52
+      },
+      {
+        "week": "2022-09-19",
+        "pearson": 0.354121,
+        "spearman": 0.382843,
+        "observations": 52
+      },
+      {
+        "week": "2022-09-26",
+        "pearson": 0.314335,
+        "spearman": 0.359025,
+        "observations": 52
+      },
+      {
+        "week": "2022-10-03",
+        "pearson": 0.282321,
+        "spearman": 0.341902,
+        "observations": 52
+      },
+      {
+        "week": "2022-10-10",
+        "pearson": 0.286692,
+        "spearman": 0.347837,
+        "observations": 52
+      },
+      {
+        "week": "2022-10-17",
+        "pearson": 0.279665,
+        "spearman": 0.342414,
+        "observations": 52
+      },
+      {
+        "week": "2022-10-24",
+        "pearson": 0.287956,
+        "spearman": 0.359623,
+        "observations": 52
+      },
+      {
+        "week": "2022-10-31",
+        "pearson": 0.274004,
+        "spearman": 0.331825,
+        "observations": 52
+      },
+      {
+        "week": "2022-11-07",
+        "pearson": 0.296323,
+        "spearman": 0.359545,
+        "observations": 52
+      },
+      {
+        "week": "2022-11-14",
+        "pearson": 0.299223,
+        "spearman": 0.370861,
+        "observations": 52
+      },
+      {
+        "week": "2022-11-21",
+        "pearson": 0.282256,
+        "spearman": 0.354541,
+        "observations": 52
+      },
+      {
+        "week": "2022-11-28",
+        "pearson": 0.278907,
+        "spearman": 0.353466,
+        "observations": 52
+      },
+      {
+        "week": "2022-12-05",
+        "pearson": 0.294523,
+        "spearman": 0.360981,
+        "observations": 52
+      },
+      {
+        "week": "2022-12-12",
+        "pearson": 0.31801,
+        "spearman": 0.394372,
+        "observations": 52
+      },
+      {
+        "week": "2022-12-19",
+        "pearson": 0.30625,
+        "spearman": 0.382032,
+        "observations": 52
+      },
+      {
+        "week": "2022-12-26",
+        "pearson": 0.290989,
+        "spearman": 0.364867,
+        "observations": 52
+      },
+      {
+        "week": "2023-01-02",
+        "pearson": 0.309901,
+        "spearman": 0.400393,
+        "observations": 52
+      },
+      {
+        "week": "2023-01-09",
+        "pearson": 0.313848,
+        "spearman": 0.41983,
+        "observations": 52
+      },
+      {
+        "week": "2023-01-16",
+        "pearson": 0.28953,
+        "spearman": 0.387299,
+        "observations": 52
+      },
+      {
+        "week": "2023-01-23",
+        "pearson": 0.227022,
+        "spearman": 0.322834,
+        "observations": 52
+      },
+      {
+        "week": "2023-01-30",
+        "pearson": 0.226528,
+        "spearman": 0.317069,
+        "observations": 52
+      },
+      {
+        "week": "2023-02-06",
+        "pearson": 0.209126,
+        "spearman": 0.290754,
+        "observations": 52
+      },
+      {
+        "week": "2023-02-13",
+        "pearson": 0.200173,
+        "spearman": 0.261835,
+        "observations": 52
+      },
+      {
+        "week": "2023-02-20",
+        "pearson": 0.191989,
+        "spearman": 0.250219,
+        "observations": 52
+      },
+      {
+        "week": "2023-02-27",
+        "pearson": 0.192911,
+        "spearman": 0.252141,
+        "observations": 52
+      },
+      {
+        "week": "2023-03-06",
+        "pearson": 0.144082,
+        "spearman": 0.251174,
+        "observations": 52
+      },
+      {
+        "week": "2023-03-13",
+        "pearson": 0.176582,
+        "spearman": 0.2835,
+        "observations": 52
+      },
+      {
+        "week": "2023-03-20",
+        "pearson": 0.178439,
+        "spearman": 0.283793,
+        "observations": 52
+      },
+      {
+        "week": "2023-03-27",
+        "pearson": 0.156888,
+        "spearman": 0.248986,
+        "observations": 52
+      },
+      {
+        "week": "2023-04-03",
+        "pearson": 0.147438,
+        "spearman": 0.226995,
+        "observations": 52
+      },
+      {
+        "week": "2023-04-10",
+        "pearson": 0.10118,
+        "spearman": 0.186601,
+        "observations": 52
+      },
+      {
+        "week": "2023-04-17",
+        "pearson": 0.109954,
+        "spearman": 0.190102,
+        "observations": 52
+      },
+      {
+        "week": "2023-04-24",
+        "pearson": 0.08293,
+        "spearman": 0.153035,
+        "observations": 52
+      },
+      {
+        "week": "2023-05-01",
+        "pearson": 0.096163,
+        "spearman": 0.177078,
+        "observations": 52
+      },
+      {
+        "week": "2023-05-08",
+        "pearson": 0.104902,
+        "spearman": 0.195824,
+        "observations": 52
+      },
+      {
+        "week": "2023-05-15",
+        "pearson": 0.134974,
+        "spearman": 0.246152,
+        "observations": 52
+      },
+      {
+        "week": "2023-05-22",
+        "pearson": 0.13308,
+        "spearman": 0.23757,
+        "observations": 52
+      },
+      {
+        "week": "2023-05-29",
+        "pearson": 0.073056,
+        "spearman": 0.161611,
+        "observations": 52
+      },
+      {
+        "week": "2023-06-05",
+        "pearson": 0.042085,
+        "spearman": 0.144745,
+        "observations": 52
+      },
+      {
+        "week": "2023-06-12",
+        "pearson": 0.032661,
+        "spearman": 0.130017,
+        "observations": 52
+      },
+      {
+        "week": "2023-06-19",
+        "pearson": 0.021196,
+        "spearman": 0.11461,
+        "observations": 52
+      },
+      {
+        "week": "2023-06-26",
+        "pearson": 0.046179,
+        "spearman": 0.148472,
+        "observations": 52
+      },
+      {
+        "week": "2023-07-03",
+        "pearson": 0.038902,
+        "spearman": 0.133655,
+        "observations": 52
+      },
+      {
+        "week": "2023-07-10",
+        "pearson": 0.022541,
+        "spearman": 0.11824,
+        "observations": 52
+      },
+      {
+        "week": "2023-07-17",
+        "pearson": 0.002262,
+        "spearman": 0.080193,
+        "observations": 52
+      },
+      {
+        "week": "2023-07-24",
+        "pearson": -0.001286,
+        "spearman": 0.071653,
+        "observations": 52
+      },
+      {
+        "week": "2023-07-31",
+        "pearson": 0.011266,
+        "spearman": 0.089712,
+        "observations": 52
+      },
+      {
+        "week": "2023-08-07",
+        "pearson": -0.003534,
+        "spearman": 0.068533,
+        "observations": 52
+      },
+      {
+        "week": "2023-08-14",
+        "pearson": -0.042345,
+        "spearman": 0.015543,
+        "observations": 52
+      },
+      {
+        "week": "2023-08-21",
+        "pearson": -0.041962,
+        "spearman": 0.009395,
+        "observations": 52
+      },
+      {
+        "week": "2023-08-28",
+        "pearson": -0.007358,
+        "spearman": 0.069181,
+        "observations": 52
+      },
+      {
+        "week": "2023-09-04",
+        "pearson": -0.04351,
+        "spearman": 0.036597,
+        "observations": 52
+      },
+      {
+        "week": "2023-09-11",
+        "pearson": -0.052702,
+        "spearman": 0.016571,
+        "observations": 52
+      },
+      {
+        "week": "2023-09-18",
+        "pearson": -0.0508,
+        "spearman": 0.026565,
+        "observations": 52
+      },
+      {
+        "week": "2023-09-25",
+        "pearson": -0.055577,
+        "spearman": 0.013966,
+        "observations": 52
+      },
+      {
+        "week": "2023-10-02",
+        "pearson": -0.064777,
+        "spearman": -0.017128,
+        "observations": 52
+      },
+      {
+        "week": "2023-10-09",
+        "pearson": -0.095571,
+        "spearman": -0.071038,
+        "observations": 52
+      },
+      {
+        "week": "2023-10-16",
+        "pearson": -0.079265,
+        "spearman": -0.03678,
+        "observations": 52
+      },
+      {
+        "week": "2023-10-23",
+        "pearson": -0.072169,
+        "spearman": -0.005511,
+        "observations": 52
+      },
+      {
+        "week": "2023-10-30",
+        "pearson": -0.091932,
+        "spearman": -0.005254,
+        "observations": 52
+      },
+      {
+        "week": "2023-11-06",
+        "pearson": -0.09485,
+        "spearman": 0.007817,
+        "observations": 52
+      },
+      {
+        "week": "2023-11-13",
+        "pearson": -0.100618,
+        "spearman": 0.014267,
+        "observations": 52
+      },
+      {
+        "week": "2023-11-20",
+        "pearson": -0.098102,
+        "spearman": 0.023368,
+        "observations": 52
+      },
+      {
+        "week": "2023-11-27",
+        "pearson": -0.121873,
+        "spearman": -0.01709,
+        "observations": 52
+      },
+      {
+        "week": "2023-12-04",
+        "pearson": -0.1596,
+        "spearman": -0.056055,
+        "observations": 52
+      },
+      {
+        "week": "2023-12-11",
+        "pearson": -0.160215,
+        "spearman": -0.056911,
+        "observations": 52
+      },
+      {
+        "week": "2023-12-18",
+        "pearson": -0.183284,
+        "spearman": -0.102497,
+        "observations": 52
+      },
+      {
+        "week": "2023-12-25",
+        "pearson": -0.176939,
+        "spearman": -0.091857,
+        "observations": 52
+      },
+      {
+        "week": "2024-01-01",
+        "pearson": -0.202714,
+        "spearman": -0.124031,
+        "observations": 52
+      },
+      {
+        "week": "2024-01-08",
+        "pearson": -0.206367,
+        "spearman": -0.120402,
+        "observations": 52
+      },
+      {
+        "week": "2024-01-15",
+        "pearson": -0.19701,
+        "spearman": -0.089687,
+        "observations": 52
+      },
+      {
+        "week": "2024-01-22",
+        "pearson": -0.186545,
+        "spearman": -0.053283,
+        "observations": 52
+      },
+      {
+        "week": "2024-01-29",
+        "pearson": -0.13775,
+        "spearman": -0.04055,
+        "observations": 52
+      },
+      {
+        "week": "2024-02-05",
+        "pearson": -0.143234,
+        "spearman": -0.060175,
+        "observations": 52
+      },
+      {
+        "week": "2024-02-12",
+        "pearson": -0.151625,
+        "spearman": -0.067445,
+        "observations": 52
+      },
+      {
+        "week": "2024-02-19",
+        "pearson": -0.158694,
+        "spearman": -0.066128,
+        "observations": 52
+      },
+      {
+        "week": "2024-02-26",
+        "pearson": -0.128711,
+        "spearman": -0.048651,
+        "observations": 52
+      },
+      {
+        "week": "2024-03-04",
+        "pearson": -0.058748,
+        "spearman": -0.018383,
+        "observations": 52
+      },
+      {
+        "week": "2024-03-11",
+        "pearson": -0.07392,
+        "spearman": -0.044604,
+        "observations": 52
+      },
+      {
+        "week": "2024-03-18",
+        "pearson": -0.057642,
+        "spearman": -0.027755,
+        "observations": 52
+      },
+      {
+        "week": "2024-03-25",
+        "pearson": -0.06352,
+        "spearman": -0.038275,
+        "observations": 52
+      },
+      {
+        "week": "2024-04-01",
+        "pearson": -0.055464,
+        "spearman": -0.023093,
+        "observations": 52
+      },
+      {
+        "week": "2024-04-08",
+        "pearson": -0.041985,
+        "spearman": -0.013172,
+        "observations": 52
+      },
+      {
+        "week": "2024-04-15",
+        "pearson": -0.051029,
+        "spearman": -0.015182,
+        "observations": 52
+      },
+      {
+        "week": "2024-04-22",
+        "pearson": -0.060421,
+        "spearman": -0.046103,
+        "observations": 52
+      },
+      {
+        "week": "2024-04-29",
+        "pearson": -0.106408,
+        "spearman": -0.11071,
+        "observations": 52
+      },
+      {
+        "week": "2024-05-06",
+        "pearson": -0.091514,
+        "spearman": -0.099038,
+        "observations": 52
+      },
+      {
+        "week": "2024-05-13",
+        "pearson": -0.097245,
+        "spearman": -0.103485,
+        "observations": 52
+      },
+      {
+        "week": "2024-05-20",
+        "pearson": -0.110229,
+        "spearman": -0.134699,
+        "observations": 52
+      },
+      {
+        "week": "2024-05-27",
+        "pearson": -0.095937,
+        "spearman": -0.138847,
+        "observations": 52
+      },
+      {
+        "week": "2024-06-03",
+        "pearson": -0.065701,
+        "spearman": -0.085748,
+        "observations": 52
+      },
+      {
+        "week": "2024-06-10",
+        "pearson": -0.039289,
+        "spearman": -0.060858,
+        "observations": 52
+      },
+      {
+        "week": "2024-06-17",
+        "pearson": -0.039817,
+        "spearman": -0.049304,
+        "observations": 52
+      },
+      {
+        "week": "2024-06-24",
+        "pearson": -0.052143,
+        "spearman": -0.067294,
+        "observations": 52
+      },
+      {
+        "week": "2024-07-01",
+        "pearson": -0.038905,
+        "spearman": -0.052545,
+        "observations": 52
+      },
+      {
+        "week": "2024-07-08",
+        "pearson": -0.068549,
+        "spearman": -0.085423,
+        "observations": 52
+      },
+      {
+        "week": "2024-07-15",
+        "pearson": -0.063137,
+        "spearman": -0.09128,
+        "observations": 52
+      },
+      {
+        "week": "2024-07-22",
+        "pearson": -0.024588,
+        "spearman": -0.063107,
+        "observations": 52
+      },
+      {
+        "week": "2024-07-29",
+        "pearson": -0.026901,
+        "spearman": -0.063103,
+        "observations": 52
+      },
+      {
+        "week": "2024-08-05",
+        "pearson": -0.083381,
+        "spearman": -0.108164,
+        "observations": 52
+      },
+      {
+        "week": "2024-08-12",
+        "pearson": -0.108744,
+        "spearman": -0.140903,
+        "observations": 52
+      },
+      {
+        "week": "2024-08-19",
+        "pearson": -0.11217,
+        "spearman": -0.143544,
+        "observations": 52
+      },
+      {
+        "week": "2024-08-26",
+        "pearson": -0.104528,
+        "spearman": -0.118067,
+        "observations": 52
+      },
+      {
+        "week": "2024-09-02",
+        "pearson": -0.0926,
+        "spearman": -0.10943,
+        "observations": 52
+      },
+      {
+        "week": "2024-09-09",
+        "pearson": -0.11286,
+        "spearman": -0.142854,
+        "observations": 52
+      },
+      {
+        "week": "2024-09-16",
+        "pearson": -0.107735,
+        "spearman": -0.136596,
+        "observations": 52
+      },
+      {
+        "week": "2024-09-23",
+        "pearson": -0.090154,
+        "spearman": -0.102013,
+        "observations": 52
+      },
+      {
+        "week": "2024-09-30",
+        "pearson": -0.091764,
+        "spearman": -0.111415,
+        "observations": 52
+      },
+      {
+        "week": "2024-10-07",
+        "pearson": -0.060487,
+        "spearman": -0.088973,
+        "observations": 52
+      },
+      {
+        "week": "2024-10-14",
+        "pearson": -0.026899,
+        "spearman": -0.048759,
+        "observations": 52
+      },
+      {
+        "week": "2024-10-21",
+        "pearson": -0.027862,
+        "spearman": -0.050922,
+        "observations": 52
+      },
+      {
+        "week": "2024-10-28",
+        "pearson": 0.013867,
+        "spearman": -0.029561,
+        "observations": 52
+      },
+      {
+        "week": "2024-11-04",
+        "pearson": 0.051994,
+        "spearman": 0.011449,
+        "observations": 52
+      },
+      {
+        "week": "2024-11-11",
+        "pearson": 0.081023,
+        "spearman": 0.037937,
+        "observations": 52
+      },
+      {
+        "week": "2024-11-18",
+        "pearson": 0.078899,
+        "spearman": 0.034005,
+        "observations": 52
+      },
+      {
+        "week": "2024-11-25",
+        "pearson": 0.118853,
+        "spearman": 0.07899,
+        "observations": 52
+      },
+      {
+        "week": "2024-12-02",
+        "pearson": 0.153144,
+        "spearman": 0.137902,
+        "observations": 52
+      },
+      {
+        "week": "2024-12-09",
+        "pearson": 0.133302,
+        "spearman": 0.133971,
+        "observations": 52
+      },
+      {
+        "week": "2024-12-16",
+        "pearson": 0.133772,
+        "spearman": 0.133977,
+        "observations": 52
+      },
+      {
+        "week": "2024-12-23",
+        "pearson": 0.125494,
+        "spearman": 0.115685,
+        "observations": 52
+      },
+      {
+        "week": "2024-12-30",
+        "pearson": 0.127476,
+        "spearman": 0.12162,
+        "observations": 52
+      },
+      {
+        "week": "2025-01-06",
+        "pearson": 0.128401,
+        "spearman": 0.121637,
+        "observations": 52
+      },
+      {
+        "week": "2025-01-13",
+        "pearson": 0.12735,
+        "spearman": 0.123348,
+        "observations": 52
+      },
+      {
+        "week": "2025-01-20",
+        "pearson": 0.11544,
+        "spearman": 0.103872,
+        "observations": 52
+      },
+      {
+        "week": "2025-01-27",
+        "pearson": 0.089769,
+        "spearman": 0.077007,
+        "observations": 52
+      },
+      {
+        "week": "2025-02-03",
+        "pearson": 0.125026,
+        "spearman": 0.108959,
+        "observations": 52
+      },
+      {
+        "week": "2025-02-10",
+        "pearson": 0.1379,
+        "spearman": 0.121885,
+        "observations": 52
+      },
+      {
+        "week": "2025-02-17",
+        "pearson": 0.19826,
+        "spearman": 0.151159,
+        "observations": 52
+      },
+      {
+        "week": "2025-02-24",
+        "pearson": 0.115781,
+        "spearman": 0.085677,
+        "observations": 52
+      },
+      {
+        "week": "2025-03-03",
+        "pearson": 0.126686,
+        "spearman": 0.096782,
+        "observations": 52
+      },
+      {
+        "week": "2025-03-10",
+        "pearson": 0.148613,
+        "spearman": 0.139025,
+        "observations": 52
+      },
+      {
+        "week": "2025-03-17",
+        "pearson": 0.15381,
+        "spearman": 0.139581,
+        "observations": 52
+      },
+      {
+        "week": "2025-03-24",
+        "pearson": 0.164057,
+        "spearman": 0.156409,
+        "observations": 52
+      },
+      {
+        "week": "2025-03-31",
+        "pearson": 0.13801,
+        "spearman": 0.139395,
+        "observations": 52
+      },
+      {
+        "week": "2025-04-07",
+        "pearson": 0.140773,
+        "spearman": 0.139737,
+        "observations": 52
+      },
+      {
+        "week": "2025-04-14",
+        "pearson": 0.112326,
+        "spearman": 0.114964,
+        "observations": 52
+      },
+      {
+        "week": "2025-04-21",
+        "pearson": 0.113821,
+        "spearman": 0.117868,
+        "observations": 52
+      },
+      {
+        "week": "2025-04-28",
+        "pearson": 0.073305,
+        "spearman": 0.081353,
+        "observations": 52
+      },
+      {
+        "week": "2025-05-05",
+        "pearson": 0.059382,
+        "spearman": 0.056712,
+        "observations": 52
+      },
+      {
+        "week": "2025-05-12",
+        "pearson": 0.047533,
+        "spearman": 0.019388,
+        "observations": 52
+      },
+      {
+        "week": "2025-05-19",
+        "pearson": 0.049034,
+        "spearman": 0.022206,
+        "observations": 52
+      },
+      {
+        "week": "2025-05-26",
+        "pearson": 0.055663,
+        "spearman": 0.037922,
+        "observations": 52
+      },
+      {
+        "week": "2025-06-02",
+        "pearson": 0.038031,
+        "spearman": 0.017979,
+        "observations": 52
+      },
+      {
+        "week": "2025-06-09",
+        "pearson": 0.03209,
+        "spearman": 0.008285,
+        "observations": 52
+      },
+      {
+        "week": "2025-06-16",
+        "pearson": 0.00891,
+        "spearman": -0.019901,
+        "observations": 52
+      },
+      {
+        "week": "2025-06-23",
+        "pearson": 0.019905,
+        "spearman": -0.013752,
+        "observations": 52
+      },
+      {
+        "week": "2025-06-30",
+        "pearson": -0.021346,
+        "spearman": -0.065898,
+        "observations": 52
+      },
+      {
+        "week": "2025-07-07",
+        "pearson": 0.012473,
+        "spearman": -0.028785,
+        "observations": 52
+      },
+      {
+        "week": "2025-07-14",
+        "pearson": 0.015033,
+        "spearman": -0.016742,
+        "observations": 52
+      },
+      {
+        "week": "2025-07-21",
+        "pearson": 0.001075,
+        "spearman": -0.017681,
+        "observations": 52
+      },
+      {
+        "week": "2025-07-28",
+        "pearson": -0.014321,
+        "spearman": -0.039378,
+        "observations": 52
+      },
+      {
+        "week": "2025-08-04",
+        "pearson": -0.02328,
+        "spearman": -0.047621,
+        "observations": 52
+      },
+      {
+        "week": "2025-08-11",
+        "pearson": -0.004106,
+        "spearman": -0.036517,
+        "observations": 52
+      },
+      {
+        "week": "2025-08-18",
+        "pearson": 0.004057,
+        "spearman": -0.028915,
+        "observations": 52
+      },
+      {
+        "week": "2025-08-25",
+        "pearson": -0.016184,
+        "spearman": -0.050484,
+        "observations": 52
+      },
+      {
+        "week": "2025-09-01",
+        "pearson": -0.035883,
+        "spearman": -0.076319,
+        "observations": 52
+      },
+      {
+        "week": "2025-09-08",
+        "pearson": -0.043574,
+        "spearman": -0.086912,
+        "observations": 52
+      },
+      {
+        "week": "2025-09-15",
+        "pearson": -0.013859,
+        "spearman": -0.04984,
+        "observations": 52
+      },
+      {
+        "week": "2025-09-22",
+        "pearson": -0.032371,
+        "spearman": -0.06782,
+        "observations": 52
+      },
+      {
+        "week": "2025-09-29",
+        "pearson": -0.068755,
+        "spearman": -0.105061,
+        "observations": 52
+      },
+      {
+        "week": "2025-10-06",
+        "pearson": -0.101066,
+        "spearman": -0.143882,
+        "observations": 52
+      },
+      {
+        "week": "2025-10-13",
+        "pearson": -0.089011,
+        "spearman": -0.111982,
+        "observations": 52
+      },
+      {
+        "week": "2025-10-20",
+        "pearson": -0.106214,
+        "spearman": -0.138248,
+        "observations": 52
+      },
+      {
+        "week": "2025-10-27",
+        "pearson": -0.206181,
+        "spearman": -0.20392,
+        "observations": 52
+      },
+      {
+        "week": "2025-11-03",
+        "pearson": -0.310275,
+        "spearman": -0.299808,
+        "observations": 52
+      },
+      {
+        "week": "2025-11-10",
+        "pearson": -0.402386,
+        "spearman": -0.390049,
+        "observations": 52
+      },
+      {
+        "week": "2025-11-17",
+        "pearson": -0.375489,
+        "spearman": -0.3532,
+        "observations": 52
+      },
+      {
+        "week": "2025-11-24",
+        "pearson": -0.385502,
+        "spearman": -0.360674,
+        "observations": 52
+      },
+      {
+        "week": "2025-12-01",
+        "pearson": -0.415258,
+        "spearman": -0.407602,
+        "observations": 52
+      },
+      {
+        "week": "2025-12-08",
+        "pearson": -0.394669,
+        "spearman": -0.38407,
+        "observations": 52
+      },
+      {
+        "week": "2025-12-15",
+        "pearson": -0.391616,
+        "spearman": -0.375408,
+        "observations": 52
+      },
+      {
+        "week": "2025-12-22",
+        "pearson": -0.380366,
+        "spearman": -0.357506,
+        "observations": 52
+      },
+      {
+        "week": "2025-12-29",
+        "pearson": -0.374392,
+        "spearman": -0.345754,
+        "observations": 52
+      },
+      {
+        "week": "2026-01-05",
+        "pearson": -0.366824,
+        "spearman": -0.320606,
+        "observations": 52
+      },
+      {
+        "week": "2026-01-12",
+        "pearson": -0.334176,
+        "spearman": -0.309098,
+        "observations": 52
+      },
+      {
+        "week": "2026-01-19",
+        "pearson": -0.355934,
+        "spearman": -0.315583,
+        "observations": 52
+      },
+      {
+        "week": "2026-01-26",
+        "pearson": -0.392732,
+        "spearman": -0.366094,
+        "observations": 52
+      },
+      {
+        "week": "2026-02-02",
+        "pearson": -0.392037,
+        "spearman": -0.372833,
+        "observations": 52
+      },
+      {
+        "week": "2026-02-09",
+        "pearson": -0.391077,
+        "spearman": -0.37958,
+        "observations": 52
+      },
+      {
+        "week": "2026-02-16",
+        "pearson": -0.391204,
+        "spearman": -0.37694,
+        "observations": 52
+      },
+      {
+        "week": "2026-02-23",
+        "pearson": -0.365273,
+        "spearman": -0.347852,
+        "observations": 52
+      },
+      {
+        "week": "2026-03-02",
+        "pearson": -0.30458,
+        "spearman": -0.30177,
+        "observations": 52
+      },
+      {
+        "week": "2026-03-09",
+        "pearson": -0.305579,
+        "spearman": -0.302709,
+        "observations": 52
+      },
+      {
+        "week": "2026-03-16",
+        "pearson": -0.317726,
+        "spearman": -0.319199,
+        "observations": 52
+      },
+      {
+        "week": "2026-03-23",
+        "pearson": -0.33749,
+        "spearman": -0.344315,
+        "observations": 52
+      },
+      {
+        "week": "2026-03-30",
+        "pearson": -0.324693,
+        "spearman": -0.329248,
+        "observations": 52
+      },
+      {
+        "week": "2026-04-06",
+        "pearson": -0.314471,
+        "spearman": -0.316394,
+        "observations": 52
+      },
+      {
+        "week": "2026-04-13",
+        "pearson": -0.260429,
+        "spearman": -0.269907,
+        "observations": 52
+      },
+      {
+        "week": "2026-04-20",
+        "pearson": -0.259084,
+        "spearman": -0.268626,
+        "observations": 52
+      },
+      {
+        "week": "2026-04-27",
+        "pearson": -0.204947,
+        "spearman": -0.225947,
+        "observations": 52
+      },
+      {
+        "week": "2026-05-04",
+        "pearson": -0.214623,
+        "spearman": -0.234654,
+        "observations": 52
+      },
+      {
+        "week": "2026-05-11",
+        "pearson": -0.205168,
+        "spearman": -0.221658,
+        "observations": 52
+      },
+      {
+        "week": "2026-05-18",
+        "pearson": -0.20431,
+        "spearman": -0.219736,
+        "observations": 52
+      },
+      {
+        "week": "2026-05-25",
+        "pearson": -0.208744,
+        "spearman": -0.228826,
+        "observations": 52
+      },
+      {
+        "week": "2026-06-01",
+        "pearson": -0.190337,
+        "spearman": -0.200431,
+        "observations": 52
+      },
+      {
+        "week": "2026-06-08",
+        "pearson": -0.174884,
+        "spearman": -0.183608,
+        "observations": 52
+      },
+      {
+        "week": "2026-06-15",
+        "pearson": -0.115289,
+        "spearman": -0.116909,
+        "observations": 52
+      },
+      {
+        "week": "2026-06-22",
+        "pearson": -0.115554,
+        "spearman": -0.115884,
+        "observations": 52
+      },
+      {
+        "week": "2026-06-29",
+        "pearson": -0.078833,
+        "spearman": -0.087103,
+        "observations": 52
+      },
+      {
+        "week": "2026-07-06",
+        "pearson": -0.081126,
+        "spearman": -0.084541,
+        "observations": 52
+      },
+      {
+        "week": "2026-07-13",
+        "pearson": -0.096962,
+        "spearman": -0.099571,
+        "observations": 52
+      },
+      {
+        "week": "2026-07-20",
+        "pearson": -0.105479,
+        "spearman": -0.105632,
+        "observations": 52
+      },
+      {
+        "week": "2026-07-27",
+        "pearson": -0.067982,
+        "spearman": -0.066181,
+        "observations": 52
+      },
+      {
+        "week": "2026-08-03",
+        "pearson": -0.056423,
+        "spearman": -0.047349,
+        "observations": 52
+      },
+      {
+        "week": "2026-08-10",
+        "pearson": -0.080583,
+        "spearman": -0.066262,
+        "observations": 52
+      },
+      {
+        "week": "2026-08-17",
+        "pearson": -0.089198,
+        "spearman": -0.077363,
+        "observations": 52
+      }
+    ]
+  },
+  "regimes": [
+    {
+      "scope": "최근 3년",
+      "regime": "상승 추세",
+      "observations": 89,
+      "pearson": -0.086105,
+      "spearman": -0.112757,
+      "medianNextReturnPct": 0.111137
+    },
+    {
+      "scope": "최근 3년",
+      "regime": "하락 추세",
+      "observations": 66,
+      "pearson": -0.069834,
+      "spearman": -0.018811,
+      "medianNextReturnPct": 0.276989
+    },
+    {
+      "scope": "최근 3년",
+      "regime": "고변동성",
+      "observations": 71,
+      "pearson": -0.054194,
+      "spearman": -0.062848,
+      "medianNextReturnPct": 0.191422
+    },
+    {
+      "scope": "최근 3년",
+      "regime": "저변동성",
+      "observations": 84,
+      "pearson": -0.042786,
+      "spearman": -0.06692,
+      "medianNextReturnPct": 0.110025
+    },
+    {
+      "scope": "전체 기간",
+      "regime": "상승 추세",
+      "observations": 300,
+      "pearson": 0.021895,
+      "spearman": 0.031202,
+      "medianNextReturnPct": 0.739249
+    },
+    {
+      "scope": "전체 기간",
+      "regime": "하락 추세",
+      "observations": 220,
+      "pearson": 0.081157,
+      "spearman": 0.094673,
+      "medianNextReturnPct": 0.34247
+    },
+    {
+      "scope": "전체 기간",
+      "regime": "고변동성",
+      "observations": 248,
+      "pearson": 0.096887,
+      "spearman": 0.101779,
+      "medianNextReturnPct": 0.590131
+    },
+    {
+      "scope": "전체 기간",
+      "regime": "저변동성",
+      "observations": 272,
+      "pearson": 0.009007,
+      "spearman": 0.021319,
+      "medianNextReturnPct": 0.55019
+    }
+  ],
+  "granger": {
+    "status": "ok",
+    "observations": 546,
+    "period": {
+      "from": "2016-03-14",
+      "through": "2026-08-24"
+    },
+    "transform": "weekly diff(log1p(posts)) and log(close_t/close_t-1)",
+    "adfPValues": {
+      "attentionChange": 2.5991058980000467e-30,
+      "btcReturn": 0
+    },
+    "multipleTesting": "Benjamini-Hochberg FDR across both directions and lags",
+    "tests": [
+      {
+        "direction": "attention_to_return",
+        "lag": 1,
+        "fStatistic": 0.0943261020562268,
+        "pValue": 0.7588657774817891,
+        "qValue": 0.79165910239281
+      },
+      {
+        "direction": "attention_to_return",
+        "lag": 2,
+        "fStatistic": 0.2565111370507157,
+        "pValue": 0.7738407775514281,
+        "qValue": 0.79165910239281
+      },
+      {
+        "direction": "attention_to_return",
+        "lag": 3,
+        "fStatistic": 0.5129326502171331,
+        "pValue": 0.6735223371983405,
+        "qValue": 0.79165910239281
+      },
+      {
+        "direction": "attention_to_return",
+        "lag": 4,
+        "fStatistic": 0.42358331085454015,
+        "pValue": 0.79165910239281,
+        "qValue": 0.79165910239281
+      },
+      {
+        "direction": "return_to_attention",
+        "lag": 1,
+        "fStatistic": 0.4706801652679922,
+        "pValue": 0.4929677899965155,
+        "qValue": 0.79165910239281
+      },
+      {
+        "direction": "return_to_attention",
+        "lag": 2,
+        "fStatistic": 2.1044348053420268,
+        "pValue": 0.12291516001235434,
+        "qValue": 0.41488470143824135
+      },
+      {
+        "direction": "return_to_attention",
+        "lag": 3,
+        "fStatistic": 1.7508726330911795,
+        "pValue": 0.15558176303934051,
+        "qValue": 0.41488470143824135
+      },
+      {
+        "direction": "return_to_attention",
+        "lag": 4,
+        "fStatistic": 2.1242592324132943,
+        "pValue": 0.07654726343058679,
+        "qValue": 0.41488470143824135
+      }
+    ],
+    "note": "Granger precedence is not proof of economic causality."
+  },
+  "walkForward": {
+    "observations": 416,
+    "oosR2": 0.001034,
+    "directionalAccuracyPct": 52.403846
+  }
+}

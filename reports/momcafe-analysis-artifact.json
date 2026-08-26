@@ -1,0 +1,4150 @@
+{
+  "surface": "report",
+  "manifest": {
+    "version": 1,
+    "surface": "report",
+    "title": "맘카페 언급량 × 비트코인 분석 해석 보고서",
+    "description": "저빈도 맘카페 언급량과 BTC 시장 반응의 결과별 해석 및 활용 한계",
+    "generatedAt": "2026-08-26T05:58:15.857Z",
+    "blocks": [
+      {
+        "id": "title",
+        "type": "markdown",
+        "body": "# 맘카페 언급량 × 비트코인 분석 해석 보고서"
+      },
+      {
+        "id": "executive-summary",
+        "type": "markdown",
+        "sourceId": "momcafe-analysis",
+        "body": "## Executive Summary\n\n- **현재 언급량은 평범한 수준입니다.** 마지막 완료 주인 2026년 8월 17일은 3건, 직전 52주 대비 46백분위이며 중앙값도 3건입니다. 4주 전보다 1건 늘었지만 급증으로 볼 근거는 없습니다.\n- **언급량은 BTC 방향 예측보다 시장이 시끄러운 정도를 보여줍니다.** 최근 3년 동시 상관은 수익률 -0.010에 불과하지만 실현변동성 0.379, 고저 변동폭 0.371입니다. 즉 언급이 많을수록 같은 주의 움직임이 큰 경향이 더 뚜렷합니다.\n- **‘모든 고점권 급증 = 매수 금지’는 데이터가 지지하지 않습니다.** 고점권 상대적 급증 10건은 이후 12주 상승 마감이 90%, 중앙수익률 +20.1%, 중앙 최대상승 +50.5%였습니다. 이 규칙으로 매수나 불타기를 일괄 금지하면 큰 상승 추세를 자주 놓쳤습니다.\n- **다만 고점권 초대형 급증은 별도 위험 경보 후보입니다.** 언급량이 52주 중앙값보다 10건 이상 많았던 사건은 3건뿐이지만, 그중 2건이 ‘12주 최대상승 10% 이하·최대낙폭 -10% 이하’를 동시에 충족했습니다. 4주 중앙수익률 -3.8%, 12주 중앙 최대낙폭 -17.3%였습니다.\n- **운용 결론은 2단계입니다.** 일반 급증은 변동성 경보일 뿐 자동 매수 금지가 아니며, 초대형 급증이 최근 고점권에서 발생할 때만 신규 피라미딩 보류·비중 재점검 경보로 사용합니다. 표본이 3건이라 자동 매도나 하락 베팅 근거로는 부족합니다."
+      },
+      {
+        "id": "headline-metrics",
+        "type": "metric-strip",
+        "cardIds": [
+          "current-attention",
+          "direction-correlation",
+          "walk-forward",
+          "sparse-data"
+        ]
+      },
+      {
+        "id": "data-shape",
+        "type": "markdown",
+        "sourceId": "momcafe-analysis",
+        "body": "## 언급량은 연속형 신호가 아니라 희소한 사건 계수입니다\n\n완료 546주의 중앙값은 2건이고 43.8%가 0–1건입니다. 반면 평균은 4.2건, 최대는 91건이며 분산은 평균의 15.6배입니다. 이 구조에서는 0→1건을 100% 증가로 표현하거나 평균·표준편차만으로 이상치를 판단하면 과장됩니다.\n\n**해석:** 현재의 52주 경험적 백분위와 절대 건수 변화가 데이터에 맞습니다. 최근 52주의 중앙값은 3건, 0건 비중은 5.8%로 장기 평균보다 활동 수준이 조금 높아졌으므로 고정 임계값보다 이동 기준선을 유지해야 합니다."
+      },
+      {
+        "id": "distribution-chart",
+        "type": "chart",
+        "chartId": "mention-distribution"
+      },
+      {
+        "id": "current-reading",
+        "type": "markdown",
+        "sourceId": "momcafe-analysis",
+        "body": "## 현재 값은 중립이며, 직후 가격 상승은 단일 사례입니다\n\n2026년 8월 17일의 3건은 46백분위로 직전 52주의 정확한 중간 수준입니다. 4주 전 2건에서 1건 증가했지만 급증 조건인 ‘52주 상위 5%이면서 중앙값보다 3건 이상’을 충족하지 않습니다. 다음 주 BTC 수익률은 +1.62%였지만 관측 1건으로 관계를 추론할 수 없습니다.\n\n**결론:** 지금 언급량만으로는 강세·약세 어느 쪽도 지지하지 않습니다."
+      },
+      {
+        "id": "direction-finding",
+        "type": "markdown",
+        "sourceId": "momcafe-analysis",
+        "body": "## 가격 방향과의 관계는 약하고 기간에 따라 반대로 보입니다\n\n최근 3년의 관심도–이후 수익률 Spearman 상관은 +1주 -0.079, +2주 -0.065, +4주 -0.131, +8주 -0.149입니다. 모두 약한 음의 관계입니다. 반면 전체 기간은 같은 순서로 +0.065, +0.091, +0.080, +0.103의 약한 양의 관계입니다.\n\n관심도 구간별 다음 주 수익률도 단조롭게 증가하거나 감소하지 않습니다. 최근 3년 상위 20% 구간 평균은 +1.34%였지만 60–80 구간은 -0.73%, 최하위 20%는 +1.89%였습니다.\n\n**해석:** 관심도가 높을수록 가격이 오르거나 내린다는 고정 방향 규칙은 없습니다. 기간을 바꾸면 부호가 뒤집히므로 상관계수 하나를 매매 신호로 사용하면 안 됩니다."
+      },
+      {
+        "id": "correlation-chart",
+        "type": "chart",
+        "chartId": "correlation-horizons"
+      },
+      {
+        "id": "rolling-finding",
+        "type": "markdown",
+        "sourceId": "momcafe-analysis",
+        "body": "## 상관은 시장 국면에 따라 계속 바뀝니다\n\n52주 롤링 Spearman 상관은 전체 관측창의 83.0%에서 절대값 0.2 미만이었고, 양수였던 비율도 51.9%에 그쳤습니다. 부호는 44번 바뀌었으며 최고 +0.420, 최저 -0.408, 최신은 -0.077입니다.\n\n**해석:** 장기간 평균 상관보다 ‘현재 관계가 안정적인가’를 먼저 봐야 합니다. 최신 값은 사실상 무상관에 가깝습니다."
+      },
+      {
+        "id": "rolling-chart",
+        "type": "chart",
+        "chartId": "rolling-correlation"
+      },
+      {
+        "id": "volatility-finding",
+        "type": "markdown",
+        "sourceId": "momcafe-analysis",
+        "body": "## 언급량은 방향보다 변동성·활동 강도와 더 가깝습니다\n\n최근 3년 같은 주 Spearman 상관은 실현변동성 0.379, 고저 변동폭 0.371, 거래량 변화 0.240입니다. 주간 수익률과의 동시 상관은 -0.010입니다.\n\n±8주 표에서 관심도가 2–4주 앞선 변동성·고저폭 상관이 약 0.22로 보이지만, 많은 시차와 지표를 동시에 훑은 결과에 별도 다중검정 보정이 적용되지 않았습니다.\n\n**결론:** 언급량은 ‘상승/하락 예측기’보다 ‘시장 관심과 불안이 커지는 상황 표시기’로 사용하는 편이 타당합니다."
+      },
+      {
+        "id": "contemporaneous-chart",
+        "type": "chart",
+        "chartId": "contemporaneous-relationship"
+      },
+      {
+        "id": "lead-lag-table",
+        "type": "table",
+        "tableId": "lead-lag-results"
+      },
+      {
+        "id": "event-finding",
+        "type": "markdown",
+        "sourceId": "momcafe-analysis",
+        "body": "## 급증 사건 뒤 4주 반등 패턴은 흥미롭지만 아직 잠정적입니다\n\n전체 기간 급증 사건은 +4주 20건, +8주 15건입니다. 중앙수익률은 각각 +16.0%, +23.2%로 전체 주 기준선 +2.1%, +5.7%보다 높았습니다. 그러나 최근 3년은 각각 6건과 5건뿐이며 +4주 +12.2%, +8주 +5.1%로 장기 결과가 그대로 반복되지 않았습니다.\n\n위험도 작지 않습니다. 전체 기간 중앙 최대 불리 움직임(MAE)은 +4주 -8.9%, +8주 -14.5%였습니다. 최근 3년 +1주는 중앙 -0.34%, 상승률 44.4%로 단기 추격에는 불리했습니다.\n\n**해석:** 급증은 큰 가격 움직임이나 충격 뒤 반등 구간과 겹칠 가능성이 있습니다. 4주 패턴은 추가 검증 대상으로 유지하되, 사건 수익률과 동일 시장 국면의 대조군 차이를 직접 검정하기 전에는 진입 규칙으로 쓰지 않아야 합니다."
+      },
+      {
+        "id": "event-table",
+        "type": "table",
+        "tableId": "event-results"
+      },
+      {
+        "id": "top-hypothesis",
+        "type": "markdown",
+        "sourceId": "momcafe-analysis",
+        "body": "## 사용자 가설 검증: 넓은 규칙은 반증됐고, 초대형 급증만 경고 후보입니다\n\n가설을 사후적으로 유리하게 고르지 않도록 먼저 **급증**을 ‘직전 52주 95백분위 이상이면서 중앙값보다 3건 이상’, **고점권**을 ‘종가가 직전 26주 최고 종가의 10% 이내’로 고정했습니다. 8주 안의 반복 급증은 한 사건으로 묶었습니다.\n\n이 넓은 정의의 고점권 사건은 10건입니다. 향후 12주 상승 마감은 9건(90%), 중앙수익률은 +20.1%, 중앙 최대상승은 +50.5%였습니다. 반면 -10% 이상 낙폭도 6건(60%)이었습니다. 즉 **상승여력이 사라진 고점 신호가 아니라, 상승여력과 경로 위험이 동시에 큰 구간**이었습니다. 실제로 2017년 5월·10월, 2020년 11월, 2024년 1월 급증 뒤에는 상승 추세가 크게 이어졌습니다.\n\n반면 기본 급증 중 언급량이 52주 중앙값보다 10건 이상 많은 **초대형 급증**으로 좁히면 고점권 사건은 3건입니다. 2021년 4월과 2024년 3월은 12주 최대상승이 각각 +5.9%, +6.5%에 그친 뒤 최대낙폭 -48.8%, -17.3%를 기록해 고점 위험 조건을 충족했습니다. 2024년 11월은 최대상승 +21.7%, 최대낙폭 -1.0%로 예외였습니다.\n\n**판정:** 사용자의 직관은 ‘모든 급증’에는 맞지 않지만, ‘평소보다 압도적으로 큰 급증이 고점권에서 나온 경우’에는 3건 중 2건으로 관찰됐습니다. 방향은 맞을 가능성이 있으나 표본이 너무 작아 현재는 확정 신호가 아니라 연구용 경보입니다."
+      },
+      {
+        "id": "top-risk-metrics",
+        "type": "metric-strip",
+        "cardIds": [
+          "broad-high-zone-result",
+          "broad-upside-risk",
+          "extreme-high-zone-result",
+          "extreme-path-result"
+        ]
+      },
+      {
+        "id": "top-risk-chart",
+        "type": "chart",
+        "chartId": "spike-risk-comparison"
+      },
+      {
+        "id": "no-short-interpretation",
+        "type": "markdown",
+        "sourceId": "momcafe-analysis",
+        "body": "## 왜 즉시 숏 신호가 아니라 ‘추격 중단·위험 재점검’ 신호인가\n\n넓은 고점권 급증 10건의 향후 12주 중앙 최대상승은 +50.5%였고, 최대 가격이 나타난 시점의 중앙값은 사건 후 9주였습니다. 최초 ±10% 움직임이 하락이었던 비율도 30%에 불과했습니다. 급증 직후 곧바로 하락에 베팅하면 추세 연장에 크게 노출됩니다.\n\n초대형 고점권 3건에서는 2건이 먼저 -10%에 도달했고 4주 중앙수익률이 -3.8%였습니다. 그러나 2024년 11월처럼 추가 +21.7% 상승한 예외가 있으므로 자동 숏·전량 매도까지 확대할 근거는 없습니다.\n\n**실무 해석:** 초대형 고점권 급증이 뜨면 신규 불타기와 피라미딩을 잠시 보류하고, 레버리지·손절선·익절 계획을 재검토하는 것은 데이터와 부합합니다. 기존 비중 축소는 개인의 위험 한도와 추세 신호를 함께 본 조건부 결정이어야 합니다."
+      },
+      {
+        "id": "extreme-events-table",
+        "type": "table",
+        "tableId": "extreme-spike-events"
+      },
+      {
+        "id": "threshold-sensitivity",
+        "type": "markdown",
+        "sourceId": "momcafe-analysis",
+        "body": "## 임계값을 느슨하게 하면 고점 신호가 빠르게 사라집니다\n\n중앙값 대비 +5건으로 낮추면 사건은 8건으로 늘지만 12주 중앙수익률 +17.9%, 고점 위험 충족률 25%입니다. +9건은 4건·50%, +10건은 3건·66.7%, +20건은 2건·100%입니다. 기준이 강해질수록 가설에 맞아 보이지만 표본이 동시에 8→2건으로 줄어듭니다.\n\n따라서 +10건은 검증된 최적값이 아니라 **향후 데이터를 고정 기준으로 관찰하기 위한 시작점**입니다. 이후 결과가 쌓일 때까지 임계값을 다시 조정하면 과최적화가 됩니다."
+      },
+      {
+        "id": "extreme-sensitivity-table",
+        "type": "table",
+        "tableId": "extreme-spike-sensitivity"
+      },
+      {
+        "id": "regime-finding",
+        "type": "markdown",
+        "sourceId": "momcafe-analysis",
+        "body": "## 시장 체제를 나눠도 방향 예측력은 살아나지 않습니다\n\n최근 3년 Spearman 상관은 상승 추세 -0.113, 하락 추세 -0.019, 고변동성 -0.063, 저변동성 -0.067입니다. 전체 기간에는 +0.021~+0.102로 약한 양수지만 최근 구간과 부호가 다릅니다.\n\n**결론:** 추세·변동성 체제 구분이 언급량의 안정적인 방향 예측력을 만들어 주지는 않습니다. 체제는 결과 설명용 보조 문맥이지 신호 강화 장치가 아닙니다."
+      },
+      {
+        "id": "regime-table",
+        "type": "table",
+        "tableId": "regime-results"
+      },
+      {
+        "id": "granger-finding",
+        "type": "markdown",
+        "sourceId": "momcafe-analysis",
+        "body": "## Granger 검정에서도 통계적 선행성은 확인되지 않았습니다\n\n관심 → 수익률 1–4주의 FDR q값은 모두 0.792입니다. 수익률 → 관심은 가장 낮은 q값도 0.415로 0.05 기준을 크게 웃돕니다.\n\n**해석:** 과거 언급량 변화가 과거 수익률만 쓴 모형에 유의한 추가 설명력을 제공한다는 증거가 없습니다. 반대 방향도 마찬가지입니다. 다만 현재 계산에는 진행 중인 2026년 8월 24일 주가 포함되어 있어 주 마감 후 소폭 변할 수 있으며, log1p 변환은 과산포 카운트 자체를 직접 모형화하지 않습니다."
+      },
+      {
+        "id": "granger-table",
+        "type": "table",
+        "tableId": "granger-results"
+      },
+      {
+        "id": "walk-forward-finding",
+        "type": "markdown",
+        "sourceId": "momcafe-analysis",
+        "body": "## 실제 예측 환경에서는 과거 평균을 거의 이기지 못했습니다\n\n최초 104개 관측 이후 매주 과거 데이터만으로 다시 학습한 선형모형의 표본외 R²는 0.001, 방향 적중률은 52.4%(416건)입니다. R² 0.001은 과거 평균 대비 예측오차 감소가 약 0.1%에 불과하다는 뜻입니다. 거래비용·슬리피지·신호 지연도 반영하지 않았습니다.\n\n**최종 판정:** 현재 언급량 단독 모델은 매매 예측기로 사용할 수준이 아닙니다."
+      },
+      {
+        "id": "recommendations",
+        "type": "markdown",
+        "body": "## 권장 운용 규칙과 다음 개선\n\n1. **일반 급증은 자동 매수 금지로 쓰지 않습니다.** 고점권 상대적 급증 10건의 12주 상승률이 90%였으므로 이 규칙만으로 신규 매수·피라미딩을 막으면 추세 상승을 놓칠 가능성이 큽니다.\n2. **‘고점권 + 초대형 급증’을 별도 노란 경보로 둡니다.** 완료 주 기준, 직전 26주 고점의 10% 이내이고 기존 급증 조건을 만족하며 52주 중앙값보다 10건 이상 많을 때 신규 불타기·피라미딩을 보류하고 위험 한도를 재검토합니다. 자동 숏·전량 매도는 하지 않습니다.\n3. **임계값을 최소 20개 사건이 쌓일 때까지 고정합니다.** 현재 3건뿐이므로 +10건 기준을 결과에 맞춰 반복 조정하지 말고, 매 사건의 4·8·12·26주 경로를 누적합니다.\n4. **고점 경보의 확인 조건을 사전에 정합니다.** 가격 모멘텀 둔화, 거래량 급증, 변동성 확대 중 어떤 조건을 함께 요구할지 먼저 정한 뒤 표본외로 검증해야 합니다.\n5. **앞으로 카페별 주간 집계와 수집 성공률을 보존합니다.** 역사적 원문 없이도 특정 카페 편중, 검색 노출 변화, 소스 장애를 구분할 수 있습니다."
+      },
+      {
+        "id": "further-questions",
+        "type": "markdown",
+        "body": "## 추가로 확인해야 할 질문\n\n- 초대형 급증의 당일·익일 경로를 일 단위로 보면 피라미딩 보류 시점이 주 마감보다 빨라지는가?\n- 네이버·다음 또는 개별 카페 중 어느 소스가 초대형 급증을 주도하는가?\n- 공포·손실·매수·매도·수익 인증 같은 주제 중 고점 위험을 구분하는 조합이 있는가?\n- 앞으로 발생하는 초대형 고점권 사건도 최대상승 제한과 큰 낙폭을 반복하는가?"
+      },
+      {
+        "id": "caveats",
+        "type": "markdown",
+        "sourceId": "momcafe-analysis",
+        "body": "## 전제와 한계\n\n- **데이터 품질 판정: 조건부 공유 가능.** 547개 주는 중복 없이 7일 간격으로 정렬되어 있고 완료 546주의 가격·OHLCV 결측은 0건이며 현재 수집 실패도 0건입니다.\n- 공개 검색 결과는 카페 전체 게시물의 완전한 전수조사가 아니며 플랫폼 검색 색인·노출 정책 변화의 영향을 받을 수 있습니다.\n- 과거 카페별 집계와 원문이 없어 소스 구성 변화, 감성, 주제, 확산도는 검증할 수 없습니다.\n- 초대형 고점권 사건은 3건뿐입니다. 2/3이라는 비율은 한 사건만 달라져도 33.3%p 변하므로 통계적 확증이 아닙니다.\n- +10건 임계값은 이 가설을 탐색하면서 정한 값입니다. 향후에는 고정한 뒤 새 사건에서만 검증해야 선택 편향을 줄일 수 있습니다.\n- 사건 간 시장 국면과 BTC 장기 상승 추세가 다르므로 단순 사건 수익률은 인과관계나 거래 수익성을 증명하지 않습니다.\n- 현재 주(2026년 8월 24일)는 진행 중입니다. 헤드라인·분포와 이번 고점 가설에서는 제외했지만 사전 계산된 Granger 구간에는 포함되어 있습니다."
+      }
+    ],
+    "cards": [
+      {
+        "id": "current-attention",
+        "description": "마지막 완료 주(2026-08-17)의 상대적 언급 수준",
+        "dataset": "headline",
+        "sourceId": "momcafe-analysis",
+        "metrics": [
+          {
+            "label": "관심도 백분위 (0–100)",
+            "field": "attentionPercentile",
+            "format": "number"
+          },
+          {
+            "label": "언급량",
+            "field": "postCount",
+            "format": "number"
+          },
+          {
+            "label": "4주 변화",
+            "field": "mentionChange4w",
+            "format": "number",
+            "signed": true
+          }
+        ]
+      },
+      {
+        "id": "direction-correlation",
+        "description": "최근 3년 관심도와 다음 1주 수익률의 순위 상관",
+        "dataset": "headline",
+        "sourceId": "momcafe-analysis",
+        "metrics": [
+          {
+            "label": "Spearman 상관",
+            "field": "correlation3y1w",
+            "format": "number",
+            "signed": true
+          }
+        ]
+      },
+      {
+        "id": "walk-forward",
+        "description": "과거 데이터만 사용한 표본외 예측 성능",
+        "dataset": "headline",
+        "sourceId": "momcafe-analysis",
+        "metrics": [
+          {
+            "label": "표본외 R²",
+            "field": "walkForwardR2",
+            "format": "number",
+            "signed": true
+          },
+          {
+            "label": "방향 적중률 (%)",
+            "field": "directionalAccuracyPct",
+            "format": "number"
+          }
+        ]
+      },
+      {
+        "id": "sparse-data",
+        "description": "완료 546주의 저빈도·과산포 정도",
+        "dataset": "headline",
+        "sourceId": "momcafe-analysis",
+        "metrics": [
+          {
+            "label": "0건 주 비중 (%)",
+            "field": "zeroRatePct",
+            "format": "number"
+          },
+          {
+            "label": "분산/평균",
+            "field": "varianceToMean",
+            "format": "number"
+          }
+        ]
+      },
+      {
+        "id": "broad-high-zone-result",
+        "description": "고점권의 모든 상대적 급증, 향후 12주",
+        "dataset": "spike_risk_headline",
+        "sourceId": "momcafe-analysis",
+        "metrics": [
+          {
+            "label": "사건 수",
+            "field": "highZoneEvents",
+            "format": "number"
+          },
+          {
+            "label": "상승 마감 비율 (%)",
+            "field": "highZonePositive12Pct",
+            "format": "number"
+          },
+          {
+            "label": "중앙수익률 (%)",
+            "field": "highZoneMedianReturn12Pct",
+            "format": "number",
+            "signed": true
+          }
+        ]
+      },
+      {
+        "id": "broad-upside-risk",
+        "description": "넓은 고점권 급증 뒤의 경로 위험",
+        "dataset": "spike_risk_headline",
+        "sourceId": "momcafe-analysis",
+        "metrics": [
+          {
+            "label": "중앙 최대상승 (%)",
+            "field": "highZoneMedianUpside12Pct",
+            "format": "number"
+          },
+          {
+            "label": "-10% 낙폭 경험률 (%)",
+            "field": "highZoneDrawdown10Rate12Pct",
+            "format": "number"
+          }
+        ]
+      },
+      {
+        "id": "extreme-high-zone-result",
+        "description": "고점권이면서 중앙값보다 10건 이상 많은 초대형 급증",
+        "dataset": "spike_risk_headline",
+        "sourceId": "momcafe-analysis",
+        "metrics": [
+          {
+            "label": "사건 수",
+            "field": "extremeEvents",
+            "format": "number"
+          },
+          {
+            "label": "12주 고점 위험 충족률 (%)",
+            "field": "extremeTopRiskRate12Pct",
+            "format": "number"
+          }
+        ]
+      },
+      {
+        "id": "extreme-path-result",
+        "description": "초대형 고점권 급증 뒤의 가격 경로",
+        "dataset": "spike_risk_headline",
+        "sourceId": "momcafe-analysis",
+        "metrics": [
+          {
+            "label": "4주 중앙수익률 (%)",
+            "field": "extremeMedianReturn4Pct",
+            "format": "number",
+            "signed": true
+          },
+          {
+            "label": "12주 중앙 최대낙폭 (%)",
+            "field": "extremeMedianDrawdown12Pct",
+            "format": "number",
+            "signed": true
+          }
+        ]
+      }
+    ],
+    "charts": [
+      {
+        "id": "mention-distribution",
+        "title": "주간 언급량 분포",
+        "subtitle": "완료 546주, 2016년 3월 7일–2026년 8월 17일",
+        "showDescription": true,
+        "intent": "comparison",
+        "question": "언급량이 일반적인 연속형 지표처럼 분포하는가?",
+        "rationale": "이미 집계된 구간별 주 수를 비교하므로 0에서 시작하는 막대가 가장 직접적입니다.",
+        "comparisonContext": {
+          "grain": "주",
+          "denominator": "완료 546주",
+          "unit": "주 수",
+          "semanticFamily": "언급량 분포"
+        },
+        "type": "bar",
+        "dataset": "mention_distribution",
+        "sourceId": "momcafe-analysis",
+        "encodings": {
+          "x": {
+            "field": "bin",
+            "type": "ordinal",
+            "label": "주간 언급량"
+          },
+          "y": {
+            "field": "weeks",
+            "type": "quantitative",
+            "label": "주 수",
+            "aggregate": "none"
+          },
+          "tooltip": [
+            {
+              "field": "weeks",
+              "type": "quantitative",
+              "label": "주 수"
+            },
+            {
+              "field": "sharePct",
+              "type": "quantitative",
+              "label": "전체 비중",
+              "unit": "%"
+            }
+          ]
+        },
+        "valueFormat": "number",
+        "palette": {
+          "kind": "sequential",
+          "name": "blue"
+        },
+        "settings": {
+          "sort": "custom",
+          "showValues": true
+        },
+        "labels": {
+          "values": "auto"
+        },
+        "surface": {
+          "surface": "export",
+          "viewMode": "both"
+        },
+        "layout": "full"
+      },
+      {
+        "id": "correlation-horizons",
+        "title": "관심도와 이후 수익률의 순위 상관",
+        "subtitle": "최근 3년과 전체 기간 비교, +1·2·4·8주",
+        "showDescription": true,
+        "intent": "comparison",
+        "question": "관심도가 이후 BTC 방향을 일관되게 설명하는가?",
+        "rationale": "네 개의 이산 지평에서 두 기간의 상관 부호와 크기를 직접 비교합니다.",
+        "comparisonContext": {
+          "grain": "주",
+          "baseline": "전체 기간",
+          "unit": "Spearman ρ",
+          "semanticFamily": "선행 수익률 상관"
+        },
+        "type": "bar",
+        "dataset": "correlations",
+        "sourceId": "momcafe-analysis",
+        "encodings": {
+          "x": {
+            "field": "horizon",
+            "type": "ordinal",
+            "label": "예측 지평"
+          },
+          "y": {
+            "field": "spearman",
+            "type": "quantitative",
+            "label": "Spearman ρ",
+            "aggregate": "none"
+          },
+          "color": {
+            "field": "scope",
+            "type": "nominal",
+            "label": "분석 기간"
+          },
+          "tooltip": [
+            {
+              "field": "observations",
+              "type": "quantitative",
+              "label": "관측 수"
+            },
+            {
+              "field": "pearson",
+              "type": "quantitative",
+              "label": "Pearson"
+            }
+          ]
+        },
+        "palette": {
+          "kind": "categorical",
+          "name": "blue-orange"
+        },
+        "legend": {
+          "position": "bottom",
+          "sort": "spec"
+        },
+        "referenceLines": [
+          {
+            "axis": "y",
+            "value": 0,
+            "label": "상관 없음",
+            "color": "neutral",
+            "lineStyle": "dashed"
+          }
+        ],
+        "settings": {
+          "groupMode": "grouped",
+          "sort": "custom",
+          "showValues": true
+        },
+        "labels": {
+          "values": "auto"
+        },
+        "surface": {
+          "surface": "export",
+          "viewMode": "both"
+        },
+        "layout": "full"
+      },
+      {
+        "id": "rolling-correlation",
+        "title": "52주 롤링 상관",
+        "subtitle": "관심도 백분위와 다음 1주 수익률, 최근 3년",
+        "showDescription": true,
+        "intent": "trend",
+        "question": "관심도와 다음 주 수익률의 관계가 시간에 따라 안정적인가?",
+        "rationale": "156개 주간 창의 상관 부호와 크기 변화를 연속적으로 확인합니다.",
+        "comparisonContext": {
+          "grain": "52주 이동창",
+          "unit": "상관계수",
+          "semanticFamily": "시간가변 상관"
+        },
+        "type": "line",
+        "dataset": "rolling_3y",
+        "sourceId": "momcafe-analysis",
+        "encodings": {
+          "x": {
+            "field": "week",
+            "type": "temporal",
+            "label": "기준 주"
+          },
+          "y": {
+            "field": "correlation",
+            "type": "quantitative",
+            "label": "상관계수",
+            "aggregate": "none"
+          },
+          "color": {
+            "field": "metric",
+            "type": "nominal",
+            "label": "상관 방식"
+          },
+          "lineStyle": {
+            "field": "metric",
+            "type": "nominal",
+            "label": "상관 방식"
+          },
+          "tooltip": [
+            {
+              "field": "observations",
+              "type": "quantitative",
+              "label": "창 내 관측 수"
+            }
+          ]
+        },
+        "palette": {
+          "kind": "categorical",
+          "name": "blue-orange"
+        },
+        "legend": {
+          "position": "bottom",
+          "sort": "spec"
+        },
+        "referenceLines": [
+          {
+            "axis": "y",
+            "value": 0,
+            "label": "상관 없음",
+            "color": "neutral",
+            "lineStyle": "dashed"
+          }
+        ],
+        "settings": {
+          "showPoints": "never",
+          "showLatestValue": true
+        },
+        "surface": {
+          "surface": "export",
+          "viewMode": "both"
+        },
+        "layout": "full"
+      },
+      {
+        "id": "contemporaneous-relationship",
+        "title": "관심도와 시장 지표의 동시 상관",
+        "subtitle": "최근 3년 Spearman ρ, 같은 주 기준",
+        "showDescription": true,
+        "intent": "comparison",
+        "question": "관심도는 가격 방향보다 시장 활동 강도와 더 가까운가?",
+        "rationale": "다섯 시장 결과의 동시 상관 크기를 한 축에서 비교합니다.",
+        "comparisonContext": {
+          "grain": "주",
+          "unit": "Spearman ρ",
+          "semanticFamily": "동시 관계"
+        },
+        "type": "horizontalBar",
+        "dataset": "recent_lead_lag",
+        "sourceId": "momcafe-analysis",
+        "encodings": {
+          "x": {
+            "field": "label",
+            "type": "nominal",
+            "label": "시장 지표"
+          },
+          "y": {
+            "field": "contemporaneousSpearman",
+            "type": "quantitative",
+            "label": "Spearman ρ",
+            "aggregate": "none"
+          },
+          "tooltip": [
+            {
+              "field": "strongestSpearman",
+              "type": "quantitative",
+              "label": "±8주 내 최대 |ρ|의 부호값"
+            },
+            {
+              "field": "strongestLagLabel",
+              "type": "text",
+              "label": "최대 상관 시차"
+            }
+          ]
+        },
+        "palette": {
+          "kind": "diverging",
+          "name": "blue-orange",
+          "midpoint": 0
+        },
+        "referenceLines": [
+          {
+            "axis": "y",
+            "value": 0,
+            "label": "상관 없음",
+            "color": "neutral",
+            "lineStyle": "dashed"
+          }
+        ],
+        "settings": {
+          "sort": "descending",
+          "showValues": true
+        },
+        "labels": {
+          "values": "all"
+        },
+        "surface": {
+          "surface": "export",
+          "viewMode": "both"
+        },
+        "layout": "full"
+      },
+      {
+        "id": "spike-risk-comparison",
+        "title": "고점권 급증의 범위를 좁히면 결과가 달라집니다",
+        "subtitle": "향후 12주 중앙값, 최대낙폭은 절대값으로 표시",
+        "showDescription": true,
+        "intent": "comparison",
+        "question": "모든 상대적 급증과 초대형 급증의 결과가 같은가?",
+        "rationale": "두 규칙의 표본 수와 상승여력·낙폭 차이를 같은 축에서 직접 비교합니다.",
+        "comparisonContext": {
+          "grain": "8주 중복 제거 사건",
+          "unit": "%",
+          "semanticFamily": "고점 위험 경로"
+        },
+        "type": "bar",
+        "dataset": "spike_risk_comparison",
+        "sourceId": "momcafe-analysis",
+        "encodings": {
+          "x": {
+            "field": "cohort",
+            "type": "ordinal",
+            "label": "급증 규칙"
+          },
+          "y": {
+            "field": "value",
+            "type": "quantitative",
+            "label": "%",
+            "aggregate": "none"
+          },
+          "color": {
+            "field": "metric",
+            "type": "nominal",
+            "label": "결과"
+          },
+          "tooltip": [
+            {
+              "field": "metric",
+              "type": "text",
+              "label": "측정값"
+            },
+            {
+              "field": "value",
+              "type": "quantitative",
+              "label": "값",
+              "unit": "%"
+            }
+          ]
+        },
+        "palette": {
+          "kind": "categorical",
+          "name": "blue-orange"
+        },
+        "legend": {
+          "position": "bottom",
+          "sort": "spec"
+        },
+        "referenceLines": [
+          {
+            "axis": "y",
+            "value": 0,
+            "label": "0%",
+            "color": "neutral",
+            "lineStyle": "dashed"
+          }
+        ],
+        "settings": {
+          "groupMode": "grouped",
+          "sort": "custom",
+          "showValues": true
+        },
+        "labels": {
+          "values": "all"
+        },
+        "surface": {
+          "surface": "export",
+          "viewMode": "both"
+        },
+        "layout": "full"
+      }
+    ],
+    "tables": [
+      {
+        "id": "event-results",
+        "title": "급증 사건 이후 결과",
+        "subtitle": "최근 3년과 전체 기간, 지평별 비중첩 사건",
+        "showDescription": true,
+        "dataset": "events",
+        "sourceId": "momcafe-analysis",
+        "defaultSort": {
+          "field": "scope",
+          "direction": "desc"
+        },
+        "density": "spacious",
+        "layout": "full",
+        "columns": [
+          {
+            "field": "scope",
+            "label": "기간",
+            "type": "text"
+          },
+          {
+            "field": "horizon",
+            "label": "지평",
+            "type": "text"
+          },
+          {
+            "field": "events",
+            "label": "사건 수",
+            "format": "number"
+          },
+          {
+            "field": "medianReturnPct",
+            "label": "사건 중앙수익 (%)",
+            "format": "number",
+            "movement": true
+          },
+          {
+            "field": "baselineMedianReturnPct",
+            "label": "전체 주 중앙수익 (%)",
+            "format": "number",
+            "movement": true
+          },
+          {
+            "field": "medianExcessPct",
+            "label": "중앙 차이 (%p)",
+            "format": "number",
+            "movement": true
+          },
+          {
+            "field": "hitRatePct",
+            "label": "상승률 (%)",
+            "format": "number"
+          },
+          {
+            "field": "medianMaePct",
+            "label": "중앙 MAE (%)",
+            "format": "number",
+            "movement": true
+          },
+          {
+            "field": "confidenceInterval",
+            "label": "중앙수익 95% CI",
+            "type": "text"
+          }
+        ]
+      },
+      {
+        "id": "lead-lag-results",
+        "title": "±8주 선행·후행 요약",
+        "subtitle": "각 시장 지표에서 절대값이 가장 큰 Spearman 상관",
+        "showDescription": true,
+        "dataset": "lead_lag",
+        "sourceId": "momcafe-analysis",
+        "defaultSort": {
+          "field": "scope",
+          "direction": "desc"
+        },
+        "density": "spacious",
+        "layout": "full",
+        "columns": [
+          {
+            "field": "scope",
+            "label": "기간",
+            "type": "text"
+          },
+          {
+            "field": "label",
+            "label": "시장 지표",
+            "type": "text"
+          },
+          {
+            "field": "strongestLagLabel",
+            "label": "최대 상관 시차",
+            "type": "text"
+          },
+          {
+            "field": "strongestSpearman",
+            "label": "최대 Spearman",
+            "format": "number",
+            "movement": true
+          },
+          {
+            "field": "contemporaneousSpearman",
+            "label": "동시 Spearman",
+            "format": "number",
+            "movement": true
+          },
+          {
+            "field": "attentionLeadLag",
+            "label": "관심 선행 지평",
+            "format": "number"
+          },
+          {
+            "field": "attentionLeadSpearman",
+            "label": "관심 선행 최대 ρ",
+            "format": "number",
+            "movement": true
+          }
+        ]
+      },
+      {
+        "id": "regime-results",
+        "title": "시장 체제별 관심도–다음 주 수익률",
+        "subtitle": "추세와 변동성 체제별 최근 3년·전체 기간 비교",
+        "showDescription": true,
+        "dataset": "regimes",
+        "sourceId": "momcafe-analysis",
+        "defaultSort": {
+          "field": "scope",
+          "direction": "desc"
+        },
+        "density": "spacious",
+        "layout": "full",
+        "columns": [
+          {
+            "field": "scope",
+            "label": "기간",
+            "type": "text"
+          },
+          {
+            "field": "regime",
+            "label": "시장 체제",
+            "type": "text"
+          },
+          {
+            "field": "observations",
+            "label": "관측 수",
+            "format": "number"
+          },
+          {
+            "field": "pearson",
+            "label": "Pearson",
+            "format": "number",
+            "movement": true
+          },
+          {
+            "field": "spearman",
+            "label": "Spearman",
+            "format": "number",
+            "movement": true
+          },
+          {
+            "field": "medianNextReturnPct",
+            "label": "다음 주 중앙수익 (%)",
+            "format": "number",
+            "movement": true
+          }
+        ]
+      },
+      {
+        "id": "granger-results",
+        "title": "Granger 선행성 검정",
+        "subtitle": "1–4주 양방향, Benjamini–Hochberg FDR 보정",
+        "showDescription": true,
+        "dataset": "granger",
+        "sourceId": "momcafe-analysis",
+        "defaultSort": {
+          "field": "directionLabel",
+          "direction": "asc"
+        },
+        "density": "spacious",
+        "layout": "full",
+        "columns": [
+          {
+            "field": "directionLabel",
+            "label": "방향",
+            "type": "text"
+          },
+          {
+            "field": "lag",
+            "label": "시차 (주)",
+            "format": "number"
+          },
+          {
+            "field": "fStatistic",
+            "label": "F",
+            "format": "number"
+          },
+          {
+            "field": "pValue",
+            "label": "p",
+            "format": "number"
+          },
+          {
+            "field": "qValue",
+            "label": "FDR q",
+            "format": "number"
+          },
+          {
+            "field": "verdict",
+            "label": "판정",
+            "type": "text"
+          }
+        ]
+      },
+      {
+        "id": "extreme-spike-events",
+        "title": "고점권 초대형 급증의 실제 3개 사건",
+        "subtitle": "중앙값 대비 +10건 이상, 향후 12주 기준",
+        "showDescription": true,
+        "dataset": "extreme_spike_events",
+        "sourceId": "momcafe-analysis",
+        "defaultSort": {
+          "field": "week",
+          "direction": "asc"
+        },
+        "density": "spacious",
+        "layout": "full",
+        "columns": [
+          {
+            "field": "week",
+            "label": "사건 주",
+            "type": "text"
+          },
+          {
+            "field": "postCount",
+            "label": "언급량",
+            "format": "number"
+          },
+          {
+            "field": "baselineMedian",
+            "label": "52주 중앙값",
+            "format": "number"
+          },
+          {
+            "field": "mentionExcess",
+            "label": "중앙값 대비",
+            "format": "number"
+          },
+          {
+            "field": "distanceFromPriorHighPct",
+            "label": "직전 고점 대비 (%)",
+            "format": "number",
+            "movement": true
+          },
+          {
+            "field": "return4wPct",
+            "label": "+4주 수익 (%)",
+            "format": "number",
+            "movement": true
+          },
+          {
+            "field": "return12wPct",
+            "label": "+12주 수익 (%)",
+            "format": "number",
+            "movement": true
+          },
+          {
+            "field": "maxUpside12wPct",
+            "label": "12주 최대상승 (%)",
+            "format": "number",
+            "movement": true
+          },
+          {
+            "field": "maxDrawdown12wPct",
+            "label": "12주 최대낙폭 (%)",
+            "format": "number",
+            "movement": true
+          },
+          {
+            "field": "topRiskVerdict",
+            "label": "고점 위험",
+            "type": "text"
+          }
+        ]
+      },
+      {
+        "id": "extreme-spike-sensitivity",
+        "title": "초대형 기준 민감도",
+        "subtitle": "고점권 사건, 향후 12주; 기준을 결과에 맞춰 고르지 않기 위한 점검",
+        "showDescription": true,
+        "dataset": "extreme_spike_sensitivity",
+        "sourceId": "momcafe-analysis",
+        "defaultSort": {
+          "field": "excessThreshold",
+          "direction": "asc"
+        },
+        "density": "spacious",
+        "layout": "full",
+        "columns": [
+          {
+            "field": "excessThreshold",
+            "label": "중앙값 대비 기준 (건)",
+            "format": "number"
+          },
+          {
+            "field": "thresholdLabel",
+            "label": "초대형 기준",
+            "type": "text"
+          },
+          {
+            "field": "events",
+            "label": "사건 수",
+            "format": "number"
+          },
+          {
+            "field": "medianReturnPct",
+            "label": "12주 중앙수익 (%)",
+            "format": "number",
+            "movement": true
+          },
+          {
+            "field": "medianMaxUpsidePct",
+            "label": "중앙 최대상승 (%)",
+            "format": "number",
+            "movement": true
+          },
+          {
+            "field": "medianMaxDrawdownPct",
+            "label": "중앙 최대낙폭 (%)",
+            "format": "number",
+            "movement": true
+          },
+          {
+            "field": "topRiskRatePct",
+            "label": "고점 위험 충족률 (%)",
+            "format": "number"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "momcafe-analysis",
+        "label": "맘카페 × BTC 주간 분석 산출물 (public/data.json + lib/statistics.ts)",
+        "path": "reports/report-source.sql",
+        "href": "https://github.com/yoonch9009/momcafe-bitcoin-web/blob/main/public/data.json",
+        "query": {
+          "engine": "SQLite (node:sqlite)",
+          "language": "SQL",
+          "sql": "-- Final report datasets projected from reports/analysis-results.json and reports/spike-top-risk-results.json.\n-- The upstream calculations are reproduced by reports/analyze-momcafe-results.mjs and reports/analyze-spike-top-risk.mjs.\nSELECT * FROM \"headline\";\nSELECT * FROM \"spike_risk_headline\";\nSELECT * FROM \"spike_risk_comparison\";\nSELECT * FROM \"extreme_spike_events\";\nSELECT * FROM \"extreme_spike_sensitivity\";\nSELECT * FROM \"mention_distribution\";\nSELECT * FROM \"correlations\";\nSELECT * FROM \"attention_buckets\";\nSELECT * FROM \"lead_lag\";\nSELECT * FROM \"recent_lead_lag\";\nSELECT * FROM \"events\";\nSELECT * FROM \"recent_events\";\nSELECT * FROM \"full_events\";\nSELECT * FROM \"rolling_3y\";\nSELECT * FROM \"regimes\";\nSELECT * FROM \"recent_regimes\";\nSELECT * FROM \"granger\";\nSELECT * FROM \"quality\";",
+          "description": "재현 가능한 JavaScript 분석 결과를 보고서용 SQLite 표로 투영한 최종 조회",
+          "executed_at": "2026-08-26T05:58:15.857Z",
+          "tables_used": [
+            "headline",
+            "spike_risk_headline",
+            "spike_risk_comparison",
+            "extreme_spike_events",
+            "extreme_spike_sensitivity",
+            "mention_distribution",
+            "correlations",
+            "attention_buckets",
+            "lead_lag",
+            "recent_lead_lag",
+            "events",
+            "recent_events",
+            "full_events",
+            "rolling_3y",
+            "regimes",
+            "recent_regimes",
+            "granger",
+            "quality"
+          ],
+          "filters": [
+            "Asia/Seoul 월요일 시작 주간 단위",
+            "헤드라인과 분포는 완료 주만 사용",
+            "기본 화면 비교 구간은 마지막 156주(최근 3년)",
+            "고점 가설은 첫 스파이크 후 8주 이내 재발을 한 에피소드로 처리"
+          ],
+          "metric_definitions": [
+            "관심도 백분위: 직전 최대 52주의 언급량보다 낮은 값과 동률의 절반을 합친 경험적 순위",
+            "급증 사건: 직전 52주 95백분위 이상이면서 중앙값보다 최소 3건 많은 완료 주",
+            "고점권: 사건 주 종가가 직전 26주 최고 종가의 10% 이내",
+            "초대형 급증: 기본 급증 조건과 함께 직전 52주 중앙값보다 최소 10건 많음",
+            "12주 고점 위험: 최대 상승여력 10% 이하이면서 최대 낙폭 -10% 이하",
+            "표본외 R²: 최초 104개 관측 이후 매주 과거 데이터만으로 재적합한 선형모형과 과거평균 예측의 오차 비교"
+          ]
+        }
+      }
+    ]
+  },
+  "snapshot": {
+    "version": 1,
+    "generatedAt": "2026-08-26T05:58:15.857Z",
+    "status": "ready",
+    "datasets": {
+      "headline": [
+        {
+          "attentionPercentile": 46.153846,
+          "postCount": 3,
+          "mentionChange4w": 1,
+          "correlation3y1w": -0.078942,
+          "walkForwardR2": 0.001034,
+          "directionalAccuracyPct": 52.403846,
+          "zeroRatePct": 23.626374,
+          "varianceToMean": 15.554956
+        }
+      ],
+      "spike_risk_headline": [
+        {
+          "highZoneEvents": 10,
+          "highZonePositive12Pct": 90,
+          "highZoneMedianReturn12Pct": 20.056049,
+          "highZoneMedianUpside12Pct": 50.461921,
+          "highZoneDrawdown10Rate12Pct": 60,
+          "extremeEvents": 3,
+          "extremeTopRiskRate12Pct": 66.666667,
+          "extremeMedianReturn4Pct": -3.755419,
+          "extremeMedianDrawdown12Pct": -17.329542
+        }
+      ],
+      "spike_risk_comparison": [
+        {
+          "cohort": "넓은 고점권 스파이크 (10건)",
+          "metric": "12주 중앙수익",
+          "value": 20.056049
+        },
+        {
+          "cohort": "넓은 고점권 스파이크 (10건)",
+          "metric": "12주 중앙 최대상승",
+          "value": 50.461921
+        },
+        {
+          "cohort": "넓은 고점권 스파이크 (10건)",
+          "metric": "12주 중앙 최대낙폭(절대값)",
+          "value": 10.939538
+        },
+        {
+          "cohort": "초대형 고점권 스파이크 (3건)",
+          "metric": "12주 중앙수익",
+          "value": 1.893709
+        },
+        {
+          "cohort": "초대형 고점권 스파이크 (3건)",
+          "metric": "12주 중앙 최대상승",
+          "value": 6.486865
+        },
+        {
+          "cohort": "초대형 고점권 스파이크 (3건)",
+          "metric": "12주 중앙 최대낙폭(절대값)",
+          "value": 17.329542
+        }
+      ],
+      "extreme_spike_events": [
+        {
+          "week": "2021-04-12",
+          "postCount": 45,
+          "baselineMedian": 2,
+          "mentionExcess": 43,
+          "attentionPercentile": 100,
+          "btcClose": 56274.41,
+          "weeklyReturnPct": -6.224745,
+          "distanceFromPriorHighPct": -6.18627,
+          "context": "고점권",
+          "return4wPct": -17.456638,
+          "maxDrawdown4wPct": -22.122684,
+          "return8wPct": -30.66966,
+          "maxDrawdown8wPct": -46.689801,
+          "return12wPct": -39.121121,
+          "maxUpside12wPct": 5.895735,
+          "maxDrawdown12wPct": -48.822209,
+          "topRisk12w": true,
+          "topRiskVerdict": "고점 위험 충족"
+        },
+        {
+          "week": "2024-03-11",
+          "postCount": 38,
+          "baselineMedian": 1,
+          "mentionExcess": 37,
+          "attentionPercentile": 100,
+          "btcClose": 68343.64,
+          "weeklyReturnPct": -0.954863,
+          "distanceFromPriorHighPct": -0.997333,
+          "context": "고점권",
+          "return4wPct": -3.755419,
+          "maxDrawdown4wPct": -11.080036,
+          "return8wPct": -10.082313,
+          "maxDrawdown8wPct": -17.329542,
+          "return12wPct": 1.893709,
+          "maxUpside12wPct": 6.486865,
+          "maxDrawdown12wPct": -17.329542,
+          "topRisk12w": true,
+          "topRiskVerdict": "고점 위험 충족"
+        },
+        {
+          "week": "2024-11-11",
+          "postCount": 21,
+          "baselineMedian": 2,
+          "mentionExcess": 19,
+          "attentionPercentile": 94.230769,
+          "btcClose": 89886.69,
+          "weeklyReturnPct": 11.746608,
+          "distanceFromPriorHighPct": 11.759166,
+          "context": "고점권",
+          "return4wPct": 16.199362,
+          "maxDrawdown4wPct": -0.571876,
+          "return8wPct": 5.143064,
+          "maxDrawdown8wPct": -0.571876,
+          "return12wPct": 7.330485,
+          "maxUpside12wPct": 21.662073,
+          "maxDrawdown12wPct": -0.954591,
+          "topRisk12w": false,
+          "topRiskVerdict": "미충족"
+        }
+      ],
+      "extreme_spike_sensitivity": [
+        {
+          "excessThreshold": 5,
+          "cohort": "고점권 초대형 스파이크",
+          "horizonWeeks": 12,
+          "events": 8,
+          "medianReturnPct": 17.917652,
+          "meanReturnPct": 38.552771,
+          "positiveReturnRatePct": 87.5,
+          "p25ReturnPct": 5.971291,
+          "p10ReturnPct": -10.41074,
+          "medianMaxUpsidePct": 37.749536,
+          "medianMaxDrawdownPct": -9.650986,
+          "drawdown10RatePct": 50,
+          "drawdown20RatePct": 12.5,
+          "upsideWithin10RatePct": 25,
+          "topRiskRatePct": 25,
+          "medianWeeksToMaximumHigh": 9,
+          "firstDown10RatePct": 37.5,
+          "firstMoveKnown": 8,
+          "thresholdLabel": "중앙값 +5건"
+        },
+        {
+          "excessThreshold": 9,
+          "cohort": "고점권 초대형 스파이크",
+          "horizonWeeks": 12,
+          "events": 4,
+          "medianReturnPct": 4.612097,
+          "meanReturnPct": -2.527773,
+          "positiveReturnRatePct": 75,
+          "p25ReturnPct": -8.359998,
+          "p10ReturnPct": -26.816672,
+          "medianMaxUpsidePct": 14.074469,
+          "medianMaxDrawdownPct": -14.482982,
+          "drawdown10RatePct": 75,
+          "drawdown20RatePct": 25,
+          "upsideWithin10RatePct": 50,
+          "topRiskRatePct": 50,
+          "medianWeeksToMaximumHigh": 6.5,
+          "firstDown10RatePct": 50,
+          "firstMoveKnown": 4,
+          "thresholdLabel": "중앙값 +9건"
+        },
+        {
+          "excessThreshold": 10,
+          "cohort": "고점권 초대형 스파이크",
+          "horizonWeeks": 12,
+          "events": 3,
+          "medianReturnPct": 1.893709,
+          "meanReturnPct": -9.965642,
+          "positiveReturnRatePct": 66.666667,
+          "p25ReturnPct": -18.613706,
+          "p10ReturnPct": -30.918155,
+          "medianMaxUpsidePct": 6.486865,
+          "medianMaxDrawdownPct": -17.329542,
+          "drawdown10RatePct": 66.666667,
+          "drawdown20RatePct": 33.333333,
+          "upsideWithin10RatePct": 66.666667,
+          "topRiskRatePct": 66.666667,
+          "medianWeeksToMaximumHigh": 4,
+          "firstDown10RatePct": 66.666667,
+          "firstMoveKnown": 3,
+          "thresholdLabel": "중앙값 +10건"
+        },
+        {
+          "excessThreshold": 15,
+          "cohort": "고점권 초대형 스파이크",
+          "horizonWeeks": 12,
+          "events": 3,
+          "medianReturnPct": 1.893709,
+          "meanReturnPct": -9.965642,
+          "positiveReturnRatePct": 66.666667,
+          "p25ReturnPct": -18.613706,
+          "p10ReturnPct": -30.918155,
+          "medianMaxUpsidePct": 6.486865,
+          "medianMaxDrawdownPct": -17.329542,
+          "drawdown10RatePct": 66.666667,
+          "drawdown20RatePct": 33.333333,
+          "upsideWithin10RatePct": 66.666667,
+          "topRiskRatePct": 66.666667,
+          "medianWeeksToMaximumHigh": 4,
+          "firstDown10RatePct": 66.666667,
+          "firstMoveKnown": 3,
+          "thresholdLabel": "중앙값 +15건"
+        },
+        {
+          "excessThreshold": 20,
+          "cohort": "고점권 초대형 스파이크",
+          "horizonWeeks": 12,
+          "events": 2,
+          "medianReturnPct": -18.613706,
+          "meanReturnPct": -18.613706,
+          "positiveReturnRatePct": 50,
+          "p25ReturnPct": -28.867413,
+          "p10ReturnPct": -35.019638,
+          "medianMaxUpsidePct": 6.1913,
+          "medianMaxDrawdownPct": -33.075876,
+          "drawdown10RatePct": 100,
+          "drawdown20RatePct": 50,
+          "upsideWithin10RatePct": 100,
+          "topRiskRatePct": 100,
+          "medianWeeksToMaximumHigh": 4,
+          "firstDown10RatePct": 100,
+          "firstMoveKnown": 2,
+          "thresholdLabel": "중앙값 +20건"
+        }
+      ],
+      "mention_distribution": [
+        {
+          "bin": "0건",
+          "weeks": 129,
+          "sharePct": 23.63,
+          "rank": 0
+        },
+        {
+          "bin": "1건",
+          "weeks": 110,
+          "sharePct": 20.15,
+          "rank": 1
+        },
+        {
+          "bin": "2건",
+          "weeks": 83,
+          "sharePct": 15.2,
+          "rank": 2
+        },
+        {
+          "bin": "3–4건",
+          "weeks": 99,
+          "sharePct": 18.13,
+          "rank": 3
+        },
+        {
+          "bin": "5–9건",
+          "weeks": 69,
+          "sharePct": 12.64,
+          "rank": 4
+        },
+        {
+          "bin": "10–19건",
+          "weeks": 32,
+          "sharePct": 5.86,
+          "rank": 5
+        },
+        {
+          "bin": "20–39건",
+          "weeks": 18,
+          "sharePct": 3.3,
+          "rank": 6
+        },
+        {
+          "bin": "40건 이상",
+          "weeks": 6,
+          "sharePct": 1.1,
+          "rank": 7
+        }
+      ],
+      "correlations": [
+        {
+          "scope": "최근 3년",
+          "horizonWeeks": 1,
+          "observations": 155,
+          "pearson": -0.07801,
+          "spearman": -0.078942,
+          "medianReturnPct": 0.14712,
+          "horizon": "+1주"
+        },
+        {
+          "scope": "최근 3년",
+          "horizonWeeks": 2,
+          "observations": 154,
+          "pearson": -0.033151,
+          "spearman": -0.065131,
+          "medianReturnPct": 1.648165,
+          "horizon": "+2주"
+        },
+        {
+          "scope": "최근 3년",
+          "horizonWeeks": 4,
+          "observations": 152,
+          "pearson": -0.096365,
+          "spearman": -0.131079,
+          "medianReturnPct": 1.30188,
+          "horizon": "+4주"
+        },
+        {
+          "scope": "최근 3년",
+          "horizonWeeks": 8,
+          "observations": 148,
+          "pearson": -0.137879,
+          "spearman": -0.149024,
+          "medianReturnPct": 2.711526,
+          "horizon": "+8주"
+        },
+        {
+          "scope": "전체 기간",
+          "horizonWeeks": 1,
+          "observations": 520,
+          "pearson": 0.062565,
+          "spearman": 0.065443,
+          "medianReturnPct": 0.55019,
+          "horizon": "+1주"
+        },
+        {
+          "scope": "전체 기간",
+          "horizonWeeks": 2,
+          "observations": 519,
+          "pearson": 0.109667,
+          "spearman": 0.09069,
+          "medianReturnPct": 1.713615,
+          "horizon": "+2주"
+        },
+        {
+          "scope": "전체 기간",
+          "horizonWeeks": 4,
+          "observations": 517,
+          "pearson": 0.104748,
+          "spearman": 0.080374,
+          "medianReturnPct": 2.095038,
+          "horizon": "+4주"
+        },
+        {
+          "scope": "전체 기간",
+          "horizonWeeks": 8,
+          "observations": 513,
+          "pearson": 0.117847,
+          "spearman": 0.102938,
+          "medianReturnPct": 5.706607,
+          "horizon": "+8주"
+        }
+      ],
+      "attention_buckets": [
+        {
+          "scope": "최근 3년",
+          "bucket": "0–20",
+          "rank": 0,
+          "observations": 19,
+          "meanReturnPct": 1.889396,
+          "medianReturnPct": 1.71528,
+          "hitRatePct": 52.631579
+        },
+        {
+          "scope": "최근 3년",
+          "bucket": "20–40",
+          "rank": 1,
+          "observations": 30,
+          "meanReturnPct": 1.704798,
+          "medianReturnPct": 0.659604,
+          "hitRatePct": 63.333333
+        },
+        {
+          "scope": "최근 3년",
+          "bucket": "40–60",
+          "rank": 2,
+          "observations": 38,
+          "meanReturnPct": 0.855505,
+          "medianReturnPct": -0.127314,
+          "hitRatePct": 50
+        },
+        {
+          "scope": "최근 3년",
+          "bucket": "60–80",
+          "rank": 3,
+          "observations": 33,
+          "meanReturnPct": -0.73406,
+          "medianReturnPct": -0.14897,
+          "hitRatePct": 45.454545
+        },
+        {
+          "scope": "최근 3년",
+          "bucket": "80–100",
+          "rank": 4,
+          "observations": 35,
+          "meanReturnPct": 1.338074,
+          "medianReturnPct": 0.303644,
+          "hitRatePct": 54.285714
+        },
+        {
+          "scope": "전체 기간",
+          "bucket": "0–20",
+          "rank": 0,
+          "observations": 104,
+          "meanReturnPct": -0.072791,
+          "medianReturnPct": -0.494965,
+          "hitRatePct": 45.192308
+        },
+        {
+          "scope": "전체 기간",
+          "bucket": "20–40",
+          "rank": 1,
+          "observations": 83,
+          "meanReturnPct": 1.692774,
+          "medianReturnPct": 0.542184,
+          "hitRatePct": 54.216867
+        },
+        {
+          "scope": "전체 기간",
+          "bucket": "40–60",
+          "rank": 2,
+          "observations": 116,
+          "meanReturnPct": 1.967459,
+          "medianReturnPct": 1.203232,
+          "hitRatePct": 57.758621
+        },
+        {
+          "scope": "전체 기간",
+          "bucket": "60–80",
+          "rank": 3,
+          "observations": 101,
+          "meanReturnPct": 0.96137,
+          "medianReturnPct": 0.381296,
+          "hitRatePct": 54.455446
+        },
+        {
+          "scope": "전체 기간",
+          "bucket": "80–100",
+          "rank": 4,
+          "observations": 116,
+          "meanReturnPct": 2.296611,
+          "medianReturnPct": 1.373766,
+          "hitRatePct": 59.482759
+        }
+      ],
+      "lead_lag": [
+        {
+          "scope": "최근 3년",
+          "outcome": "return",
+          "label": "주간 수익률",
+          "strongestLag": -6,
+          "strongestSpearman": 0.214801,
+          "strongestN": 150,
+          "contemporaneousSpearman": -0.00982,
+          "attentionLeadLag": 5,
+          "attentionLeadSpearman": -0.170953,
+          "marketLeadLag": -6,
+          "marketLeadSpearman": 0.214801,
+          "strongestLagLabel": "시장 6주 선행"
+        },
+        {
+          "scope": "최근 3년",
+          "outcome": "absoluteReturn",
+          "label": "절대 수익률",
+          "strongestLag": -1,
+          "strongestSpearman": 0.166508,
+          "strongestN": 155,
+          "contemporaneousSpearman": 0.11763,
+          "attentionLeadLag": 4,
+          "attentionLeadSpearman": 0.070524,
+          "marketLeadLag": -1,
+          "marketLeadSpearman": 0.166508,
+          "strongestLagLabel": "시장 1주 선행"
+        },
+        {
+          "scope": "최근 3년",
+          "outcome": "volumeChange",
+          "label": "거래량 변화",
+          "strongestLag": 0,
+          "strongestSpearman": 0.239801,
+          "strongestN": 156,
+          "contemporaneousSpearman": 0.239801,
+          "attentionLeadLag": 1,
+          "attentionLeadSpearman": -0.172724,
+          "marketLeadLag": -5,
+          "marketLeadSpearman": 0.110328,
+          "strongestLagLabel": "동시"
+        },
+        {
+          "scope": "최근 3년",
+          "outcome": "volatility",
+          "label": "실현변동성",
+          "strongestLag": 0,
+          "strongestSpearman": 0.379327,
+          "strongestN": 156,
+          "contemporaneousSpearman": 0.379327,
+          "attentionLeadLag": 2,
+          "attentionLeadSpearman": 0.215568,
+          "marketLeadLag": -1,
+          "marketLeadSpearman": 0.152703,
+          "strongestLagLabel": "동시"
+        },
+        {
+          "scope": "최근 3년",
+          "outcome": "range",
+          "label": "고저 변동폭",
+          "strongestLag": 0,
+          "strongestSpearman": 0.371013,
+          "strongestN": 156,
+          "contemporaneousSpearman": 0.371013,
+          "attentionLeadLag": 4,
+          "attentionLeadSpearman": 0.22279,
+          "marketLeadLag": -1,
+          "marketLeadSpearman": 0.199758,
+          "strongestLagLabel": "동시"
+        },
+        {
+          "scope": "전체 기간",
+          "outcome": "return",
+          "label": "주간 수익률",
+          "strongestLag": -7,
+          "strongestSpearman": 0.156989,
+          "strongestN": 521,
+          "contemporaneousSpearman": 0.083868,
+          "attentionLeadLag": 2,
+          "attentionLeadSpearman": 0.102859,
+          "marketLeadLag": -7,
+          "marketLeadSpearman": 0.156989,
+          "strongestLagLabel": "시장 7주 선행"
+        },
+        {
+          "scope": "전체 기간",
+          "outcome": "absoluteReturn",
+          "label": "절대 수익률",
+          "strongestLag": 0,
+          "strongestSpearman": 0.203847,
+          "strongestN": 521,
+          "contemporaneousSpearman": 0.203847,
+          "attentionLeadLag": 4,
+          "attentionLeadSpearman": 0.14703,
+          "marketLeadLag": -1,
+          "marketLeadSpearman": 0.201034,
+          "strongestLagLabel": "동시"
+        },
+        {
+          "scope": "전체 기간",
+          "outcome": "volumeChange",
+          "label": "거래량 변화",
+          "strongestLag": 0,
+          "strongestSpearman": 0.139568,
+          "strongestN": 521,
+          "contemporaneousSpearman": 0.139568,
+          "attentionLeadLag": 1,
+          "attentionLeadSpearman": -0.098392,
+          "marketLeadLag": -7,
+          "marketLeadSpearman": 0.079183,
+          "strongestLagLabel": "동시"
+        },
+        {
+          "scope": "전체 기간",
+          "outcome": "volatility",
+          "label": "실현변동성",
+          "strongestLag": 0,
+          "strongestSpearman": 0.25949,
+          "strongestN": 521,
+          "contemporaneousSpearman": 0.25949,
+          "attentionLeadLag": 5,
+          "attentionLeadSpearman": 0.244817,
+          "marketLeadLag": -1,
+          "marketLeadSpearman": 0.189272,
+          "strongestLagLabel": "동시"
+        },
+        {
+          "scope": "전체 기간",
+          "outcome": "range",
+          "label": "고저 변동폭",
+          "strongestLag": 0,
+          "strongestSpearman": 0.307836,
+          "strongestN": 521,
+          "contemporaneousSpearman": 0.307836,
+          "attentionLeadLag": 4,
+          "attentionLeadSpearman": 0.25767,
+          "marketLeadLag": -1,
+          "marketLeadSpearman": 0.234592,
+          "strongestLagLabel": "동시"
+        }
+      ],
+      "recent_lead_lag": [
+        {
+          "scope": "최근 3년",
+          "outcome": "return",
+          "label": "주간 수익률",
+          "strongestLag": -6,
+          "strongestSpearman": 0.214801,
+          "strongestN": 150,
+          "contemporaneousSpearman": -0.00982,
+          "attentionLeadLag": 5,
+          "attentionLeadSpearman": -0.170953,
+          "marketLeadLag": -6,
+          "marketLeadSpearman": 0.214801,
+          "strongestLagLabel": "시장 6주 선행"
+        },
+        {
+          "scope": "최근 3년",
+          "outcome": "absoluteReturn",
+          "label": "절대 수익률",
+          "strongestLag": -1,
+          "strongestSpearman": 0.166508,
+          "strongestN": 155,
+          "contemporaneousSpearman": 0.11763,
+          "attentionLeadLag": 4,
+          "attentionLeadSpearman": 0.070524,
+          "marketLeadLag": -1,
+          "marketLeadSpearman": 0.166508,
+          "strongestLagLabel": "시장 1주 선행"
+        },
+        {
+          "scope": "최근 3년",
+          "outcome": "volumeChange",
+          "label": "거래량 변화",
+          "strongestLag": 0,
+          "strongestSpearman": 0.239801,
+          "strongestN": 156,
+          "contemporaneousSpearman": 0.239801,
+          "attentionLeadLag": 1,
+          "attentionLeadSpearman": -0.172724,
+          "marketLeadLag": -5,
+          "marketLeadSpearman": 0.110328,
+          "strongestLagLabel": "동시"
+        },
+        {
+          "scope": "최근 3년",
+          "outcome": "volatility",
+          "label": "실현변동성",
+          "strongestLag": 0,
+          "strongestSpearman": 0.379327,
+          "strongestN": 156,
+          "contemporaneousSpearman": 0.379327,
+          "attentionLeadLag": 2,
+          "attentionLeadSpearman": 0.215568,
+          "marketLeadLag": -1,
+          "marketLeadSpearman": 0.152703,
+          "strongestLagLabel": "동시"
+        },
+        {
+          "scope": "최근 3년",
+          "outcome": "range",
+          "label": "고저 변동폭",
+          "strongestLag": 0,
+          "strongestSpearman": 0.371013,
+          "strongestN": 156,
+          "contemporaneousSpearman": 0.371013,
+          "attentionLeadLag": 4,
+          "attentionLeadSpearman": 0.22279,
+          "marketLeadLag": -1,
+          "marketLeadSpearman": 0.199758,
+          "strongestLagLabel": "동시"
+        }
+      ],
+      "events": [
+        {
+          "scope": "최근 3년",
+          "horizonWeeks": 1,
+          "events": 9,
+          "medianReturnPct": -0.343619,
+          "baselineMedianReturnPct": 0.14712,
+          "medianExcessPct": -0.490739,
+          "meanReturnPct": 0.403606,
+          "hitRatePct": 44.444444,
+          "baselineHitRatePct": 52.903226,
+          "medianMfePct": 3.177649,
+          "medianMaePct": -6.222535,
+          "ciLowPct": -0.810356,
+          "ciHighPct": 1.45055,
+          "horizon": "+1주",
+          "confidenceInterval": "-0.8% ~ +1.5%"
+        },
+        {
+          "scope": "최근 3년",
+          "horizonWeeks": 2,
+          "events": 7,
+          "medianReturnPct": 0.808829,
+          "baselineMedianReturnPct": 1.648165,
+          "medianExcessPct": -0.839337,
+          "meanReturnPct": 3.222352,
+          "hitRatePct": 57.142857,
+          "baselineHitRatePct": 54.545455,
+          "medianMfePct": 6.958283,
+          "medianMaePct": -7.665551,
+          "ciLowPct": null,
+          "ciHighPct": null,
+          "horizon": "+2주",
+          "confidenceInterval": "표본 부족"
+        },
+        {
+          "scope": "최근 3년",
+          "horizonWeeks": 4,
+          "events": 6,
+          "medianReturnPct": 12.176613,
+          "baselineMedianReturnPct": 1.30188,
+          "medianExcessPct": 10.874733,
+          "meanReturnPct": 9.580571,
+          "hitRatePct": 83.333333,
+          "baselineHitRatePct": 57.236842,
+          "medianMfePct": 13.968693,
+          "medianMaePct": -5.405648,
+          "ciLowPct": null,
+          "ciHighPct": null,
+          "horizon": "+4주",
+          "confidenceInterval": "표본 부족"
+        },
+        {
+          "scope": "최근 3년",
+          "horizonWeeks": 8,
+          "events": 5,
+          "medianReturnPct": 5.143064,
+          "baselineMedianReturnPct": 2.711526,
+          "medianExcessPct": 2.431538,
+          "meanReturnPct": 14.195292,
+          "hitRatePct": 60,
+          "baselineHitRatePct": 54.72973,
+          "medianMfePct": 20.583904,
+          "medianMaePct": -7.665551,
+          "ciLowPct": null,
+          "ciHighPct": null,
+          "horizon": "+8주",
+          "confidenceInterval": "표본 부족"
+        },
+        {
+          "scope": "전체 기간",
+          "horizonWeeks": 1,
+          "events": 33,
+          "medianReturnPct": 1.45055,
+          "baselineMedianReturnPct": 0.55019,
+          "medianExcessPct": 0.90036,
+          "meanReturnPct": 4.698579,
+          "hitRatePct": 57.575758,
+          "baselineHitRatePct": 54.423077,
+          "medianMfePct": 5.993244,
+          "medianMaePct": -6.275652,
+          "ciLowPct": -0.343619,
+          "ciHighPct": 11.850739,
+          "horizon": "+1주",
+          "confidenceInterval": "-0.3% ~ +11.9%"
+        },
+        {
+          "scope": "전체 기간",
+          "horizonWeeks": 2,
+          "events": 26,
+          "medianReturnPct": 3.357504,
+          "baselineMedianReturnPct": 1.713615,
+          "medianExcessPct": 1.643889,
+          "meanReturnPct": 6.046719,
+          "hitRatePct": 61.538462,
+          "baselineHitRatePct": 56.069364,
+          "medianMfePct": 11.287601,
+          "medianMaePct": -8.44444,
+          "ciLowPct": -0.91902,
+          "ciHighPct": 7.797422,
+          "horizon": "+2주",
+          "confidenceInterval": "-0.9% ~ +7.8%"
+        },
+        {
+          "scope": "전체 기간",
+          "horizonWeeks": 4,
+          "events": 20,
+          "medianReturnPct": 16.036604,
+          "baselineMedianReturnPct": 2.095038,
+          "medianExcessPct": 13.941566,
+          "meanReturnPct": 12.962818,
+          "hitRatePct": 80,
+          "baselineHitRatePct": 56.673114,
+          "medianMfePct": 26.923596,
+          "medianMaePct": -8.854057,
+          "ciLowPct": 8.479381,
+          "ciHighPct": 22.791231,
+          "horizon": "+4주",
+          "confidenceInterval": "+8.5% ~ +22.8%"
+        },
+        {
+          "scope": "전체 기간",
+          "horizonWeeks": 8,
+          "events": 15,
+          "medianReturnPct": 23.221877,
+          "baselineMedianReturnPct": 5.706607,
+          "medianExcessPct": 17.51527,
+          "meanReturnPct": 22.155224,
+          "hitRatePct": 66.666667,
+          "baselineHitRatePct": 58.089669,
+          "medianMfePct": 30.304554,
+          "medianMaePct": -14.494681,
+          "ciLowPct": 5.143064,
+          "ciHighPct": 24.585718,
+          "horizon": "+8주",
+          "confidenceInterval": "+5.1% ~ +24.6%"
+        }
+      ],
+      "recent_events": [
+        {
+          "scope": "최근 3년",
+          "horizonWeeks": 1,
+          "events": 9,
+          "medianReturnPct": -0.343619,
+          "baselineMedianReturnPct": 0.14712,
+          "medianExcessPct": -0.490739,
+          "meanReturnPct": 0.403606,
+          "hitRatePct": 44.444444,
+          "baselineHitRatePct": 52.903226,
+          "medianMfePct": 3.177649,
+          "medianMaePct": -6.222535,
+          "ciLowPct": -0.810356,
+          "ciHighPct": 1.45055,
+          "horizon": "+1주",
+          "confidenceInterval": "-0.8% ~ +1.5%"
+        },
+        {
+          "scope": "최근 3년",
+          "horizonWeeks": 2,
+          "events": 7,
+          "medianReturnPct": 0.808829,
+          "baselineMedianReturnPct": 1.648165,
+          "medianExcessPct": -0.839337,
+          "meanReturnPct": 3.222352,
+          "hitRatePct": 57.142857,
+          "baselineHitRatePct": 54.545455,
+          "medianMfePct": 6.958283,
+          "medianMaePct": -7.665551,
+          "ciLowPct": null,
+          "ciHighPct": null,
+          "horizon": "+2주",
+          "confidenceInterval": "표본 부족"
+        },
+        {
+          "scope": "최근 3년",
+          "horizonWeeks": 4,
+          "events": 6,
+          "medianReturnPct": 12.176613,
+          "baselineMedianReturnPct": 1.30188,
+          "medianExcessPct": 10.874733,
+          "meanReturnPct": 9.580571,
+          "hitRatePct": 83.333333,
+          "baselineHitRatePct": 57.236842,
+          "medianMfePct": 13.968693,
+          "medianMaePct": -5.405648,
+          "ciLowPct": null,
+          "ciHighPct": null,
+          "horizon": "+4주",
+          "confidenceInterval": "표본 부족"
+        },
+        {
+          "scope": "최근 3년",
+          "horizonWeeks": 8,
+          "events": 5,
+          "medianReturnPct": 5.143064,
+          "baselineMedianReturnPct": 2.711526,
+          "medianExcessPct": 2.431538,
+          "meanReturnPct": 14.195292,
+          "hitRatePct": 60,
+          "baselineHitRatePct": 54.72973,
+          "medianMfePct": 20.583904,
+          "medianMaePct": -7.665551,
+          "ciLowPct": null,
+          "ciHighPct": null,
+          "horizon": "+8주",
+          "confidenceInterval": "표본 부족"
+        }
+      ],
+      "full_events": [
+        {
+          "scope": "전체 기간",
+          "horizonWeeks": 1,
+          "events": 33,
+          "medianReturnPct": 1.45055,
+          "baselineMedianReturnPct": 0.55019,
+          "medianExcessPct": 0.90036,
+          "meanReturnPct": 4.698579,
+          "hitRatePct": 57.575758,
+          "baselineHitRatePct": 54.423077,
+          "medianMfePct": 5.993244,
+          "medianMaePct": -6.275652,
+          "ciLowPct": -0.343619,
+          "ciHighPct": 11.850739,
+          "horizon": "+1주",
+          "confidenceInterval": "-0.3% ~ +11.9%"
+        },
+        {
+          "scope": "전체 기간",
+          "horizonWeeks": 2,
+          "events": 26,
+          "medianReturnPct": 3.357504,
+          "baselineMedianReturnPct": 1.713615,
+          "medianExcessPct": 1.643889,
+          "meanReturnPct": 6.046719,
+          "hitRatePct": 61.538462,
+          "baselineHitRatePct": 56.069364,
+          "medianMfePct": 11.287601,
+          "medianMaePct": -8.44444,
+          "ciLowPct": -0.91902,
+          "ciHighPct": 7.797422,
+          "horizon": "+2주",
+          "confidenceInterval": "-0.9% ~ +7.8%"
+        },
+        {
+          "scope": "전체 기간",
+          "horizonWeeks": 4,
+          "events": 20,
+          "medianReturnPct": 16.036604,
+          "baselineMedianReturnPct": 2.095038,
+          "medianExcessPct": 13.941566,
+          "meanReturnPct": 12.962818,
+          "hitRatePct": 80,
+          "baselineHitRatePct": 56.673114,
+          "medianMfePct": 26.923596,
+          "medianMaePct": -8.854057,
+          "ciLowPct": 8.479381,
+          "ciHighPct": 22.791231,
+          "horizon": "+4주",
+          "confidenceInterval": "+8.5% ~ +22.8%"
+        },
+        {
+          "scope": "전체 기간",
+          "horizonWeeks": 8,
+          "events": 15,
+          "medianReturnPct": 23.221877,
+          "baselineMedianReturnPct": 5.706607,
+          "medianExcessPct": 17.51527,
+          "meanReturnPct": 22.155224,
+          "hitRatePct": 66.666667,
+          "baselineHitRatePct": 58.089669,
+          "medianMfePct": 30.304554,
+          "medianMaePct": -14.494681,
+          "ciLowPct": 5.143064,
+          "ciHighPct": 24.585718,
+          "horizon": "+8주",
+          "confidenceInterval": "+5.1% ~ +24.6%"
+        }
+      ],
+      "rolling_3y": [
+        {
+          "week": "2023-08-28",
+          "metric": "Pearson",
+          "correlation": -0.007358,
+          "observations": 52
+        },
+        {
+          "week": "2023-08-28",
+          "metric": "Spearman",
+          "correlation": 0.069181,
+          "observations": 52
+        },
+        {
+          "week": "2023-09-04",
+          "metric": "Pearson",
+          "correlation": -0.04351,
+          "observations": 52
+        },
+        {
+          "week": "2023-09-04",
+          "metric": "Spearman",
+          "correlation": 0.036597,
+          "observations": 52
+        },
+        {
+          "week": "2023-09-11",
+          "metric": "Pearson",
+          "correlation": -0.052702,
+          "observations": 52
+        },
+        {
+          "week": "2023-09-11",
+          "metric": "Spearman",
+          "correlation": 0.016571,
+          "observations": 52
+        },
+        {
+          "week": "2023-09-18",
+          "metric": "Pearson",
+          "correlation": -0.0508,
+          "observations": 52
+        },
+        {
+          "week": "2023-09-18",
+          "metric": "Spearman",
+          "correlation": 0.026565,
+          "observations": 52
+        },
+        {
+          "week": "2023-09-25",
+          "metric": "Pearson",
+          "correlation": -0.055577,
+          "observations": 52
+        },
+        {
+          "week": "2023-09-25",
+          "metric": "Spearman",
+          "correlation": 0.013966,
+          "observations": 52
+        },
+        {
+          "week": "2023-10-02",
+          "metric": "Pearson",
+          "correlation": -0.064777,
+          "observations": 52
+        },
+        {
+          "week": "2023-10-02",
+          "metric": "Spearman",
+          "correlation": -0.017128,
+          "observations": 52
+        },
+        {
+          "week": "2023-10-09",
+          "metric": "Pearson",
+          "correlation": -0.095571,
+          "observations": 52
+        },
+        {
+          "week": "2023-10-09",
+          "metric": "Spearman",
+          "correlation": -0.071038,
+          "observations": 52
+        },
+        {
+          "week": "2023-10-16",
+          "metric": "Pearson",
+          "correlation": -0.079265,
+          "observations": 52
+        },
+        {
+          "week": "2023-10-16",
+          "metric": "Spearman",
+          "correlation": -0.03678,
+          "observations": 52
+        },
+        {
+          "week": "2023-10-23",
+          "metric": "Pearson",
+          "correlation": -0.072169,
+          "observations": 52
+        },
+        {
+          "week": "2023-10-23",
+          "metric": "Spearman",
+          "correlation": -0.005511,
+          "observations": 52
+        },
+        {
+          "week": "2023-10-30",
+          "metric": "Pearson",
+          "correlation": -0.091932,
+          "observations": 52
+        },
+        {
+          "week": "2023-10-30",
+          "metric": "Spearman",
+          "correlation": -0.005254,
+          "observations": 52
+        },
+        {
+          "week": "2023-11-06",
+          "metric": "Pearson",
+          "correlation": -0.09485,
+          "observations": 52
+        },
+        {
+          "week": "2023-11-06",
+          "metric": "Spearman",
+          "correlation": 0.007817,
+          "observations": 52
+        },
+        {
+          "week": "2023-11-13",
+          "metric": "Pearson",
+          "correlation": -0.100618,
+          "observations": 52
+        },
+        {
+          "week": "2023-11-13",
+          "metric": "Spearman",
+          "correlation": 0.014267,
+          "observations": 52
+        },
+        {
+          "week": "2023-11-20",
+          "metric": "Pearson",
+          "correlation": -0.098102,
+          "observations": 52
+        },
+        {
+          "week": "2023-11-20",
+          "metric": "Spearman",
+          "correlation": 0.023368,
+          "observations": 52
+        },
+        {
+          "week": "2023-11-27",
+          "metric": "Pearson",
+          "correlation": -0.121873,
+          "observations": 52
+        },
+        {
+          "week": "2023-11-27",
+          "metric": "Spearman",
+          "correlation": -0.01709,
+          "observations": 52
+        },
+        {
+          "week": "2023-12-04",
+          "metric": "Pearson",
+          "correlation": -0.1596,
+          "observations": 52
+        },
+        {
+          "week": "2023-12-04",
+          "metric": "Spearman",
+          "correlation": -0.056055,
+          "observations": 52
+        },
+        {
+          "week": "2023-12-11",
+          "metric": "Pearson",
+          "correlation": -0.160215,
+          "observations": 52
+        },
+        {
+          "week": "2023-12-11",
+          "metric": "Spearman",
+          "correlation": -0.056911,
+          "observations": 52
+        },
+        {
+          "week": "2023-12-18",
+          "metric": "Pearson",
+          "correlation": -0.183284,
+          "observations": 52
+        },
+        {
+          "week": "2023-12-18",
+          "metric": "Spearman",
+          "correlation": -0.102497,
+          "observations": 52
+        },
+        {
+          "week": "2023-12-25",
+          "metric": "Pearson",
+          "correlation": -0.176939,
+          "observations": 52
+        },
+        {
+          "week": "2023-12-25",
+          "metric": "Spearman",
+          "correlation": -0.091857,
+          "observations": 52
+        },
+        {
+          "week": "2024-01-01",
+          "metric": "Pearson",
+          "correlation": -0.202714,
+          "observations": 52
+        },
+        {
+          "week": "2024-01-01",
+          "metric": "Spearman",
+          "correlation": -0.124031,
+          "observations": 52
+        },
+        {
+          "week": "2024-01-08",
+          "metric": "Pearson",
+          "correlation": -0.206367,
+          "observations": 52
+        },
+        {
+          "week": "2024-01-08",
+          "metric": "Spearman",
+          "correlation": -0.120402,
+          "observations": 52
+        },
+        {
+          "week": "2024-01-15",
+          "metric": "Pearson",
+          "correlation": -0.19701,
+          "observations": 52
+        },
+        {
+          "week": "2024-01-15",
+          "metric": "Spearman",
+          "correlation": -0.089687,
+          "observations": 52
+        },
+        {
+          "week": "2024-01-22",
+          "metric": "Pearson",
+          "correlation": -0.186545,
+          "observations": 52
+        },
+        {
+          "week": "2024-01-22",
+          "metric": "Spearman",
+          "correlation": -0.053283,
+          "observations": 52
+        },
+        {
+          "week": "2024-01-29",
+          "metric": "Pearson",
+          "correlation": -0.13775,
+          "observations": 52
+        },
+        {
+          "week": "2024-01-29",
+          "metric": "Spearman",
+          "correlation": -0.04055,
+          "observations": 52
+        },
+        {
+          "week": "2024-02-05",
+          "metric": "Pearson",
+          "correlation": -0.143234,
+          "observations": 52
+        },
+        {
+          "week": "2024-02-05",
+          "metric": "Spearman",
+          "correlation": -0.060175,
+          "observations": 52
+        },
+        {
+          "week": "2024-02-12",
+          "metric": "Pearson",
+          "correlation": -0.151625,
+          "observations": 52
+        },
+        {
+          "week": "2024-02-12",
+          "metric": "Spearman",
+          "correlation": -0.067445,
+          "observations": 52
+        },
+        {
+          "week": "2024-02-19",
+          "metric": "Pearson",
+          "correlation": -0.158694,
+          "observations": 52
+        },
+        {
+          "week": "2024-02-19",
+          "metric": "Spearman",
+          "correlation": -0.066128,
+          "observations": 52
+        },
+        {
+          "week": "2024-02-26",
+          "metric": "Pearson",
+          "correlation": -0.128711,
+          "observations": 52
+        },
+        {
+          "week": "2024-02-26",
+          "metric": "Spearman",
+          "correlation": -0.048651,
+          "observations": 52
+        },
+        {
+          "week": "2024-03-04",
+          "metric": "Pearson",
+          "correlation": -0.058748,
+          "observations": 52
+        },
+        {
+          "week": "2024-03-04",
+          "metric": "Spearman",
+          "correlation": -0.018383,
+          "observations": 52
+        },
+        {
+          "week": "2024-03-11",
+          "metric": "Pearson",
+          "correlation": -0.07392,
+          "observations": 52
+        },
+        {
+          "week": "2024-03-11",
+          "metric": "Spearman",
+          "correlation": -0.044604,
+          "observations": 52
+        },
+        {
+          "week": "2024-03-18",
+          "metric": "Pearson",
+          "correlation": -0.057642,
+          "observations": 52
+        },
+        {
+          "week": "2024-03-18",
+          "metric": "Spearman",
+          "correlation": -0.027755,
+          "observations": 52
+        },
+        {
+          "week": "2024-03-25",
+          "metric": "Pearson",
+          "correlation": -0.06352,
+          "observations": 52
+        },
+        {
+          "week": "2024-03-25",
+          "metric": "Spearman",
+          "correlation": -0.038275,
+          "observations": 52
+        },
+        {
+          "week": "2024-04-01",
+          "metric": "Pearson",
+          "correlation": -0.055464,
+          "observations": 52
+        },
+        {
+          "week": "2024-04-01",
+          "metric": "Spearman",
+          "correlation": -0.023093,
+          "observations": 52
+        },
+        {
+          "week": "2024-04-08",
+          "metric": "Pearson",
+          "correlation": -0.041985,
+          "observations": 52
+        },
+        {
+          "week": "2024-04-08",
+          "metric": "Spearman",
+          "correlation": -0.013172,
+          "observations": 52
+        },
+        {
+          "week": "2024-04-15",
+          "metric": "Pearson",
+          "correlation": -0.051029,
+          "observations": 52
+        },
+        {
+          "week": "2024-04-15",
+          "metric": "Spearman",
+          "correlation": -0.015182,
+          "observations": 52
+        },
+        {
+          "week": "2024-04-22",
+          "metric": "Pearson",
+          "correlation": -0.060421,
+          "observations": 52
+        },
+        {
+          "week": "2024-04-22",
+          "metric": "Spearman",
+          "correlation": -0.046103,
+          "observations": 52
+        },
+        {
+          "week": "2024-04-29",
+          "metric": "Pearson",
+          "correlation": -0.106408,
+          "observations": 52
+        },
+        {
+          "week": "2024-04-29",
+          "metric": "Spearman",
+          "correlation": -0.11071,
+          "observations": 52
+        },
+        {
+          "week": "2024-05-06",
+          "metric": "Pearson",
+          "correlation": -0.091514,
+          "observations": 52
+        },
+        {
+          "week": "2024-05-06",
+          "metric": "Spearman",
+          "correlation": -0.099038,
+          "observations": 52
+        },
+        {
+          "week": "2024-05-13",
+          "metric": "Pearson",
+          "correlation": -0.097245,
+          "observations": 52
+        },
+        {
+          "week": "2024-05-13",
+          "metric": "Spearman",
+          "correlation": -0.103485,
+          "observations": 52
+        },
+        {
+          "week": "2024-05-20",
+          "metric": "Pearson",
+          "correlation": -0.110229,
+          "observations": 52
+        },
+        {
+          "week": "2024-05-20",
+          "metric": "Spearman",
+          "correlation": -0.134699,
+          "observations": 52
+        },
+        {
+          "week": "2024-05-27",
+          "metric": "Pearson",
+          "correlation": -0.095937,
+          "observations": 52
+        },
+        {
+          "week": "2024-05-27",
+          "metric": "Spearman",
+          "correlation": -0.138847,
+          "observations": 52
+        },
+        {
+          "week": "2024-06-03",
+          "metric": "Pearson",
+          "correlation": -0.065701,
+          "observations": 52
+        },
+        {
+          "week": "2024-06-03",
+          "metric": "Spearman",
+          "correlation": -0.085748,
+          "observations": 52
+        },
+        {
+          "week": "2024-06-10",
+          "metric": "Pearson",
+          "correlation": -0.039289,
+          "observations": 52
+        },
+        {
+          "week": "2024-06-10",
+          "metric": "Spearman",
+          "correlation": -0.060858,
+          "observations": 52
+        },
+        {
+          "week": "2024-06-17",
+          "metric": "Pearson",
+          "correlation": -0.039817,
+          "observations": 52
+        },
+        {
+          "week": "2024-06-17",
+          "metric": "Spearman",
+          "correlation": -0.049304,
+          "observations": 52
+        },
+        {
+          "week": "2024-06-24",
+          "metric": "Pearson",
+          "correlation": -0.052143,
+          "observations": 52
+        },
+        {
+          "week": "2024-06-24",
+          "metric": "Spearman",
+          "correlation": -0.067294,
+          "observations": 52
+        },
+        {
+          "week": "2024-07-01",
+          "metric": "Pearson",
+          "correlation": -0.038905,
+          "observations": 52
+        },
+        {
+          "week": "2024-07-01",
+          "metric": "Spearman",
+          "correlation": -0.052545,
+          "observations": 52
+        },
+        {
+          "week": "2024-07-08",
+          "metric": "Pearson",
+          "correlation": -0.068549,
+          "observations": 52
+        },
+        {
+          "week": "2024-07-08",
+          "metric": "Spearman",
+          "correlation": -0.085423,
+          "observations": 52
+        },
+        {
+          "week": "2024-07-15",
+          "metric": "Pearson",
+          "correlation": -0.063137,
+          "observations": 52
+        },
+        {
+          "week": "2024-07-15",
+          "metric": "Spearman",
+          "correlation": -0.09128,
+          "observations": 52
+        },
+        {
+          "week": "2024-07-22",
+          "metric": "Pearson",
+          "correlation": -0.024588,
+          "observations": 52
+        },
+        {
+          "week": "2024-07-22",
+          "metric": "Spearman",
+          "correlation": -0.063107,
+          "observations": 52
+        },
+        {
+          "week": "2024-07-29",
+          "metric": "Pearson",
+          "correlation": -0.026901,
+          "observations": 52
+        },
+        {
+          "week": "2024-07-29",
+          "metric": "Spearman",
+          "correlation": -0.063103,
+          "observations": 52
+        },
+        {
+          "week": "2024-08-05",
+          "metric": "Pearson",
+          "correlation": -0.083381,
+          "observations": 52
+        },
+        {
+          "week": "2024-08-05",
+          "metric": "Spearman",
+          "correlation": -0.108164,
+          "observations": 52
+        },
+        {
+          "week": "2024-08-12",
+          "metric": "Pearson",
+          "correlation": -0.108744,
+          "observations": 52
+        },
+        {
+          "week": "2024-08-12",
+          "metric": "Spearman",
+          "correlation": -0.140903,
+          "observations": 52
+        },
+        {
+          "week": "2024-08-19",
+          "metric": "Pearson",
+          "correlation": -0.11217,
+          "observations": 52
+        },
+        {
+          "week": "2024-08-19",
+          "metric": "Spearman",
+          "correlation": -0.143544,
+          "observations": 52
+        },
+        {
+          "week": "2024-08-26",
+          "metric": "Pearson",
+          "correlation": -0.104528,
+          "observations": 52
+        },
+        {
+          "week": "2024-08-26",
+          "metric": "Spearman",
+          "correlation": -0.118067,
+          "observations": 52
+        },
+        {
+          "week": "2024-09-02",
+          "metric": "Pearson",
+          "correlation": -0.0926,
+          "observations": 52
+        },
+        {
+          "week": "2024-09-02",
+          "metric": "Spearman",
+          "correlation": -0.10943,
+          "observations": 52
+        },
+        {
+          "week": "2024-09-09",
+          "metric": "Pearson",
+          "correlation": -0.11286,
+          "observations": 52
+        },
+        {
+          "week": "2024-09-09",
+          "metric": "Spearman",
+          "correlation": -0.142854,
+          "observations": 52
+        },
+        {
+          "week": "2024-09-16",
+          "metric": "Pearson",
+          "correlation": -0.107735,
+          "observations": 52
+        },
+        {
+          "week": "2024-09-16",
+          "metric": "Spearman",
+          "correlation": -0.136596,
+          "observations": 52
+        },
+        {
+          "week": "2024-09-23",
+          "metric": "Pearson",
+          "correlation": -0.090154,
+          "observations": 52
+        },
+        {
+          "week": "2024-09-23",
+          "metric": "Spearman",
+          "correlation": -0.102013,
+          "observations": 52
+        },
+        {
+          "week": "2024-09-30",
+          "metric": "Pearson",
+          "correlation": -0.091764,
+          "observations": 52
+        },
+        {
+          "week": "2024-09-30",
+          "metric": "Spearman",
+          "correlation": -0.111415,
+          "observations": 52
+        },
+        {
+          "week": "2024-10-07",
+          "metric": "Pearson",
+          "correlation": -0.060487,
+          "observations": 52
+        },
+        {
+          "week": "2024-10-07",
+          "metric": "Spearman",
+          "correlation": -0.088973,
+          "observations": 52
+        },
+        {
+          "week": "2024-10-14",
+          "metric": "Pearson",
+          "correlation": -0.026899,
+          "observations": 52
+        },
+        {
+          "week": "2024-10-14",
+          "metric": "Spearman",
+          "correlation": -0.048759,
+          "observations": 52
+        },
+        {
+          "week": "2024-10-21",
+          "metric": "Pearson",
+          "correlation": -0.027862,
+          "observations": 52
+        },
+        {
+          "week": "2024-10-21",
+          "metric": "Spearman",
+          "correlation": -0.050922,
+          "observations": 52
+        },
+        {
+          "week": "2024-10-28",
+          "metric": "Pearson",
+          "correlation": 0.013867,
+          "observations": 52
+        },
+        {
+          "week": "2024-10-28",
+          "metric": "Spearman",
+          "correlation": -0.029561,
+          "observations": 52
+        },
+        {
+          "week": "2024-11-04",
+          "metric": "Pearson",
+          "correlation": 0.051994,
+          "observations": 52
+        },
+        {
+          "week": "2024-11-04",
+          "metric": "Spearman",
+          "correlation": 0.011449,
+          "observations": 52
+        },
+        {
+          "week": "2024-11-11",
+          "metric": "Pearson",
+          "correlation": 0.081023,
+          "observations": 52
+        },
+        {
+          "week": "2024-11-11",
+          "metric": "Spearman",
+          "correlation": 0.037937,
+          "observations": 52
+        },
+        {
+          "week": "2024-11-18",
+          "metric": "Pearson",
+          "correlation": 0.078899,
+          "observations": 52
+        },
+        {
+          "week": "2024-11-18",
+          "metric": "Spearman",
+          "correlation": 0.034005,
+          "observations": 52
+        },
+        {
+          "week": "2024-11-25",
+          "metric": "Pearson",
+          "correlation": 0.118853,
+          "observations": 52
+        },
+        {
+          "week": "2024-11-25",
+          "metric": "Spearman",
+          "correlation": 0.07899,
+          "observations": 52
+        },
+        {
+          "week": "2024-12-02",
+          "metric": "Pearson",
+          "correlation": 0.153144,
+          "observations": 52
+        },
+        {
+          "week": "2024-12-02",
+          "metric": "Spearman",
+          "correlation": 0.137902,
+          "observations": 52
+        },
+        {
+          "week": "2024-12-09",
+          "metric": "Pearson",
+          "correlation": 0.133302,
+          "observations": 52
+        },
+        {
+          "week": "2024-12-09",
+          "metric": "Spearman",
+          "correlation": 0.133971,
+          "observations": 52
+        },
+        {
+          "week": "2024-12-16",
+          "metric": "Pearson",
+          "correlation": 0.133772,
+          "observations": 52
+        },
+        {
+          "week": "2024-12-16",
+          "metric": "Spearman",
+          "correlation": 0.133977,
+          "observations": 52
+        },
+        {
+          "week": "2024-12-23",
+          "metric": "Pearson",
+          "correlation": 0.125494,
+          "observations": 52
+        },
+        {
+          "week": "2024-12-23",
+          "metric": "Spearman",
+          "correlation": 0.115685,
+          "observations": 52
+        },
+        {
+          "week": "2024-12-30",
+          "metric": "Pearson",
+          "correlation": 0.127476,
+          "observations": 52
+        },
+        {
+          "week": "2024-12-30",
+          "metric": "Spearman",
+          "correlation": 0.12162,
+          "observations": 52
+        },
+        {
+          "week": "2025-01-06",
+          "metric": "Pearson",
+          "correlation": 0.128401,
+          "observations": 52
+        },
+        {
+          "week": "2025-01-06",
+          "metric": "Spearman",
+          "correlation": 0.121637,
+          "observations": 52
+        },
+        {
+          "week": "2025-01-13",
+          "metric": "Pearson",
+          "correlation": 0.12735,
+          "observations": 52
+        },
+        {
+          "week": "2025-01-13",
+          "metric": "Spearman",
+          "correlation": 0.123348,
+          "observations": 52
+        },
+        {
+          "week": "2025-01-20",
+          "metric": "Pearson",
+          "correlation": 0.11544,
+          "observations": 52
+        },
+        {
+          "week": "2025-01-20",
+          "metric": "Spearman",
+          "correlation": 0.103872,
+          "observations": 52
+        },
+        {
+          "week": "2025-01-27",
+          "metric": "Pearson",
+          "correlation": 0.089769,
+          "observations": 52
+        },
+        {
+          "week": "2025-01-27",
+          "metric": "Spearman",
+          "correlation": 0.077007,
+          "observations": 52
+        },
+        {
+          "week": "2025-02-03",
+          "metric": "Pearson",
+          "correlation": 0.125026,
+          "observations": 52
+        },
+        {
+          "week": "2025-02-03",
+          "metric": "Spearman",
+          "correlation": 0.108959,
+          "observations": 52
+        },
+        {
+          "week": "2025-02-10",
+          "metric": "Pearson",
+          "correlation": 0.1379,
+          "observations": 52
+        },
+        {
+          "week": "2025-02-10",
+          "metric": "Spearman",
+          "correlation": 0.121885,
+          "observations": 52
+        },
+        {
+          "week": "2025-02-17",
+          "metric": "Pearson",
+          "correlation": 0.19826,
+          "observations": 52
+        },
+        {
+          "week": "2025-02-17",
+          "metric": "Spearman",
+          "correlation": 0.151159,
+          "observations": 52
+        },
+        {
+          "week": "2025-02-24",
+          "metric": "Pearson",
+          "correlation": 0.115781,
+          "observations": 52
+        },
+        {
+          "week": "2025-02-24",
+          "metric": "Spearman",
+          "correlation": 0.085677,
+          "observations": 52
+        },
+        {
+          "week": "2025-03-03",
+          "metric": "Pearson",
+          "correlation": 0.126686,
+          "observations": 52
+        },
+        {
+          "week": "2025-03-03",
+          "metric": "Spearman",
+          "correlation": 0.096782,
+          "observations": 52
+        },
+        {
+          "week": "2025-03-10",
+          "metric": "Pearson",
+          "correlation": 0.148613,
+          "observations": 52
+        },
+        {
+          "week": "2025-03-10",
+          "metric": "Spearman",
+          "correlation": 0.139025,
+          "observations": 52
+        },
+        {
+          "week": "2025-03-17",
+          "metric": "Pearson",
+          "correlation": 0.15381,
+          "observations": 52
+        },
+        {
+          "week": "2025-03-17",
+          "metric": "Spearman",
+          "correlation": 0.139581,
+          "observations": 52
+        },
+        {
+          "week": "2025-03-24",
+          "metric": "Pearson",
+          "correlation": 0.164057,
+          "observations": 52
+        },
+        {
+          "week": "2025-03-24",
+          "metric": "Spearman",
+          "correlation": 0.156409,
+          "observations": 52
+        },
+        {
+          "week": "2025-03-31",
+          "metric": "Pearson",
+          "correlation": 0.13801,
+          "observations": 52
+        },
+        {
+          "week": "2025-03-31",
+          "metric": "Spearman",
+          "correlation": 0.139395,
+          "observations": 52
+        },
+        {
+          "week": "2025-04-07",
+          "metric": "Pearson",
+          "correlation": 0.140773,
+          "observations": 52
+        },
+        {
+          "week": "2025-04-07",
+          "metric": "Spearman",
+          "correlation": 0.139737,
+          "observations": 52
+        },
+        {
+          "week": "2025-04-14",
+          "metric": "Pearson",
+          "correlation": 0.112326,
+          "observations": 52
+        },
+        {
+          "week": "2025-04-14",
+          "metric": "Spearman",
+          "correlation": 0.114964,
+          "observations": 52
+        },
+        {
+          "week": "2025-04-21",
+          "metric": "Pearson",
+          "correlation": 0.113821,
+          "observations": 52
+        },
+        {
+          "week": "2025-04-21",
+          "metric": "Spearman",
+          "correlation": 0.117868,
+          "observations": 52
+        },
+        {
+          "week": "2025-04-28",
+          "metric": "Pearson",
+          "correlation": 0.073305,
+          "observations": 52
+        },
+        {
+          "week": "2025-04-28",
+          "metric": "Spearman",
+          "correlation": 0.081353,
+          "observations": 52
+        },
+        {
+          "week": "2025-05-05",
+          "metric": "Pearson",
+          "correlation": 0.059382,
+          "observations": 52
+        },
+        {
+          "week": "2025-05-05",
+          "metric": "Spearman",
+          "correlation": 0.056712,
+          "observations": 52
+        },
+        {
+          "week": "2025-05-12",
+          "metric": "Pearson",
+          "correlation": 0.047533,
+          "observations": 52
+        },
+        {
+          "week": "2025-05-12",
+          "metric": "Spearman",
+          "correlation": 0.019388,
+          "observations": 52
+        },
+        {
+          "week": "2025-05-19",
+          "metric": "Pearson",
+          "correlation": 0.049034,
+          "observations": 52
+        },
+        {
+          "week": "2025-05-19",
+          "metric": "Spearman",
+          "correlation": 0.022206,
+          "observations": 52
+        },
+        {
+          "week": "2025-05-26",
+          "metric": "Pearson",
+          "correlation": 0.055663,
+          "observations": 52
+        },
+        {
+          "week": "2025-05-26",
+          "metric": "Spearman",
+          "correlation": 0.037922,
+          "observations": 52
+        },
+        {
+          "week": "2025-06-02",
+          "metric": "Pearson",
+          "correlation": 0.038031,
+          "observations": 52
+        },
+        {
+          "week": "2025-06-02",
+          "metric": "Spearman",
+          "correlation": 0.017979,
+          "observations": 52
+        },
+        {
+          "week": "2025-06-09",
+          "metric": "Pearson",
+          "correlation": 0.03209,
+          "observations": 52
+        },
+        {
+          "week": "2025-06-09",
+          "metric": "Spearman",
+          "correlation": 0.008285,
+          "observations": 52
+        },
+        {
+          "week": "2025-06-16",
+          "metric": "Pearson",
+          "correlation": 0.00891,
+          "observations": 52
+        },
+        {
+          "week": "2025-06-16",
+          "metric": "Spearman",
+          "correlation": -0.019901,
+          "observations": 52
+        },
+        {
+          "week": "2025-06-23",
+          "metric": "Pearson",
+          "correlation": 0.019905,
+          "observations": 52
+        },
+        {
+          "week": "2025-06-23",
+          "metric": "Spearman",
+          "correlation": -0.013752,
+          "observations": 52
+        },
+        {
+          "week": "2025-06-30",
+          "metric": "Pearson",
+          "correlation": -0.021346,
+          "observations": 52
+        },
+        {
+          "week": "2025-06-30",
+          "metric": "Spearman",
+          "correlation": -0.065898,
+          "observations": 52
+        },
+        {
+          "week": "2025-07-07",
+          "metric": "Pearson",
+          "correlation": 0.012473,
+          "observations": 52
+        },
+        {
+          "week": "2025-07-07",
+          "metric": "Spearman",
+          "correlation": -0.028785,
+          "observations": 52
+        },
+        {
+          "week": "2025-07-14",
+          "metric": "Pearson",
+          "correlation": 0.015033,
+          "observations": 52
+        },
+        {
+          "week": "2025-07-14",
+          "metric": "Spearman",
+          "correlation": -0.016742,
+          "observations": 52
+        },
+        {
+          "week": "2025-07-21",
+          "metric": "Pearson",
+          "correlation": 0.001075,
+          "observations": 52
+        },
+        {
+          "week": "2025-07-21",
+          "metric": "Spearman",
+          "correlation": -0.017681,
+          "observations": 52
+        },
+        {
+          "week": "2025-07-28",
+          "metric": "Pearson",
+          "correlation": -0.014321,
+          "observations": 52
+        },
+        {
+          "week": "2025-07-28",
+          "metric": "Spearman",
+          "correlation": -0.039378,
+          "observations": 52
+        },
+        {
+          "week": "2025-08-04",
+          "metric": "Pearson",
+          "correlation": -0.02328,
+          "observations": 52
+        },
+        {
+          "week": "2025-08-04",
+          "metric": "Spearman",
+          "correlation": -0.047621,
+          "observations": 52
+        },
+        {
+          "week": "2025-08-11",
+          "metric": "Pearson",
+          "correlation": -0.004106,
+          "observations": 52
+        },
+        {
+          "week": "2025-08-11",
+          "metric": "Spearman",
+          "correlation": -0.036517,
+          "observations": 52
+        },
+        {
+          "week": "2025-08-18",
+          "metric": "Pearson",
+          "correlation": 0.004057,
+          "observations": 52
+        },
+        {
+          "week": "2025-08-18",
+          "metric": "Spearman",
+          "correlation": -0.028915,
+          "observations": 52
+        },
+        {
+          "week": "2025-08-25",
+          "metric": "Pearson",
+          "correlation": -0.016184,
+          "observations": 52
+        },
+        {
+          "week": "2025-08-25",
+          "metric": "Spearman",
+          "correlation": -0.050484,
+          "observations": 52
+        },
+        {
+          "week": "2025-09-01",
+          "metric": "Pearson",
+          "correlation": -0.035883,
+          "observations": 52
+        },
+        {
+          "week": "2025-09-01",
+          "metric": "Spearman",
+          "correlation": -0.076319,
+          "observations": 52
+        },
+        {
+          "week": "2025-09-08",
+          "metric": "Pearson",
+          "correlation": -0.043574,
+          "observations": 52
+        },
+        {
+          "week": "2025-09-08",
+          "metric": "Spearman",
+          "correlation": -0.086912,
+          "observations": 52
+        },
+        {
+          "week": "2025-09-15",
+          "metric": "Pearson",
+          "correlation": -0.013859,
+          "observations": 52
+        },
+        {
+          "week": "2025-09-15",
+          "metric": "Spearman",
+          "correlation": -0.04984,
+          "observations": 52
+        },
+        {
+          "week": "2025-09-22",
+          "metric": "Pearson",
+          "correlation": -0.032371,
+          "observations": 52
+        },
+        {
+          "week": "2025-09-22",
+          "metric": "Spearman",
+          "correlation": -0.06782,
+          "observations": 52
+        },
+        {
+          "week": "2025-09-29",
+          "metric": "Pearson",
+          "correlation": -0.068755,
+          "observations": 52
+        },
+        {
+          "week": "2025-09-29",
+          "metric": "Spearman",
+          "correlation": -0.105061,
+          "observations": 52
+        },
+        {
+          "week": "2025-10-06",
+          "metric": "Pearson",
+          "correlation": -0.101066,
+          "observations": 52
+        },
+        {
+          "week": "2025-10-06",
+          "metric": "Spearman",
+          "correlation": -0.143882,
+          "observations": 52
+        },
+        {
+          "week": "2025-10-13",
+          "metric": "Pearson",
+          "correlation": -0.089011,
+          "observations": 52
+        },
+        {
+          "week": "2025-10-13",
+          "metric": "Spearman",
+          "correlation": -0.111982,
+          "observations": 52
+        },
+        {
+          "week": "2025-10-20",
+          "metric": "Pearson",
+          "correlation": -0.106214,
+          "observations": 52
+        },
+        {
+          "week": "2025-10-20",
+          "metric": "Spearman",
+          "correlation": -0.138248,
+          "observations": 52
+        },
+        {
+          "week": "2025-10-27",
+          "metric": "Pearson",
+          "correlation": -0.206181,
+          "observations": 52
+        },
+        {
+          "week": "2025-10-27",
+          "metric": "Spearman",
+          "correlation": -0.20392,
+          "observations": 52
+        },
+        {
+          "week": "2025-11-03",
+          "metric": "Pearson",
+          "correlation": -0.310275,
+          "observations": 52
+        },
+        {
+          "week": "2025-11-03",
+          "metric": "Spearman",
+          "correlation": -0.299808,
+          "observations": 52
+        },
+        {
+          "week": "2025-11-10",
+          "metric": "Pearson",
+          "correlation": -0.402386,
+          "observations": 52
+        },
+        {
+          "week": "2025-11-10",
+          "metric": "Spearman",
+          "correlation": -0.390049,
+          "observations": 52
+        },
+        {
+          "week": "2025-11-17",
+          "metric": "Pearson",
+          "correlation": -0.375489,
+          "observations": 52
+        },
+        {
+          "week": "2025-11-17",
+          "metric": "Spearman",
+          "correlation": -0.3532,
+          "observations": 52
+        },
+        {
+          "week": "2025-11-24",
+          "metric": "Pearson",
+          "correlation": -0.385502,
+          "observations": 52
+        },
+        {
+          "week": "2025-11-24",
+          "metric": "Spearman",
+          "correlation": -0.360674,
+          "observations": 52
+        },
+        {
+          "week": "2025-12-01",
+          "metric": "Pearson",
+          "correlation": -0.415258,
+          "observations": 52
+        },
+        {
+          "week": "2025-12-01",
+          "metric": "Spearman",
+          "correlation": -0.407602,
+          "observations": 52
+        },
+        {
+          "week": "2025-12-08",
+          "metric": "Pearson",
+          "correlation": -0.394669,
+          "observations": 52
+        },
+        {
+          "week": "2025-12-08",
+          "metric": "Spearman",
+          "correlation": -0.38407,
+          "observations": 52
+        },
+        {
+          "week": "2025-12-15",
+          "metric": "Pearson",
+          "correlation": -0.391616,
+          "observations": 52
+        },
+        {
+          "week": "2025-12-15",
+          "metric": "Spearman",
+          "correlation": -0.375408,
+          "observations": 52
+        },
+        {
+          "week": "2025-12-22",
+          "metric": "Pearson",
+          "correlation": -0.380366,
+          "observations": 52
+        },
+        {
+          "week": "2025-12-22",
+          "metric": "Spearman",
+          "correlation": -0.357506,
+          "observations": 52
+        },
+        {
+          "week": "2025-12-29",
+          "metric": "Pearson",
+          "correlation": -0.374392,
+          "observations": 52
+        },
+        {
+          "week": "2025-12-29",
+          "metric": "Spearman",
+          "correlation": -0.345754,
+          "observations": 52
+        },
+        {
+          "week": "2026-01-05",
+          "metric": "Pearson",
+          "correlation": -0.366824,
+          "observations": 52
+        },
+        {
+          "week": "2026-01-05",
+          "metric": "Spearman",
+          "correlation": -0.320606,
+          "observations": 52
+        },
+        {
+          "week": "2026-01-12",
+          "metric": "Pearson",
+          "correlation": -0.334176,
+          "observations": 52
+        },
+        {
+          "week": "2026-01-12",
+          "metric": "Spearman",
+          "correlation": -0.309098,
+          "observations": 52
+        },
+        {
+          "week": "2026-01-19",
+          "metric": "Pearson",
+          "correlation": -0.355934,
+          "observations": 52
+        },
+        {
+          "week": "2026-01-19",
+          "metric": "Spearman",
+          "correlation": -0.315583,
+          "observations": 52
+        },
+        {
+          "week": "2026-01-26",
+          "metric": "Pearson",
+          "correlation": -0.392732,
+          "observations": 52
+        },
+        {
+          "week": "2026-01-26",
+          "metric": "Spearman",
+          "correlation": -0.366094,
+          "observations": 52
+        },
+        {
+          "week": "2026-02-02",
+          "metric": "Pearson",
+          "correlation": -0.392037,
+          "observations": 52
+        },
+        {
+          "week": "2026-02-02",
+          "metric": "Spearman",
+          "correlation": -0.372833,
+          "observations": 52
+        },
+        {
+          "week": "2026-02-09",
+          "metric": "Pearson",
+          "correlation": -0.391077,
+          "observations": 52
+        },
+        {
+          "week": "2026-02-09",
+          "metric": "Spearman",
+          "correlation": -0.37958,
+          "observations": 52
+        },
+        {
+          "week": "2026-02-16",
+          "metric": "Pearson",
+          "correlation": -0.391204,
+          "observations": 52
+        },
+        {
+          "week": "2026-02-16",
+          "metric": "Spearman",
+          "correlation": -0.37694,
+          "observations": 52
+        },
+        {
+          "week": "2026-02-23",
+          "metric": "Pearson",
+          "correlation": -0.365273,
+          "observations": 52
+        },
+        {
+          "week": "2026-02-23",
+          "metric": "Spearman",
+          "correlation": -0.347852,
+          "observations": 52
+        },
+        {
+          "week": "2026-03-02",
+          "metric": "Pearson",
+          "correlation": -0.30458,
+          "observations": 52
+        },
+        {
+          "week": "2026-03-02",
+          "metric": "Spearman",
+          "correlation": -0.30177,
+          "observations": 52
+        },
+        {
+          "week": "2026-03-09",
+          "metric": "Pearson",
+          "correlation": -0.305579,
+          "observations": 52
+        },
+        {
+          "week": "2026-03-09",
+          "metric": "Spearman",
+          "correlation": -0.302709,
+          "observations": 52
+        },
+        {
+          "week": "2026-03-16",
+          "metric": "Pearson",
+          "correlation": -0.317726,
+          "observations": 52
+        },
+        {
+          "week": "2026-03-16",
+          "metric": "Spearman",
+          "correlation": -0.319199,
+          "observations": 52
+        },
+        {
+          "week": "2026-03-23",
+          "metric": "Pearson",
+          "correlation": -0.33749,
+          "observations": 52
+        },
+        {
+          "week": "2026-03-23",
+          "metric": "Spearman",
+          "correlation": -0.344315,
+          "observations": 52
+        },
+        {
+          "week": "2026-03-30",
+          "metric": "Pearson",
+          "correlation": -0.324693,
+          "observations": 52
+        },
+        {
+          "week": "2026-03-30",
+          "metric": "Spearman",
+          "correlation": -0.329248,
+          "observations": 52
+        },
+        {
+          "week": "2026-04-06",
+          "metric": "Pearson",
+          "correlation": -0.314471,
+          "observations": 52
+        },
+        {
+          "week": "2026-04-06",
+          "metric": "Spearman",
+          "correlation": -0.316394,
+          "observations": 52
+        },
+        {
+          "week": "2026-04-13",
+          "metric": "Pearson",
+          "correlation": -0.260429,
+          "observations": 52
+        },
+        {
+          "week": "2026-04-13",
+          "metric": "Spearman",
+          "correlation": -0.269907,
+          "observations": 52
+        },
+        {
+          "week": "2026-04-20",
+          "metric": "Pearson",
+          "correlation": -0.259084,
+          "observations": 52
+        },
+        {
+          "week": "2026-04-20",
+          "metric": "Spearman",
+          "correlation": -0.268626,
+          "observations": 52
+        },
+        {
+          "week": "2026-04-27",
+          "metric": "Pearson",
+          "correlation": -0.204947,
+          "observations": 52
+        },
+        {
+          "week": "2026-04-27",
+          "metric": "Spearman",
+          "correlation": -0.225947,
+          "observations": 52
+        },
+        {
+          "week": "2026-05-04",
+          "metric": "Pearson",
+          "correlation": -0.214623,
+          "observations": 52
+        },
+        {
+          "week": "2026-05-04",
+          "metric": "Spearman",
+          "correlation": -0.234654,
+          "observations": 52
+        },
+        {
+          "week": "2026-05-11",
+          "metric": "Pearson",
+          "correlation": -0.205168,
+          "observations": 52
+        },
+        {
+          "week": "2026-05-11",
+          "metric": "Spearman",
+          "correlation": -0.221658,
+          "observations": 52
+        },
+        {
+          "week": "2026-05-18",
+          "metric": "Pearson",
+          "correlation": -0.20431,
+          "observations": 52
+        },
+        {
+          "week": "2026-05-18",
+          "metric": "Spearman",
+          "correlation": -0.219736,
+          "observations": 52
+        },
+        {
+          "week": "2026-05-25",
+          "metric": "Pearson",
+          "correlation": -0.208744,
+          "observations": 52
+        },
+        {
+          "week": "2026-05-25",
+          "metric": "Spearman",
+          "correlation": -0.228826,
+          "observations": 52
+        },
+        {
+          "week": "2026-06-01",
+          "metric": "Pearson",
+          "correlation": -0.190337,
+          "observations": 52
+        },
+        {
+          "week": "2026-06-01",
+          "metric": "Spearman",
+          "correlation": -0.200431,
+          "observations": 52
+        },
+        {
+          "week": "2026-06-08",
+          "metric": "Pearson",
+          "correlation": -0.174884,
+          "observations": 52
+        },
+        {
+          "week": "2026-06-08",
+          "metric": "Spearman",
+          "correlation": -0.183608,
+          "observations": 52
+        },
+        {
+          "week": "2026-06-15",
+          "metric": "Pearson",
+          "correlation": -0.115289,
+          "observations": 52
+        },
+        {
+          "week": "2026-06-15",
+          "metric": "Spearman",
+          "correlation": -0.116909,
+          "observations": 52
+        },
+        {
+          "week": "2026-06-22",
+          "metric": "Pearson",
+          "correlation": -0.115554,
+          "observations": 52
+        },
+        {
+          "week": "2026-06-22",
+          "metric": "Spearman",
+          "correlation": -0.115884,
+          "observations": 52
+        },
+        {
+          "week": "2026-06-29",
+          "metric": "Pearson",
+          "correlation": -0.078833,
+          "observations": 52
+        },
+        {
+          "week": "2026-06-29",
+          "metric": "Spearman",
+          "correlation": -0.087103,
+          "observations": 52
+        },
+        {
+          "week": "2026-07-06",
+          "metric": "Pearson",
+          "correlation": -0.081126,
+          "observations": 52
+        },
+        {
+          "week": "2026-07-06",
+          "metric": "Spearman",
+          "correlation": -0.084541,
+          "observations": 52
+        },
+        {
+          "week": "2026-07-13",
+          "metric": "Pearson",
+          "correlation": -0.096962,
+          "observations": 52
+        },
+        {
+          "week": "2026-07-13",
+          "metric": "Spearman",
+          "correlation": -0.099571,
+          "observations": 52
+        },
+        {
+          "week": "2026-07-20",
+          "metric": "Pearson",
+          "correlation": -0.105479,
+          "observations": 52
+        },
+        {
+          "week": "2026-07-20",
+          "metric": "Spearman",
+          "correlation": -0.105632,
+          "observations": 52
+        },
+        {
+          "week": "2026-07-27",
+          "metric": "Pearson",
+          "correlation": -0.067982,
+          "observations": 52
+        },
+        {
+          "week": "2026-07-27",
+          "metric": "Spearman",
+          "correlation": -0.066181,
+          "observations": 52
+        },
+        {
+          "week": "2026-08-03",
+          "metric": "Pearson",
+          "correlation": -0.056423,
+          "observations": 52
+        },
+        {
+          "week": "2026-08-03",
+          "metric": "Spearman",
+          "correlation": -0.047349,
+          "observations": 52
+        },
+        {
+          "week": "2026-08-10",
+          "metric": "Pearson",
+          "correlation": -0.080583,
+          "observations": 52
+        },
+        {
+          "week": "2026-08-10",
+          "metric": "Spearman",
+          "correlation": -0.066262,
+          "observations": 52
+        },
+        {
+          "week": "2026-08-17",
+          "metric": "Pearson",
+          "correlation": -0.089198,
+          "observations": 52
+        },
+        {
+          "week": "2026-08-17",
+          "metric": "Spearman",
+          "correlation": -0.077363,
+          "observations": 52
+        }
+      ],
+      "regimes": [
+        {
+          "scope": "최근 3년",
+          "regime": "상승 추세",
+          "observations": 89,
+          "pearson": -0.086105,
+          "spearman": -0.112757,
+          "medianNextReturnPct": 0.111137
+        },
+        {
+          "scope": "최근 3년",
+          "regime": "하락 추세",
+          "observations": 66,
+          "pearson": -0.069834,
+          "spearman": -0.018811,
+          "medianNextReturnPct": 0.276989
+        },
+        {
+          "scope": "최근 3년",
+          "regime": "고변동성",
+          "observations": 71,
+          "pearson": -0.054194,
+          "spearman": -0.062848,
+          "medianNextReturnPct": 0.191422
+        },
+        {
+          "scope": "최근 3년",
+          "regime": "저변동성",
+          "observations": 84,
+          "pearson": -0.042786,
+          "spearman": -0.06692,
+          "medianNextReturnPct": 0.110025
+        },
+        {
+          "scope": "전체 기간",
+          "regime": "상승 추세",
+          "observations": 300,
+          "pearson": 0.021895,
+          "spearman": 0.031202,
+          "medianNextReturnPct": 0.739249
+        },
+        {
+          "scope": "전체 기간",
+          "regime": "하락 추세",
+          "observations": 220,
+          "pearson": 0.081157,
+          "spearman": 0.094673,
+          "medianNextReturnPct": 0.34247
+        },
+        {
+          "scope": "전체 기간",
+          "regime": "고변동성",
+          "observations": 248,
+          "pearson": 0.096887,
+          "spearman": 0.101779,
+          "medianNextReturnPct": 0.590131
+        },
+        {
+          "scope": "전체 기간",
+          "regime": "저변동성",
+          "observations": 272,
+          "pearson": 0.009007,
+          "spearman": 0.021319,
+          "medianNextReturnPct": 0.55019
+        }
+      ],
+      "recent_regimes": [
+        {
+          "scope": "최근 3년",
+          "regime": "상승 추세",
+          "observations": 89,
+          "pearson": -0.086105,
+          "spearman": -0.112757,
+          "medianNextReturnPct": 0.111137
+        },
+        {
+          "scope": "최근 3년",
+          "regime": "하락 추세",
+          "observations": 66,
+          "pearson": -0.069834,
+          "spearman": -0.018811,
+          "medianNextReturnPct": 0.276989
+        },
+        {
+          "scope": "최근 3년",
+          "regime": "고변동성",
+          "observations": 71,
+          "pearson": -0.054194,
+          "spearman": -0.062848,
+          "medianNextReturnPct": 0.191422
+        },
+        {
+          "scope": "최근 3년",
+          "regime": "저변동성",
+          "observations": 84,
+          "pearson": -0.042786,
+          "spearman": -0.06692,
+          "medianNextReturnPct": 0.110025
+        }
+      ],
+      "granger": [
+        {
+          "direction": "attention_to_return",
+          "lag": 1,
+          "fStatistic": 0.0943261020562268,
+          "pValue": 0.7588657774817891,
+          "qValue": 0.79165910239281,
+          "directionLabel": "관심 → 수익률",
+          "verdict": "비유의"
+        },
+        {
+          "direction": "attention_to_return",
+          "lag": 2,
+          "fStatistic": 0.2565111370507157,
+          "pValue": 0.7738407775514281,
+          "qValue": 0.79165910239281,
+          "directionLabel": "관심 → 수익률",
+          "verdict": "비유의"
+        },
+        {
+          "direction": "attention_to_return",
+          "lag": 3,
+          "fStatistic": 0.5129326502171331,
+          "pValue": 0.6735223371983405,
+          "qValue": 0.79165910239281,
+          "directionLabel": "관심 → 수익률",
+          "verdict": "비유의"
+        },
+        {
+          "direction": "attention_to_return",
+          "lag": 4,
+          "fStatistic": 0.42358331085454015,
+          "pValue": 0.79165910239281,
+          "qValue": 0.79165910239281,
+          "directionLabel": "관심 → 수익률",
+          "verdict": "비유의"
+        },
+        {
+          "direction": "return_to_attention",
+          "lag": 1,
+          "fStatistic": 0.4706801652679922,
+          "pValue": 0.4929677899965155,
+          "qValue": 0.79165910239281,
+          "directionLabel": "수익률 → 관심",
+          "verdict": "비유의"
+        },
+        {
+          "direction": "return_to_attention",
+          "lag": 2,
+          "fStatistic": 2.1044348053420268,
+          "pValue": 0.12291516001235434,
+          "qValue": 0.41488470143824135,
+          "directionLabel": "수익률 → 관심",
+          "verdict": "비유의"
+        },
+        {
+          "direction": "return_to_attention",
+          "lag": 3,
+          "fStatistic": 1.7508726330911795,
+          "pValue": 0.15558176303934051,
+          "qValue": 0.41488470143824135,
+          "directionLabel": "수익률 → 관심",
+          "verdict": "비유의"
+        },
+        {
+          "direction": "return_to_attention",
+          "lag": 4,
+          "fStatistic": 2.1242592324132943,
+          "pValue": 0.07654726343058679,
+          "qValue": 0.41488470143824135,
+          "directionLabel": "수익률 → 관심",
+          "verdict": "비유의"
+        }
+      ],
+      "quality": [
+        {
+          "rows": 547,
+          "completeWeeks": 546,
+          "inProgressWeeks": 1,
+          "duplicateWeeks": 0,
+          "orderedAscending": true,
+          "exactWeeklyCadence": true,
+          "negativePostCounts": 0,
+          "completeWeeksMissingClose": 0,
+          "completeWeeksMissingOhlcv": 0,
+          "sourceCount": 21,
+          "postPipelineStatus": "ok",
+          "postPipelineFailures": 0,
+          "pricePipelineStatus": "ok",
+          "observedThrough": "2026-08-26",
+          "updatedAt": "2026-08-26T13:38:32.739464+09:00"
+        }
+      ]
+    }
+  },
+  "sources": [
+    {
+      "id": "momcafe-analysis",
+      "label": "맘카페 × BTC 주간 분석 산출물 (public/data.json + lib/statistics.ts)",
+      "path": "reports/report-source.sql",
+      "href": "https://github.com/yoonch9009/momcafe-bitcoin-web/blob/main/public/data.json",
+      "query": {
+        "engine": "SQLite (node:sqlite)",
+        "language": "SQL",
+        "sql": "-- Final report datasets projected from reports/analysis-results.json and reports/spike-top-risk-results.json.\n-- The upstream calculations are reproduced by reports/analyze-momcafe-results.mjs and reports/analyze-spike-top-risk.mjs.\nSELECT * FROM \"headline\";\nSELECT * FROM \"spike_risk_headline\";\nSELECT * FROM \"spike_risk_comparison\";\nSELECT * FROM \"extreme_spike_events\";\nSELECT * FROM \"extreme_spike_sensitivity\";\nSELECT * FROM \"mention_distribution\";\nSELECT * FROM \"correlations\";\nSELECT * FROM \"attention_buckets\";\nSELECT * FROM \"lead_lag\";\nSELECT * FROM \"recent_lead_lag\";\nSELECT * FROM \"events\";\nSELECT * FROM \"recent_events\";\nSELECT * FROM \"full_events\";\nSELECT * FROM \"rolling_3y\";\nSELECT * FROM \"regimes\";\nSELECT * FROM \"recent_regimes\";\nSELECT * FROM \"granger\";\nSELECT * FROM \"quality\";",
+        "description": "재현 가능한 JavaScript 분석 결과를 보고서용 SQLite 표로 투영한 최종 조회",
+        "executed_at": "2026-08-26T05:58:15.857Z",
+        "tables_used": [
+          "headline",
+          "spike_risk_headline",
+          "spike_risk_comparison",
+          "extreme_spike_events",
+          "extreme_spike_sensitivity",
+          "mention_distribution",
+          "correlations",
+          "attention_buckets",
+          "lead_lag",
+          "recent_lead_lag",
+          "events",
+          "recent_events",
+          "full_events",
+          "rolling_3y",
+          "regimes",
+          "recent_regimes",
+          "granger",
+          "quality"
+        ],
+        "filters": [
+          "Asia/Seoul 월요일 시작 주간 단위",
+          "헤드라인과 분포는 완료 주만 사용",
+          "기본 화면 비교 구간은 마지막 156주(최근 3년)",
+          "고점 가설은 첫 스파이크 후 8주 이내 재발을 한 에피소드로 처리"
+        ],
+        "metric_definitions": [
+          "관심도 백분위: 직전 최대 52주의 언급량보다 낮은 값과 동률의 절반을 합친 경험적 순위",
+          "급증 사건: 직전 52주 95백분위 이상이면서 중앙값보다 최소 3건 많은 완료 주",
+          "고점권: 사건 주 종가가 직전 26주 최고 종가의 10% 이내",
+          "초대형 급증: 기본 급증 조건과 함께 직전 52주 중앙값보다 최소 10건 많음",
+          "12주 고점 위험: 최대 상승여력 10% 이하이면서 최대 낙폭 -10% 이하",
+          "표본외 R²: 최초 104개 관측 이후 매주 과거 데이터만으로 재적합한 선형모형과 과거평균 예측의 오차 비교"
+        ]
+      }
+    }
+  ]
+}
