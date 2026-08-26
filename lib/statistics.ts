@@ -704,19 +704,19 @@ export function highZoneSpikeAnalysis(
     {
       ...highZoneHorizonSummary(ordinaryHighZone, 12),
       key: "ordinary_high_zone",
-      label: "고점권 일반주",
+      label: "언급 급증 없는 일반 고점권",
       independentEvents: false,
     },
     {
       ...highZoneHorizonSummary(firstTriggers, 12),
       key: "first_trigger",
-      label: "최초 경보",
+      label: "실시간 첫 경보",
       independentEvents: true,
     },
     {
       ...highZoneHorizonSummary(representativePeaks, 12),
       key: "representative_peak",
-      label: "대표 고점",
+      label: "언급량 정점(사후)",
       independentEvents: true,
     },
   ];
@@ -767,8 +767,14 @@ export function regimeAnalysis(series: AnalyticPoint[]): RegimeResult[] {
   const definitions = [
     ["상승 추세", (point: AnalyticPoint) => point.trendRegime === "bull"],
     ["하락 추세", (point: AnalyticPoint) => point.trendRegime === "bear"],
-    ["고변동성", (point: AnalyticPoint) => point.volatilityRegime === "high"],
-    ["저변동성", (point: AnalyticPoint) => point.volatilityRegime === "low"],
+    [
+      "가격 변동이 큰 시기",
+      (point: AnalyticPoint) => point.volatilityRegime === "high",
+    ],
+    [
+      "가격 변동이 작은 시기",
+      (point: AnalyticPoint) => point.volatilityRegime === "low",
+    ],
   ] as const;
   return definitions.map(([regime, matches]) => {
     const pairs: Array<readonly [number, number]> = [];

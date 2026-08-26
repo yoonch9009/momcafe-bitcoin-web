@@ -30,8 +30,15 @@ import {
 } from "@/lib/dashboard-data";
 import {
   enrichSeries,
+  eventStudy,
   highZoneSpikeAnalysis,
+  laggedReturns,
+  pearson,
+  regimeAnalysis,
   relativeChange,
+  rollingCorrelations,
+  spearman,
+  walkForwardValidation,
 } from "@/lib/statistics";
 
 const TimelineChart = dynamic(
@@ -45,6 +52,27 @@ const AlertPathChart = dynamic(
   () =>
     import("@/components/dashboard-charts").then(
       (module) => module.AlertPathChart,
+    ),
+  { ssr: false, loading: () => <ChartSkeleton /> },
+);
+const CorrelationChart = dynamic(
+  () =>
+    import("@/components/dashboard-charts").then(
+      (module) => module.CorrelationChart,
+    ),
+  { ssr: false, loading: () => <ChartSkeleton /> },
+);
+const RollingCorrelationChart = dynamic(
+  () =>
+    import("@/components/dashboard-charts").then(
+      (module) => module.RollingCorrelationChart,
+    ),
+  { ssr: false, loading: () => <ChartSkeleton /> },
+);
+const EventStudyChart = dynamic(
+  () =>
+    import("@/components/dashboard-charts").then(
+      (module) => module.EventStudyChart,
     ),
   { ssr: false, loading: () => <ChartSkeleton /> },
 );
@@ -113,7 +141,8 @@ export function DashboardShell() {
   const [snapshot, setSnapshot] = useState<DashboardSnapshot | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [metric, setMetric] = useState<Metric>("close");
-  const [range, setRange] = useState<Range>("3y");
+  const [range, setRange] = useState<Range>("5y");
+  const [horizon, setHorizon] = useState(12);
   const [logarithmic, setLogarithmic] = useState(false);
   const [theme, setTheme] = useState<"dark" | "light">("dark");
 
@@ -182,6 +211,39 @@ export function DashboardShell() {
       })),
     [highZoneSpike],
   );
+  const scatter = useMemo(
+    () => laggedReturns(visibleSeries, horizon),
+    [horizon, visibleSeries],
+  );
+  const correlationPairs = useMemo(
+    () =>
+      scatter.map(
+        (point) => [point.attentionPercentile, point.returnPct] as const,
+      ),
+    [scatter],
+  );
+  const correlation = useMemo(
+    () => pearson(correlationPairs),
+    [correlationPairs],
+  );
+  const rankCorrelation = useMemo(
+    () => spearman(correlationPairs),
+    [correlationPairs],
+  );
+  const broadSpikeEvents = useMemo(
+    () => eventStudy(visibleSeries, [1, 2, 4, 8, 12]),
+    [visibleSeries],
+  );
+  const rolling = useMemo(() => {
+    const output = rollingCorrelations(analytics);
+    const length = rangeLength(range);
+    return Number.isFinite(length) ? output.slice(-length) : output;
+  }, [analytics, range]);
+  const regimes = useMemo(() => regimeAnalysis(visibleSeries), [visibleSeries]);
+  const walkForward = useMemo(
+    () => walkForwardValidation(analytics),
+    [analytics],
+  );
 
   if (error) {
     return (
@@ -192,7 +254,7 @@ export function DashboardShell() {
             aria-hidden="true"
             size={34}
           />
-          <p className="eyebrow mt-5">DATA CONTRACT ERROR</p>
+          <p className="eyebrow mt-5">데이터 형식 오류</p>
           <h1 className="mt-3 text-3xl font-semibold">
             데이터를 불러오지 못했습니다.
           </h1>
@@ -214,7 +276,7 @@ export function DashboardShell() {
       <main className="loading-grid min-h-screen">
         <div className="loading-copy">
           <div className="loading-mark" />
-          <p className="eyebrow">LOADING SIGNALS</p>
+          <p className="eyebrow">데이터 불러오는 중</p>
         </div>
       </main>
     );
@@ -248,6 +310,13 @@ export function DashboardShell() {
   const relaxedSensitivity = highZoneSpike.sensitivity.find(
     (item) => item.absoluteIncrease === 5 && item.ratioIncrease === 5,
   )!;
+  const selectedRangeLabel = rangeOptions.find(
+    (option) => option.value === range,
+  )!.label;
+  const granger = snapshot.analysis.granger;
+  const significantPrecedence = granger.tests.filter(
+    (test) => test.qValue < 0.05,
+  ).length;
 
   function toggleTheme() {
     const next = theme === "dark" ? "light" : "dark";
@@ -265,8 +334,8 @@ export function DashboardShell() {
             ₿
           </div>
           <div className="brand-copy">
-            <strong>SIGNAL DESK</strong>
-            <span>MOM CAFE × BITCOIN</span>
+            <strong>비트코인 × 맘카페</strong>
+            <span>고점권 언급 경보 대시보드</span>
           </div>
         </div>
         <div className="top-actions">
@@ -289,49 +358,121 @@ export function DashboardShell() {
       <main className="container">
         <section className="hero">
           <div>
-            <p className="eyebrow">ATTENTION × MARKET MICROSTRUCTURE</p>
+            <p className="eyebrow">맘카페 언급량으로 보는 과열 위험</p>
             <h1>
-              대화의 파동과
+              맘카페 언급 급증과
               <br />
-              <em>비트코인의 반응.</em>
+              <em>비트코인 고점 위험.</em>
             </h1>
             <p className="hero-copy">
-              저빈도 언급량을 52주 중앙값과 배수로 표준화하고, BTC 고점권에서
-              발생한 초대형 사건의 이후 수익·낙폭과 운용 위험을 검증합니다.
+              평소 0~1건인 저빈도 언급량의 특성을 반영해 최근 52주 평소값과
+              비교합니다. 비트코인 고점권에서 언급량이 이례적으로 급증한 뒤의
+              가격 경로를 확인하고 추격 매수 위험을 점검합니다.
             </p>
           </div>
           <aside className="status-panel" aria-label="데이터 상태">
             <div className="status-row">
-              <span>가격 관측일</span>
+              <span>가격 수집 기준일</span>
               <strong className="status-value">
                 {snapshot.collection.price.observedThrough}
               </strong>
             </div>
             <div className="status-row">
-              <span>OHLCV 커버리지</span>
+              <span>주간 가격 데이터</span>
               <strong className="status-value">
                 {snapshot.collection.price.ohlcvCoverage}/
                 {snapshot.series.length}주
               </strong>
             </div>
             <div className="status-row">
-              <span>카페 파이프라인</span>
+              <span>카페 수집 상태</span>
               <strong className="status-value">
                 <i className={`status-dot ${postStatus}`} />
                 {postStatus === "ok" ? "정상" : "기존값 보존"}
               </strong>
             </div>
             <div className="status-row">
-              <span>과거값 정책</span>
-              <strong className="status-value">IMMUTABLE</strong>
+              <span>과거 확정값</span>
+              <strong className="status-value">수정 없이 보존</strong>
             </div>
           </aside>
+        </section>
+
+        <section className="surface chart-section primary-timeline">
+          <div className="section-head">
+            <div>
+              <p className="eyebrow">가격과 언급량 한눈에 보기</p>
+              <h2>비트코인 종가와 맘카페 언급량</h2>
+              <p className="section-note">
+                막대는 한 주 동안 수집된 맘카페 언급 건수, 선은 선택한 비트코인
+                지표입니다. 주황색 세로선은 각 경보 구간에서 언급량이 가장
+                많았던 주이며, 사건이 끝난 뒤 확인되는 참고 표시입니다.
+              </p>
+            </div>
+            <div className="control-row">
+              <select
+                aria-label="언급량과 함께 볼 비트코인 지표"
+                className="select-control"
+                onChange={(event) => {
+                  const next = event.target.value as Metric;
+                  setMetric(next);
+                  if (!["close", "mean", "volume"].includes(next))
+                    setLogarithmic(false);
+                }}
+                value={metric}
+              >
+                <option value="close">주간 마지막 종가</option>
+                <option value="mean">주간 평균 가격</option>
+                <option value="volume">주간 거래량</option>
+                <option value="volatility">주간 가격 변동성</option>
+                <option value="range">주간 고가-저가 폭</option>
+                <option value="attention">언급량 상대 순위</option>
+                <option value="nextReturn">다음 주 가격 변화율</option>
+              </select>
+              <select
+                aria-label="차트 조회 기간"
+                className="select-control"
+                onChange={(event) => setRange(event.target.value as Range)}
+                value={range}
+              >
+                {rangeOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+              <button
+                className={`toggle-button ${logarithmic ? "active" : ""}`}
+                disabled={!logEligible}
+                onClick={() => setLogarithmic((value) => !value)}
+                title="큰 값과 작은 값의 차이를 압축해서 봅니다"
+                type="button"
+              >
+                <BarChart3 size={14} /> 큰 값 압축
+              </button>
+            </div>
+          </div>
+          <div className="chart-wrap">
+            <TimelineChart
+              alertWeeks={highZoneSpike.episodes.map(
+                (episode) => episode.representativePeak.week,
+              )}
+              data={timeline}
+              logarithmic={logarithmic}
+              metric={metric}
+            />
+          </div>
+          <p className="tiny-note">
+            기본 조회 기간은 최근 5년입니다. 가장 오른쪽의 진행 중인 주는 아직
+            마감되지 않은 누적값이므로 과거의 마감된 주와 직접 비교할 때
+            주의하세요.
+          </p>
         </section>
 
         <section className="kpi-grid kpi-grid-wide" aria-label="핵심 지표">
           <article className="surface kpi-card">
             <div className="kpi-head">
-              <span>BTC-USD 최신 관측</span>
+              <span>비트코인 최근 종가</span>
               <span className="kpi-icon">
                 <TrendingUp size={16} />
               </span>
@@ -353,21 +494,23 @@ export function DashboardShell() {
                 {signed(priceChange)}
               </span>
               <span>전주 대비</span>
-              {isLive ? <span className="live-pill">LIVE WEEK</span> : null}
+              {isLive ? <span className="live-pill">진행 중인 주</span> : null}
             </div>
           </article>
           <article className="surface kpi-card">
             <div className="kpi-head">
-              <span>관심도 위치</span>
+              <span>언급량 상대 순위</span>
               <span className="kpi-icon">
                 <Activity size={16} />
               </span>
             </div>
             <div className="kpi-value">
-              {fixed(latestAttention.attentionPercentile, 0, "백분위")}
+              {fixed(latestAttention.attentionPercentile, 0, " / 100")}
             </div>
             <div className="kpi-foot">
-              <span>{latestAttention.week} · 이전 52주 내 동률 중간순위</span>
+              <span>
+                {latestAttention.week} · 100에 가까울수록 최근 52주보다 많음
+              </span>
             </div>
           </article>
           <article className="surface kpi-card">
@@ -390,7 +533,7 @@ export function DashboardShell() {
           </article>
           <article className="surface kpi-card">
             <div className="kpi-head">
-              <span>주간 실현변동성</span>
+              <span>주간 가격 변동성</span>
               <span className="kpi-icon">
                 <BarChart3 size={16} />
               </span>
@@ -399,7 +542,7 @@ export function DashboardShell() {
               {fixed(latest.realizedVolatility, 2, "%")}
             </div>
             <div className="kpi-foot">
-              <span>일별 로그수익률 제곱합의 제곱근</span>
+              <span>한 주 동안 일별 가격이 흔들린 정도</span>
             </div>
           </article>
           <article className="surface kpi-card">
@@ -440,12 +583,13 @@ export function DashboardShell() {
         >
           <div className="section-head high-zone-head">
             <div>
-              <p className="eyebrow">HIGH-ZONE ATTENTION ALERT</p>
+              <p className="eyebrow">현재 위험 신호</p>
               <h2 id="high-zone-title">고점권 초대형 언급 경보</h2>
               <p className="section-note">
-                직전 26주 고점의 90% 이상에서, 최근 52주 중앙값보다 10건 이상
-                많고 동시에 5배 이상일 때 발생합니다. 완결 주만 사용해 미래 정보
-                없이 판정합니다.
+                비트코인 종가가 직전 26주 최고 종가의 90% 이상인 상태에서,
+                언급량이 최근 52주 평소값(중앙값)보다 10건 이상 많고 동시에 5배
+                이상이면 경보가 발생합니다. 마감된 주만 사용하므로 당시에도 알
+                수 있었던 값으로 판정합니다.
               </p>
             </div>
             <div
@@ -463,7 +607,7 @@ export function DashboardShell() {
           {highZoneSpike.latest ? (
             <div className="high-zone-current">
               <div className="high-zone-current-title">
-                <span>최근 완결 주</span>
+                <span>최근 마감 주</span>
                 <strong>{highZoneSpike.latest.week}</strong>
               </div>
               <div className="high-zone-readings">
@@ -474,25 +618,25 @@ export function DashboardShell() {
                   </strong>
                 </div>
                 <div>
-                  <span>52주 중앙값</span>
+                  <span>최근 52주 평소 언급량</span>
                   <strong>
                     {fixed(highZoneSpike.latest.baselineMedian, 1, "건")}
                   </strong>
                 </div>
                 <div>
-                  <span>중앙값 대비</span>
+                  <span>평소보다 몇 배인지</span>
                   <strong>
                     {fixed(highZoneSpike.latest.mentionMultiple, 1, "배")}
                   </strong>
                 </div>
                 <div>
-                  <span>26주 고점 대비</span>
+                  <span>직전 26주 최고 종가와 차이</span>
                   <strong>
                     {signed(highZoneSpike.latest.priceToPriorHighPct, 1)}
                   </strong>
                 </div>
                 <div>
-                  <span>현재 필요 언급량</span>
+                  <span>경보가 켜지는 언급량</span>
                   <strong>{highZoneSpike.latest.requiredCount}건 이상</strong>
                 </div>
               </div>
@@ -501,15 +645,15 @@ export function DashboardShell() {
 
           <div
             className="high-zone-summary"
-            aria-label="대표 고점 기준 역사적 결과"
+            aria-label="언급량 정점 기준 과거 결과"
           >
             <article>
-              <span>과거 독립 사건</span>
+              <span>겹치지 않는 과거 경보 구간</span>
               <strong>
                 {highZoneSpike.representativePeakSummary.events}
                 <small>회</small>
               </strong>
-              <p>2주 이내 연속 신호는 하나의 에피소드로 묶음</p>
+              <p>2주 안에 이어진 경보는 같은 구간으로 묶음</p>
             </article>
             <article>
               <span>4주 내 -10% 하락 경험</span>
@@ -521,7 +665,7 @@ export function DashboardShell() {
                 )}
               </strong>
               <p>
-                최대 낙폭 중앙값{" "}
+                4주 중 최대 하락의 중앙값{" "}
                 {signed(
                   highZoneSpike.representativePeakSummary.medianDrawdown4wPct,
                   1,
@@ -546,24 +690,25 @@ export function DashboardShell() {
               </p>
             </article>
             <article>
-              <span>최초 경보 후 12주 최대 상승</span>
+              <span>실시간 첫 경보 후 12주 중 최대 상승</span>
               <strong>
                 {signed(
                   highZoneSpike.firstTriggerSummary.medianUpside12wPct,
                   1,
                 )}
               </strong>
-              <p>고점의 끝은 알 수 없으므로 즉시 숏 신호로 사용하지 않음</p>
+              <p>고점의 끝은 알 수 없으므로 즉시 하락 베팅에 사용하지 않음</p>
             </article>
           </div>
 
           <div className="high-zone-interpretation">
-            <strong>운용 해석</strong>
+            <strong>이 경보를 실제로 쓰는 방법</strong>
             <p>
-              이 경보는 하락 방향을 맞히는 매매 신호가 아니라, 신규 매수·불타기·
-              피라미딩을 멈추고 기존 비중과 손실 허용 범위를 재점검하는 위험관리
-              신호입니다. “대표 고점” 성과는 에피소드가 끝난 뒤 확인되는 설명용
-              통계이며 실시간 진입점이 아닙니다.
+              이 경보는 하락 방향을 맞히는 매매 신호가 아닙니다. 신규 매수와
+              수익 중인 포지션의 추가 매수(불타기)를 멈추고, 기존 비중과 손실
+              허용 범위를 재점검하는 위험관리 신호입니다. “언급량 정점”은 경보
+              구간이 끝난 뒤에야 확인되므로 실시간 매매 시점으로 사용할 수
+              없습니다.
             </p>
           </div>
 
@@ -571,15 +716,15 @@ export function DashboardShell() {
             <table className="data-table">
               <thead>
                 <tr>
-                  <th>대표 고점 주</th>
+                  <th>언급량 정점 주(사후)</th>
                   <th>언급</th>
-                  <th>중앙값</th>
-                  <th>배수</th>
-                  <th>26주 고점 대비</th>
+                  <th>52주 평소값</th>
+                  <th>평소 대비</th>
+                  <th>26주 최고 종가와 차이</th>
                   <th>4주 수익률</th>
-                  <th>4주 최대낙폭</th>
+                  <th>4주 중 최대 하락</th>
                   <th>12주 수익률</th>
-                  <th>12주 최대낙폭</th>
+                  <th>12주 중 최대 하락</th>
                 </tr>
               </thead>
               <tbody>
@@ -601,89 +746,27 @@ export function DashboardShell() {
           </div>
         </section>
 
-        <section className="surface chart-section">
-          <div className="section-head">
-            <div>
-              <p className="eyebrow">ALERT CONTEXT TIMELINE</p>
-              <h2>경보 사건과 시장 반응</h2>
-              <p className="section-note">
-                막대는 주간 언급량, 선은 선택 지표, 주황색 세로선은 조회 기간에
-                포함된 대표 고점입니다. 현재 주 값은 마감 전 누적치입니다.
-              </p>
-            </div>
-            <div className="control-row">
-              <select
-                aria-label="시장 지표"
-                className="select-control"
-                onChange={(event) => {
-                  const next = event.target.value as Metric;
-                  setMetric(next);
-                  if (!["close", "mean", "volume"].includes(next))
-                    setLogarithmic(false);
-                }}
-                value={metric}
-              >
-                <option value="close">주간 종가</option>
-                <option value="mean">주간 평균</option>
-                <option value="volume">거래량</option>
-                <option value="volatility">실현변동성</option>
-                <option value="range">고저 변동폭</option>
-                <option value="attention">관심도 백분위</option>
-                <option value="nextReturn">다음 주 수익률</option>
-              </select>
-              <select
-                aria-label="타임라인 조회 기간"
-                className="select-control"
-                onChange={(event) => setRange(event.target.value as Range)}
-                value={range}
-              >
-                {rangeOptions.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-              <button
-                className={`toggle-button ${logarithmic ? "active" : ""}`}
-                disabled={!logEligible}
-                onClick={() => setLogarithmic((value) => !value)}
-                type="button"
-              >
-                <BarChart3 size={14} /> 로그 축
-              </button>
-            </div>
-          </div>
-          <div className="chart-wrap">
-            <TimelineChart
-              alertWeeks={highZoneSpike.episodes.map(
-                (episode) => episode.representativePeak.week,
-              )}
-              data={timeline}
-              logarithmic={logarithmic}
-              metric={metric}
-            />
-          </div>
-        </section>
-
         <section className="analysis-grid alert-analysis-grid">
           <article className="surface analysis-card">
-            <p className="eyebrow">ALERT TIMING COMPARISON</p>
+            <p className="eyebrow">경보 시점과 사후 정점 비교</p>
             <h2 className="mt-2 text-xl font-semibold">
-              최초 경보와 대표 고점 이후 종가
+              실시간 첫 경보와 언급량 정점 이후 종가
             </h2>
             <p className="section-note">
-              7개 독립 사건의 중앙 수익률입니다. 최초 경보는 실시간 사용 가능,
-              대표 고점은 에피소드 종료 후에만 알 수 있는 설명용 기준입니다.
+              7개 경보 구간의 중앙 수익률입니다. “실시간 첫 경보”는 조건을 처음
+              충족한 주라 당시에도 알 수 있습니다. “언급량 정점”은 같은 경보
+              구간에서 언급량이 가장 많았던 주라 구간이 끝난 뒤에만 알 수
+              있습니다. 가격의 정확한 고점을 뜻하지 않습니다.
             </p>
             <div className="chart-wrap">
               <AlertPathChart data={alertPath} />
             </div>
           </article>
           <aside className="surface analysis-card validation-card">
-            <p className="eyebrow">WHAT THE NUMBERS SAY</p>
+            <p className="eyebrow">숫자로 읽는 경보</p>
             <h2 className="mt-2 text-xl font-semibold">경보의 정확한 의미</h2>
             <div className="validation-stat">
-              <span>최초 경보 후 4주 종가 하락</span>
+              <span>실시간 첫 경보 후 4주 종가 하락</span>
               <strong>
                 {fixed(
                   highZoneSpike.firstTriggerSummary.negativeReturn4wPct,
@@ -693,7 +776,7 @@ export function DashboardShell() {
               </strong>
             </div>
             <div className="validation-stat">
-              <span>대표 고점 후 4주 종가 하락</span>
+              <span>언급량 정점 후 4주 종가 하락</span>
               <strong>
                 {fixed(
                   highZoneSpike.representativePeakSummary.negativeReturn4wPct,
@@ -703,7 +786,7 @@ export function DashboardShell() {
               </strong>
             </div>
             <div className="validation-stat">
-              <span>최초 경보 후 12주 최대 상승 중앙값</span>
+              <span>실시간 첫 경보 후 12주 중 최대 상승</span>
               <strong>
                 {signed(
                   highZoneSpike.firstTriggerSummary.medianUpside12wPct,
@@ -712,30 +795,31 @@ export function DashboardShell() {
               </strong>
             </div>
             <p className="tiny-note">
-              최초 경보 직후 4주는 하락보다 상승 종가가 많았습니다. 따라서 숏
-              진입점이 아니라 추격매수·불타기 중단 시점으로 해석합니다.
+              실시간 첫 경보 직후 4주는 하락보다 상승 종가가 많았습니다. 따라서
+              즉시 하락에 베팅하는 시점이 아니라 추격 매수와 추가 매수를 멈추는
+              시점으로 해석합니다.
             </p>
           </aside>
         </section>
 
         <section className="analysis-grid event-grid alert-tables-grid">
           <article className="surface analysis-card table-card">
-            <p className="eyebrow">HOLDING-PERIOD RISK</p>
+            <p className="eyebrow">경보 후 기간별 가격 경로</p>
             <h2 className="mt-2 text-xl font-semibold">기간별 위험 경로</h2>
             <p className="section-note">
-              같은 7개 사건을 1·2·4·8·12주 지평으로 비교합니다. MAE는 해당 기간
-              중 저점 기준 최대 낙폭의 중앙값입니다.
+              같은 7개 경보 구간을 1·2·4·8·12주 뒤로 비교합니다. 수익률뿐 아니라
+              그 기간 중 한때 얼마나 올랐고 내려갔는지도 함께 봅니다.
             </p>
             <div className="table-scroll">
               <table className="data-table alert-detail-table">
                 <thead>
                   <tr>
-                    <th>지평</th>
-                    <th>최초 경보 수익</th>
-                    <th>대표 고점 수익</th>
-                    <th>최초 경보 MAE</th>
-                    <th>대표 고점 MAE</th>
-                    <th>최초 경보 MFE</th>
+                    <th>경과 기간</th>
+                    <th>첫 경보 후 수익</th>
+                    <th>언급 정점 후 수익</th>
+                    <th>첫 경보 후 최대 하락</th>
+                    <th>언급 정점 후 최대 하락</th>
+                    <th>첫 경보 후 최대 상승</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -758,7 +842,7 @@ export function DashboardShell() {
             </div>
           </article>
           <article className="surface analysis-card table-card">
-            <p className="eyebrow">HIGH-ZONE BENCHMARK</p>
+            <p className="eyebrow">비슷한 가격대와 비교</p>
             <h2 className="mt-2 text-xl font-semibold">
               평범한 고점권과 무엇이 다른가
             </h2>
@@ -771,12 +855,12 @@ export function DashboardShell() {
                 <thead>
                   <tr>
                     <th>구분</th>
-                    <th>n</th>
+                    <th>표본 수</th>
                     <th>12주 하락</th>
-                    <th>중앙수익</th>
+                    <th>중앙값 수익률</th>
                     <th>-10% 경험</th>
-                    <th>MAE</th>
-                    <th>MFE</th>
+                    <th>기간 중 최대 하락</th>
+                    <th>기간 중 최대 상승</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -800,8 +884,9 @@ export function DashboardShell() {
               </table>
             </div>
             <p className="tiny-note">
-              일반 고점권 n은 중첩된 주간 관측치이므로 독립 사건 7개와 동일한
-              유의성 표본으로 해석하지 않고 방향·크기 비교에만 사용합니다.
+              언급 급증이 없었던 일반 고점권은 서로 겹치는 주간 자료입니다.
+              독립된 경보 7개와 같은 통계 표본으로 보지 않고 방향과 크기를
+              비교하는 참고값으로만 사용합니다.
             </p>
           </article>
         </section>
@@ -809,7 +894,7 @@ export function DashboardShell() {
         <section className="surface chart-section sensitivity-section">
           <div className="section-head">
             <div>
-              <p className="eyebrow">THRESHOLD SENSITIVITY</p>
+              <p className="eyebrow">경보 기준 점검</p>
               <h2>기준을 바꿔도 결론이 유지되는가</h2>
               <p className="section-note">
                 고점권 90% 조건은 고정하고 절대 증가와 중앙값 배수를
@@ -826,9 +911,9 @@ export function DashboardShell() {
                   <th>비율</th>
                   <th>사건 수</th>
                   <th>12주 하락</th>
-                  <th>12주 중앙수익</th>
+                  <th>12주 중앙값 수익률</th>
                   <th>-10% 하락 경험</th>
-                  <th>MAE 중앙값</th>
+                  <th>기간 중 최대 하락</th>
                 </tr>
               </thead>
               <tbody>
@@ -851,7 +936,7 @@ export function DashboardShell() {
           </div>
           <p className="tiny-note">
             +5건·5배 기준은 {relaxedSensitivity.events}개 사건으로 넓어지며 12주
-            중앙수익이 {signed(relaxedSensitivity.medianReturn12wPct, 1)}로
+            중앙값 수익률이 {signed(relaxedSensitivity.medianReturn12wPct, 1)}로
             바뀝니다. 반면 +10건 이상에서는 배수 조건을 바꿔도 현재 데이터의{" "}
             {highZoneSpike.episodes.length}개 사건과 결과가 유지됩니다. 기준
             선택 뒤 새 사건에서 검증해야 합니다.
@@ -860,13 +945,13 @@ export function DashboardShell() {
 
         <section className="analysis-grid alert-conclusion-grid">
           <article className="surface analysis-card conclusion-card">
-            <p className="eyebrow">SUPPORTED CONCLUSION</p>
+            <p className="eyebrow">자료가 뒷받침하는 결론</p>
             <h2 className="mt-2 text-xl font-semibold">확인된 부분</h2>
             <ul className="evidence-list">
               <li>
                 <strong>위험 비대칭</strong>
                 <span>
-                  최초 경보의 12주 중앙수익은{" "}
+                  실시간 첫 경보의 12주 중앙값 수익률은{" "}
                   {signed(
                     highZoneSpike.firstTriggerSummary.medianReturn12wPct,
                     1,
@@ -883,8 +968,9 @@ export function DashboardShell() {
               <li>
                 <strong>평범한 고점권과 차이</strong>
                 <span>
-                  일반 고점권 12주 중앙수익{" "}
-                  {signed(ordinaryHighZone.medianReturnPct, 1)} 대비 최초 경보는{" "}
+                  일반 고점권 12주 중앙값 수익률{" "}
+                  {signed(ordinaryHighZone.medianReturnPct, 1)} 대비 실시간 첫
+                  경보는{" "}
                   {signed(
                     highZoneSpike.firstTriggerSummary.medianReturn12wPct,
                     1,
@@ -893,22 +979,22 @@ export function DashboardShell() {
                 </span>
               </li>
               <li>
-                <strong>운용 신호</strong>
+                <strong>실제 사용 방법</strong>
                 <span>
-                  신규 매수·불타기·피라미딩을 중단하고 비중과 손실 한도를
-                  재검토할 근거가 있습니다.
+                  신규 매수와 수익 중인 포지션의 추가 매수(불타기)를 중단하고
+                  비중과 손실 한도를 재검토할 근거가 있습니다.
                 </span>
               </li>
             </ul>
           </article>
           <article className="surface analysis-card conclusion-card caution-card">
-            <p className="eyebrow">NOT PROVEN</p>
+            <p className="eyebrow">자료만으로 확인할 수 없는 것</p>
             <h2 className="mt-2 text-xl font-semibold">확인되지 않은 부분</h2>
             <ul className="evidence-list">
               <li>
                 <strong>정확한 고점 시점</strong>
                 <span>
-                  최초 경보 후에도 12주 최대 상승 중앙값이{" "}
+                  실시간 첫 경보 후에도 12주 중 최대 상승 중앙값이{" "}
                   {signed(
                     highZoneSpike.firstTriggerSummary.medianUpside12wPct,
                     1,
@@ -917,9 +1003,9 @@ export function DashboardShell() {
                 </span>
               </li>
               <li>
-                <strong>즉시 숏 수익성</strong>
+                <strong>즉시 하락 베팅의 수익성</strong>
                 <span>
-                  최초 경보 후 4주 종가 하락은{" "}
+                  실시간 첫 경보 후 4주 종가 하락은{" "}
                   {fixed(
                     highZoneSpike.firstTriggerSummary.negativeReturn4wPct,
                     1,
@@ -929,7 +1015,7 @@ export function DashboardShell() {
                 </span>
               </li>
               <li>
-                <strong>통계적 확증</strong>
+                <strong>충분한 사건 수</strong>
                 <span>
                   독립 사건은 {highZoneSpike.episodes.length}개뿐이며 한 사건이
                   비율을 약{" "}
@@ -941,17 +1027,296 @@ export function DashboardShell() {
           </article>
         </section>
 
+        <section className="surface chart-section supporting-analysis-intro">
+          <div className="section-head">
+            <div>
+              <p className="eyebrow">핵심 경보를 보완하는 분석</p>
+              <h2>언급량과 가격의 일반적인 관계도 함께 보기</h2>
+              <p className="section-note">
+                아래 분석은 고점권 초대형 언급 경보와 다른 질문을 다룹니다. 모든
+                주 또는 더 넓은 언급 급증을 사용해 관계의 방향, 시간에 따른
+                변화, 실제 예측 가능성을 확인합니다. 핵심 경보의 매수 금지
+                판단을 대체하지 않는 참고 자료입니다.
+              </p>
+            </div>
+            <span className="result-pill">
+              조회 기간 · {selectedRangeLabel}
+            </span>
+          </div>
+        </section>
+
+        <section className="analysis-grid">
+          <article className="surface analysis-card">
+            <div className="section-head">
+              <div>
+                <p className="eyebrow">전체 주의 관계</p>
+                <h2>언급량이 많았던 주와 이후 수익률</h2>
+                <p className="section-note">
+                  점 하나가 한 주입니다. 가로축은 그 주 언급량이 직전 52주에서
+                  어느 정도로 많았는지 나타내는 0~100점 순위이고, 세로축은
+                  선택한 기간 뒤의 종가 변화율입니다.
+                </p>
+              </div>
+              <select
+                aria-label="언급량 이후 가격을 확인할 기간"
+                className="select-control"
+                onChange={(event) => setHorizon(Number(event.target.value))}
+                value={horizon}
+              >
+                {[1, 2, 4, 8, 12].map((value) => (
+                  <option key={value} value={value}>
+                    {value}주 뒤
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="chart-wrap">
+              <CorrelationChart data={scatter} />
+            </div>
+          </article>
+          <aside className="surface analysis-card">
+            <p className="eyebrow">관계의 크기</p>
+            <h2 className="mt-2 text-xl font-semibold">
+              언급량만으로 방향을 설명할 수 있는가
+            </h2>
+            <div className="dual-stat">
+              <div>
+                <span>직선 관계 점수</span>
+                <strong>{fixed(correlation, 3)}</strong>
+              </div>
+              <div>
+                <span>순서 관계 점수</span>
+                <strong>{fixed(rankCorrelation, 3)}</strong>
+              </div>
+            </div>
+            <p className="sample-note">
+              표본 {scatter.length}주 · {selectedRangeLabel} · {horizon}주 뒤
+            </p>
+            <ul className="method-list">
+              <li>
+                <b>01</b>
+                <span>
+                  두 점수는 -1에서 +1 사이이며 0에 가까우면 일관된 관계가
+                  약하다는 뜻입니다.
+                </span>
+              </li>
+              <li>
+                <b>02</b>
+                <span>
+                  직선 관계 점수는 값의 크기, 순서 관계 점수는 높고 낮은 순서의
+                  동행 여부를 봅니다.
+                </span>
+              </li>
+              <li>
+                <b>03</b>
+                <span>
+                  관계가 보여도 원인이나 매매 수익을 증명하지는 않습니다.
+                </span>
+              </li>
+            </ul>
+          </aside>
+        </section>
+
+        <section className="analysis-grid event-grid">
+          <article className="surface analysis-card">
+            <p className="eyebrow">더 넓은 언급 급증 기준</p>
+            <h2 className="mt-2 text-xl font-semibold">
+              가격 위치를 따지지 않은 언급 급증 이후
+            </h2>
+            <p className="section-note">
+              고점권 여부와 무관하게, 그 주 언급량이 직전 52주 상위 5%에 들고
+              평소값보다 3건 이상 많으면 넓은 급증으로 봅니다. 핵심 경보보다
+              느슨한 별도 기준입니다.
+            </p>
+            <div className="chart-wrap">
+              <EventStudyChart data={broadSpikeEvents} />
+            </div>
+          </article>
+          <article className="surface analysis-card table-card">
+            <p className="eyebrow">넓은 급증 이후 세부 결과</p>
+            <h2 className="mt-2 text-xl font-semibold">기간별 결과</h2>
+            <div className="table-scroll">
+              <table className="data-table">
+                <thead>
+                  <tr>
+                    <th>경과 기간</th>
+                    <th>사건 수</th>
+                    <th>중앙 수익률</th>
+                    <th>상승한 비율</th>
+                    <th>기간 중 최대 상승</th>
+                    <th>기간 중 최대 하락</th>
+                    <th>추정 범위(95%)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {broadSpikeEvents.map((item) => (
+                    <tr key={item.horizon}>
+                      <td>+{item.horizon}주</td>
+                      <td>{item.events}</td>
+                      <td>{signed(item.medianReturnPct)}</td>
+                      <td>{fixed(item.hitRatePct, 1, "%")}</td>
+                      <td>{signed(item.medianMfePct)}</td>
+                      <td>{signed(item.medianMaePct)}</td>
+                      <td>
+                        {item.confidenceInterval
+                          ? signed(item.confidenceInterval[0], 1) +
+                            " ~ " +
+                            signed(item.confidenceInterval[1], 1)
+                          : "사건 8개 미만"}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="tiny-note">
+              같은 가격 구간을 반복 계산하지 않도록 기간이 겹치는 급증은
+              제외합니다. 추정 범위는 사건이 8개 이상일 때만 표시합니다.
+            </p>
+          </article>
+        </section>
+
+        <section className="analysis-grid">
+          <article className="surface analysis-card">
+            <p className="eyebrow">관계가 계속 같았는지 확인</p>
+            <h2 className="mt-2 text-xl font-semibold">
+              최근 52주씩 잘라 본 다음 1주 관계
+            </h2>
+            <p className="section-note">
+              언급량 상대 순위와 다음 주 수익률의 관계를 매주 다시 계산합니다.
+              선이 0 위와 아래를 자주 오가면 일반적인 상관관계가 안정적이지
+              않다는 뜻입니다.
+            </p>
+            <div className="chart-wrap">
+              <RollingCorrelationChart data={rolling} />
+            </div>
+          </article>
+          <article className="surface analysis-card table-card">
+            <p className="eyebrow">시장 상황별 비교</p>
+            <h2 className="mt-2 text-xl font-semibold">
+              상승장·하락장과 변동성에 따른 차이
+            </h2>
+            <p className="section-note">
+              추세는 26주 평균 가격 위·아래, 변동성은 직전 52주의 평소 수준
+              위·아래로 나눕니다. 관계 점수는 언급량 상대 순위와 다음 주
+              수익률의 관계입니다.
+            </p>
+            <div className="table-scroll">
+              <table className="data-table">
+                <thead>
+                  <tr>
+                    <th>시장 상황</th>
+                    <th>표본 수</th>
+                    <th>직선 관계</th>
+                    <th>순서 관계</th>
+                    <th>다음 주 중앙 수익률</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {regimes.map((item) => (
+                    <tr key={item.regime}>
+                      <td>{item.regime}</td>
+                      <td>{item.observations}</td>
+                      <td>{fixed(item.pearson, 3)}</td>
+                      <td>{fixed(item.spearman, 3)}</td>
+                      <td>{signed(item.medianNextReturnPct)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+
+        <section className="analysis-grid diagnostics-grid">
+          <article className="surface analysis-card table-card">
+            <div className="section-head">
+              <div>
+                <p className="eyebrow">시간 선후 관계 점검</p>
+                <h2>언급량 변화가 가격보다 먼저였는가</h2>
+                <p className="section-note">
+                  1~4주 전 값까지 사용해 언급량 변화가 수익률보다 먼저
+                  움직였는지, 반대로 수익률이 언급량보다 먼저 움직였는지
+                  검사합니다. 여러 번 검사하면서 생길 우연을 보정한 결과입니다.
+                </p>
+              </div>
+              <span
+                className={`result-pill ${significantPrecedence ? "signal" : ""}`}
+              >
+                뚜렷한 조합 · {significantPrecedence}개
+              </span>
+            </div>
+            <div className="table-scroll">
+              <table className="data-table">
+                <thead>
+                  <tr>
+                    <th>검사 방향</th>
+                    <th>몇 주 전까지 사용</th>
+                    <th>우연 보정값</th>
+                    <th>판정</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {granger.tests.map((test) => (
+                    <tr key={test.direction + "-" + test.lag}>
+                      <td>
+                        {test.direction === "attention_to_return"
+                          ? "언급량 변화 → 수익률"
+                          : "수익률 → 언급량 변화"}
+                      </td>
+                      <td>{test.lag}주</td>
+                      <td>{test.qValue.toFixed(3)}</td>
+                      <td>{test.qValue < 0.05 ? "뚜렷함" : "뚜렷하지 않음"}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="tiny-note">
+              우연 보정값이 0.05보다 작을 때만 통계적으로 뚜렷하다고 표시합니다.
+              시간상 먼저 움직였다는 결과가 원인이라는 뜻은 아닙니다. 전체 표본{" "}
+              {granger.observations}주를 사용했습니다.
+            </p>
+          </article>
+          <aside className="surface analysis-card validation-card">
+            <p className="eyebrow">실제 예측력 점검</p>
+            <h2 className="mt-2 text-xl font-semibold">
+              과거 데이터 밖에서도 맞았는가
+            </h2>
+            <div className="validation-stat">
+              <span>과거 평균보다 나은 정도</span>
+              <strong>{fixed(walkForward.oosR2, 3)}</strong>
+            </div>
+            <div className="validation-stat">
+              <span>다음 주 방향을 맞힌 비율</span>
+              <strong>
+                {fixed(walkForward.directionalAccuracyPct, 1, "%")}
+              </strong>
+            </div>
+            <div className="validation-stat">
+              <span>실제 검증한 주</span>
+              <strong>{integer.format(walkForward.observations)}</strong>
+            </div>
+            <p className="tiny-note">
+              처음 104주는 학습에 사용하고, 이후 매주 그 시점까지의 자료만으로
+              다음 주를 예측했습니다. “과거 평균보다 나은 정도”가 0 이하면 단순
+              과거 평균보다 예측이 낫지 않았다는 뜻입니다.
+            </p>
+          </aside>
+        </section>
+
         <section className="surface availability">
           <div>
-            <p className="eyebrow">DATA BOUNDARY</p>
-            <h2>가능한 분석과 불가능한 추정의 경계</h2>
+            <p className="eyebrow">자료의 범위와 한계</p>
+            <h2>현재 확인할 수 있는 것과 없는 것</h2>
           </div>
           <div className="availability-grid">
             <article>
               <strong>현재 제공</strong>
               <p>
-                고점권 초대형 언급 경보, 최초 경보·대표 고점 분리, 1–12주
-                수익·MFE·MAE, 일반 고점권 비교, 기준 민감도
+                고점권 초대형 언급 경보, 실시간 첫 경보와 사후 언급량 정점 분리,
+                1–12주 수익과 기간 중 최대 상승·하락, 일반 고점권 비교, 경보
+                기준 점검, 전체 주의 관계와 예측력 보조 분석
               </p>
             </article>
             <article>
@@ -964,9 +1329,9 @@ export function DashboardShell() {
             <article>
               <strong>해석 원칙</strong>
               <p>
-                확정 주만 사용하며 실시간 판단은 최초 경보만 가능합니다. 대표
-                고점은 사후 설명용이고 사건 연구는 인과나 매매 수익성을 보장하지
-                않습니다.
+                핵심 경보는 마감된 주만 사용하며 실시간 판단에는 “실시간 첫
+                경보”만 쓸 수 있습니다. “언급량 정점”은 사후 설명용이고, 모든
+                관계 분석은 원인이나 매매 수익을 보장하지 않습니다.
               </p>
             </article>
           </div>
@@ -974,7 +1339,7 @@ export function DashboardShell() {
 
         <footer className="footer">
           <p>
-            가격·OHLCV: {snapshot.collection.price.source}
+            가격·거래량: {snapshot.collection.price.source}
             <br />
             언급량: 네이버·다음 카페 공개 검색 · Asia/Seoul · 월요일 시작
           </p>

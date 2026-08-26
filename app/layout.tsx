@@ -16,9 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "BTC × 맘카페 시그널 데스크",
+  title: "비트코인 × 맘카페 고점권 언급 경보",
   description:
-    "맘카페 비트코인 언급량과 BTC-USD 주간 가격을 함께 보는 데이터 대시보드",
+    "맘카페 비트코인 언급량 급증과 비트코인 고점권의 관계를 분석하는 대시보드",
 };
 
 export const viewport: Viewport = {

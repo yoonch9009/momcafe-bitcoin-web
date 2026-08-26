@@ -49,13 +49,13 @@ function shortWeek(value: string) {
 }
 
 const metricNames: Record<Metric, string> = {
-  close: "BTC 주간 종가",
-  mean: "BTC 주간 평균",
-  volume: "BTC 거래량",
-  volatility: "실현변동성",
-  range: "고저 변동폭",
-  attention: "관심도 백분위",
-  nextReturn: "다음 주 수익률",
+  close: "비트코인 주간 마지막 종가",
+  mean: "비트코인 주간 평균 가격",
+  volume: "비트코인 주간 거래량",
+  volatility: "주간 가격 변동성",
+  range: "주간 고가-저가 폭",
+  attention: "언급량 상대 순위",
+  nextReturn: "다음 주 가격 변화율",
 };
 
 export function TimelineChart({
@@ -69,9 +69,13 @@ export function TimelineChart({
   logarithmic: boolean;
   alertWeeks?: string[];
 }) {
-  const isPercent = ["volatility", "range", "attention", "nextReturn"].includes(
-    metric,
-  );
+  const isPercent = ["volatility", "range", "nextReturn"].includes(metric);
+  const formatMetricValue = (value: number) =>
+    metric === "attention"
+      ? `${decimal.format(value)}점`
+      : isPercent
+        ? `${decimal.format(value)}%`
+        : compact.format(value);
   return (
     <ResponsiveContainer height="100%" width="100%">
       <ComposedChart
@@ -111,9 +115,7 @@ export function TimelineChart({
           orientation="right"
           scale={logarithmic ? "log" : "auto"}
           tick={{ fill: "var(--muted)", fontSize: 10 }}
-          tickFormatter={(value: number) =>
-            isPercent ? `${decimal.format(value)}%` : compact.format(value)
-          }
+          tickFormatter={formatMetricValue}
           tickLine={false}
           type="number"
           width={55}
@@ -129,8 +131,8 @@ export function TimelineChart({
           }}
           cursor={{ fill: "var(--grid)" }}
           formatter={(value, name) => [
-            name === metricNames[metric] && isPercent
-              ? `${decimal.format(Number(value))}%`
+            name === metricNames[metric]
+              ? formatMetricValue(Number(value))
               : compact.format(Number(value)),
             name,
           ]}
@@ -153,7 +155,7 @@ export function TimelineChart({
           dataKey="posts"
           fill="var(--cyan)"
           fillOpacity={0.42}
-          name="맘카페 언급"
+          name="맘카페 주간 언급량"
           radius={[3, 3, 0, 0]}
           yAxisId="posts"
         />
@@ -226,14 +228,14 @@ export function AlertPathChart({ data }: { data: AlertPathPoint[] }) {
           dataKey="firstTriggerMedianReturnPct"
           fill="var(--cyan)"
           fillOpacity={0.72}
-          name="최초 경보"
+          name="실시간 첫 경보"
           radius={[4, 4, 0, 0]}
         />
         <Bar
           dataKey="representativePeakMedianReturnPct"
           fill="var(--orange)"
           fillOpacity={0.8}
-          name="대표 고점"
+          name="언급량 정점(사후)"
           radius={[4, 4, 0, 0]}
         />
       </BarChart>
@@ -250,11 +252,11 @@ export function CorrelationChart({ data }: { data: ScatterPoint[] }) {
           axisLine={false}
           dataKey="attentionPercentile"
           domain={[0, 100]}
-          name="관심도 백분위"
+          name="언급량 상대 순위"
           tick={{ fill: "var(--muted)", fontSize: 10 }}
           tickLine={false}
           type="number"
-          unit="%"
+          unit="점"
         />
         <YAxis
           axisLine={false}
@@ -335,7 +337,7 @@ export function RollingCorrelationChart({
           connectNulls={false}
           dataKey="pearson"
           dot={false}
-          name="Pearson"
+          name="직선 관계"
           stroke="var(--orange)"
           strokeWidth={2}
         />
@@ -343,7 +345,7 @@ export function RollingCorrelationChart({
           connectNulls={false}
           dataKey="spearman"
           dot={false}
-          name="Spearman"
+          name="순서 관계"
           stroke="var(--cyan)"
           strokeWidth={2}
         />
@@ -391,7 +393,7 @@ export function EventStudyChart({ data }: { data: EventStudyResult[] }) {
           }}
           formatter={(value) => [
             `${decimal.format(Number(value))}%`,
-            "중앙 수익률",
+            "중앙값 수익률",
           ]}
         />
         <ReferenceLine stroke="var(--line-strong)" y={0} />
@@ -399,7 +401,7 @@ export function EventStudyChart({ data }: { data: EventStudyResult[] }) {
           dataKey="medianReturnPct"
           fill="var(--orange)"
           fillOpacity={0.76}
-          name="중앙 수익률"
+          name="중앙값 수익률"
           radius={[5, 5, 0, 0]}
         />
       </BarChart>

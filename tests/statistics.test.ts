@@ -197,6 +197,23 @@ describe("dashboard statistics", () => {
     expect(analysis.episodes[0].firstTrigger.postCount).toBe(12);
   });
 
+  it("separates the real-time first alert from the later ex-post mention peak", () => {
+    const points = Array.from({ length: 43 }, (_, index) =>
+      row(
+        new Date(Date.UTC(2025, 0, 6 + index * 7)).toISOString().slice(0, 10),
+        index === 40 ? 12 : index === 41 ? 20 : 1,
+        100 + index,
+      ),
+    );
+
+    const episode = highZoneSpikeAnalysis(enrichSeries(points)).episodes[0];
+    expect(episode.firstTrigger.week).toBe(points[40].week);
+    expect(episode.representativePeak.week).toBe(points[41].week);
+    expect(episode.representativePeak.postCount).toBeGreaterThan(
+      episode.firstTrigger.postCount,
+    );
+  });
+
   it("preserves the seven corrected historical peak episodes in the published data", () => {
     const snapshot = parseSnapshot(
       JSON.parse(readFileSync("public/data.json", "utf8")) as unknown,
