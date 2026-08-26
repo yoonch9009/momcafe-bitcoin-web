@@ -25,6 +25,14 @@ def parse_cafe_date(value: object, now: dt.datetime) -> dt.datetime | None:
             return None
 
     text = str(value).strip().rstrip(".")
+    try:
+        parsed_iso = dt.datetime.fromisoformat(text.replace("Z", "+00:00"))
+        if parsed_iso.tzinfo is None:
+            return parsed_iso.replace(tzinfo=KST)
+        return parsed_iso.astimezone(KST)
+    except ValueError:
+        pass
+
     if len(text) == 5 and text[2] == ":":
         text = f"{now:%Y.%m.%d} {text}"
         formats = ("%Y.%m.%d %H:%M",)

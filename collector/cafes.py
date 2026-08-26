@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 
 from .time_utils import KST, iso_week, parse_cafe_date
 
-NAVER_URL = "https://apis.naver.com/cafe-web/cafe-mobile/CafeMobileWebArticleSearchListV4"
+NAVER_URL = "https://apis.naver.com/cafe-web/cafe-search-api/v2/cafes/{cafe_id}/search/articles"
 DAUM_URL = "https://cafe.daum.net/_c21_/cafesearch"
 NAVER_IDS = (
     14793916,
@@ -41,6 +41,11 @@ HEADERS = {
         "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
     )
 }
+NAVER_HEADERS = {
+    **HEADERS,
+    "Accept": "application/json",
+    "X-Cafe-Product": "mweb",
+}
 
 
 @dataclass(frozen=True)
@@ -62,46 +67,80 @@ def _naver_dates(
     now: dt.datetime,
 ) -> list[dt.datetime]:
     params: dict[str, Any] = {
-        "cafeId": cafe_id,
         "query": "비트코인",
-        "searchBy": 2,
-        "sortBy": "date",
+        "searchBy": 1,
+        "sortBy": "RECENCY",
         "page": 1,
-        "perPage": 200,
+        "perPage": 100,
         "adUnit": "MW_CAFE_BOARD",
-        "lastItemIndex": 0,
-        "lastAdIndex": 0,
         "ad": "true",
+        "views": "MEMBER_LEVEL,COUNT,SALE_INFO,CAFE_MENU",
+    }
+    headers = {
+        **NAVER_HEADERS,
+        "Referer": f"https://m.cafe.naver.com/ca-fe/web/cafes/{cafe_id}/search",
     }
     dates: list[dt.datetime] = []
     for _ in range(20):
         _nap()
-        response = client.get(NAVER_URL, params=params, headers=HEADERS, timeout=20)
+        response = client.get(
+            NAVER_URL.format(cafe_id=cafe_id),
+            params=params,
+            headers=headers,
+            timeout=20,
+        )
         response.raise_for_status()
-        result = response.json().get("message", {}).get("result", {})
+        payload = response.json()
+        if not isinstance(payload, dict) or not isinstance(payload.get("result"), dict):
+            raise ValueError("Naver response is missing result")
+        result = payload["result"]
+        articles = result.get("articleList")
+        if not isinstance(articles, list):
+            raise ValueError("Naver response is missing articleList")
+
         page_dates: list[dt.datetime] = []
-        for article in result.get("articleList", []) or []:
+        for article in articles:
+            if not isinstance(article, dict):
+                raise ValueError("Naver article is not an object")
             if article.get("type") != "ARTICLE":
                 continue
-            item = article.get("item", {}) or {}
+            item = article.get("item")
+            if not isinstance(item, dict):
+                raise ValueError("Naver article is missing item")
             raw = next(
                 (
                     item.get(key)
-                    for key in ("writeDate", "regDate", "wrtDt", "date", "currentSecTime")
+                    for key in ("addDate", "currentSecTime")
                     if item.get(key) is not None
                 ),
                 None,
             )
             parsed = parse_cafe_date(raw, now)
-            if parsed:
-                page_dates.append(parsed)
+            if parsed is None:
+                raise ValueError("Naver article has no parseable date")
+            page_dates.append(parsed)
         dates.extend(value for value in page_dates if value >= cutoff)
         if page_dates and min(page_dates) < cutoff:
             break
-        next_params = result.get("nextRequestParameter") or {}
-        if not next_params.get("page"):
+
+        page_info = result.get("pageInfo")
+        if not isinstance(page_info, dict):
+            raise ValueError("Naver response is missing pageInfo")
+        current_page = int(params["page"])
+        last_page = int(page_info.get("lastNavigationPageNumber") or current_page)
+        if current_page >= last_page:
             break
-        params.update(next_params)
+
+        next_params = result.get("nextRequestParameter") or {}
+        next_page = int(next_params.get("page") or 0)
+        if next_page <= current_page:
+            raise ValueError("Naver pagination did not advance")
+        params["page"] = next_page
+        for key in ("lastItemIndex", "lastAdIndex", "placementType"):
+            if key in next_params:
+                params[key] = next_params[key]
+    else:
+        raise ValueError("Naver pagination limit exceeded")
     return dates
 
 
