@@ -37,28 +37,32 @@ const row = (
 
 describe("dashboard statistics", () => {
   it("keeps the prediction direction at posts(t) to return(t+h)", () => {
-    const points = [
-      row("2026-08-03", 1, 100),
-      row("2026-08-10", 2, 110),
-      row("2026-08-17", 3, 121),
-    ];
+    const points = Array.from({ length: 29 }, (_, index) =>
+      row(
+        new Date(Date.UTC(2026, 0, 5 + index * 7)).toISOString().slice(0, 10),
+        index % 3,
+        100 * 1.1 ** index,
+      ),
+    );
 
-    const returns = laggedReturns(points, 1);
-    expect(returns.map(({ week, posts }) => ({ week, posts }))).toEqual([
-      { week: "2026-08-03", posts: 1 },
-      { week: "2026-08-10", posts: 2 },
+    const returns = laggedReturns(enrichSeries(points), 1);
+    expect(returns.map(({ week }) => week)).toEqual([
+      points[26].week,
+      points[27].week,
     ]);
     expect(returns[0].returnPct).toBeCloseTo(10);
     expect(returns[1].returnPct).toBeCloseTo(10);
   });
 
   it("does not invent a return across missing BTC observations", () => {
-    const points = [
-      row("2026-08-03", 1, 100),
-      row("2026-08-10", 2, null),
-      row("2026-08-17", 3, 121),
-    ];
-    expect(laggedReturns(points, 1)).toEqual([]);
+    const points = Array.from({ length: 28 }, (_, index) =>
+      row(
+        new Date(Date.UTC(2026, 0, 5 + index * 7)).toISOString().slice(0, 10),
+        index % 3,
+        index === 27 ? null : 100 + index,
+      ),
+    );
+    expect(laggedReturns(enrichSeries(points), 1)).toEqual([]);
   });
 
   it("computes bounded correlation and percentage change", () => {
@@ -84,7 +88,7 @@ describe("dashboard statistics", () => {
     ).toBeCloseTo(0.948683, 5);
   });
 
-  it("builds attention surprise from trailing history only", () => {
+  it("builds an empirical attention percentile from trailing history only", () => {
     const points = Array.from({ length: 54 }, (_, index) =>
       row(
         new Date(Date.UTC(2025, 0, 6 + index * 7)).toISOString().slice(0, 10),
@@ -93,9 +97,24 @@ describe("dashboard statistics", () => {
       ),
     );
     const enriched = enrichSeries(points);
-    expect(enriched[25].attentionScore).toBeNull();
-    expect(enriched[53].attentionScore).toBeGreaterThan(2);
-    expect(enriched[53].mentionMomentum4w).toBeGreaterThan(0);
+    expect(enriched[25].attentionPercentile).toBeNull();
+    expect(enriched[53].attentionPercentile).toBe(100);
+    expect(enriched[53].isAttentionSpike).toBe(true);
+    expect(enriched[53].mentionChange4w).toBeGreaterThan(0);
+  });
+
+  it("keeps tied zero counts measurable instead of dropping a zero MAD window", () => {
+    const points = Array.from({ length: 27 }, (_, index) =>
+      row(
+        new Date(Date.UTC(2025, 0, 6 + index * 7)).toISOString().slice(0, 10),
+        0,
+        100 + index,
+      ),
+    );
+
+    const latest = enrichSeries(points).at(-1)!;
+    expect(latest.attentionPercentile).toBe(50);
+    expect(latest.isAttentionSpike).toBe(false);
   });
 
   it("defines positive lag as attention leading the outcome", () => {
@@ -108,11 +127,12 @@ describe("dashboard statistics", () => {
     );
     const attention = enrichSeries(points).map((point, index) => ({
       ...point,
-      attentionScore: index < 30 ? null : index % 2 ? 1 : -1,
+      attentionPercentile: index < 30 ? null : index % 2 ? 75 : 25,
     }));
     const enriched = attention.map((point, index) => ({
       ...point,
-      weeklyReturnPct: index > 30 ? attention[index - 1].attentionScore : null,
+      weeklyReturnPct:
+        index > 30 ? attention[index - 1].attentionPercentile : null,
     }));
     const cell = leadLagMatrix(enriched, 2).find(
       (value) => value.outcome === "return" && value.lag === 1,
@@ -120,7 +140,7 @@ describe("dashboard statistics", () => {
     expect(cell?.pearson).toBeCloseTo(1);
   });
 
-  it("event study never uses prices before the event as future excursion", () => {
+  it("event study excludes pre-event prices and overlapping spike windows", () => {
     const points = Array.from({ length: 60 }, (_, index) =>
       row(
         new Date(Date.UTC(2025, 0, 6 + index * 7)).toISOString().slice(0, 10),
@@ -134,12 +154,13 @@ describe("dashboard statistics", () => {
     points[53].btcHigh = 112;
     const enriched = enrichSeries(points).map((point, index) => ({
       ...point,
-      attentionScore: index === 52 ? 3 : point.attentionScore,
+      isAttentionSpike: index === 52 || index === 53,
     }));
-    const result = eventStudy(enriched, 2, [1])[0];
+    const result = eventStudy(enriched, [1])[0];
     expect(result.events).toBe(1);
     expect(result.medianReturnPct).toBeCloseTo(10);
     expect(result.medianMfePct).toBeCloseTo(12);
+    expect(result.confidenceInterval).toBeNull();
   });
 
   it("rolling and walk-forward validation report only tested observations", () => {
@@ -152,7 +173,7 @@ describe("dashboard statistics", () => {
     );
     const enriched = enrichSeries(points).map((point, index) => ({
       ...point,
-      attentionScore: index < 26 ? null : (index % 7) - 3,
+      attentionPercentile: index < 26 ? null : (index % 7) * 15,
     }));
     expect(rollingCorrelations(enriched, 52)).not.toHaveLength(0);
     expect(walkForwardValidation(enriched, 52).observations).toBeGreaterThan(0);

@@ -58,8 +58,10 @@ export function median(values: number[]): number | null {
 }
 
 export type AnalyticPoint = WeeklyPoint & {
-  attentionScore: number | null;
-  mentionMomentum4w: number | null;
+  attentionPercentile: number | null;
+  attentionBaselineMedian: number | null;
+  isAttentionSpike: boolean;
+  mentionChange4w: number | null;
   weeklyReturnPct: number | null;
   absoluteReturnPct: number | null;
   volumeChangePct: number | null;
@@ -68,21 +70,31 @@ export type AnalyticPoint = WeeklyPoint & {
   volatilityRegime: "high" | "low" | null;
 };
 
+function empiricalPercentile(value: number, history: number[]): number | null {
+  if (history.length < 26) return null;
+  const lower = history.filter((item) => item < value).length;
+  const tied = history.filter((item) => item === value).length;
+  return ((lower + tied / 2) / history.length) * 100;
+}
+
 export function enrichSeries(series: WeeklyPoint[]): AnalyticPoint[] {
   return series.map((point, index) => {
-    const history = series
+    const countHistory = series
       .slice(Math.max(0, index - 52), index)
-      .map((item) => Math.log1p(item.postCount));
-    const baselineMedian = history.length >= 26 ? median(history) : null;
-    const deviations =
-      baselineMedian === null
-        ? []
-        : history.map((value) => Math.abs(value - baselineMedian));
-    const mad = median(deviations);
-    const attentionScore =
-      baselineMedian === null || mad === null || mad === 0
-        ? null
-        : (0.67448975 * (Math.log1p(point.postCount) - baselineMedian)) / mad;
+      .map((item) => item.postCount);
+    const attentionBaselineMedian =
+      countHistory.length >= 26 ? median(countHistory) : null;
+    const attentionPercentile = empiricalPercentile(
+      point.postCount,
+      countHistory,
+    );
+    const spikeThreshold =
+      countHistory.length >= 26 ? percentile(countHistory, 0.95) : null;
+    const isAttentionSpike =
+      spikeThreshold !== null &&
+      attentionBaselineMedian !== null &&
+      point.postCount >= spikeThreshold &&
+      point.postCount - attentionBaselineMedian >= 3;
     const previous = index > 0 ? series[index - 1] : null;
     const fourWeeksAgo = index >= 4 ? series[index - 4] : null;
     const weeklyReturnPct =
@@ -109,11 +121,11 @@ export function enrichSeries(series: WeeklyPoint[]): AnalyticPoint[] {
       volatilityHistory.length >= 26 ? median(volatilityHistory) : null;
     return {
       ...point,
-      attentionScore,
-      mentionMomentum4w:
-        fourWeeksAgo === null
-          ? null
-          : ((point.postCount + 1) / (fourWeeksAgo.postCount + 1) - 1) * 100,
+      attentionPercentile,
+      attentionBaselineMedian,
+      isAttentionSpike,
+      mentionChange4w:
+        fourWeeksAgo === null ? null : point.postCount - fourWeeksAgo.postCount,
       weeklyReturnPct,
       absoluteReturnPct:
         weeklyReturnPct === null ? null : Math.abs(weeklyReturnPct),
@@ -135,10 +147,15 @@ export function enrichSeries(series: WeeklyPoint[]): AnalyticPoint[] {
   });
 }
 
-export type ScatterPoint = { week: string; posts: number; returnPct: number };
+export type ScatterPoint = {
+  week: string;
+  posts: number;
+  attentionPercentile: number;
+  returnPct: number;
+};
 
 export function laggedReturns(
-  series: WeeklyPoint[],
+  series: AnalyticPoint[],
   horizon: number,
 ): ScatterPoint[] {
   const result: ScatterPoint[] = [];
@@ -148,12 +165,14 @@ export function laggedReturns(
     if (
       start.btcClose === null ||
       end.btcClose === null ||
-      start.btcClose === 0
+      start.btcClose === 0 ||
+      start.attentionPercentile === null
     )
       continue;
     result.push({
       week: start.week,
       posts: start.postCount,
+      attentionPercentile: start.attentionPercentile,
       returnPct: (end.btcClose / start.btcClose - 1) * 100,
     });
   }
@@ -196,7 +215,7 @@ export function leadLagMatrix(
         const pairs: Array<readonly [number, number]> = [];
         for (let index = 0; index < series.length; index += 1) {
           const target = series[index + lag];
-          const attention = series[index].attentionScore;
+          const attention = series[index].attentionPercentile;
           const value = target ? outcomeValue(target, outcome) : null;
           if (attention !== null && value !== null)
             pairs.push([attention, value]);
@@ -232,14 +251,14 @@ export function rollingCorrelations(
       const start = series[index];
       const future = series[index + horizon];
       if (
-        start.attentionScore === null ||
+        start.attentionPercentile === null ||
         start.btcClose === null ||
         future.btcClose === null ||
         start.btcClose === 0
       )
         continue;
       pairs.push([
-        start.attentionScore,
+        start.attentionPercentile,
         (future.btcClose / start.btcClose - 1) * 100,
       ]);
     }
@@ -269,7 +288,7 @@ function movingBlockMedianCI(
   seed: number,
   samples = 1000,
 ): readonly [number, number] | null {
-  if (values.length < 5) return null;
+  if (values.length < 8) return null;
   let state = seed >>> 0;
   const random = () => {
     state = (1664525 * state + 1013904223) >>> 0;
@@ -306,24 +325,25 @@ export type EventStudyResult = {
 
 export function eventStudy(
   series: AnalyticPoint[],
-  threshold = 2,
   horizons = [1, 2, 4, 8],
 ): EventStudyResult[] {
   return horizons.map((horizon) => {
     const returns: number[] = [];
     const mfe: number[] = [];
     const mae: number[] = [];
+    let lastEventIndex = -Number.POSITIVE_INFINITY;
     for (let index = 0; index + horizon < series.length; index += 1) {
       const start = series[index];
       const end = series[index + horizon];
       if (
-        start.attentionScore === null ||
-        start.attentionScore < threshold ||
+        !start.isAttentionSpike ||
+        index - lastEventIndex <= horizon ||
         start.btcExchangeClose === null ||
         start.btcExchangeClose === 0 ||
         end.btcExchangeClose === null
       )
         continue;
+      lastEventIndex = index;
       returns.push((end.btcExchangeClose / start.btcExchangeClose - 1) * 100);
       const future = series.slice(index + 1, index + horizon + 1);
       const highs = future
@@ -376,14 +396,14 @@ export function regimeAnalysis(series: AnalyticPoint[]): RegimeResult[] {
       const future = series[index + 1];
       if (
         !matches(point) ||
-        point.attentionScore === null ||
+        point.attentionPercentile === null ||
         point.btcClose === null ||
         point.btcClose === 0 ||
         future.btcClose === null
       )
         continue;
       pairs.push([
-        point.attentionScore,
+        point.attentionPercentile,
         (future.btcClose / point.btcClose - 1) * 100,
       ]);
     }
@@ -412,13 +432,13 @@ export function walkForwardValidation(
     const point = series[index];
     const future = series[index + 1];
     if (
-      point.attentionScore !== null &&
+      point.attentionPercentile !== null &&
       point.btcClose !== null &&
       point.btcClose !== 0 &&
       future.btcClose !== null
     )
       observations.push({
-        x: point.attentionScore,
+        x: point.attentionPercentile,
         y: (future.btcClose / point.btcClose - 1) * 100,
       });
   }

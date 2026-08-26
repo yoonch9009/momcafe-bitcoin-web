@@ -54,7 +54,7 @@ const metricNames: Record<Metric, string> = {
   volume: "BTC 거래량",
   volatility: "실현변동성",
   range: "고저 변동폭",
-  attention: "관심도 서프라이즈",
+  attention: "관심도 백분위",
   nextReturn: "다음 주 수익률",
 };
 
@@ -67,7 +67,9 @@ export function TimelineChart({
   metric: Metric;
   logarithmic: boolean;
 }) {
-  const isPercent = ["volatility", "range", "nextReturn"].includes(metric);
+  const isPercent = ["volatility", "range", "attention", "nextReturn"].includes(
+    metric,
+  );
   return (
     <ResponsiveContainer height="100%" width="100%">
       <ComposedChart
@@ -97,7 +99,13 @@ export function TimelineChart({
         />
         <YAxis
           axisLine={false}
-          domain={logarithmic ? ["auto", "auto"] : undefined}
+          domain={
+            metric === "attention"
+              ? [0, 100]
+              : logarithmic
+                ? ["auto", "auto"]
+                : undefined
+          }
           orientation="right"
           scale={logarithmic ? "log" : "auto"}
           tick={{ fill: "var(--muted)", fontSize: 10 }}
@@ -160,12 +168,13 @@ export function CorrelationChart({ data }: { data: ScatterPoint[] }) {
         <CartesianGrid stroke="var(--grid)" strokeDasharray="3 5" />
         <XAxis
           axisLine={false}
-          dataKey="posts"
-          name="게시글"
+          dataKey="attentionPercentile"
+          domain={[0, 100]}
+          name="관심도 백분위"
           tick={{ fill: "var(--muted)", fontSize: 10 }}
           tickLine={false}
           type="number"
-          unit="건"
+          unit="%"
         />
         <YAxis
           axisLine={false}

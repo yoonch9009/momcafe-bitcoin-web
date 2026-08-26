@@ -118,6 +118,10 @@ function signed(value: number | null, digits = 2, suffix = "%") {
     : `${value >= 0 ? "+" : ""}${value.toFixed(digits)}${suffix}`;
 }
 
+function signedCount(value: number | null) {
+  return value === null ? "—" : `${value >= 0 ? "+" : ""}${value}건`;
+}
+
 function heatBackground(value: number | null) {
   if (value === null) return "var(--canvas-soft)";
   const opacity = 0.12 + Math.min(1, Math.abs(value)) * 0.7;
@@ -180,7 +184,7 @@ export function DashboardShell() {
                   : metric === "range"
                     ? point.rangePct
                     : metric === "attention"
-                      ? point.attentionScore
+                      ? point.attentionPercentile
                       : point.nextWeekReturn === null
                         ? null
                         : point.nextWeekReturn * 100,
@@ -192,7 +196,10 @@ export function DashboardShell() {
     [horizon, visibleSeries],
   );
   const correlationPairs = useMemo(
-    () => scatter.map((point) => [point.posts, point.returnPct] as const),
+    () =>
+      scatter.map(
+        (point) => [point.attentionPercentile, point.returnPct] as const,
+      ),
     [scatter],
   );
   const correlation = useMemo(
@@ -260,6 +267,14 @@ export function DashboardShell() {
     .slice(0, analytics.indexOf(latest))
     .reverse()
     .find((point) => point.btcClose !== null);
+  const latestAttention = [...analytics]
+    .reverse()
+    .find(
+      (point) =>
+        point.periodStatus === "complete" && point.attentionPercentile !== null,
+    )!;
+  const latestAttentionIndex = analytics.indexOf(latestAttention);
+  const attentionFourWeeksAgo = analytics[latestAttentionIndex - 4];
   const priceChange = relativeChange(
     latest.btcClose,
     previous?.btcClose ?? null,
@@ -320,9 +335,8 @@ export function DashboardShell() {
               <em>비트코인의 반응.</em>
             </h1>
             <p className="hero-copy">
-              단순 상관을 넘어 관심도 서프라이즈, 거래량·변동성, ±8주 선행성,
-              급증 이벤트, 시장 체제와 시계열 검정까지 같은 주간 축에서
-              확인합니다.
+              저빈도 언급량의 경험적 백분위, 거래량·변동성, ±8주 선행성, 비모수
+              급증 이벤트와 표본외 검증을 같은 주간 축에서 확인합니다.
             </p>
           </div>
           <aside className="status-panel" aria-label="데이터 상태">
@@ -383,29 +397,34 @@ export function DashboardShell() {
           </article>
           <article className="surface kpi-card">
             <div className="kpi-head">
-              <span>관심도 서프라이즈</span>
+              <span>관심도 위치</span>
               <span className="kpi-icon">
                 <Activity size={16} />
               </span>
             </div>
             <div className="kpi-value">
-              {fixed(latest.attentionScore, 2, "σ")}
+              {fixed(latestAttention.attentionPercentile, 0, "백분위")}
             </div>
             <div className="kpi-foot">
-              <span>이전 52주 log 언급량의 중앙값·MAD 기준</span>
+              <span>{latestAttention.week} · 이전 52주 내 동률 중간순위</span>
             </div>
           </article>
           <article className="surface kpi-card">
             <div className="kpi-head">
-              <span>언급량 4주 모멘텀</span>
+              <span>언급량 4주 변화</span>
               <span className="kpi-icon">
                 <Hash size={16} />
               </span>
             </div>
-            <div className="kpi-value">{signed(latest.mentionMomentum4w)}</div>
+            <div className="kpi-value">
+              {signedCount(latestAttention.mentionChange4w)}
+            </div>
             <div className="kpi-foot">
               <CalendarClock size={13} />
-              <span>0건도 계산 가능한 +1 보정</span>
+              <span>
+                현재 {latestAttention.postCount}건 · 4주 전{" "}
+                {attentionFourWeeksAgo?.postCount ?? "—"}건
+              </span>
             </div>
           </article>
           <article className="surface kpi-card">
@@ -460,7 +479,7 @@ export function DashboardShell() {
               <p className="eyebrow">MULTI-SIGNAL TIMELINE</p>
               <h2>언급량과 시장 반응</h2>
               <p className="section-note">
-                막대는 주간 언급량, 선은 선택 지표입니다. 현재 주의
+                막대는 주간 언급량, 선은 선택 지표입니다. 현재 주의 언급량,
                 가격·거래량은 마감값이 아닌 누적 관측치입니다.
               </p>
             </div>
@@ -481,7 +500,7 @@ export function DashboardShell() {
                 <option value="volume">거래량</option>
                 <option value="volatility">실현변동성</option>
                 <option value="range">고저 변동폭</option>
-                <option value="attention">관심도 서프라이즈</option>
+                <option value="attention">관심도 백분위</option>
                 <option value="nextReturn">다음 주 수익률</option>
               </select>
               <select
@@ -518,10 +537,11 @@ export function DashboardShell() {
             <div className="section-head">
               <div>
                 <p className="eyebrow">FORWARD RETURN</p>
-                <h2>언급량과 이후 수익률</h2>
+                <h2>상대 관심도와 이후 수익률</h2>
                 <p className="section-note">
-                  x축은 언급 주 t, y축은 t에서 t+{horizon}주까지의 수익률입니다.
-                  미래 가격이 없는 관측은 제외합니다.
+                  x축은 언급 주 t의 이전 52주 대비 경험적 백분위, y축은 t에서 t+
+                  {horizon}주까지의 수익률입니다. 현재 주와 초기 기준기간은
+                  제외합니다.
                 </p>
               </div>
               <select
@@ -543,10 +563,10 @@ export function DashboardShell() {
           </article>
           <aside className="surface analysis-card">
             <p className="eyebrow">CORRELATION CHECK</p>
-            <h2 className="mt-2 text-xl font-semibold">선형·순위 상관</h2>
+            <h2 className="mt-2 text-xl font-semibold">백분위·순위 상관</h2>
             <div className="dual-stat">
               <div>
-                <span>Pearson</span>
+                <span>Pearson (백분위)</span>
                 <strong>{fixed(correlation, 3)}</strong>
               </div>
               <div>
@@ -562,7 +582,8 @@ export function DashboardShell() {
               <li>
                 <b>01</b>
                 <span>
-                  Spearman은 극단값과 비선형 단조관계에 더 견고합니다.
+                  경험적 백분위는 0건과 동률을 보존하면서 극단값 영향을
+                  제한합니다.
                 </span>
               </li>
               <li>
@@ -585,9 +606,8 @@ export function DashboardShell() {
               <p className="eyebrow">±8 WEEK LEAD / LAG</p>
               <h2>무엇이 먼저 움직였나</h2>
               <p className="section-note">
-                양수(+N)는 관심도 서프라이즈가 시장 지표보다 N주 먼저,
-                음수(-N)는 시장 지표가 먼저입니다. 각 칸은 선택한
-                상관계수입니다.
+                양수(+N)는 관심도 백분위가 시장 지표보다 N주 먼저, 음수(-N)는
+                시장 지표가 먼저입니다. 각 칸은 선택한 상관계수입니다.
               </p>
             </div>
             <select
@@ -652,9 +672,8 @@ export function DashboardShell() {
             <p className="eyebrow">SPIKE EVENT STUDY</p>
             <h2 className="mt-2 text-xl font-semibold">관심 급증 이후 경로</h2>
             <p className="section-note">
-              관심도 서프라이즈가 +2σ 이상인 주를 사건으로 잡아 이후 중앙
-              수익률과 최대 유리·불리 움직임을 Coinbase OHLCV 기준으로
-              계산합니다.
+              이전 52주 상위 5%이면서 중앙값보다 3건 이상 많은 주를 사건으로
+              잡아 이후 중앙 수익률과 최대 유리·불리 움직임을 계산합니다.
             </p>
             <div className="chart-wrap">
               <EventStudyChart data={events} />
@@ -688,7 +707,7 @@ export function DashboardShell() {
                       <td>
                         {item.confidenceInterval
                           ? `${signed(item.confidenceInterval[0], 1)} ~ ${signed(item.confidenceInterval[1], 1)}`
-                          : "n<5"}
+                          : "n<8"}
                       </td>
                     </tr>
                   ))}
@@ -696,8 +715,8 @@ export function DashboardShell() {
               </table>
             </div>
             <p className="tiny-note">
-              95% 구간은 시계열 의존을 일부 보존하는 이동 블록 부트스트랩 중앙값
-              구간입니다. 사건 중첩은 제거하지 않았습니다.
+              각 지평에서 겹치는 사건 구간은 제거합니다. 95% 구간은 n≥8일 때만
+              이동 블록 부트스트랩 중앙값 구간으로 표시합니다.
             </p>
           </article>
         </section>
@@ -707,7 +726,7 @@ export function DashboardShell() {
             <p className="eyebrow">TIME-VARYING RELATIONSHIP</p>
             <h2 className="mt-2 text-xl font-semibold">52주 롤링 상관</h2>
             <p className="section-note">
-              관심도 서프라이즈(t)와 다음 1주 수익률(t+1)의 관계가 시간에 따라
+              관심도 백분위(t)와 다음 1주 수익률(t+1)의 관계가 시간에 따라
               얼마나 불안정한지 보여줍니다.
             </p>
             <div className="chart-wrap">
@@ -718,7 +737,8 @@ export function DashboardShell() {
             <p className="eyebrow">MARKET REGIMES</p>
             <h2 className="mt-2 text-xl font-semibold">시장 체제별 차이</h2>
             <p className="section-note">
-              추세는 26주 이동평균, 변동성은 이전 52주 중앙값으로만 판정합니다.
+              관심도는 52주 경험적 백분위를 사용합니다. 추세는 26주 이동평균,
+              변동성은 이전 52주 중앙값으로만 판정합니다.
             </p>
             <div className="table-scroll">
               <table className="data-table">
@@ -798,8 +818,9 @@ export function DashboardShell() {
               ADF p: 관심 변화{" "}
               {fixed(granger.adfPValues?.attentionChange ?? null, 4)} · 수익률{" "}
               {fixed(granger.adfPValues?.btcReturn ?? null, 4)} · n=
-              {granger.observations}. Granger 선행성은 경제적 인과의 증명이
-              아닙니다.
+              {granger.observations}. log1p 변환은 0건을 처리하지만 카운트의
+              과산포를 직접 모형화하지 않으므로 탐색적 보조지표이며, 경제적
+              인과의 증명이 아닙니다.
             </p>
           </article>
           <aside className="surface analysis-card validation-card">
@@ -835,8 +856,8 @@ export function DashboardShell() {
             <article>
               <strong>현재 제공</strong>
               <p>
-                언급량, 강건한 관심도, OHLCV, 변동성, 선행·후행, 이벤트, 롤링,
-                체제, Granger, 워크포워드
+                원시 언급량, 52주 경험적 백분위, 절대 건수 변화, OHLCV, 비중첩
+                이벤트, 선행·후행, 체제, Granger, 워크포워드
               </p>
             </article>
             <article>
@@ -849,8 +870,8 @@ export function DashboardShell() {
             <article>
               <strong>해석 원칙</strong>
               <p>
-                진행 중인 주는 부분 관측이며, 상관·선행성·표본내 유의성은
-                매매성과나 인과를 보장하지 않음
+                언급량은 0이 많고 과산포된 이산값입니다. 헤드라인은 확정 주만
+                사용하며 상관·선행성은 매매성과나 인과를 보장하지 않음
               </p>
             </article>
           </div>
