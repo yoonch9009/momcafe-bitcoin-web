@@ -151,7 +151,7 @@ def _daum_dates(
     now: dt.datetime,
 ) -> list[dt.datetime]:
     dates: list[dt.datetime] = []
-    for page in range(1, 21):
+    for page in range(1, 101):
         _nap()
         response = client.get(
             DAUM_URL,
@@ -178,6 +178,17 @@ def _daum_dates(
         dates.extend(value for value in page_dates if value >= cutoff)
         if not page_dates or min(page_dates) < cutoff:
             break
+
+        page_numbers = [
+            int(element.get_text(strip=True))
+            for element in soup.select("div.paging a.num_box")
+            if element.get_text(strip=True).isdigit()
+        ]
+        last_page = max(page_numbers, default=1)
+        if page >= last_page:
+            break
+    else:
+        raise ValueError("Daum pagination limit exceeded")
     return dates
 
 

@@ -4,13 +4,14 @@ import datetime as dt
 import unittest
 from typing import Any
 
-from collector.cafes import _naver_dates
+from collector.cafes import _daum_dates, _naver_dates
 from collector.time_utils import KST, parse_cafe_date
 
 
 class FakeResponse:
     def __init__(self, payload: object) -> None:
         self.payload = payload
+        self.text = payload if isinstance(payload, str) else ""
 
     def raise_for_status(self) -> None:
         return None
@@ -126,6 +127,29 @@ class NaverCafeContractTests(unittest.TestCase):
 
         with self.assertRaisesRegex(ValueError, "articleList"):
             _naver_dates(session, 14793916, self.cutoff, self.now)
+
+    def test_daum_stops_at_declared_last_page_instead_of_repeating_it(self) -> None:
+        def page(date: str, current: int, last: int) -> str:
+            return f"""
+                <table><tr><td class="date">{date}</td></tr></table>
+                <div class="paging">
+                    <a class="num_box">{current}</a>
+                    <a class="num_box last_pg_box">{last}</a>
+                </div>
+            """
+
+        session = FakeSession(page("26.08.25.", 1, 2), page("26.08.18.", 2, 2))
+
+        dates = _daum_dates(
+            session,
+            "ut",
+            dt.datetime(2016, 3, 7, tzinfo=KST),
+            self.now,
+        )
+
+        self.assertEqual(len(dates), 2)
+        self.assertEqual(len(session.calls), 2)
+        self.assertEqual(session.calls[-1]["params"]["pagenum"], 2)
 
 
 if __name__ == "__main__":

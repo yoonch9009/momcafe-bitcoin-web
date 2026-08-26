@@ -17,7 +17,7 @@
 1. 기존 파일에 OHLCV가 없을 때만 Coinbase Exchange 일봉을 구간별로 한 번 보강합니다.
 2. 보강 시에도 기존 과거 `btcClose`·`btcMean`은 덮어쓰지 않고 OHLCV 결측만 채웁니다.
 3. 보강 후에는 Coinbase Exchange의 최근 28일만 직접 조회하고 최근 2주만 가격을 갱신합니다.
-4. 카페 글은 현재 주와 직전 주만 조회합니다.
+4. 카페 글은 기본적으로 현재 주와 직전 주만 조회합니다. 검증된 일회성 전체 재수집은 `--backfill-posts`를 명시해야 합니다.
 5. 가격 응답이 비었거나 최신 날짜·주간 범위를 충족하지 못하면 파일을 쓰지 않습니다.
 6. 카페 소스 일부가 실패하면 기존 언급량을 보존하고 `collection.posts.status=degraded`로 표시합니다.
 7. 새 스냅샷은 임시 파일에 완전히 쓴 뒤 원자적으로 교체합니다.
@@ -38,6 +38,8 @@
 python -m pip install -r requirements.txt
 python -m unittest discover -s tests -v
 python scrape.py
+# 과거 언급량을 의도적으로 전수 재수집할 때만 사용
+python scrape.py --backfill-posts
 
 npm install
 npm run dev

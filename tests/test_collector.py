@@ -85,6 +85,31 @@ class CollectorContractTests(unittest.TestCase):
         self.assertEqual(rows["2026-08-17"]["btcVolume"], 1000.0)
         self.assertEqual(rows["2026-08-24"]["periodStatus"], "in_progress")
 
+    def test_explicit_post_backfill_replaces_all_requested_post_weeks(self) -> None:
+        cafes = CafeCollection(
+            {
+                "2026-08-03": 9,
+                "2026-08-17": 8,
+                "2026-08-24": 2,
+            },
+            "ok",
+            (),
+            21,
+        )
+
+        result = build_snapshot(
+            self.baseline,
+            self.prices,
+            cafes,
+            self.now,
+            post_refresh_weeks=4,
+        )
+        rows = {row["week"]: row for row in result["series"]}
+
+        self.assertEqual(rows["2026-08-03"]["postCount"], 9)
+        self.assertEqual(rows["2026-08-10"]["postCount"], 0)
+        self.assertEqual(rows["2026-08-03"]["btcClose"], 101.0)
+
     def test_history_enrichment_does_not_rewrite_valid_old_close(self) -> None:
         prices = PriceCollection(
             weeks={

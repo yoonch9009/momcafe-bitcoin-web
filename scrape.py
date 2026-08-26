@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import argparse
 import datetime as dt
 from pathlib import Path
 
@@ -12,9 +13,10 @@ from collector.time_utils import KST, monday_of
 DATA_PATH = Path("public/data.json")
 
 
-def main() -> None:
+def main(backfill_posts: bool = False) -> None:
     now = dt.datetime.now(tz=KST)
     baseline = load_snapshot(DATA_PATH)
+    first_week = dt.date.fromisoformat(baseline["series"][0]["week"])
 
     # OHLCV is backfilled exactly when the baseline lacks it. Existing historical
     # close/mean values remain immutable; subsequent runs request only 28 days.
@@ -28,18 +30,25 @@ def main() -> None:
         or method != "coinbase_daily_kst_week_v4"
     )
     if missing_ohlcv:
-        first_week = dt.date.fromisoformat(baseline["series"][0]["week"])
         prices = collect_price_history(now, first_week)
     else:
         prices = collect_recent_prices(now)
 
-    # Query only the current and previous KST week. If any source is unavailable,
-    # preserve the prior aggregate and expose the degraded state in the snapshot.
-    post_cutoff_day = monday_of(now.date()) - dt.timedelta(days=7)
+    # Historical post collection is explicit and one-time. Scheduled runs query
+    # only the current and previous KST week and preserve older validated values.
+    current_week = monday_of(now.date())
+    post_cutoff_day = first_week if backfill_posts else current_week - dt.timedelta(days=7)
     post_cutoff = dt.datetime.combine(post_cutoff_day, dt.time.min, tzinfo=KST)
     cafes = collect_recent_posts(now, post_cutoff)
+    post_refresh_weeks = (current_week - post_cutoff_day).days // 7 + 1
 
-    snapshot = build_snapshot(baseline, prices, cafes, now)
+    snapshot = build_snapshot(
+        baseline,
+        prices,
+        cafes,
+        now,
+        post_refresh_weeks=post_refresh_weeks,
+    )
     write_snapshot(DATA_PATH, snapshot)
     print(
         "snapshot updated: "
@@ -51,4 +60,11 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--backfill-posts",
+        action="store_true",
+        help="recollect cafe mention counts for the full snapshot history",
+    )
+    args = parser.parse_args()
+    main(backfill_posts=args.backfill_posts)
