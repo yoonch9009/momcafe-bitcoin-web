@@ -68,7 +68,21 @@ const EventStudyChart = dynamic(
   { ssr: false, loading: () => <ChartSkeleton /> },
 );
 
-type Range = "1y" | "3y" | "all";
+const rangeOptions = [
+  { value: "1y", label: "최근 1년", shortLabel: "1Y", weeks: 52 },
+  { value: "3y", label: "최근 3년", shortLabel: "3Y", weeks: 156 },
+  { value: "5y", label: "최근 5년", shortLabel: "5Y", weeks: 260 },
+  { value: "7y", label: "최근 7년", shortLabel: "7Y", weeks: 364 },
+  { value: "10y", label: "최근 10년", shortLabel: "10Y", weeks: 520 },
+  {
+    value: "all",
+    label: "전체 기간",
+    shortLabel: "전체",
+    weeks: Number.POSITIVE_INFINITY,
+  },
+] as const;
+
+type Range = (typeof rangeOptions)[number]["value"];
 type HeatMethod = "pearson" | "spearman";
 
 const usd = new Intl.NumberFormat("en-US", {
@@ -107,7 +121,11 @@ function formatKst(value: string) {
 }
 
 function rangeLength(range: Range) {
-  return range === "1y" ? 52 : range === "3y" ? 156 : Number.POSITIVE_INFINITY;
+  return rangeOptions.find((option) => option.value === range)!.weeks;
+}
+
+function rangeShortLabel(range: Range) {
+  return rangeOptions.find((option) => option.value === range)!.shortLabel;
 }
 
 function fixed(value: number | null, digits = 2, suffix = "") {
@@ -682,9 +700,11 @@ export function DashboardShell() {
                 onChange={(event) => setRange(event.target.value as Range)}
                 value={range}
               >
-                <option value="1y">최근 1년</option>
-                <option value="3y">최근 3년</option>
-                <option value="all">전체</option>
+                {rangeOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
               </select>
               <button
                 className={`toggle-button ${logarithmic ? "active" : ""}`}
@@ -748,8 +768,7 @@ export function DashboardShell() {
               </div>
             </div>
             <p className="sample-note">
-              n = {scatter.length} ·{" "}
-              {range === "all" ? "전체" : range.toUpperCase()}
+              n = {scatter.length} · {rangeShortLabel(range)}
             </p>
             <ul className="method-list">
               <li>
