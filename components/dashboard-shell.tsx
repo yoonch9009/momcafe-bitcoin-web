@@ -1274,7 +1274,7 @@ export function DashboardShell() {
             </div>
             <p className="tiny-note">
               FDR q-value가 0.05보다 작을 때 통계적으로 유의하다고 판정합니다.
-              Granger 선행성은 경제적 인과를 의미하지 않습니다. 전체 표본 n={" "}
+              Granger 선행성은 경제적 인과를 의미하지 않습니다. 전체 표본 n=
               {granger.observations}주입니다.
             </p>
           </article>
