@@ -767,14 +767,8 @@ export function regimeAnalysis(series: AnalyticPoint[]): RegimeResult[] {
   const definitions = [
     ["상승 추세", (point: AnalyticPoint) => point.trendRegime === "bull"],
     ["하락 추세", (point: AnalyticPoint) => point.trendRegime === "bear"],
-    [
-      "가격 변동이 큰 시기",
-      (point: AnalyticPoint) => point.volatilityRegime === "high",
-    ],
-    [
-      "가격 변동이 작은 시기",
-      (point: AnalyticPoint) => point.volatilityRegime === "low",
-    ],
+    ["고변동성", (point: AnalyticPoint) => point.volatilityRegime === "high"],
+    ["저변동성", (point: AnalyticPoint) => point.volatilityRegime === "low"],
   ] as const;
   return definitions.map(([regime, matches]) => {
     const pairs: Array<readonly [number, number]> = [];

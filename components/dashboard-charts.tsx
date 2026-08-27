@@ -49,13 +49,13 @@ function shortWeek(value: string) {
 }
 
 const metricNames: Record<Metric, string> = {
-  close: "비트코인 주간 마지막 종가",
-  mean: "비트코인 주간 평균 가격",
-  volume: "비트코인 주간 거래량",
-  volatility: "주간 가격 변동성",
-  range: "주간 고가-저가 폭",
-  attention: "언급량 상대 순위",
-  nextReturn: "다음 주 가격 변화율",
+  close: "BTC 주간 종가",
+  mean: "BTC 주간 평균가",
+  volume: "BTC 주간 거래량",
+  volatility: "주간 실현변동성",
+  range: "주간 고저 변동폭",
+  attention: "관심도 백분위",
+  nextReturn: "다음 주 수익률",
 };
 
 export function TimelineChart({
@@ -72,7 +72,7 @@ export function TimelineChart({
   const isPercent = ["volatility", "range", "nextReturn"].includes(metric);
   const formatMetricValue = (value: number) =>
     metric === "attention"
-      ? `${decimal.format(value)}점`
+      ? `${decimal.format(value)}백분위`
       : isPercent
         ? `${decimal.format(value)}%`
         : compact.format(value);
@@ -252,11 +252,11 @@ export function CorrelationChart({ data }: { data: ScatterPoint[] }) {
           axisLine={false}
           dataKey="attentionPercentile"
           domain={[0, 100]}
-          name="언급량 상대 순위"
+          name="관심도 백분위"
           tick={{ fill: "var(--muted)", fontSize: 10 }}
           tickLine={false}
           type="number"
-          unit="점"
+          unit="백분위"
         />
         <YAxis
           axisLine={false}
@@ -337,7 +337,7 @@ export function RollingCorrelationChart({
           connectNulls={false}
           dataKey="pearson"
           dot={false}
-          name="직선 관계"
+          name="Pearson"
           stroke="var(--orange)"
           strokeWidth={2}
         />
@@ -345,7 +345,7 @@ export function RollingCorrelationChart({
           connectNulls={false}
           dataKey="spearman"
           dot={false}
-          name="순서 관계"
+          name="Spearman"
           stroke="var(--cyan)"
           strokeWidth={2}
         />
@@ -393,7 +393,7 @@ export function EventStudyChart({ data }: { data: EventStudyResult[] }) {
           }}
           formatter={(value) => [
             `${decimal.format(Number(value))}%`,
-            "중앙값 수익률",
+            "수익률 중앙값",
           ]}
         />
         <ReferenceLine stroke="var(--line-strong)" y={0} />
@@ -401,7 +401,7 @@ export function EventStudyChart({ data }: { data: EventStudyResult[] }) {
           dataKey="medianReturnPct"
           fill="var(--orange)"
           fillOpacity={0.76}
-          name="중앙값 수익률"
+          name="수익률 중앙값"
           radius={[5, 5, 0, 0]}
         />
       </BarChart>
