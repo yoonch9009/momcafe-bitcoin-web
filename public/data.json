@@ -2,7 +2,7 @@
   "schemaVersion": 4,
   "timezone": "Asia/Seoul",
   "weekStart": "MON",
-  "updatedAt": "2026-09-06T16:51:43.982726+09:00",
+  "updatedAt": "2026-09-07T17:13:21.182781+09:00",
   "series": [
     {
       "week": "2016-03-07",
@@ -9291,8 +9291,8 @@
       "postCount": 4,
       "btcMean": 78649.73857142856,
       "btcClose": 77665.14,
-      "nextWeekClose": 79814.73,
-      "nextWeekReturn": 0.027677668513827358,
+      "nextWeekClose": 80339.13,
+      "nextWeekReturn": 0.03442973256727533,
       "periodStatus": "complete",
       "btcOpen": 77729.36,
       "btcHigh": 81479.5,
@@ -9306,16 +9306,33 @@
     {
       "week": "2026-08-31",
       "postCount": 1,
-      "btcMean": 79122.02857142857,
-      "btcClose": 79814.73,
+      "btcMean": 79196.94285714286,
+      "btcClose": 80339.13,
       "btcOpen": 77672.1,
       "btcHigh": 82283.0,
       "btcLow": 76219.18,
-      "btcVolume": 40770.47470714,
-      "btcExchangeClose": 79814.73,
-      "realizedVolatility": 5.693369929458707,
+      "btcVolume": 42124.11725329,
+      "btcExchangeClose": 80339.13,
+      "realizedVolatility": 5.728497888456228,
       "rangePct": 7.955766514412788,
       "priceObservations": 7,
+      "nextWeekClose": 79463.18,
+      "nextWeekReturn": -0.010903155162372502,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2026-09-07",
+      "postCount": 0,
+      "btcMean": 79463.18,
+      "btcClose": 79463.18,
+      "btcOpen": 80339.13,
+      "btcHigh": 80462.23,
+      "btcLow": 78992.01,
+      "btcVolume": 1228.52252429,
+      "btcExchangeClose": 79463.18,
+      "realizedVolatility": 1.0963030174068096,
+      "rangePct": 1.8612262176896044,
+      "priceObservations": 1,
       "nextWeekClose": null,
       "nextWeekReturn": null,
       "periodStatus": "in_progress"
@@ -9323,10 +9340,10 @@
   ],
   "kpis": {
     "latestWeek": {
-      "week": "2026-08-31",
+      "week": "2026-09-07",
       "periodStatus": "in_progress",
-      "posts": 1,
-      "btcClose": 79814.73,
+      "posts": 0,
+      "btcClose": 79463.18,
       "nextWeekReturn": null
     }
   },
@@ -9335,17 +9352,17 @@
     "price": {
       "status": "ok",
       "source": "Coinbase Exchange BTC-USD",
-      "observedThrough": "2026-09-06",
+      "observedThrough": "2026-09-07",
       "requestedDays": 29,
-      "refreshFrom": "2026-08-24",
+      "refreshFrom": "2026-08-31",
       "enrichment": "incremental",
-      "ohlcvCoverage": 548,
+      "ohlcvCoverage": 549,
       "ohlcvMethod": "coinbase_daily_kst_week_v4"
     },
     "posts": {
       "status": "ok",
       "sourceCount": 21,
-      "refreshFrom": "2026-08-24",
+      "refreshFrom": "2026-08-31",
       "failures": []
     }
   },
@@ -9361,14 +9378,14 @@
   "analysis": {
     "granger": {
       "status": "ok",
-      "observations": 547,
+      "observations": 548,
       "period": {
         "from": "2016-03-14",
-        "through": "2026-08-31"
+        "through": "2026-09-07"
       },
       "transform": "weekly diff(log1p(posts)) and log(close_t/close_t-1)",
       "adfPValues": {
-        "attentionChange": 2.6052282512929668e-30,
+        "attentionChange": 2.687106592149325e-30,
         "btcReturn": 0.0
       },
       "multipleTesting": "Benjamini-Hochberg FDR across both directions and lags",
@@ -9376,58 +9393,58 @@
         {
           "direction": "attention_to_return",
           "lag": 1,
-          "fStatistic": 0.08823690763663572,
-          "pValue": 0.766544238493152,
-          "qValue": 0.7892963850416623
+          "fStatistic": 0.0801818171220348,
+          "pValue": 0.777158889498484,
+          "qValue": 0.7884384734281102
         },
         {
           "direction": "attention_to_return",
           "lag": 2,
-          "fStatistic": 0.2528214077474353,
-          "pValue": 0.7766984387308357,
-          "qValue": 0.7892963850416623
+          "fStatistic": 0.24782483860304041,
+          "pValue": 0.780585201192343,
+          "qValue": 0.7884384734281102
         },
         {
           "direction": "attention_to_return",
           "lag": 3,
-          "fStatistic": 0.5164599180474148,
-          "pValue": 0.6711024977885991,
-          "qValue": 0.7892963850416623
+          "fStatistic": 0.5177987116328796,
+          "pValue": 0.670185013844834,
+          "qValue": 0.7884384734281102
         },
         {
           "direction": "attention_to_return",
           "lag": 4,
-          "fStatistic": 0.426839154330786,
-          "pValue": 0.7892963850416623,
-          "qValue": 0.7892963850416623
+          "fStatistic": 0.4280206087223192,
+          "pValue": 0.7884384734281102,
+          "qValue": 0.7884384734281102
         },
         {
           "direction": "return_to_attention",
           "lag": 1,
-          "fStatistic": 0.6191493047748328,
-          "pValue": 0.4317068681783849,
-          "qValue": 0.7892963850416623
+          "fStatistic": 0.5872558027979804,
+          "pValue": 0.4438146469439616,
+          "qValue": 0.7884384734281102
         },
         {
           "direction": "return_to_attention",
           "lag": 2,
-          "fStatistic": 1.9397229249007624,
-          "pValue": 0.14474401967023365,
-          "qValue": 0.4557772936263785
+          "fStatistic": 1.9329796607053373,
+          "pValue": 0.1457145221755452,
+          "qValue": 0.5067085634294687
         },
         {
           "direction": "return_to_attention",
           "lag": 3,
-          "fStatistic": 1.676939937512821,
-          "pValue": 0.17091648510989194,
-          "qValue": 0.4557772936263785
+          "fStatistic": 1.5931526178175093,
+          "pValue": 0.19001571128605077,
+          "qValue": 0.5067085634294687
         },
         {
           "direction": "return_to_attention",
           "lag": 4,
-          "fStatistic": 2.036749186990517,
-          "pValue": 0.0879624517219216,
-          "qValue": 0.4557772936263785
+          "fStatistic": 1.9900554594033888,
+          "pValue": 0.09469202930595402,
+          "qValue": 0.5067085634294687
         }
       ],
       "note": "Granger precedence is not proof of economic causality."
