@@ -2,7 +2,7 @@
   "schemaVersion": 4,
   "timezone": "Asia/Seoul",
   "weekStart": "MON",
-  "updatedAt": "2026-09-10T17:05:15.516861+09:00",
+  "updatedAt": "2026-09-11T17:00:50.969294+09:00",
   "series": [
     {
       "week": "2016-03-07",
@@ -9316,23 +9316,23 @@
       "realizedVolatility": 5.728497888456228,
       "rangePct": 7.955766514412788,
       "priceObservations": 7,
-      "nextWeekClose": 78093.34,
-      "nextWeekReturn": -0.02795387502951563,
+      "nextWeekClose": 77202.94,
+      "nextWeekReturn": -0.039036892732097095,
       "periodStatus": "complete"
     },
     {
       "week": "2026-09-07",
       "postCount": 0,
-      "btcMean": 78479.1,
-      "btcClose": 78093.34,
+      "btcMean": 77912.51,
+      "btcClose": 77202.94,
       "btcOpen": 80339.13,
       "btcHigh": 80462.23,
-      "btcLow": 77589.0,
-      "btcVolume": 14659.02956535,
-      "btcExchangeClose": 78093.34,
-      "realizedVolatility": 1.7946599367855902,
-      "rangePct": 3.703140909149494,
-      "priceObservations": 4,
+      "btcLow": 76440.0,
+      "btcVolume": 21273.95766177,
+      "btcExchangeClose": 77202.94,
+      "realizedVolatility": 3.001501507729906,
+      "rangePct": 5.2619440083725655,
+      "priceObservations": 5,
       "nextWeekClose": null,
       "nextWeekReturn": null,
       "periodStatus": "in_progress"
@@ -9343,7 +9343,7 @@
       "week": "2026-09-07",
       "periodStatus": "in_progress",
       "posts": 0,
-      "btcClose": 78093.34,
+      "btcClose": 77202.94,
       "nextWeekReturn": null
     }
   },
@@ -9352,7 +9352,7 @@
     "price": {
       "status": "ok",
       "source": "Coinbase Exchange BTC-USD",
-      "observedThrough": "2026-09-10",
+      "observedThrough": "2026-09-11",
       "requestedDays": 29,
       "refreshFrom": "2026-08-31",
       "enrichment": "incremental",
@@ -9360,10 +9360,12 @@
       "ohlcvMethod": "coinbase_daily_kst_week_v4"
     },
     "posts": {
-      "status": "ok",
+      "status": "degraded",
       "sourceCount": 21,
       "refreshFrom": "2026-08-31",
-      "failures": []
+      "failures": [
+        "all-sources:no-recent-results"
+      ]
     }
   },
   "meta": {
@@ -9393,37 +9395,37 @@
         {
           "direction": "attention_to_return",
           "lag": 1,
-          "fStatistic": 0.07503207873501187,
-          "pValue": 0.7842501990006455,
-          "qValue": 0.7883840506890881
+          "fStatistic": 0.07172529825417898,
+          "pValue": 0.788942627336714,
+          "qValue": 0.788942627336714
         },
         {
           "direction": "attention_to_return",
           "lag": 2,
-          "fStatistic": 0.2444386264450629,
-          "pValue": 0.7832304975408051,
-          "qValue": 0.7883840506890881
+          "fStatistic": 0.24223718171248135,
+          "pValue": 0.7849550823755741,
+          "qValue": 0.788942627336714
         },
         {
           "direction": "attention_to_return",
           "lag": 3,
-          "fStatistic": 0.517967588143755,
-          "pValue": 0.6700693710089314,
-          "qValue": 0.7883840506890881
+          "fStatistic": 0.5180862150506552,
+          "pValue": 0.6699881442616262,
+          "qValue": 0.788942627336714
         },
         {
           "direction": "attention_to_return",
           "lag": 4,
-          "fStatistic": 0.42809552659654543,
-          "pValue": 0.7883840506890881,
-          "qValue": 0.7883840506890881
+          "fStatistic": 0.4281481847019944,
+          "pValue": 0.7883457973587825,
+          "qValue": 0.788942627336714
         },
         {
           "direction": "return_to_attention",
           "lag": 1,
           "fStatistic": 0.5872558027979804,
           "pValue": 0.4438146469439616,
-          "qValue": 0.7883840506890881
+          "qValue": 0.788942627336714
         },
         {
           "direction": "return_to_attention",
