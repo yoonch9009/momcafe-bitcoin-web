@@ -2,7 +2,7 @@
   "schemaVersion": 4,
   "timezone": "Asia/Seoul",
   "weekStart": "MON",
-  "updatedAt": "2026-09-20T17:31:32.661690+09:00",
+  "updatedAt": "2026-09-21T17:51:32.586660+09:00",
   "series": [
     {
       "week": "2016-03-07",
@@ -9333,23 +9333,40 @@
       "realizedVolatility": 3.0639636691545675,
       "rangePct": 5.829580428778103,
       "priceObservations": 7,
-      "nextWeekClose": 80337.7,
-      "nextWeekReturn": 0.046065845180687015,
+      "nextWeekClose": 81159.64,
+      "nextWeekReturn": 0.05676820983374298,
       "periodStatus": "complete"
     },
     {
       "week": "2026-09-14",
       "postCount": 0,
-      "btcMean": 78385.65142857144,
-      "btcClose": 80337.7,
+      "btcMean": 78503.07142857143,
+      "btcClose": 81159.64,
       "btcOpen": 76799.85,
       "btcHigh": 81925.0,
       "btcLow": 74887.5,
-      "btcVolume": 45668.61199094,
-      "btcExchangeClose": 80337.7,
-      "realizedVolatility": 7.051504224459018,
+      "btcVolume": 48299.47976849,
+      "btcExchangeClose": 81159.64,
+      "realizedVolatility": 6.964291849457549,
       "rangePct": 9.397429477549668,
       "priceObservations": 7,
+      "nextWeekClose": 83833.02,
+      "nextWeekReturn": 0.03293977154161842,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2026-09-21",
+      "postCount": 0,
+      "btcMean": 83833.02,
+      "btcClose": 83833.02,
+      "btcOpen": 81160.33,
+      "btcHigh": 84190.0,
+      "btcLow": 80837.42,
+      "btcVolume": 2892.87064031,
+      "btcExchangeClose": 83833.02,
+      "realizedVolatility": 3.240888402497267,
+      "rangePct": 4.147311975072943,
+      "priceObservations": 1,
       "nextWeekClose": null,
       "nextWeekReturn": null,
       "periodStatus": "in_progress"
@@ -9357,10 +9374,10 @@
   ],
   "kpis": {
     "latestWeek": {
-      "week": "2026-09-14",
+      "week": "2026-09-21",
       "periodStatus": "in_progress",
       "posts": 0,
-      "btcClose": 80337.7,
+      "btcClose": 83833.02,
       "nextWeekReturn": null
     }
   },
@@ -9369,17 +9386,17 @@
     "price": {
       "status": "ok",
       "source": "Coinbase Exchange BTC-USD",
-      "observedThrough": "2026-09-20",
+      "observedThrough": "2026-09-21",
       "requestedDays": 29,
-      "refreshFrom": "2026-09-07",
+      "refreshFrom": "2026-09-14",
       "enrichment": "incremental",
-      "ohlcvCoverage": 550,
+      "ohlcvCoverage": 551,
       "ohlcvMethod": "coinbase_daily_kst_week_v4"
     },
     "posts": {
       "status": "degraded",
       "sourceCount": 21,
-      "refreshFrom": "2026-09-07",
+      "refreshFrom": "2026-09-14",
       "failures": [
         "all-sources:no-recent-results"
       ]
@@ -9397,14 +9414,14 @@
   "analysis": {
     "granger": {
       "status": "ok",
-      "observations": 549,
+      "observations": 550,
       "period": {
         "from": "2016-03-14",
-        "through": "2026-09-14"
+        "through": "2026-09-21"
       },
       "transform": "weekly diff(log1p(posts)) and log(close_t/close_t-1)",
       "adfPValues": {
-        "attentionChange": 2.7408328839415215e-30,
+        "attentionChange": 2.7144124983987616e-30,
         "btcReturn": 0.0
       },
       "multipleTesting": "Benjamini-Hochberg FDR across both directions and lags",
@@ -9412,58 +9429,58 @@
         {
           "direction": "attention_to_return",
           "lag": 1,
-          "fStatistic": 0.07855006413941135,
-          "pValue": 0.7793783688471412,
-          "qValue": 0.7977655995845552
+          "fStatistic": 0.08097804894227877,
+          "pValue": 0.7760842329808587,
+          "qValue": 0.8065286218331412
         },
         {
           "direction": "attention_to_return",
           "lag": 2,
-          "fStatistic": 0.22603467223332863,
-          "pValue": 0.7977655995845552,
-          "qValue": 0.7977655995845552
+          "fStatistic": 0.2169314247626625,
+          "pValue": 0.8050548996011357,
+          "qValue": 0.8065286218331412
         },
         {
           "direction": "attention_to_return",
           "lag": 3,
-          "fStatistic": 0.5073740664178321,
-          "pValue": 0.677343414204278,
-          "qValue": 0.7977655995845552
+          "fStatistic": 0.48653356568506945,
+          "pValue": 0.6917695755902175,
+          "qValue": 0.8065286218331412
         },
         {
           "direction": "attention_to_return",
           "lag": 4,
-          "fStatistic": 0.4182777532719102,
-          "pValue": 0.7955041739150961,
-          "qValue": 0.7977655995845552
+          "fStatistic": 0.4030012315417682,
+          "pValue": 0.8065286218331412,
+          "qValue": 0.8065286218331412
         },
         {
           "direction": "return_to_attention",
           "lag": 1,
-          "fStatistic": 0.6029037166775097,
-          "pValue": 0.43780911311429943,
-          "qValue": 0.7977655995845552
+          "fStatistic": 0.6037881827612798,
+          "pValue": 0.4374728153459118,
+          "qValue": 0.8065286218331412
         },
         {
           "direction": "return_to_attention",
           "lag": 2,
-          "fStatistic": 1.9250416163242272,
-          "pValue": 0.14686571964593798,
-          "qValue": 0.5095997374666471
+          "fStatistic": 1.9341371699815573,
+          "pValue": 0.1455434776834014,
+          "qValue": 0.5065011389718916
         },
         {
           "direction": "return_to_attention",
           "lag": 3,
-          "fStatistic": 1.588627455951748,
-          "pValue": 0.19109990154999265,
-          "qValue": 0.5095997374666471
+          "fStatistic": 1.593456805981476,
+          "pValue": 0.18993792711445937,
+          "qValue": 0.5065011389718916
         },
         {
           "direction": "return_to_attention",
           "lag": 4,
-          "fStatistic": 1.9169359113015632,
-          "pValue": 0.10621295631050981,
-          "qValue": 0.5095997374666471
+          "fStatistic": 1.9194458821095124,
+          "pValue": 0.1057933701294797,
+          "qValue": 0.5065011389718916
         }
       ],
       "note": "Granger precedence is not proof of economic causality."
