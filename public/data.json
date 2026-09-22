@@ -2,7 +2,7 @@
   "schemaVersion": 4,
   "timezone": "Asia/Seoul",
   "weekStart": "MON",
-  "updatedAt": "2026-09-21T17:51:32.586660+09:00",
+  "updatedAt": "2026-09-22T17:28:49.544880+09:00",
   "series": [
     {
       "week": "2016-03-07",
@@ -9350,23 +9350,23 @@
       "realizedVolatility": 6.964291849457549,
       "rangePct": 9.397429477549668,
       "priceObservations": 7,
-      "nextWeekClose": 83833.02,
-      "nextWeekReturn": 0.03293977154161842,
+      "nextWeekClose": 85419.37,
+      "nextWeekReturn": 0.05248581684196729,
       "periodStatus": "complete"
     },
     {
       "week": "2026-09-21",
-      "postCount": 0,
-      "btcMean": 83833.02,
-      "btcClose": 83833.02,
+      "postCount": 2,
+      "btcMean": 86007.155,
+      "btcClose": 85419.37,
       "btcOpen": 81160.33,
-      "btcHigh": 84190.0,
+      "btcHigh": 87397.0,
       "btcLow": 80837.42,
-      "btcVolume": 2892.87064031,
-      "btcExchangeClose": 83833.02,
-      "realizedVolatility": 3.240888402497267,
-      "rangePct": 4.147311975072943,
-      "priceObservations": 1,
+      "btcVolume": 16205.96471365,
+      "btcExchangeClose": 85419.37,
+      "realizedVolatility": 6.624868761213857,
+      "rangePct": 8.114534085823122,
+      "priceObservations": 2,
       "nextWeekClose": null,
       "nextWeekReturn": null,
       "periodStatus": "in_progress"
@@ -9376,8 +9376,8 @@
     "latestWeek": {
       "week": "2026-09-21",
       "periodStatus": "in_progress",
-      "posts": 0,
-      "btcClose": 83833.02,
+      "posts": 2,
+      "btcClose": 85419.37,
       "nextWeekReturn": null
     }
   },
@@ -9386,7 +9386,7 @@
     "price": {
       "status": "ok",
       "source": "Coinbase Exchange BTC-USD",
-      "observedThrough": "2026-09-21",
+      "observedThrough": "2026-09-22",
       "requestedDays": 29,
       "refreshFrom": "2026-09-14",
       "enrichment": "incremental",
@@ -9394,12 +9394,10 @@
       "ohlcvMethod": "coinbase_daily_kst_week_v4"
     },
     "posts": {
-      "status": "degraded",
+      "status": "ok",
       "sourceCount": 21,
       "refreshFrom": "2026-09-14",
-      "failures": [
-        "all-sources:no-recent-results"
-      ]
+      "failures": []
     }
   },
   "meta": {
@@ -9421,7 +9419,7 @@
       },
       "transform": "weekly diff(log1p(posts)) and log(close_t/close_t-1)",
       "adfPValues": {
-        "attentionChange": 2.7144124983987616e-30,
+        "attentionChange": 2.528390949182997e-30,
         "btcReturn": 0.0
       },
       "multipleTesting": "Benjamini-Hochberg FDR across both directions and lags",
@@ -9429,58 +9427,58 @@
         {
           "direction": "attention_to_return",
           "lag": 1,
-          "fStatistic": 0.08097804894227877,
-          "pValue": 0.7760842329808587,
-          "qValue": 0.8065286218331412
+          "fStatistic": 0.08103441846603203,
+          "pValue": 0.7760083970231377,
+          "qValue": 0.8139366429224733
         },
         {
           "direction": "attention_to_return",
           "lag": 2,
-          "fStatistic": 0.2169314247626625,
-          "pValue": 0.8050548996011357,
-          "qValue": 0.8065286218331412
+          "fStatistic": 0.21214981643811248,
+          "pValue": 0.8089105207750639,
+          "qValue": 0.8139366429224733
         },
         {
           "direction": "attention_to_return",
           "lag": 3,
-          "fStatistic": 0.48653356568506945,
-          "pValue": 0.6917695755902175,
-          "qValue": 0.8065286218331412
+          "fStatistic": 0.47259749657732475,
+          "pValue": 0.701497606393404,
+          "qValue": 0.8139366429224733
         },
         {
           "direction": "attention_to_return",
           "lag": 4,
-          "fStatistic": 0.4030012315417682,
-          "pValue": 0.8065286218331412,
-          "qValue": 0.8065286218331412
+          "fStatistic": 0.39267480607654126,
+          "pValue": 0.8139366429224733,
+          "qValue": 0.8139366429224733
         },
         {
           "direction": "return_to_attention",
           "lag": 1,
-          "fStatistic": 0.6037881827612798,
-          "pValue": 0.4374728153459118,
-          "qValue": 0.8065286218331412
+          "fStatistic": 0.6515585104421777,
+          "pValue": 0.4199075057221729,
+          "qValue": 0.8139366429224733
         },
         {
           "direction": "return_to_attention",
           "lag": 2,
-          "fStatistic": 1.9341371699815573,
-          "pValue": 0.1455434776834014,
-          "qValue": 0.5065011389718916
+          "fStatistic": 1.8881779093589859,
+          "pValue": 0.1523396947025231,
+          "qValue": 0.5127172334590798
         },
         {
           "direction": "return_to_attention",
           "lag": 3,
-          "fStatistic": 1.593456805981476,
-          "pValue": 0.18993792711445937,
-          "qValue": 0.5065011389718916
+          "fStatistic": 1.5837758562445525,
+          "pValue": 0.19226896254715492,
+          "qValue": 0.5127172334590798
         },
         {
           "direction": "return_to_attention",
           "lag": 4,
-          "fStatistic": 1.9194458821095124,
-          "pValue": 0.1057933701294797,
-          "qValue": 0.5065011389718916
+          "fStatistic": 1.9170917051040084,
+          "pValue": 0.10618394525968311,
+          "qValue": 0.5127172334590798
         }
       ],
       "note": "Granger precedence is not proof of economic causality."
