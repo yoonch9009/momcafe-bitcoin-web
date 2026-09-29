@@ -2,7 +2,7 @@
   "schemaVersion": 4,
   "timezone": "Asia/Seoul",
   "weekStart": "MON",
-  "updatedAt": "2026-09-28T18:40:39.267051+09:00",
+  "updatedAt": "2026-09-29T18:45:03.528654+09:00",
   "series": [
     {
       "week": "2016-03-07",
@@ -9367,23 +9367,23 @@
       "realizedVolatility": 6.8596815964238775,
       "rangePct": 8.114534085823122,
       "priceObservations": 7,
-      "nextWeekClose": 82605.81,
-      "nextWeekReturn": -0.021978249663103466,
+      "nextWeekClose": 83976.35,
+      "nextWeekReturn": -0.0057515710589383096,
       "periodStatus": "complete"
     },
     {
       "week": "2026-09-28",
       "postCount": 0,
-      "btcMean": 82605.81,
-      "btcClose": 82605.81,
+      "btcMean": 83716.54500000001,
+      "btcClose": 83976.35,
       "btcOpen": 84463.08,
       "btcHigh": 84992.0,
-      "btcLow": 82550.0,
-      "btcVolume": 2550.17161355,
-      "btcExchangeClose": 82605.81,
-      "realizedVolatility": 2.2223369586337474,
-      "rangePct": 2.9582071471835336,
-      "priceObservations": 1,
+      "btcLow": 82510.37,
+      "btcVolume": 8302.09930556,
+      "btcExchangeClose": 83976.35,
+      "realizedVolatility": 1.348793215460222,
+      "rangePct": 3.0076583101009025,
+      "priceObservations": 2,
       "nextWeekClose": null,
       "nextWeekReturn": null,
       "periodStatus": "in_progress"
@@ -9394,7 +9394,7 @@
       "week": "2026-09-28",
       "periodStatus": "in_progress",
       "posts": 0,
-      "btcClose": 82605.81,
+      "btcClose": 83976.35,
       "nextWeekReturn": null
     }
   },
@@ -9403,7 +9403,7 @@
     "price": {
       "status": "ok",
       "source": "Coinbase Exchange BTC-USD",
-      "observedThrough": "2026-09-28",
+      "observedThrough": "2026-09-29",
       "requestedDays": 29,
       "refreshFrom": "2026-09-21",
       "enrichment": "incremental",
@@ -9444,43 +9444,43 @@
         {
           "direction": "attention_to_return",
           "lag": 1,
-          "fStatistic": 0.08881799000549577,
-          "pValue": 0.7657984121817262,
-          "qValue": 0.8068996338082836
+          "fStatistic": 0.08501851756407487,
+          "pValue": 0.7707188055764108,
+          "qValue": 0.8080076600568298
         },
         {
           "direction": "attention_to_return",
           "lag": 2,
-          "fStatistic": 0.21551861238436804,
-          "pValue": 0.8061920619463817,
-          "qValue": 0.8068996338082836
+          "fStatistic": 0.21545609136448218,
+          "pValue": 0.806242427569453,
+          "qValue": 0.8080076600568298
         },
         {
           "direction": "attention_to_return",
           "lag": 3,
-          "fStatistic": 0.4895322798234962,
-          "pValue": 0.6896843554631304,
-          "qValue": 0.8068996338082836
+          "fStatistic": 0.4854898452001213,
+          "pValue": 0.692495691145667,
+          "qValue": 0.8080076600568298
         },
         {
           "direction": "attention_to_return",
           "lag": 4,
-          "fStatistic": 0.4024855813656489,
-          "pValue": 0.8068996338082836,
-          "qValue": 0.8068996338082836
+          "fStatistic": 0.4009440357799773,
+          "pValue": 0.8080076600568298,
+          "qValue": 0.8080076600568298
         },
         {
           "direction": "return_to_attention",
           "lag": 1,
           "fStatistic": 0.6242263947661023,
           "pValue": 0.42982342358896886,
-          "qValue": 0.8068996338082836
+          "qValue": 0.8080076600568298
         },
         {
           "direction": "return_to_attention",
           "lag": 2,
-          "fStatistic": 1.8884461777626778,
-          "pValue": 0.15229729268722408,
+          "fStatistic": 1.888446177762737,
+          "pValue": 0.15229729268721512,
           "qValue": 0.5165079550231066
         },
         {
@@ -9493,8 +9493,8 @@
         {
           "direction": "return_to_attention",
           "lag": 4,
-          "fStatistic": 1.8874097855524774,
-          "pValue": 0.11122238663116829,
+          "fStatistic": 1.887409785552493,
+          "pValue": 0.11122238663116563,
           "qValue": 0.5165079550231066
         }
       ],
