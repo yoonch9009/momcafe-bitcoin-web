@@ -2,7 +2,7 @@
   "schemaVersion": 4,
   "timezone": "Asia/Seoul",
   "weekStart": "MON",
-  "updatedAt": "2026-10-04T18:42:24.198230+09:00",
+  "updatedAt": "2026-10-05T19:19:59.381622+09:00",
   "series": [
     {
       "week": "2016-03-07",
@@ -9367,23 +9367,40 @@
       "realizedVolatility": 6.8596815964238775,
       "rangePct": 8.114534085823122,
       "priceObservations": 7,
-      "nextWeekClose": 85277.44,
-      "nextWeekReturn": 0.009652845641846097,
+      "nextWeekClose": 86507.11,
+      "nextWeekReturn": 0.024211676379499725,
       "periodStatus": "complete"
     },
     {
       "week": "2026-09-28",
       "postCount": 1,
-      "btcMean": 84289.2242857143,
-      "btcClose": 85277.44,
+      "btcMean": 84464.89142857143,
+      "btcClose": 86507.11,
       "btcOpen": 84463.08,
       "btcHigh": 87249.05,
       "btcLow": 82510.37,
-      "btcVolume": 36579.508386069996,
-      "btcExchangeClose": 85277.44,
-      "realizedVolatility": 2.118383013409771,
+      "btcVolume": 38620.40128941,
+      "btcExchangeClose": 86507.11,
+      "realizedVolatility": 2.8879006165526735,
       "rangePct": 5.743132651083749,
       "priceObservations": 7,
+      "nextWeekClose": 86065.24,
+      "nextWeekReturn": -0.0051079038474409755,
+      "periodStatus": "complete"
+    },
+    {
+      "week": "2026-10-05",
+      "postCount": 0,
+      "btcMean": 86065.24,
+      "btcClose": 86065.24,
+      "btcOpen": 86502.65,
+      "btcHigh": 86996.0,
+      "btcLow": 85383.72,
+      "btcVolume": 1857.7481344,
+      "btcExchangeClose": 86065.24,
+      "realizedVolatility": 0.5120993782075469,
+      "rangePct": 1.8882756572330184,
+      "priceObservations": 1,
       "nextWeekClose": null,
       "nextWeekReturn": null,
       "periodStatus": "in_progress"
@@ -9391,10 +9408,10 @@
   ],
   "kpis": {
     "latestWeek": {
-      "week": "2026-09-28",
+      "week": "2026-10-05",
       "periodStatus": "in_progress",
-      "posts": 1,
-      "btcClose": 85277.44,
+      "posts": 0,
+      "btcClose": 86065.24,
       "nextWeekReturn": null
     }
   },
@@ -9403,17 +9420,17 @@
     "price": {
       "status": "ok",
       "source": "Coinbase Exchange BTC-USD",
-      "observedThrough": "2026-10-04",
+      "observedThrough": "2026-10-05",
       "requestedDays": 29,
-      "refreshFrom": "2026-09-21",
+      "refreshFrom": "2026-09-28",
       "enrichment": "incremental",
-      "ohlcvCoverage": 552,
+      "ohlcvCoverage": 553,
       "ohlcvMethod": "coinbase_daily_kst_week_v4"
     },
     "posts": {
       "status": "ok",
       "sourceCount": 21,
-      "refreshFrom": "2026-09-21",
+      "refreshFrom": "2026-09-28",
       "failures": []
     }
   },
@@ -9429,14 +9446,14 @@
   "analysis": {
     "granger": {
       "status": "ok",
-      "observations": 551,
+      "observations": 552,
       "period": {
         "from": "2016-03-14",
-        "through": "2026-09-28"
+        "through": "2026-10-05"
       },
       "transform": "weekly diff(log1p(posts)) and log(close_t/close_t-1)",
       "adfPValues": {
-        "attentionChange": 2.5053636139751356e-30,
+        "attentionChange": 2.4807208857418545e-30,
         "btcReturn": 0.0
       },
       "multipleTesting": "Benjamini-Hochberg FDR across both directions and lags",
@@ -9444,58 +9461,58 @@
         {
           "direction": "attention_to_return",
           "lag": 1,
-          "fStatistic": 0.08153475031521938,
-          "pValue": 0.7753363309156975,
-          "qValue": 0.8089859062992242
+          "fStatistic": 0.07846921856594845,
+          "pValue": 0.7794884055141944,
+          "qValue": 0.8140607624550023
         },
         {
           "direction": "attention_to_return",
           "lag": 2,
-          "fStatistic": 0.21542082023947484,
-          "pValue": 0.8062708426417675,
-          "qValue": 0.8089859062992242
+          "fStatistic": 0.21120179579818896,
+          "pValue": 0.8096769064402021,
+          "qValue": 0.8140607624550023
         },
         {
           "direction": "attention_to_return",
           "lag": 3,
-          "fStatistic": 0.4817133919039874,
-          "pValue": 0.6951269255155913,
-          "qValue": 0.8089859062992242
+          "fStatistic": 0.47270752145303857,
+          "pValue": 0.7014200878621144,
+          "qValue": 0.8140607624550023
         },
         {
           "direction": "attention_to_return",
           "lag": 4,
-          "fStatistic": 0.39958208875739115,
-          "pValue": 0.8089859062992242,
-          "qValue": 0.8089859062992242
+          "fStatistic": 0.39250189762452803,
+          "pValue": 0.8140607624550023,
+          "qValue": 0.8140607624550023
         },
         {
           "direction": "return_to_attention",
           "lag": 1,
-          "fStatistic": 0.6434540590093583,
-          "pValue": 0.42281114422313765,
-          "qValue": 0.8089859062992242
+          "fStatistic": 0.6334550413477739,
+          "pValue": 0.4264354310253962,
+          "qValue": 0.8140607624550023
         },
         {
           "direction": "return_to_attention",
           "lag": 2,
-          "fStatistic": 1.931481152267189,
-          "pValue": 0.14592599216245714,
-          "qValue": 0.5025879024663901
+          "fStatistic": 1.9131495493354742,
+          "pValue": 0.14860478260164367,
+          "qValue": 0.5124636292736625
         },
         {
           "direction": "return_to_attention",
           "lag": 3,
-          "fStatistic": 1.599598193111597,
-          "pValue": 0.18847046342489626,
-          "qValue": 0.5025879024663901
+          "fStatistic": 1.584148429798779,
+          "pValue": 0.19217386097762343,
+          "qValue": 0.5124636292736625
         },
         {
           "direction": "return_to_attention",
           "lag": 4,
-          "fStatistic": 1.9260607864929742,
-          "pValue": 0.10469999865425754,
-          "qValue": 0.5025879024663901
+          "fStatistic": 1.921778159413782,
+          "pValue": 0.10540156436971872,
+          "qValue": 0.5124636292736625
         }
       ],
       "note": "Granger precedence is not proof of economic causality."
