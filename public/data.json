@@ -2,7 +2,7 @@
   "schemaVersion": 4,
   "timezone": "Asia/Seoul",
   "weekStart": "MON",
-  "updatedAt": "2026-10-30T18:55:55.484539+09:00",
+  "updatedAt": "2026-10-31T18:32:19.709544+09:00",
   "series": [
     {
       "week": "2016-03-07",
@@ -9435,23 +9435,23 @@
       "realizedVolatility": 3.9176744742381655,
       "rangePct": 7.267460528145442,
       "priceObservations": 7,
-      "nextWeekClose": 77494.36,
-      "nextWeekReturn": -0.031963760081425874,
+      "nextWeekClose": 77301.49,
+      "nextWeekReturn": -0.03437303411882797,
       "periodStatus": "complete"
     },
     {
       "week": "2026-10-26",
       "postCount": 3,
-      "btcMean": 79466.45999999999,
-      "btcClose": 77494.36,
+      "btcMean": 79053.30833333333,
+      "btcClose": 77301.49,
       "btcOpen": 80053.16,
       "btcHigh": 81890.0,
-      "btcLow": 76301.02,
-      "btcVolume": 32544.87385988,
-      "btcExchangeClose": 77494.36,
-      "realizedVolatility": 4.522514128577094,
-      "rangePct": 7.324908631627713,
-      "priceObservations": 5,
+      "btcLow": 76141.02,
+      "btcVolume": 40909.02952116,
+      "btcExchangeClose": 77301.49,
+      "realizedVolatility": 4.576191942186813,
+      "rangePct": 7.550437333253468,
+      "priceObservations": 6,
       "nextWeekClose": null,
       "nextWeekReturn": null,
       "periodStatus": "in_progress"
@@ -9462,7 +9462,7 @@
       "week": "2026-10-26",
       "periodStatus": "in_progress",
       "posts": 3,
-      "btcClose": 77494.36,
+      "btcClose": 77301.49,
       "nextWeekReturn": null
     }
   },
@@ -9471,7 +9471,7 @@
     "price": {
       "status": "ok",
       "source": "Coinbase Exchange BTC-USD",
-      "observedThrough": "2026-10-30",
+      "observedThrough": "2026-10-31",
       "requestedDays": 29,
       "refreshFrom": "2026-10-19",
       "enrichment": "incremental",
@@ -9512,37 +9512,37 @@
         {
           "direction": "attention_to_return",
           "lag": 1,
-          "fStatistic": 0.0844017082836931,
-          "pValue": 0.7715279762512728,
-          "qValue": 0.821674832883749
+          "fStatistic": 0.08474551755600719,
+          "pValue": 0.7710761030838438,
+          "qValue": 0.8217262009739441
         },
         {
           "direction": "attention_to_return",
           "lag": 2,
-          "fStatistic": 0.20485608761702498,
-          "pValue": 0.8148269289217344,
-          "qValue": 0.821674832883749
+          "fStatistic": 0.20484773414902235,
+          "pValue": 0.8148337304957283,
+          "qValue": 0.8217262009739441
         },
         {
           "direction": "attention_to_return",
           "lag": 3,
-          "fStatistic": 0.4552025314339094,
-          "pValue": 0.7137237973213213,
-          "qValue": 0.821674832883749
+          "fStatistic": 0.4550724220704974,
+          "pValue": 0.7138155912434997,
+          "qValue": 0.8217262009739441
         },
         {
           "direction": "attention_to_return",
           "lag": 4,
-          "fStatistic": 0.38182794607154236,
-          "pValue": 0.821674832883749,
-          "qValue": 0.821674832883749
+          "fStatistic": 0.3817557015403671,
+          "pValue": 0.8217262009739441,
+          "qValue": 0.8217262009739441
         },
         {
           "direction": "return_to_attention",
           "lag": 1,
           "fStatistic": 0.6180151669020303,
           "pValue": 0.4321237654842809,
-          "qValue": 0.821674832883749
+          "qValue": 0.8217262009739441
         },
         {
           "direction": "return_to_attention",
