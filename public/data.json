@@ -2,7 +2,7 @@
   "schemaVersion": 4,
   "timezone": "Asia/Seoul",
   "weekStart": "MON",
-  "updatedAt": "2026-11-07T18:59:16.998930+09:00",
+  "updatedAt": "2026-11-08T19:12:44.339922+09:00",
   "series": [
     {
       "week": "2016-03-07",
@@ -9452,23 +9452,23 @@
       "realizedVolatility": 4.700031519736346,
       "rangePct": 7.550437333253468,
       "priceObservations": 7,
-      "nextWeekClose": 75955.15,
-      "nextWeekReturn": -0.02908582388849379,
+      "nextWeekClose": 75768.21,
+      "nextWeekReturn": -0.03147542743851339,
       "periodStatus": "complete"
     },
     {
       "week": "2026-11-02",
       "postCount": 2,
-      "btcMean": 77015.74,
-      "btcClose": 75955.15,
+      "btcMean": 76808.78,
+      "btcClose": 75768.21,
       "btcOpen": 78232.49,
       "btcHigh": 81130.79,
       "btcLow": 74722.0,
-      "btcVolume": 52119.58623814,
-      "btcExchangeClose": 75955.15,
-      "realizedVolatility": 7.270790643096095,
+      "btcVolume": 54121.51447329,
+      "btcExchangeClose": 75768.21,
+      "realizedVolatility": 7.264870998160313,
       "rangePct": 8.576844838200248,
-      "priceObservations": 6,
+      "priceObservations": 7,
       "nextWeekClose": null,
       "nextWeekReturn": null,
       "periodStatus": "in_progress"
@@ -9479,7 +9479,7 @@
       "week": "2026-11-02",
       "periodStatus": "in_progress",
       "posts": 2,
-      "btcClose": 75955.15,
+      "btcClose": 75768.21,
       "nextWeekReturn": null
     }
   },
@@ -9488,7 +9488,7 @@
     "price": {
       "status": "ok",
       "source": "Coinbase Exchange BTC-USD",
-      "observedThrough": "2026-11-07",
+      "observedThrough": "2026-11-08",
       "requestedDays": 29,
       "refreshFrom": "2026-10-26",
       "enrichment": "incremental",
@@ -9521,7 +9521,7 @@
       },
       "transform": "weekly diff(log1p(posts)) and log(close_t/close_t-1)",
       "adfPValues": {
-        "attentionChange": 2.4344495934640133e-30,
+        "attentionChange": 2.4344495934639443e-30,
         "btcReturn": 0.0
       },
       "multipleTesting": "Benjamini-Hochberg FDR across both directions and lags",
@@ -9529,43 +9529,43 @@
         {
           "direction": "attention_to_return",
           "lag": 1,
-          "fStatistic": 0.08687545304317267,
-          "pValue": 0.7682984134774368,
-          "qValue": 0.8251096782365703
+          "fStatistic": 0.08712122783324085,
+          "pValue": 0.7679803079927211,
+          "qValue": 0.8253837034020578
         },
         {
           "direction": "attention_to_return",
           "lag": 2,
-          "fStatistic": 0.19982923424092855,
-          "pValue": 0.8189301103299824,
-          "qValue": 0.8251096782365703
+          "fStatistic": 0.1994654711542217,
+          "pValue": 0.8192278444779338,
+          "qValue": 0.8253837034020578
         },
         {
           "direction": "attention_to_return",
           "lag": 3,
-          "fStatistic": 0.4485588845315414,
-          "pValue": 0.7184169164543044,
-          "qValue": 0.8251096782365703
+          "fStatistic": 0.44801516638812233,
+          "pValue": 0.7188015642666428,
+          "qValue": 0.8253837034020578
         },
         {
           "direction": "attention_to_return",
           "lag": 4,
-          "fStatistic": 0.3769903084273978,
-          "pValue": 0.8251096782365703,
-          "qValue": 0.8251096782365703
+          "fStatistic": 0.3766037080435062,
+          "pValue": 0.8253837034020578,
+          "qValue": 0.8253837034020578
         },
         {
           "direction": "return_to_attention",
           "lag": 1,
           "fStatistic": 0.624603780310958,
           "pValue": 0.4296810069172156,
-          "qValue": 0.8251096782365703
+          "qValue": 0.8253837034020578
         },
         {
           "direction": "return_to_attention",
           "lag": 2,
-          "fStatistic": 1.8983745236279888,
-          "pValue": 0.15079404905760163,
+          "fStatistic": 1.898374523628048,
+          "pValue": 0.15079404905759275,
           "qValue": 0.5205988168103608
         },
         {
@@ -9578,8 +9578,8 @@
         {
           "direction": "return_to_attention",
           "lag": 4,
-          "fStatistic": 1.898501490420706,
-          "pValue": 0.10929739086735503,
+          "fStatistic": 1.8985014904206905,
+          "pValue": 0.10929739086735774,
           "qValue": 0.5205988168103608
         }
       ],
