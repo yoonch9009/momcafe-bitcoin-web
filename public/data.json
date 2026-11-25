@@ -2,7 +2,7 @@
   "schemaVersion": 4,
   "timezone": "Asia/Seoul",
   "weekStart": "MON",
-  "updatedAt": "2026-11-24T22:34:49.585480+09:00",
+  "updatedAt": "2026-11-25T21:44:08.799028+09:00",
   "series": [
     {
       "week": "2016-03-07",
@@ -9493,33 +9493,33 @@
     {
       "week": "2026-11-16",
       "postCount": 5,
-      "btcMean": 62092.70142857143,
+      "btcMean": 62092.70285714285,
       "btcClose": 61163.01,
       "btcOpen": 65315.35,
       "btcHigh": 65626.98,
-      "btcLow": 55106.0,
-      "btcVolume": 100863.09228656,
+      "btcLow": 55111.0,
+      "btcVolume": 101403.04585795,
       "btcExchangeClose": 61163.01,
-      "realizedVolatility": 6.808841437645338,
-      "rangePct": 19.092258556237063,
+      "realizedVolatility": 6.808848333478955,
+      "rangePct": 19.081453793253612,
       "priceObservations": 7,
-      "nextWeekClose": 60012.2,
-      "nextWeekReturn": -0.018815457251041168,
+      "nextWeekClose": 58628.75,
+      "nextWeekReturn": -0.04143452063592035,
       "periodStatus": "complete"
     },
     {
       "week": "2026-11-23",
       "postCount": 1,
-      "btcMean": 60601.085,
-      "btcClose": 60012.2,
+      "btcMean": 59853.19666666666,
+      "btcClose": 58628.75,
       "btcOpen": 61163.01,
-      "btcHigh": 64533.96,
-      "btcLow": 59300.01,
-      "btcVolume": 22716.477635709998,
-      "btcExchangeClose": 60012.2,
-      "realizedVolatility": 1.9440407951878416,
-      "rangePct": 8.826221108563036,
-      "priceObservations": 2,
+      "btcHigh": 64520.28,
+      "btcLow": 58364.61,
+      "btcVolume": 35684.57311524,
+      "btcExchangeClose": 58628.75,
+      "realizedVolatility": 3.045842564361053,
+      "rangePct": 10.546922184522423,
+      "priceObservations": 3,
       "nextWeekClose": null,
       "nextWeekReturn": null,
       "periodStatus": "in_progress"
@@ -9530,7 +9530,7 @@
       "week": "2026-11-23",
       "periodStatus": "in_progress",
       "posts": 1,
-      "btcClose": 60012.2,
+      "btcClose": 58628.75,
       "nextWeekReturn": null
     }
   },
@@ -9539,7 +9539,7 @@
     "price": {
       "status": "ok",
       "source": "Coinbase Exchange BTC-USD",
-      "observedThrough": "2026-11-24",
+      "observedThrough": "2026-11-25",
       "requestedDays": 29,
       "refreshFrom": "2026-11-16",
       "enrichment": "incremental",
@@ -9580,30 +9580,30 @@
         {
           "direction": "attention_to_return",
           "lag": 1,
-          "fStatistic": 0.09959408362808898,
-          "pValue": 0.752435926852658,
-          "qValue": 0.8496095646887023
+          "fStatistic": 0.09973861861888907,
+          "pValue": 0.7522622532287653,
+          "qValue": 0.8511125596636068
         },
         {
           "direction": "attention_to_return",
           "lag": 2,
-          "fStatistic": 0.18148449480179274,
-          "pValue": 0.8340809215005859,
-          "qValue": 0.8496095646887023
+          "fStatistic": 0.17810045781156317,
+          "pValue": 0.8369064197006617,
+          "qValue": 0.8511125596636068
         },
         {
           "direction": "attention_to_return",
           "lag": 3,
-          "fStatistic": 0.3889974777545988,
-          "pValue": 0.7609740462082433,
-          "qValue": 0.8496095646887023
+          "fStatistic": 0.3844849985704311,
+          "pValue": 0.7642268657209861,
+          "qValue": 0.8511125596636068
         },
         {
           "direction": "attention_to_return",
           "lag": 4,
-          "fStatistic": 0.3419878011916038,
-          "pValue": 0.8496095646887023,
-          "qValue": 0.8496095646887023
+          "fStatistic": 0.33980716266081,
+          "pValue": 0.8511125596636068,
+          "qValue": 0.8511125596636068
         },
         {
           "direction": "return_to_attention",
@@ -9615,8 +9615,8 @@
         {
           "direction": "return_to_attention",
           "lag": 2,
-          "fStatistic": 2.016659387257153,
-          "pValue": 0.13407881494837648,
+          "fStatistic": 2.0166593872571537,
+          "pValue": 0.13407881494837642,
           "qValue": 0.4803710999466501
         },
         {
@@ -9629,8 +9629,8 @@
         {
           "direction": "return_to_attention",
           "lag": 4,
-          "fStatistic": 1.9116378307124797,
-          "pValue": 0.10706640580685474,
+          "fStatistic": 1.9116378307124955,
+          "pValue": 0.10706640580685214,
           "qValue": 0.4803710999466501
         }
       ],
